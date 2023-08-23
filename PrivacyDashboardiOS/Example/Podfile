@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'PrivacyDashboardiOS_Example' do
+  pod 'PrivacyDashboardiOS', :path => '../'
+
+  target 'PrivacyDashboardiOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
