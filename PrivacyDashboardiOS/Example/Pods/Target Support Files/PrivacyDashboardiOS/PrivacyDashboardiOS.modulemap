@@ -1,0 +1,6 @@
+framework module PrivacyDashboardiOS {
+  umbrella header "PrivacyDashboardiOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

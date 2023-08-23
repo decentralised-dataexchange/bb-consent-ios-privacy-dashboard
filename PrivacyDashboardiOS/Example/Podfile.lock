@@ -1,0 +1,16 @@
+PODS:
+  - PrivacyDashboardiOS (0.1.0)
+
+DEPENDENCIES:
+  - PrivacyDashboardiOS (from `../`)
+
+EXTERNAL SOURCES:
+  PrivacyDashboardiOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PrivacyDashboardiOS: 894ed4c6ac15dbe49f1128e3e5abbba848e39260
+
+PODFILE CHECKSUM: 003542bb17705062f2dd63058a21683778c5d454
+
+COCOAPODS: 1.12.1
