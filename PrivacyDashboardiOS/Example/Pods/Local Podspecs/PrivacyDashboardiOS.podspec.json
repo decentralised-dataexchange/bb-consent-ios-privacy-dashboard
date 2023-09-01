@@ -18,5 +18,13 @@
   "platforms": {
     "ios": "13.0"
   },
-  "source_files": "PrivacyDashboardiOS/Classes/**/*"
+  "source_files": "PrivacyDashboardiOS/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+      "~> 5.4.1"
+    ],
+    "SwiftyJSON": [
+
+    ]
+  }
 }

@@ -1,15 +1,26 @@
 PODS:
-  - PrivacyDashboardiOS (0.1.0)
+  - Alamofire (5.4.4)
+  - PrivacyDashboardiOS (0.1.0):
+    - Alamofire (~> 5.4.1)
+    - SwiftyJSON
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - PrivacyDashboardiOS (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   PrivacyDashboardiOS:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PrivacyDashboardiOS: 894ed4c6ac15dbe49f1128e3e5abbba848e39260
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  PrivacyDashboardiOS: c0e2bdedae2b1e46e1807981a4859019852f77bd
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
 PODFILE CHECKSUM: 003542bb17705062f2dd63058a21683778c5d454
 
