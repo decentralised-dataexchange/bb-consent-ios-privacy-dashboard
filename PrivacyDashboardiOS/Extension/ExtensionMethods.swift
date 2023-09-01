@@ -8,7 +8,7 @@
 import Foundation
 
 extension UIApplication {
-    class func topViewControllerInApp(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    class func topViewControllerInApp(controller: UIViewController? = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController) -> UIViewController? {
         if let navigationController = controller as? UINavigationController {
             return topViewController(base: navigationController.visibleViewController)
         }
@@ -118,7 +118,7 @@ extension UIView {
 }
 
 extension UIApplication {
-    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    class func topViewController(base: UIViewController? = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)
         }
@@ -172,9 +172,9 @@ extension String {
 extension UIFont {
     static func printFontNames() {
         for familyName in UIFont.familyNames {
-            print("Family name: \(familyName)")
+            debugPrint("Family name: \(familyName)")
             for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print("Font name: \(fontName)")
+                debugPrint("Font name: \(fontName)")
             }
         }
     }
@@ -391,18 +391,6 @@ extension UIImage {
         case highest = 1
     }
     
-    /// Returns the data for the specified image in PNG format
-    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
-    /// - returns: A data object containing the PNG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
-    var png: Data? { return self.png}
-    
-    /// Returns the data for the specified image in JPEG format.
-    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
-    /// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
-    func jpeg(_ quality: JPEGQuality) -> Data? {
-        return self.jpeg(UIImage.JPEGQuality(rawValue: quality.rawValue) ?? .high)// UIImageJPEGRepresentation(self, quality.rawValue)
-    }
-    
     func resized(withPercentage percentage: CGFloat) -> UIImage? {
         let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
         UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
@@ -438,7 +426,7 @@ extension UIViewController {
 }
 
 extension UIView {
-    /** Loads instance from nib with the same name. */
+    // Loads instance from nib with the same name.
     func loadNib() -> UIView {
         let bundle = Bundle(for: type(of: self))
         let nibName = type(of: self).description().components(separatedBy: ".").last!
@@ -524,3 +512,17 @@ extension Date {
     }
 }
 
+extension Data {
+    init<T>(from value: T) {
+        var value = value
+        var myData = Data()
+        withUnsafePointer(to:&value, { (ptr: UnsafePointer<T>) -> Void in
+            myData = Data( buffer: UnsafeBufferPointer(start: ptr, count: 1))
+        })
+        self.init(myData)
+    }
+    
+    func to<T>(type: T.Type) -> T {
+        return self.withUnsafeBytes { $0.load(as: T.self) }
+    }
+}
