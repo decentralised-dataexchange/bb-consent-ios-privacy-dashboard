@@ -39,6 +39,9 @@
 		9030B2CA2AA08E45005F845A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9030B2C92AA08E45005F845A /* Constant.swift */; };
 		9030B2CC2AA0900F005F845A /* BBConsentBaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9030B2CB2AA0900F005F845A /* BBConsentBaseWebService.swift */; };
 		9030B2CE2AA0908C005F845A /* BBConsentKeychainUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9030B2CD2AA0908C005F845A /* BBConsentKeychainUtils.swift */; };
+		904369B12AA854890026E56F /* PrivacyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 904369B02AA854890026E56F /* PrivacyDashboard.storyboard */; };
+		909264F62AA6E45700C239DD /* BBConsentOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909264F52AA6E45700C239DD /* BBConsentOrganisationViewController.swift */; };
+		909264FA2AA6E46300C239DD /* PrivacyDashboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 909264F82AA6E46300C239DD /* PrivacyDashboard.xcassets */; };
 		90C7E01F2AA2185500BE35B1 /* ExtensionMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C7E01E2AA2185500BE35B1 /* ExtensionMethods.swift */; };
 		941822CDF68EB8F4D49F150457A82616 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0DF69AB6F077EDE2A3038BB6EC95B6 /* ResponseSerialization.swift */; };
 		97584BC08D2B494417BDEE268CFF38C9 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4CDB01DC3E288EFF7679D33B09215 /* Combine.swift */; };
@@ -169,6 +172,9 @@
 		9030B2C92AA08E45005F845A /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9030B2CB2AA0900F005F845A /* BBConsentBaseWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentBaseWebService.swift; sourceTree = "<group>"; };
 		9030B2CD2AA0908C005F845A /* BBConsentKeychainUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BBConsentKeychainUtils.swift; path = PrivacyDashboardiOS/Classes/BBConsentKeychainUtils.swift; sourceTree = "<group>"; };
+		904369B02AA854890026E56F /* PrivacyDashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PrivacyDashboard.storyboard; sourceTree = "<group>"; };
+		909264F52AA6E45700C239DD /* BBConsentOrganisationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentOrganisationViewController.swift; sourceTree = "<group>"; };
+		909264F82AA6E46300C239DD /* PrivacyDashboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrivacyDashboard.xcassets; sourceTree = "<group>"; };
 		90C7E01E2AA2185500BE35B1 /* ExtensionMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMethods.swift; sourceTree = "<group>"; };
 		96F13F2D895E88C1460D98E9D5BCAD51 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		96F8AD98B1453B1A0E3A0BCF13A5008B /* PrivacyDashboardiOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PrivacyDashboardiOS-umbrella.h"; sourceTree = "<group>"; };
@@ -398,6 +404,9 @@
 		BE4846E4D4B933DC9906B9BCD6FC2EE6 /* PrivacyDashboardiOS */ = {
 			isa = PBXGroup;
 			children = (
+				904369B02AA854890026E56F /* PrivacyDashboard.storyboard */,
+				909264F82AA6E46300C239DD /* PrivacyDashboard.xcassets */,
+				909264F52AA6E45700C239DD /* BBConsentOrganisationViewController.swift */,
 				748F600591EDA0B9CD065BBD909BE42A /* BBConsentPrivacyDashboardiOS.swift */,
 				9030B2CD2AA0908C005F845A /* BBConsentKeychainUtils.swift */,
 				90C7E01D2AA2183F00BE35B1 /* Extension */,
@@ -712,6 +721,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				904369B12AA854890026E56F /* PrivacyDashboard.storyboard in Resources */,
+				909264FA2AA6E46300C239DD /* PrivacyDashboard.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +808,7 @@
 				9030B2C72AA08D62005F845A /* UserInfo.swift in Sources */,
 				9030B2CC2AA0900F005F845A /* BBConsentBaseWebService.swift in Sources */,
 				5353698566EC636715B10CE01842607A /* PrivacyDashboardiOS-dummy.m in Sources */,
+				909264F62AA6E45700C239DD /* BBConsentOrganisationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
