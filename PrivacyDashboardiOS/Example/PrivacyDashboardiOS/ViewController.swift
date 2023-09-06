@@ -13,8 +13,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         // Invoking 'BBConsentPrivacyDashboardiOS' SDK
-        BBConsentPrivacyDashboardiOS.shared.log()
+        BBConsentPrivacyDashboardiOS.shared.show()
     }
 
     override func didReceiveMemoryWarning() {
