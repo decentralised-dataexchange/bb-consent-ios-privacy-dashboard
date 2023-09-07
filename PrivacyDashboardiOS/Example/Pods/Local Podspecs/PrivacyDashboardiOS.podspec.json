@@ -25,6 +25,30 @@
     ],
     "SwiftyJSON": [
 
+    ],
+    "IQKeyboardManagerSwift": [
+
+    ],
+    "ExpandableLabel": [
+
+    ],
+    "MiniLayout": [
+      "~> 1.3.0"
+    ],
+    "StepProgressView": [
+
+    ],
+    "SDStateTableView": [
+
+    ],
+    "SwiftEntryKit": [
+
+    ],
+    "AFDateHelper": [
+
+    ],
+    "Kingfisher": [
+
     ]
   }
 }

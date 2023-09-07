@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 extension UIApplication {
     class func topViewControllerInApp(controller: UIViewController? = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController) -> UIViewController? {
         if let navigationController = controller as? UINavigationController {
@@ -525,4 +526,14 @@ extension Data {
     func to<T>(type: T.Type) -> T {
         return self.withUnsafeBytes { $0.load(as: T.self) }
     }
+    
+//    func addLoadingIndicator(){
+//        DispatchQueue.main.async(execute: { () -> Void in
+//            MBProgressHUD.showAdded(to: self.view, animated: true)
+//        })
+//    }
+//
+//    func removeLoadingIndicator(){
+//        MBProgressHUD.hide(for: self.view, animated: true)
+//    }
 }

@@ -72,6 +72,11 @@ struct Constant {
         static let KPromptMsgEnterStartDate = "Please select the start date."
         static let KPromptMsgEnterEndDate = "Please select the end date"
         static let KPromptMsgNotConfigured = "Not Configured"
+        
+        static let areYouSureYouWantToAllow = "Are you sure you want to allow?"
+        static let allow = "Allow"
+        static let areYouSureYouWantToDisAllow = "Are you sure you want to disallow?"
+        static let disallow = "Disallow"
     }
 
     struct CustomTabelCell{
@@ -93,5 +98,25 @@ struct Constant {
         static let KOrgDetailedConsentAskMeCellID = "AskMeCell"
         static let KOrgSuggestionCellID = "SuggestionCell"
         static let KRequestedStatusCellID = "RequestStatusTableViewCell"
+        static let purposeCell = "PurposeCell"
+    }
+    
+    struct BBConsentOrganisation {
+        static let privacyPolicy = "Privacy Policy"
+        static let userRequests = "User Requests"
+        static let consentHistory = "Consent History"
+        static let cancel = "Cancel"
+    }
+    
+    struct ViewControllers {
+        static let requestStatusHistoryVC = "RequestStatusHistoryViewController"
+        static let consentHistoryVC = "ConsentHistoryVC"
+        static let consentListVC = "ConsentListVC"
+        static let downloadDataProgressVC = "DownloadDataProgressViewController"
+    }
+    
+    struct Images {
+        static let defaultCoverImage = "default_cover_image"
+        static let iGrantTick = "ic_igrant_tick"
     }
 }
