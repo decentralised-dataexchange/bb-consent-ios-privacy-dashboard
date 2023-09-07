@@ -40,4 +40,12 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 5.4.1'
   s.dependency 'SwiftyJSON'
+  s.dependency 'IQKeyboardManagerSwift'
+  s.dependency "ExpandableLabel"
+  s.dependency 'MiniLayout', '~> 1.3.0'
+  s.dependency 'StepProgressView'
+  s.dependency 'SDStateTableView'
+  s.dependency 'SwiftEntryKit'
+  s.dependency 'AFDateHelper'
+  s.dependency 'Kingfisher'
 end

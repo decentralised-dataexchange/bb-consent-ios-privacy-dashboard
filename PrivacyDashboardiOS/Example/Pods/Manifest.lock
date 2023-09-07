@@ -1,8 +1,26 @@
 PODS:
+  - AFDateHelper (4.3.0)
   - Alamofire (5.4.4)
+  - ExpandableLabel (0.5.2)
+  - IQKeyboardManagerSwift (6.5.11)
+  - Kingfisher (6.3.1)
+  - MiniLayout (1.3.0)
   - PrivacyDashboardiOS (0.1.0):
+    - AFDateHelper
     - Alamofire (~> 5.4.1)
+    - ExpandableLabel
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MiniLayout (~> 1.3.0)
+    - SDStateTableView
+    - StepProgressView
+    - SwiftEntryKit
     - SwiftyJSON
+  - SDStateTableView (0.0.7)
+  - StepProgressView (1.5.7):
+    - SweeterSwift
+  - SweeterSwift (1.2.3)
+  - SwiftEntryKit (2.0.0)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
@@ -10,7 +28,16 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AFDateHelper
     - Alamofire
+    - ExpandableLabel
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MiniLayout
+    - SDStateTableView
+    - StepProgressView
+    - SweeterSwift
+    - SwiftEntryKit
     - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -18,8 +45,17 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  AFDateHelper: b769c07d3d4784ee9a74633285304261bb27dc52
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
-  PrivacyDashboardiOS: c0e2bdedae2b1e46e1807981a4859019852f77bd
+  ExpandableLabel: c2fab6d27860c572d67134b30522a5917746171d
+  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  MiniLayout: 57c42e7e44cb47a9ef95650970ee1d2718725518
+  PrivacyDashboardiOS: 59e712913473b70e625915fa98778ce2358b8a52
+  SDStateTableView: 9c69677cc23e56428116dce3f4d7650cb2f6947e
+  StepProgressView: 6f23d95d0ebb912fc82dbd6a2ba96e805a0a7846
+  SweeterSwift: 3910bab8ba35b6964d5169a3c52b2c87d930b61c
+  SwiftEntryKit: 61b5fa36f34a97dd8013e48a7345bc4c4720be9a
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
 PODFILE CHECKSUM: 003542bb17705062f2dd63058a21683778c5d454
