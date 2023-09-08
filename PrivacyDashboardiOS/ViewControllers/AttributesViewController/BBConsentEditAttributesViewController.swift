@@ -1,20 +1,19 @@
 //
-//  ConsentViewController.swift
-//  iGrant
+//  BBConsentEditAttributesViewController.swift
+//  PrivacyDashboardiOS
 //
-//  Created by Ajeesh T S on 26/03/18.
-//  Copyright © 2018 iGrant.com. All rights reserved.
+//  Created by Mumthasir mohammed on 08/09/23.
 //
 
 import UIKit
+
 enum ConsentType {
     case Allow
     case Disallow
     case AskMe
 }
 
-
-class ConsentViewController: BBConsentBaseViewController {
+class BBConsentEditAttributesViewController: BBConsentBaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var consent :ConsentDetails?
     var purposeDetails : ConsentListingResponse?
@@ -22,7 +21,6 @@ class ConsentViewController: BBConsentBaseViewController {
     var preIndexPath : IndexPath?
     var orgID : String?
     var consentID : String = ""
-    
     var purposeID : String = ""
     var purposeName : String = ""
 
@@ -39,13 +37,10 @@ class ConsentViewController: BBConsentBaseViewController {
         if let data = purposeDetails?.consents.purpose.iD {
             purposeID = data
         }
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,7 +48,7 @@ class ConsentViewController: BBConsentBaseViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
-    func changeConsentValue(valueDict:[String: AnyObject]){
+    func changeConsentValue(valueDict:[String: AnyObject]) {
         if self.orgID != nil && consent?.iD != nil{
             NotificationCenter.default.post(name: .consentChange, object: nil)
             // self.addLoadingIndicator()
@@ -62,71 +57,51 @@ class ConsentViewController: BBConsentBaseViewController {
             serviceManager.updateConsent(orgId: (self.orgID)!, consentID: consentID, attributeId: (consent?.iD)!, purposeId:purposeID, valuesDict: valueDict)
         }
     }
-    
-
 }
 
-extension  ConsentViewController : UITableViewDelegate,UITableViewDataSource{
+extension BBConsentEditAttributesViewController: UITableViewDelegate,UITableViewDataSource {
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row != 2{
+        if indexPath.row != 2 {
             return 45
-        }else{
+        } else {
             return 95
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        if indexPath.row != 2{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row != 2 {
             let allowCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedConsentAllowCellID,for: indexPath)
-//            if consent?.status?.consented == "Allow"{
-//                if indexPath.row == 0{
-//                  allowCell.accessoryType = .checkmark
-//                }else{
-//                    allowCell.accessoryType = .none
-//                }
-//            }
-//            else if consent?.status?.consented == "AskMe"{
-//                if indexPath.row == 0{
-//                    allowCell.accessoryType = .none
-//                }else{
-//                    allowCell.accessoryType = .checkmark
-//                }
-//            }
-            if indexPath.row == 0{
+            if indexPath.row == 0 {
                 allowCell.textLabel?.text = NSLocalizedString("Allow", comment: "")
-                if consent?.status?.consented == .Allow{
+                if consent?.status?.consented == .Allow {
                     allowCell.accessoryType = .checkmark
                     preIndexPath = indexPath
-                }else{
+                } else {
                     allowCell.accessoryType = .none
                 }
-            }else{
+            } else {
                 allowCell.textLabel?.text = NSLocalizedString("Disallow", comment: "")
-                if consent?.status?.consented == .Disallow{
+                if consent?.status?.consented == .Disallow {
                     preIndexPath = indexPath
                     allowCell.accessoryType = .checkmark
-                }else{
+                } else {
                     allowCell.accessoryType = .none
                 }
             }
             allowCell.textLabel?.font = UIFont(name: "OpenSans", size: 15)
             return allowCell
             
-        }else{
+        } else {
             let askMeCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedConsentAskMeCellID,for: indexPath) as! AskMeSliderTableViewCell
             askMeCell.delegate = self
             askMeCell.index = indexPath
-            if consent?.status?.consented == .AskMe{
+            
+            if consent?.status?.consented == .AskMe {
                 askMeCell.tickImage.isHidden = false
 //                askMeCell.selectedDaysLbl.text = "30 Days"
                 let days : Int = (consent?.status?.days)!
@@ -134,14 +109,13 @@ extension  ConsentViewController : UITableViewDelegate,UITableViewDataSource{
                 askMeCell.askMeSlider.setValue(Float(days), animated: false)
                 preIndexPath = indexPath
 
-            }else{
+            } else {
                 askMeCell.tickImage.isHidden = true
                 askMeCell.selectedDaysLbl.text = NSLocalizedString("30 Days", comment: "")
                 askMeCell.askMeSlider.setValue(30, animated: false)
             }
             return askMeCell
         }
-
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -154,30 +128,26 @@ extension  ConsentViewController : UITableViewDelegate,UITableViewDataSource{
            consentTitle = (consent?.descriptionField)!
         }
         
-        if consent?.status?.consented == .Allow{
+        if consent?.status?.consented == .Allow {
             return NSLocalizedString("If you choose “Allow”, you are consenting to the use of your personal data ", comment: "") + (consentTitle) + NSLocalizedString(" permanently for any analytics or third party usage beyond the purposes you have signed up with.", comment: "")
         }
-        else if consent?.status?.consented == .Disallow{
+        else if consent?.status?.consented == .Disallow {
             return NSLocalizedString("If you choose “Disallow”, you are disabling the use of your personal data for any analytics or third party usage beyond the purposes you have signed up with.", comment: "")
             
-        }
-        else{
+        } else {
             return NSLocalizedString("If you choose “Ask me”, you consent to use your data for the selected period. When the  time period expires, you get notified in real time requesting for consent when the data provider is using your data.", comment: "")
         }
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        
-        if indexPath.row == 0{
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
             if preIndexPath != indexPath {
                 consent?.status?.consented = .Allow
                 self.changeConsentValue(valueDict: ["consented":"Allow" as AnyObject])
                 preIndexPath = indexPath
                 self.tableView.reloadData()
             }
-        }
-        else if indexPath.row == 1{
+        } else if indexPath.row == 1 {
             if preIndexPath != indexPath {
                 consent?.status?.consented = .Disallow
                 self.changeConsentValue(valueDict: ["consented":"DisAllow" as AnyObject])
@@ -185,13 +155,12 @@ extension  ConsentViewController : UITableViewDelegate,UITableViewDataSource{
             }
             self.tableView.reloadData()
         }
-
     }
 }
 
-extension ConsentViewController:WebServiceTaskManagerProtocol{
+extension BBConsentEditAttributesViewController: WebServiceTaskManagerProtocol {
     
-    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)){
+    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
         // self.removeLoadingIndicator()
         
         if response.error != nil{
@@ -207,19 +176,17 @@ extension ConsentViewController:WebServiceTaskManagerProtocol{
     
 }
 
-extension  ConsentViewController : AskMeSliderCellDelegate{
-    func askMeSliderValueChanged(days:Int){
+extension  BBConsentEditAttributesViewController: AskMeSliderCellDelegate {
+    func askMeSliderValueChanged(days:Int) {
         consent?.status?.consented = .AskMe
         consent?.status?.days = days
         self.tableView.reloadData()
     }
     
-    func updatedSliderValue(days:Int,indexPath:IndexPath){
+    func updatedSliderValue(days:Int,indexPath:IndexPath) {
         preIndexPath = indexPath
         self.changeConsentValue(valueDict: ["days":days as AnyObject])
     }
-
-
 }
 
 

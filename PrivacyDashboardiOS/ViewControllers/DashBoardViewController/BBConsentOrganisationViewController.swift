@@ -303,7 +303,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.consentListVC) as! ConsentListViewController
+            let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.consentListVC) as! BBConsentAttributesViewController
             consentVC.organisaionDeatils = self.organisaionDeatils
             consentVC.purposeInfo = organisaionDeatils?.purposeConsents[indexPath.row].purpose
             self.navigationController?.pushViewController(consentVC, animated: true)
