@@ -10,11 +10,9 @@ import UIKit
 
 struct Constant {
     static func getStoryboard(vc: AnyClass) -> UIStoryboard {
-        let bundle = Bundle(for: vc.self)
-        guard let resourcesBundleUrl = bundle.resourceURL?.appendingPathComponent("PrivacyDashboard.bundle") else {
-            return UIStoryboard(name:"PrivacyDashboard", bundle: Bundle.init(for: vc))
-        }
-        return UIStoryboard(name:"PrivacyDashboard", bundle: Bundle(url: resourcesBundleUrl))
+        let myBundle = Bundle(for: vc.self)
+        let storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+        return storyboard
     }
     
     static func getResourcesBundle(vc: AnyClass) -> Bundle? {
