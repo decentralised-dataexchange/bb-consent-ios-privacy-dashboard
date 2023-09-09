@@ -117,4 +117,13 @@ struct Constant {
         static let defaultCoverImage = "default_cover_image"
         static let iGrantTick = "ic_igrant_tick"
     }
+    
+    struct Strings {
+        static let days = "Days"
+        static let consent = "CONSENT"
+        static let consentAllowedNoteOne = "If you choose “Allow”, you are consenting to the use of your personal data "
+        static let consentAllowedNoteTwo = " permanently for any analytics or third party usage beyond the purposes you have signed up with."
+        static let consentDisAllowedNote = "If you choose “Disallow”, you are disabling the use of your personal data for any analytics or third party usage beyond the purposes you have signed up with."
+        static let consentDefaultNote = "If you choose “Ask me”, you consent to use your data for the selected period. When the  time period expires, you get notified in real time requesting for consent when the data provider is using your data."
+    }
 }

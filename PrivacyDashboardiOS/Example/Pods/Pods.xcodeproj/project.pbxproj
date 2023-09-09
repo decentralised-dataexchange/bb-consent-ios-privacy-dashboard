@@ -167,7 +167,7 @@
 		9086C4FA2AA87A5200C46CF5 /* PrivacyDashboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9086C4F82AA87A5200C46CF5 /* PrivacyDashboard.xcassets */; };
 		9086C4FB2AA87A5200C46CF5 /* PrivacyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9086C4F92AA87A5200C46CF5 /* PrivacyDashboard.storyboard */; };
 		9086C5062AA87D1300C46CF5 /* BBConsentBaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C4FD2AA87D1300C46CF5 /* BBConsentBaseWebService.swift */; };
-		9086C5072AA87D1400C46CF5 /* BBConsentEditAttributesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C4FF2AA87D1300C46CF5 /* BBConsentEditAttributesViewController.swift */; };
+		9086C5072AA87D1400C46CF5 /* BBConsentAttributesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */; };
 		9086C5082AA87D1400C46CF5 /* BBConsentOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5002AA87D1300C46CF5 /* BBConsentOrganisationViewController.swift */; };
 		9086C5092AA87D1400C46CF5 /* RequestStatusHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */; };
 		9086C50A2AA87D1400C46CF5 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5022AA87D1300C46CF5 /* WebViewViewController.swift */; };
@@ -699,7 +699,7 @@
 		9086C4F82AA87A5200C46CF5 /* PrivacyDashboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrivacyDashboard.xcassets; sourceTree = "<group>"; };
 		9086C4F92AA87A5200C46CF5 /* PrivacyDashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrivacyDashboard.storyboard; sourceTree = "<group>"; };
 		9086C4FD2AA87D1300C46CF5 /* BBConsentBaseWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentBaseWebService.swift; sourceTree = "<group>"; };
-		9086C4FF2AA87D1300C46CF5 /* BBConsentEditAttributesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentEditAttributesViewController.swift; sourceTree = "<group>"; };
+		9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesDetailViewController.swift; sourceTree = "<group>"; };
 		9086C5002AA87D1300C46CF5 /* BBConsentOrganisationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentOrganisationViewController.swift; sourceTree = "<group>"; };
 		9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatusHistoryViewController.swift; sourceTree = "<group>"; };
 		9086C5022AA87D1300C46CF5 /* WebViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
@@ -1563,7 +1563,7 @@
 			isa = PBXGroup;
 			children = (
 				9086C5042AA87D1300C46CF5 /* BBConsentAttributesViewController.swift */,
-				9086C4FF2AA87D1300C46CF5 /* BBConsentEditAttributesViewController.swift */,
+				9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */,
 			);
 			path = AttributesViewController;
 			sourceTree = "<group>";
@@ -2518,7 +2518,7 @@
 				9086C53C2AA87E4900C46CF5 /* MBProgressHUD.m in Sources */,
 				9086C54A2AA87FA900C46CF5 /* LoginWebService.swift in Sources */,
 				9086C5492AA87FA900C46CF5 /* LoginServiceManager.swift in Sources */,
-				9086C5072AA87D1400C46CF5 /* BBConsentEditAttributesViewController.swift in Sources */,
+				9086C5072AA87D1400C46CF5 /* BBConsentAttributesDetailViewController.swift in Sources */,
 				9086C4F12AA8767100C46CF5 /* Constant.swift in Sources */,
 				9086C50A2AA87D1400C46CF5 /* WebViewViewController.swift in Sources */,
 				9086C53B2AA87E4900C46CF5 /* Toast.swift in Sources */,
