@@ -144,7 +144,7 @@
                                             <outlet property="overViewLbl" destination="qBw-yN-Qoh" id="Jf8-SF-apG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentCell" rowHeight="80" id="fax-C1-85c" customClass="ConsentTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentCell" rowHeight="80" id="fax-C1-85c" customClass="BBConsentAttributeTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="329" width="393" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fax-C1-85c" id="bsI-Ad-OcD">
@@ -496,7 +496,7 @@
                                                     <outlet property="overViewLbl" destination="SKd-Hp-UAA" id="6fL-bN-ooH"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentCell" rowHeight="70" id="lGQ-jN-3M2" customClass="ConsentTableViewCell" customModule="iGrant" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentCell" rowHeight="70" id="lGQ-jN-3M2" customClass="BBConsentAttributeTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="94" width="393" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lGQ-jN-3M2" id="szl-In-VDo">
@@ -579,7 +579,7 @@
                                                     <outlet property="titleLbl" destination="kRm-cn-3Nr" id="5L8-g2-JZI"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentHeaderTableViewCell" rowHeight="65" id="rbk-Ie-Hy0" customClass="ConsentHeaderTableViewCell" customModule="iGrant" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentHeaderTableViewCell" rowHeight="65" id="rbk-Ie-Hy0" customClass="ConsentHeaderTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="164" width="393" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rbk-Ie-Hy0" id="VZd-Vm-qGg">
@@ -705,7 +705,7 @@
         <!--Consent Attributes Detail View Controller-->
         <scene sceneID="9fH-Io-m9h">
             <objects>
-                <viewController storyboardIdentifier="ConsentVC" id="t7T-Ol-R1s" customClass="BBConsentAttributesDetailViewController" customModule="iGrant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConsentVC" id="t7T-Ol-R1s" customClass="BBConsentAttributesDetailViewController" customModule="PrivacyDashboardiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6kt-Si-y4c">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -730,7 +730,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AskMeCell" rowHeight="95" id="bGW-s2-Dan" customClass="AskMeSliderTableViewCell" customModule="iGrant" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AskMeCell" rowHeight="95" id="bGW-s2-Dan" customClass="AskMeSliderTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="145.33333206176758" width="393" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bGW-s2-Dan" id="FxS-wO-x8m">
@@ -845,6 +845,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O44-rx-6Ss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2297" y="25"/>
+        </scene>
+        <!--Consent Web View View Controller-->
+        <scene sceneID="aN6-YX-gl8">
+            <objects>
+                <viewController storyboardIdentifier="WebViewVC" id="03V-DF-Usc" customClass="BBConsentWebViewViewController" customModule="iGrant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eOE-OX-xJw">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uG-Gm-7gq">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ROk-ih-mdV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4uG-Gm-7gq" firstAttribute="top" secondItem="ROk-ih-mdV" secondAttribute="top" id="NWq-Ij-Rcx"/>
+                            <constraint firstItem="4uG-Gm-7gq" firstAttribute="leading" secondItem="ROk-ih-mdV" secondAttribute="leading" id="VSg-3X-CAS"/>
+                            <constraint firstItem="4uG-Gm-7gq" firstAttribute="trailing" secondItem="ROk-ih-mdV" secondAttribute="trailing" id="YSd-QC-OGw"/>
+                            <constraint firstItem="4uG-Gm-7gq" firstAttribute="bottom" secondItem="ROk-ih-mdV" secondAttribute="bottom" id="iE9-dr-Yra"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="4uG-Gm-7gq" id="VO2-Qd-8PC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2YA-Xw-EsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3002" y="25"/>
         </scene>
     </scenes>
     <resources>
