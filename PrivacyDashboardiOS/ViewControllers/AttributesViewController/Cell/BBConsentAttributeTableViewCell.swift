@@ -1,15 +1,14 @@
 
 //
 //  ConsentTableViewCell.swift
-//  iGrant
-//
-//  Created by Ajeesh T S on 25/03/18.
-//  Copyright © 2018 iGrant.com. All rights reserved.
+//  PrivacyDashboardiOS
+
+//  Created by Mumthasir mohammed on 11/09/23.
 //
 
 import UIKit
 
-class ConsentTableViewCell: UITableViewCell {
+class BBConsentAttributeTableViewCell: UITableViewCell {
     @IBOutlet weak var rightArrow: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dataLbl: UILabel!
@@ -18,26 +17,23 @@ class ConsentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
-    func showData(){
+    func showData() {
         self.titleLbl.text = self.consentInfo?.descriptionField
         self.dataLbl.text = self.consentInfo?.value
-        if self.consentInfo?.status.consented == .Allow{
-            self.consentTypeLbl.text = NSLocalizedString("Allow", comment: "")
+        if self.consentInfo?.status.consented == .Allow {
+            self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.allow, comment: "")
         }
-        else if self.consentInfo?.status.consented == .AskMe{
-            self.consentTypeLbl.text = NSLocalizedString("AskMe", comment: "")
+        else if self.consentInfo?.status.consented == .AskMe {
+            self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.askMe, comment: "")
         }
         else{
-            self.consentTypeLbl.text = NSLocalizedString("Disallow", comment: "")
+            self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.disallow, comment: "")
         }
     }
 }

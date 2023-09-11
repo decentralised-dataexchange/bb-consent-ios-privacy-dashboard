@@ -87,13 +87,13 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     @IBAction func policyBtnClicked() {
-        if let url = self.consentslistInfo?.consents.purpose.policyURL{
+        if let url = self.consentslistInfo?.consents.purpose.policyURL {
             if url.isValidString{
-                let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: "WebViewVC") as! WebViewViewController
+                let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllers.webViewVC) as! BBConsentWebViewViewController
                 webviewVC.urlString = url
                 self.navigationController?.pushViewController(webviewVC, animated: true)
             }else{
-                self.showErrorAlert(message: "Invalid URL")
+                self.showErrorAlert(message: Constant.Alert.invalidURL)
             }
         }
     }
@@ -102,7 +102,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
         showConfirmationAlert()
     }
     
-    func callConsentListApi(){
+    func callConsentListApi() {
         // self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
@@ -110,16 +110,16 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     func showConfirmationAlert() {
-        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message: NSLocalizedString("Are you sure you want to disallow all ?", comment: ""), preferredStyle: .alert)
-        alerController.addAction(UIAlertAction(title: NSLocalizedString("Disallow All", comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
-            self.calldisallowAllApi()
+        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message: NSLocalizedString(Constant.Alert.areYouWantToDisallowAll, comment: ""), preferredStyle: .alert)
+        alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.disallowAll, comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
+            self.callDisallowAllApi()
         }));
-        alerController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
+        alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
         }));
         present(alerController, animated: true, completion: nil)
     }
     
-    func calldisallowAllApi(){
+    func callDisallowAllApi(){
         // self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
@@ -193,7 +193,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
             switch indexPath.row {
             case 0:
                 let orgOverViewCell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.KOrgDetailedOverViewCellID, for: indexPath) as! BBConsentDashBoardOverviewCell
-                //                orgOverViewCell.overViewLbl.text = organisaionDeatils?.organization?.descriptionField
+                //    orgOverViewCell.overViewLbl.text = organisaionDeatils?.organization?.descriptionField
                 
                 orgOverViewCell.overViewLbl.delegate = self
                 orgOverViewCell.layoutIfNeeded()
@@ -215,7 +215,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                 }
                 return orgOverViewCell
             default:
-                let consentHeaderCell = tableView.dequeueReusableCell(withIdentifier:"ConsentHeaderTableViewCell",for: indexPath) as! ConsentHeaderTableViewCell
+                let consentHeaderCell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.consentHeaderTableViewCell,for: indexPath) as! ConsentHeaderTableViewCell
                 
                 if let url = self.consentslistInfo?.consents.purpose.policyURL{
                     if url.isValidString{
@@ -234,13 +234,12 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                 
             }
         }
-        
-        
-        let consentCell = tableView.dequeueReusableCell(withIdentifier:"ConsentCell",for: indexPath) as! ConsentTableViewCell
+                
+        let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.consentCell ,for: indexPath) as! BBConsentAttributeTableViewCell
         consentCell.consentInfo = consentslist?[indexPath.row]
         consentCell.showData()
         if isFromQR {
-            consentCell.consentTypeLbl.text =  NSLocalizedString("Allow", comment: "")
+            consentCell.consentTypeLbl.text =  NSLocalizedString(Constant.Alert.allow, comment: "")
             //  consentCell.rightArrow.isHidden = true
         }
         return consentCell
@@ -249,7 +248,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if self.consentslistInfo?.consents.purpose.lawfulUsage == false && !isFromQR {
-                let consentVC = self.storyboard?.instantiateViewController(withIdentifier: "ConsentVC") as! BBConsentAttributesDetailViewController
+                let consentVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllers.consentVC) as! BBConsentAttributesDetailViewController
                 consentVC.consent = consentslist?[indexPath.row]
                 consentVC.orgID = self.consentslistInfo?.orgID
                 consentVC.purposeDetails = self.consentslistInfo

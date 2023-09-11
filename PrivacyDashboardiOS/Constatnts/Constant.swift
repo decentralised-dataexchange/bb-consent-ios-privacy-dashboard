@@ -75,9 +75,12 @@ struct Constant {
         static let allow = "Allow"
         static let areYouSureYouWantToDisAllow = "Are you sure you want to disallow?"
         static let disallow = "Disallow"
+        static let areYouWantToDisallowAll = "Are you sure you want to disallow all ?"
+        static let disallowAll = "Disallow All"
+        static let invalidURL = "Invalid URL"
     }
 
-    struct CustomTabelCell{
+    struct CustomTabelCell {
         static let KMoreCellID = "moreCell"
         static let KProfileListCellID = "ListCell"
         static let KEventCellID = "EventCell"
@@ -97,13 +100,8 @@ struct Constant {
         static let KOrgSuggestionCellID = "SuggestionCell"
         static let KRequestedStatusCellID = "RequestStatusTableViewCell"
         static let purposeCell = "PurposeCell"
-    }
-    
-    struct BBConsentOrganisation {
-        static let privacyPolicy = "Privacy Policy"
-        static let userRequests = "User Requests"
-        static let consentHistory = "Consent History"
-        static let cancel = "Cancel"
+        static let consentHeaderTableViewCell = "ConsentHeaderTableViewCell"
+        static let consentCell = "ConsentCell"
     }
     
     struct ViewControllers {
@@ -111,6 +109,8 @@ struct Constant {
         static let consentHistoryVC = "ConsentHistoryVC"
         static let consentListVC = "ConsentListVC"
         static let downloadDataProgressVC = "DownloadDataProgressViewController"
+        static let consentVC = "ConsentVC"
+        static let webViewVC = "WebViewVC"
     }
     
     struct Images {
@@ -125,5 +125,13 @@ struct Constant {
         static let consentAllowedNoteTwo = " permanently for any analytics or third party usage beyond the purposes you have signed up with."
         static let consentDisAllowedNote = "If you choose “Disallow”, you are disabling the use of your personal data for any analytics or third party usage beyond the purposes you have signed up with."
         static let consentDefaultNote = "If you choose “Ask me”, you consent to use your data for the selected period. When the  time period expires, you get notified in real time requesting for consent when the data provider is using your data."
+        static let cancel = "Cancel"
+        static let privacyPolicy = "Privacy Policy"
+        static let policy = "Policy"
+        static let userRequests = "User Requests"
+        static let consentHistory = "Consent History"
+        static let allow = "Allow"
+        static let disallow = "Disallow"
+        static let askMe = "AskMe"
     }
 }

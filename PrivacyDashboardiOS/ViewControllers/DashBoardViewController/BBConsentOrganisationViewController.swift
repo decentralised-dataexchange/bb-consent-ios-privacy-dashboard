@@ -103,7 +103,7 @@ class BBConsentOrganisationViewController: UIViewController {
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Create an action
-        let firstAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.BBConsentOrganisation.privacyPolicy, comment: ""), style: .default) { action -> Void in
+        let firstAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.privacyPolicy, comment: ""), style: .default) { action -> Void in
             
             if let privacyPolicy = self.organisaionDeatils?.organization.privacyPolicy {
                 if self.verifyUrl(urlString: privacyPolicy) {
@@ -116,15 +116,15 @@ class BBConsentOrganisationViewController: UIViewController {
             }
         }
         
-        let secondAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.BBConsentOrganisation.userRequests, comment: ""), style: .default) { action -> Void in
+        let secondAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.userRequests, comment: ""), style: .default) { action -> Void in
             self.showRequestedStatus()
         }
         
-        let thirdAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.BBConsentOrganisation.consentHistory, comment: ""), style: .default) { action -> Void in
+        let thirdAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.consentHistory, comment: ""), style: .default) { action -> Void in
             self.showConsentHistory()
         }
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.BBConsentOrganisation.cancel, comment: ""), style: .cancel) { action -> Void in }
+        let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel) { action -> Void in }
         
         // Add actions
         actionSheetController.addAction(firstAction)
@@ -396,12 +396,12 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                 // self.addLoadingIndicator()
                 serviceManager.updatePurpose(orgId: (self.organisaionDeatils?.organization.iD)!, consentID:  (self.organisaionDeatils?.consentID)!, attributeId: "", purposeId: (purposeInfo?.purpose.iD)!, status: value)
             }));
-            alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.BBConsentOrganisation.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
+            alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
             }));
             
         } else {
-            alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.BBConsentOrganisation.cancel, comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
+            alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
             }));
             
