@@ -133,5 +133,6 @@ struct Constant {
         static let allow = "Allow"
         static let disallow = "Disallow"
         static let askMe = "AskMe"
+        static let noConsentHistory = "No history available"
     }
 }

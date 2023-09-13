@@ -170,7 +170,7 @@
 		9086C5072AA87D1400C46CF5 /* BBConsentAttributesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */; };
 		9086C5082AA87D1400C46CF5 /* BBConsentOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5002AA87D1300C46CF5 /* BBConsentOrganisationViewController.swift */; };
 		9086C5092AA87D1400C46CF5 /* RequestStatusHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */; };
-		9086C50B2AA87D1400C46CF5 /* ConsentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5032AA87D1300C46CF5 /* ConsentHeaderTableViewCell.swift */; };
+		9086C50B2AA87D1400C46CF5 /* BBConsentAttributesHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5032AA87D1300C46CF5 /* BBConsentAttributesHeaderCell.swift */; };
 		9086C50C2AA87D1400C46CF5 /* BBConsentAttributesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5042AA87D1300C46CF5 /* BBConsentAttributesViewController.swift */; };
 		9086C50D2AA87D1400C46CF5 /* RequestStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5052AA87D1300C46CF5 /* RequestStatusTableViewCell.swift */; };
 		9086C5202AA87D3400C46CF5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5102AA87D3400C46CF5 /* UserInfo.swift */; };
@@ -209,7 +209,7 @@
 		9086C55C2AA8815500C46CF5 /* ConsentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C55A2AA8815500C46CF5 /* ConsentHistory.swift */; };
 		9086C55E2AA8882100C46CF5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C55D2AA8882100C46CF5 /* LoginViewController.swift */; };
 		9086C5602AA8AC8800C46CF5 /* BBConsentPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C55F2AA8AC8800C46CF5 /* BBConsentPopOver.swift */; };
-		9086C5632AA8ACF400C46CF5 /* ConsentHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5612AA8ACF400C46CF5 /* ConsentHistoryViewController.swift */; };
+		9086C5632AA8ACF400C46CF5 /* BBConsentHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5612AA8ACF400C46CF5 /* BBConsentHistoryViewController.swift */; };
 		9086C5642AA8ACF400C46CF5 /* HistoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5622AA8ACF400C46CF5 /* HistoryListTableViewCell.swift */; };
 		9086C5662AA8B0F600C46CF5 /* BBConsentUtilityMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5652AA8B0F600C46CF5 /* BBConsentUtilityMethods.swift */; };
 		9086C5702AADCFA200C46CF5 /* BBConsentWebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C56F2AADCFA200C46CF5 /* BBConsentWebViewViewController.swift */; };
@@ -702,7 +702,7 @@
 		9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesDetailViewController.swift; sourceTree = "<group>"; };
 		9086C5002AA87D1300C46CF5 /* BBConsentOrganisationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentOrganisationViewController.swift; sourceTree = "<group>"; };
 		9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatusHistoryViewController.swift; sourceTree = "<group>"; };
-		9086C5032AA87D1300C46CF5 /* ConsentHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		9086C5032AA87D1300C46CF5 /* BBConsentAttributesHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesHeaderCell.swift; sourceTree = "<group>"; };
 		9086C5042AA87D1300C46CF5 /* BBConsentAttributesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesViewController.swift; sourceTree = "<group>"; };
 		9086C5052AA87D1300C46CF5 /* RequestStatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatusTableViewCell.swift; sourceTree = "<group>"; };
 		9086C5102AA87D3400C46CF5 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -741,7 +741,7 @@
 		9086C55A2AA8815500C46CF5 /* ConsentHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentHistory.swift; sourceTree = "<group>"; };
 		9086C55D2AA8882100C46CF5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9086C55F2AA8AC8800C46CF5 /* BBConsentPopOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentPopOver.swift; sourceTree = "<group>"; };
-		9086C5612AA8ACF400C46CF5 /* ConsentHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentHistoryViewController.swift; sourceTree = "<group>"; };
+		9086C5612AA8ACF400C46CF5 /* BBConsentHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentHistoryViewController.swift; sourceTree = "<group>"; };
 		9086C5622AA8ACF400C46CF5 /* HistoryListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryListTableViewCell.swift; sourceTree = "<group>"; };
 		9086C5652AA8B0F600C46CF5 /* BBConsentUtilityMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentUtilityMethods.swift; sourceTree = "<group>"; };
 		9086C56F2AADCFA200C46CF5 /* BBConsentWebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentWebViewViewController.swift; sourceTree = "<group>"; };
@@ -1400,12 +1400,11 @@
 				9086C5682AA9A5C900C46CF5 /* BaseViewController */,
 				9086C5692AA9A5DC00C46CF5 /* DashBoardViewController */,
 				9086C56E2AAAF8EA00C46CF5 /* AttributesViewController */,
+				9086C5722AAF2D1200C46CF5 /* ConsentHistory */,
 				9086C55D2AA8882100C46CF5 /* LoginViewController.swift */,
 				9086C54F2AA8801200C46CF5 /* DownloadDataProgressViewController.swift */,
 				9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */,
-				9086C5032AA87D1300C46CF5 /* ConsentHeaderTableViewCell.swift */,
 				9086C5052AA87D1300C46CF5 /* RequestStatusTableViewCell.swift */,
-				9086C5612AA8ACF400C46CF5 /* ConsentHistoryViewController.swift */,
 				9086C5622AA8ACF400C46CF5 /* HistoryListTableViewCell.swift */,
 			);
 			path = ViewControllers;
@@ -1572,8 +1571,17 @@
 			isa = PBXGroup;
 			children = (
 				9086C4EE2AA8767100C46CF5 /* BBConsentAttributeTableViewCell.swift */,
+				9086C5032AA87D1300C46CF5 /* BBConsentAttributesHeaderCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		9086C5722AAF2D1200C46CF5 /* ConsentHistory */ = {
+			isa = PBXGroup;
+			children = (
+				9086C5612AA8ACF400C46CF5 /* BBConsentHistoryViewController.swift */,
+			);
+			path = ConsentHistory;
 			sourceTree = "<group>";
 		};
 		957D5EF34E703D63BD066296DF237C72 /* Support Files */ = {
@@ -2499,9 +2507,9 @@
 				9086C5562AA8812500C46CF5 /* Status.swift in Sources */,
 				9086C4F32AA8767100C46CF5 /* OrgPopOver.swift in Sources */,
 				9086C5502AA8801200C46CF5 /* DownloadDataProgressViewController.swift in Sources */,
-				9086C5632AA8ACF400C46CF5 /* ConsentHistoryViewController.swift in Sources */,
+				9086C5632AA8ACF400C46CF5 /* BBConsentHistoryViewController.swift in Sources */,
 				9086C5662AA8B0F600C46CF5 /* BBConsentUtilityMethods.swift in Sources */,
-				9086C50B2AA87D1400C46CF5 /* ConsentHeaderTableViewCell.swift in Sources */,
+				9086C50B2AA87D1400C46CF5 /* BBConsentAttributesHeaderCell.swift in Sources */,
 				9086C50C2AA87D1400C46CF5 /* BBConsentAttributesViewController.swift in Sources */,
 				9086C5522AA8806E00C46CF5 /* BBConsentBaseViewController.swift in Sources */,
 				9086C4F52AA8767100C46CF5 /* BBConsentAttributeTableViewCell.swift in Sources */,

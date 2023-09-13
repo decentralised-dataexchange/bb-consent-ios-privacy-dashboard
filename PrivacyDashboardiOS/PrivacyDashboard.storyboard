@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -579,7 +580,7 @@
                                                     <outlet property="titleLbl" destination="kRm-cn-3Nr" id="5L8-g2-JZI"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentHeaderTableViewCell" rowHeight="65" id="rbk-Ie-Hy0" customClass="ConsentHeaderTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentHeaderTableViewCell" rowHeight="65" id="rbk-Ie-Hy0" customClass="BBConsentAttributesHeaderCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="164" width="393" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rbk-Ie-Hy0" id="VZd-Vm-qGg">
@@ -849,7 +850,7 @@
         <!--Consent Web View View Controller-->
         <scene sceneID="aN6-YX-gl8">
             <objects>
-                <viewController storyboardIdentifier="WebViewVC" id="03V-DF-Usc" customClass="BBConsentWebViewViewController" customModule="iGrant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewVC" id="03V-DF-Usc" customClass="BBConsentWebViewViewController" customModule="PrivacyDashboardiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eOE-OX-xJw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -879,6 +880,116 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2YA-Xw-EsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3002" y="25"/>
+        </scene>
+        <!--Consent History View Controller-->
+        <scene sceneID="3jS-8w-RM1">
+            <objects>
+                <viewController storyboardIdentifier="ConsentHistoryVC" id="lDv-XR-jrg" customClass="BBConsentHistoryViewController" customModule="iGrant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h5O-LS-sKh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zyw-FQ-lW2">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ecC-Jl-OMN" customClass="SDStateTableView" customModule="SDStateTableView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" rowHeight="62" id="T1H-Ki-Lvi" customClass="HistoryListTableViewCell" customModule="iGrant" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="393" height="62"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T1H-Ki-Lvi" id="a1b-cQ-KhQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consent Request" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GS-iG-goV">
+                                                            <rect key="frame" x="15" y="36" width="155" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="QNk-7c-tVU"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                            <color key="textColor" red="0.0" green="0.3442552686" blue="0.67662137749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="Consent Request"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just Now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJS-de-JDh">
+                                                            <rect key="frame" x="178" y="36" width="200" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="Kcs-ML-abj"/>
+                                                                <constraint firstAttribute="width" constant="200" id="rAW-o4-XBP"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                            <color key="textColor" red="0.42336291069999998" green="0.427421838" blue="0.43152362109999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="Just Now"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have consented Korolinska to use your all data." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1O-4B-fXk">
+                                                            <rect key="frame" x="20" y="15" width="353" height="17"/>
+                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                            <color key="textColor" red="0.1283556521" green="0.1558600664" blue="0.2098422348" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="You have consented Korolinska to use your all data."/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hei-Sm-Lgh">
+                                                            <rect key="frame" x="0.0" y="61" width="393" height="1"/>
+                                                            <color key="backgroundColor" red="0.85830682520000001" green="0.87462705370000005" blue="0.87458759549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="q9F-ap-MDp"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="5GS-iG-goV" secondAttribute="bottom" constant="5" id="0Z4-Wm-TiU"/>
+                                                        <constraint firstItem="5GS-iG-goV" firstAttribute="leading" secondItem="a1b-cQ-KhQ" secondAttribute="leading" constant="15" id="5OO-BE-iyj"/>
+                                                        <constraint firstItem="B1O-4B-fXk" firstAttribute="top" secondItem="a1b-cQ-KhQ" secondAttribute="topMargin" constant="4" id="EKY-bZ-Zx5"/>
+                                                        <constraint firstItem="B1O-4B-fXk" firstAttribute="trailing" secondItem="a1b-cQ-KhQ" secondAttribute="trailingMargin" id="J41-IK-jh0"/>
+                                                        <constraint firstItem="hei-Sm-Lgh" firstAttribute="leading" secondItem="a1b-cQ-KhQ" secondAttribute="leading" id="NxT-21-JjH"/>
+                                                        <constraint firstItem="5GS-iG-goV" firstAttribute="top" secondItem="B1O-4B-fXk" secondAttribute="bottom" constant="4" id="bbX-eU-7Mr"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hei-Sm-Lgh" secondAttribute="trailing" id="c7J-6s-vrP"/>
+                                                        <constraint firstItem="B1O-4B-fXk" firstAttribute="leading" secondItem="a1b-cQ-KhQ" secondAttribute="leadingMargin" id="eX6-R4-Nbn"/>
+                                                        <constraint firstItem="wJS-de-JDh" firstAttribute="centerY" secondItem="5GS-iG-goV" secondAttribute="centerY" id="hUN-Tb-9K4"/>
+                                                        <constraint firstItem="wJS-de-JDh" firstAttribute="leading" secondItem="5GS-iG-goV" secondAttribute="trailing" constant="8" id="lsm-1x-rGu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="hei-Sm-Lgh" secondAttribute="bottom" id="pn1-SC-bfk"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wJS-de-JDh" secondAttribute="trailing" constant="15" id="qh3-u6-znJ"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="contentLbl" destination="B1O-4B-fXk" id="OJP-wC-LMb"/>
+                                                    <outlet property="timeLbl" destination="wJS-de-JDh" id="UVV-81-CLt"/>
+                                                    <outlet property="typeLbl" destination="5GS-iG-goV" id="bZE-2c-x6V"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cCM-e7-MEO"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zyw-FQ-lW2" firstAttribute="top" secondItem="cCM-e7-MEO" secondAttribute="top" id="35n-fv-O3o"/>
+                            <constraint firstItem="zyw-FQ-lW2" firstAttribute="leading" secondItem="cCM-e7-MEO" secondAttribute="leading" id="5DJ-e2-yUt"/>
+                            <constraint firstItem="zyw-FQ-lW2" firstAttribute="bottom" secondItem="cCM-e7-MEO" secondAttribute="bottom" id="K4X-D8-SWp"/>
+                            <constraint firstItem="cCM-e7-MEO" firstAttribute="trailing" secondItem="zyw-FQ-lW2" secondAttribute="trailing" id="sfP-kD-XTi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="historyListTable" destination="ecC-Jl-OMN" id="klO-Lv-FoA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KDu-HL-BqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="723"/>
         </scene>
     </scenes>
     <resources>
