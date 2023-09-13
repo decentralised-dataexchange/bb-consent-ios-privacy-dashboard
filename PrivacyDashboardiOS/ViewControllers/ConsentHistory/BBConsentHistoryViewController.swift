@@ -1,10 +1,9 @@
 
 //
-//  ConsentHistoryViewController.swift
-//  iGrant
+//  BBConsentHistoryViewController.swift
+//  PrivacyDashboardiOS
 //
-//  Created by Ajeesh T S on 21/10/18.
-//  Copyright © 2018 iGrant.com. All rights reserved.
+//  Created by Mumthasir mohammed on 11/09/23.
 //
 
 import UIKit
@@ -17,7 +16,7 @@ enum ConsentHistoryFilterMode {
     case SortByDate
 }
 
-class ConsentHistoryViewController: BBConsentBaseViewController {
+class BBConsentHistoryViewController: BBConsentBaseViewController {
     @IBOutlet weak var historyListTable: SDStateTableView!
     var consentHistoryDetails: ConsentHistoryData?
     var histories: [ConsentHistory]?
@@ -31,17 +30,15 @@ class ConsentHistoryViewController: BBConsentBaseViewController {
         historyListTable.delegate = self
         navigationController?.navigationBar.isHidden = false
         callHistoryListApi(orgID: self.orgId ?? "")
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = NSLocalizedString("Consent History", comment: "")
+        self.navigationItem.title = NSLocalizedString(Constant.Strings.consentHistory, comment: "")
     }
     
 
@@ -49,11 +46,11 @@ class ConsentHistoryViewController: BBConsentBaseViewController {
         // self.addLoadingIndicator()
         let serviceManager = NotificationServiceManager()
         serviceManager.managerDelegate = self
-        serviceManager.getConsentHistoryListWith(OrgID: orgID)
+        serviceManager.getConsentHistoryList()
     }
 }
 
-extension ConsentHistoryViewController:WebServiceTaskManagerProtocol{
+extension BBConsentHistoryViewController:WebServiceTaskManagerProtocol {
     
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)){
         // self.removeLoadingIndicator()
@@ -63,8 +60,8 @@ extension ConsentHistoryViewController:WebServiceTaskManagerProtocol{
             return
         }
         
-        if let serviceManager = manager as? NotificationServiceManager{
-            if serviceManager.serviceType == .ConsentHistoryList{
+        if let serviceManager = manager as? NotificationServiceManager {
+            if serviceManager.serviceType == .ConsentHistoryList {
                 if let data = response.data?.responseModel as? ConsentHistoryData {
                     self.consentHistoryDetails = data
                     if self.histories == nil {
@@ -73,10 +70,10 @@ extension ConsentHistoryViewController:WebServiceTaskManagerProtocol{
                     if serviceManager.isLoadMore {
                         self.histories?.append(contentsOf: data.consentHistory)
                         
-                    }else {
+                    } else {
                         self.histories = data.consentHistory
                         if (self.histories?.count ?? 0) < 1 {
-                            self.historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString("No history available", comment: "")))
+                            self.historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString(Constant.Strings.noConsentHistory, comment: "")))
                         }
                     }
                     self.historyListTable.reloadData()
@@ -86,11 +83,9 @@ extension ConsentHistoryViewController:WebServiceTaskManagerProtocol{
     }
 }
 
-
-extension  ConsentHistoryViewController : UITableViewDelegate,UITableViewDataSource{
+extension  BBConsentHistoryViewController : UITableViewDelegate,UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return histories?.count ?? 0
     }
     
@@ -98,8 +93,7 @@ extension  ConsentHistoryViewController : UITableViewDelegate,UITableViewDataSou
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KEventCellID,for: indexPath) as! HistoryListTableViewCell
         cell.timeLbl.text = self.histories?[indexPath.row].timeStamp
         cell.history = self.histories?[indexPath.row]
@@ -113,8 +107,7 @@ extension  ConsentHistoryViewController : UITableViewDelegate,UITableViewDataSou
         return cell
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        self.showDetailedView(indexPath: indexPath)
         
 //
@@ -126,6 +119,4 @@ extension  ConsentHistoryViewController : UITableViewDelegate,UITableViewDataSou
 //        }
 //        self.navigationController?.pushViewController(detailedVC, animated: true)
     }
-    
-    
 }

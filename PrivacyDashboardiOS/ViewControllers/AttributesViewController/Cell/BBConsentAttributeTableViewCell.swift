@@ -1,6 +1,6 @@
 
 //
-//  ConsentTableViewCell.swift
+//  BBConsentAttributeTableViewCell.swift
 //  PrivacyDashboardiOS
 
 //  Created by Mumthasir mohammed on 11/09/23.

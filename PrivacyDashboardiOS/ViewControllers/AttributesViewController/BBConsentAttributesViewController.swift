@@ -215,7 +215,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                 }
                 return orgOverViewCell
             default:
-                let consentHeaderCell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.consentHeaderTableViewCell,for: indexPath) as! ConsentHeaderTableViewCell
+                let consentHeaderCell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.consentHeaderTableViewCell,for: indexPath) as! BBConsentAttributesHeaderCell
                 
                 if let url = self.consentslistInfo?.consents.purpose.policyURL{
                     if url.isValidString{

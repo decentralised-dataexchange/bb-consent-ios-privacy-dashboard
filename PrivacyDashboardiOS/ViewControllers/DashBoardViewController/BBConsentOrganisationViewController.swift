@@ -203,7 +203,7 @@ class BBConsentOrganisationViewController: UIViewController {
     }
     
     func showConsentHistory() {
-        let ConsentHistoryVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.consentHistoryVC) as! ConsentHistoryViewController
+        let ConsentHistoryVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.consentHistoryVC) as! BBConsentHistoryViewController
         ConsentHistoryVC.orgId = organisationId
         navigationController?.pushViewController(ConsentHistoryVC, animated: true)
     }
