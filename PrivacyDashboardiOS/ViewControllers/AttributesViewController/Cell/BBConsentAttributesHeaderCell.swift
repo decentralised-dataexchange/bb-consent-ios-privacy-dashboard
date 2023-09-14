@@ -2,7 +2,7 @@
 //  ConsentHeaderTableViewCell.swift
 //  PrivacyDashboardiOS
 //
-//  Created by Mumthasir mohammed on 11/09/23.//
+//  Created by Mumthasir mohammed on 11/09/23.
 
 import UIKit
 
