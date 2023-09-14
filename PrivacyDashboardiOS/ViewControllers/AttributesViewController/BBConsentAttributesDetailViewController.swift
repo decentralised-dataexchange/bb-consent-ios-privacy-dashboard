@@ -97,7 +97,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
             return allowCell
             
         } else {
-            let askMeCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedConsentAskMeCellID,for: indexPath) as! AskMeSliderTableViewCell
+            let askMeCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedConsentAskMeCellID,for: indexPath) as! BBConsentAskMeSliderTableViewCell
             askMeCell.delegate = self
             askMeCell.index = indexPath
             

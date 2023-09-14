@@ -1,11 +1,9 @@
 
 //
-//  AskMeSliderTableViewCell.swift
-//  iGrant
+//  BBConsentAskMeSliderTableViewCell.swift
+//  PrivacyDashboardiOS
 //
-//  Created by Ajeesh T S on 26/03/18.
-//  Copyright © 2018 iGrant.com. All rights reserved.
-//
+//  Created by Mumthasir mohammed on 11/09/23.
 
 import UIKit
 
@@ -15,7 +13,7 @@ protocol AskMeSliderCellDelegate: class {
 
 }
 
-class AskMeSliderTableViewCell: UITableViewCell {
+class BBConsentAskMeSliderTableViewCell: UITableViewCell {
     weak var delegate: AskMeSliderCellDelegate?
 
     @IBOutlet weak var selectedDaysLbl: UILabel!
@@ -27,27 +25,20 @@ class AskMeSliderTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-//        askMeSlider.isContinuous = false
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     @IBAction func sliderValueChanged(sender: UISlider) {
-        
         slidercurrentValue = Int(sender.value)
-        selectedDaysLbl.text = "\(slidercurrentValue) Days"
+        selectedDaysLbl.text = "\(slidercurrentValue) \(Constant.Strings.days)"
         self.delegate?.askMeSliderValueChanged(days: slidercurrentValue)
-//        tickImage.isHidden = false
     }
     
     @IBAction func sliderDidEndSliding() {
-        print("end sliding")
+        debugPrint("End sliding")
         self.delegate?.updatedSliderValue(days: slidercurrentValue, indexPath: index)
     }
-
 }

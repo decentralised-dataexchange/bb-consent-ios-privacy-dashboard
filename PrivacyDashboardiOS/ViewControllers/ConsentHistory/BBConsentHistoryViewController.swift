@@ -94,7 +94,7 @@ extension  BBConsentHistoryViewController : UITableViewDelegate,UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KEventCellID,for: indexPath) as! HistoryListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KEventCellID,for: indexPath) as! BBConsentHistoryListTableViewCell
         cell.timeLbl.text = self.histories?[indexPath.row].timeStamp
         cell.history = self.histories?[indexPath.row]
         cell.showData()
