@@ -1,29 +1,32 @@
 //
-//  DownloadDataProgressViewController.swift
-//  iGrant
+//  BBConsentDownloadDataProgressViewController.swift
+//  PrivacyDashboardiOS
 //
-//  Created by Mohamed Rebin on 12/06/19.
-//  Copyright © 2019 iGrant.com. All rights reserved.
+//  Created by Mumthasir mohammed on 19/09/23.
 //
 
 import UIKit
 import StepProgressView
 
-class DownloadDataProgressViewController: UIViewController {
-    var requestStatus: RequestStatus?
+class BBConsentDownloadDataProgressViewController: UIViewController {
     @IBOutlet weak var stepView: StepProgressView!
+    var requestStatus: RequestStatus?
     var organisationId: String?
     var requestType: RequestType?
     @IBOutlet weak var cancelButton: UIButton!
     var fromHistory = false;
     let Steps = [
-        NSLocalizedString("Request Initiated", comment: ""),
-        NSLocalizedString("Request Acknowledged", comment: ""),
-        NSLocalizedString("Request Processed", comment: "")
+        NSLocalizedString(Constant.Strings.requestInitiated, comment: ""),
+        NSLocalizedString(Constant.Strings.requestAcknowledged, comment: ""),
+        NSLocalizedString(Constant.Strings.requestProcessed, comment: "")
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI() {
         stepView.steps = Steps
         stepView.verticalPadding = 60
         stepView.lastStepShape = .circle
@@ -39,10 +42,11 @@ class DownloadDataProgressViewController: UIViewController {
         stepView.currentDetailColor = UIColor.black
         
         self.navigationController?.navigationBar.isHidden = false
-        if self.requestType == RequestType.DownloadData || self.requestStatus?.type == 2{
-            self.title = NSLocalizedString("Download Data Request Status", comment: "")
+        
+        if self.requestType == RequestType.DownloadData || self.requestStatus?.type == 2 {
+            self.title = NSLocalizedString(Constant.Strings.downloadDataRequestStatus, comment: "")
         } else {
-            self.title = NSLocalizedString("Delete Data Request Status", comment: "")
+            self.title = NSLocalizedString(Constant.Strings.deleteDataRequestStatus, comment: "")
         }
         let comments = [ 0 : formattedDate(dateStr: requestStatus?.RequestedDate ?? ""),
                          1 : " ",
@@ -52,10 +56,8 @@ class DownloadDataProgressViewController: UIViewController {
         if fromHistory {
             cancelButton.isHidden = true
         }
-        // Do any additional setup after loading the view.
     }
     
-
     func formattedDate(dateStr: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -68,42 +70,32 @@ class DownloadDataProgressViewController: UIViewController {
         return timeStamp
     }
     @IBAction func cancelButtonAction(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString("Cancel request", comment: ""), message: NSLocalizedString("Do you want to cancel this request?", comment: ""), preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: NSLocalizedString(Constant.Alert.cancelRequest, comment: ""), message: NSLocalizedString(Constant.Alert.doYouWantToCancelThisRequest, comment: ""), preferredStyle: UIAlertController.Style.alert)
         
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: { action in
+        // Add an action (button)
+        alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.OK, comment: ""), style: UIAlertAction.Style.default, handler: { action in
             self.callCancelRequestApi()
             alert.dismiss(animated: true, completion: nil)
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertAction.Style.default, handler: { action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.cancel, comment: ""), style: UIAlertAction.Style.default, handler: { action in
             alert.dismiss(animated: true, completion: nil)
         }))
         
-        // show the alert
+        // Show the alert
         self.present(alert, animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    func callCancelRequestApi(){
+    func callCancelRequestApi() {
         // self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.cancelRequest(orgId: self.organisationId ?? "", requestId: self.requestStatus?.iD ?? "", type: self.requestType ?? RequestType.DownloadData)
     }
 }
-extension DownloadDataProgressViewController: WebServiceTaskManagerProtocol{
-    
-    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)){
+extension BBConsentDownloadDataProgressViewController: WebServiceTaskManagerProtocol {
+    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
         // self.removeLoadingIndicator()
-        
         if response.error != nil{
             self.showErrorAlert(message: (response.error)!)
             return
@@ -111,20 +103,17 @@ extension DownloadDataProgressViewController: WebServiceTaskManagerProtocol{
         
         if let serviceManager = manager as? OrganisationWebServiceManager{
             if serviceManager.serviceType == .cancelRequest{
-                let alert = UIAlertController(title: NSLocalizedString("Cancel request", comment: ""), message: NSLocalizedString("Your request cancelled successfully", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: NSLocalizedString(Constant.Alert.cancelRequest, comment: ""), message: NSLocalizedString(Constant.Alert.yourRequestCancelled, comment: ""), preferredStyle: UIAlertController.Style.alert)
                 
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: { action in
+                // Add an action (button)
+                alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.OK, comment: ""), style: UIAlertAction.Style.default, handler: { action in
                     self.navigationController?.popViewController(animated: true)
                     alert.dismiss(animated: true, completion: nil)
                 }))
                 
-                // show the alert
+                // Show the alert
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        
-        
     }
-    
 }

@@ -1,15 +1,14 @@
 //
-//  RequestStatusHistoryViewController.swift
-//  iGrant
+//  BBConsentRequestStatusViewController.swift
+//  PrivacyDashboardiOS
 //
-//  Created by Mohamed Rebin on 30/06/19.
-//  Copyright © 2019 iGrant.com. All rights reserved.
+//  Created by Mumthasir mohammed on 18/09/23.
 //
 
 import SDStateTableView
 import UIKit
 
-class RequestStatusHistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BBConsentRequestStatusViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var orgId: String?
     var histories: [RequestStatus]?
     @IBOutlet var historyListTable: SDStateTableView!
@@ -18,10 +17,8 @@ class RequestStatusHistoryViewController: UIViewController, UITableViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        callHistoryListApi()
         navigationController?.navigationBar.isHidden = false
-
-        // Do any additional setup after loading the view.
+        callHistoryListApi()
     }
 
     func callHistoryListApi() {
@@ -79,7 +76,7 @@ class RequestStatusHistoryViewController: UIViewController, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.KRequestedStatusCellID, for: indexPath) as! RequestStatusTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.KRequestedStatusCellID, for: indexPath) as! BBConsentRequestStatusTableViewCell
         cell.statusType.text = histories?[indexPath.row].TypeStr
         cell.showDate(dateval: histories?[indexPath.row].RequestedDate ?? "")
         cell.statusDetail.text = histories?[indexPath.row].StateStr
@@ -93,7 +90,7 @@ class RequestStatusHistoryViewController: UIViewController, UITableViewDataSourc
         cell.cancelButton.isHidden = !(histories?[indexPath.row].isActiveRequest ?? false)
         cell.cancelButton.tag = indexPath.row
         cell.cancelButton.addTarget(self, action: #selector(cancelButtonAction(sender:)), for: .touchUpInside)
-       if indexPath.row % 2 == 0 {
+        if indexPath.row % 2 == 0 {
             cell.contentView.backgroundColor = self.getDefaultBackgroundColor()
         } else {
             if #available(iOS 11.0, *) {
@@ -103,7 +100,7 @@ class RequestStatusHistoryViewController: UIViewController, UITableViewDataSourc
                 cell.contentView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
             }
         }
-
+        
         return cell
     }
 
@@ -126,7 +123,7 @@ class RequestStatusHistoryViewController: UIViewController, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: "DownloadDataProgressViewController") as! DownloadDataProgressViewController
+        let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
         downloadDataProgressVC.organisationId = orgId
         downloadDataProgressVC.requestStatus = histories?[indexPath.row]
         downloadDataProgressVC.fromHistory = true
@@ -134,47 +131,34 @@ class RequestStatusHistoryViewController: UIViewController, UITableViewDataSourc
     }
 
     @IBAction func newRequestAction(_ sender: Any) {
-        // create an actionSheet
+        // Create an actionSheet
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        // create an action
-        let firstAction: UIAlertAction = UIAlertAction(title: "Download Data", style: .default) { _ -> Void in
+        // Create an action
+        let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.downloadData, style: .default) { _ -> Void in
             self.getDownloadDataStatus()
         }
 
-        let secondAction: UIAlertAction = UIAlertAction(title: "Delete Data", style: .default) { _ -> Void in
+        let secondAction: UIAlertAction = UIAlertAction(title: Constant.Strings.deleteData, style: .default) { _ -> Void in
             self.getForgetMeStatus()
         }
 
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { _ -> Void in }
+        let cancelAction: UIAlertAction = UIAlertAction(title: Constant.Strings.cancel, style: .cancel) { _ -> Void in }
 
-        // add actions
+        // Add actions
         actionSheetController.addAction(firstAction)
         actionSheetController.addAction(secondAction)
         actionSheetController.addAction(cancelAction)
 
-        // present an actionSheet...
-        // present(actionSheetController, animated: true, completion: nil)   // doesn't work for iPad
-
         actionSheetController.popoverPresentationController?.sourceView = newRequestButton // works for both iPhone & iPad
 
         present(actionSheetController, animated: true) {
-            print("option menu presented")
+            debugPrint("option menu presented")
         }
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
 
-extension RequestStatusHistoryViewController: WebServiceTaskManagerProtocol {
+extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
     func didFinishTask(from manager: AnyObject, response: (data: RestResponse?, error: String?)) {
         // removeLoadingIndicator()
         if response.error != nil {
@@ -193,7 +177,7 @@ extension RequestStatusHistoryViewController: WebServiceTaskManagerProtocol {
                     } else {
                         histories = data.DataRequests
                         if (histories?.count ?? 0) < 1 {
-                            historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString("No history available", comment: "")))
+                            historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString(Constant.Strings.noHistoryAbailable, comment: "")))
                         }
                     }
                 }
@@ -201,41 +185,27 @@ extension RequestStatusHistoryViewController: WebServiceTaskManagerProtocol {
                     self.historyListTable.reloadData()
                 }
             } else if serviceManager.serviceType == .requestDownloadData {
-                let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: "DownloadDataProgressViewController") as! DownloadDataProgressViewController
+                let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                 downloadDataProgressVC.organisationId = orgId ?? ""
                 downloadDataProgressVC.requestType = RequestType.DownloadData
                 self.histories?.removeAll()
                 self.callHistoryListApi()
                 navigationController?.pushViewController(downloadDataProgressVC, animated: true)
-                //                let alert = UIAlertController(title: "Download Data".localized(), message: "A request to download data has been submitted. We will respond to you shortly.".localized(), preferredStyle: UIAlertController.Style.alert)
-                //
-                //                // add an action (button)
-                //                alert.addAction(UIAlertAction(title: "OK".localized(), style: UIAlertAction.Style.default, handler: nil))
-                //
-                //                // show the alert
-                //                self.present(alert, animated: true, completion: nil)
             } else if serviceManager.serviceType == .requestForgetMe {
-                let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: "DownloadDataProgressViewController") as! DownloadDataProgressViewController
+                let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                 downloadDataProgressVC.organisationId = orgId ?? ""
                 downloadDataProgressVC.requestType = RequestType.ForgetMe
                 self.histories?.removeAll()
                 self.callHistoryListApi()
                 navigationController?.pushViewController(downloadDataProgressVC, animated: true)
-                //                let alert = UIAlertController(title: "Forget Me".localized(), message: "A request for deleting your data has been submitted. We will process your request shortly.".localized(), preferredStyle: UIAlertController.Style.alert)
-                //
-                //                // add an action (button)
-                //                alert.addAction(UIAlertAction(title: "OK".localized(), style: UIAlertAction.Style.default, handler: nil))
-                //
-                //                // show the alert
-                //                self.present(alert, animated: true, completion: nil)
             } else if serviceManager.serviceType == .getDownloadDataStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
                     if data.RequestOngoing {
-                        let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: "DownloadDataProgressViewController") as! DownloadDataProgressViewController
+                        let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = orgId ?? ""
                         downloadDataProgressVC.requestType = RequestType.DownloadData
                         downloadDataProgressVC.requestStatus = data
-                         navigationController?.pushViewController(downloadDataProgressVC, animated: true)
+                        navigationController?.pushViewController(downloadDataProgressVC, animated: true)
                     } else {
                         requestDownloadData()
                     }
@@ -243,7 +213,7 @@ extension RequestStatusHistoryViewController: WebServiceTaskManagerProtocol {
             } else if serviceManager.serviceType == .getForgetMeStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
                     if data.RequestOngoing {
-                        let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: "DownloadDataProgressViewController") as! DownloadDataProgressViewController
+                        let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = orgId ?? ""
                         downloadDataProgressVC.requestType = RequestType.ForgetMe
                         downloadDataProgressVC.requestStatus = data
@@ -253,16 +223,16 @@ extension RequestStatusHistoryViewController: WebServiceTaskManagerProtocol {
                     }
                 }
             } else if serviceManager.serviceType == .cancelRequest {
-                let alert = UIAlertController(title: NSLocalizedString("Cancel request", comment: ""), message: NSLocalizedString("Your request cancelled successfully", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: NSLocalizedString(Constant.Alert.cancelRequest, comment: ""), message: NSLocalizedString(Constant.Alert.yourRequestCancelled, comment: ""), preferredStyle: UIAlertController.Style.alert)
 
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: { _ in
+                // Add an action (button)
+                alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.OK, comment: ""), style: UIAlertAction.Style.default, handler: { _ in
                     self.histories?.removeAll()
                     self.callHistoryListApi()
                     alert.dismiss(animated: true, completion: nil)
                 }))
 
-                // show the alert
+                // Show the alert
                 present(alert, animated: true, completion: nil)
             }
         }

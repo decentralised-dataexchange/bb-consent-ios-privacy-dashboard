@@ -89,7 +89,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     @IBAction func policyBtnClicked() {
         if let url = self.consentslistInfo?.consents.purpose.policyURL {
             if url.isValidString{
-                let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllers.webViewVC) as! BBConsentWebViewViewController
+                let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
                 webviewVC.urlString = url
                 self.navigationController?.pushViewController(webviewVC, animated: true)
             }else{
@@ -248,7 +248,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if self.consentslistInfo?.consents.purpose.lawfulUsage == false && !isFromQR {
-                let consentVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllers.consentVC) as! BBConsentAttributesDetailViewController
+                let consentVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.consentVC) as! BBConsentAttributesDetailViewController
                 consentVC.consent = consentslist?[indexPath.row]
                 consentVC.orgID = self.consentslistInfo?.orgID
                 consentVC.purposeDetails = self.consentslistInfo

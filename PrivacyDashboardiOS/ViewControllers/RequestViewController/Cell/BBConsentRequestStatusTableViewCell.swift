@@ -1,14 +1,13 @@
 //
 //  RequestStatusTableViewCell.swift
-//  iGrant
+//  PrivacyDashboardiOS
 //
-//  Created by Mohamed Rebin on 06/07/19.
-//  Copyright © 2019 iGrant.com. All rights reserved.
+//  Created by Mumthasir mohammed on 19/09/23.
 //
 
 import UIKit
 
-class RequestStatusTableViewCell: UITableViewCell {
+class BBConsentRequestStatusTableViewCell: UITableViewCell {
     @IBOutlet weak var statusType: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusDetail: UILabel!
@@ -16,7 +15,6 @@ class RequestStatusTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func showDate(dateval: String) {
@@ -27,14 +25,10 @@ class RequestStatusTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
         dateFormatter.timeZone = TimeZone.current
         let timeStamp = dateFormatter.string(from: date!)
-        
         self.date.text = timeStamp
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

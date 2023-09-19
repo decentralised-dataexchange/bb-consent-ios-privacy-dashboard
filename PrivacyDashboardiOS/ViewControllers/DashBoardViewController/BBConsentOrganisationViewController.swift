@@ -197,13 +197,13 @@ class BBConsentOrganisationViewController: UIViewController {
     }
     
     func showRequestedStatus() {
-        let RequestStatusHistoryVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.requestStatusHistoryVC) as! RequestStatusHistoryViewController
+        let RequestStatusHistoryVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.requestStatusHistoryVC) as! BBConsentRequestStatusViewController
         RequestStatusHistoryVC.orgId = organisationId
         navigationController?.pushViewController(RequestStatusHistoryVC, animated: true)
     }
     
     func showConsentHistory() {
-        let ConsentHistoryVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.consentHistoryVC) as! BBConsentHistoryViewController
+        let ConsentHistoryVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.consentHistoryVC) as! BBConsentHistoryViewController
         ConsentHistoryVC.orgId = organisationId
         navigationController?.pushViewController(ConsentHistoryVC, animated: true)
     }
@@ -303,7 +303,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.consentListVC) as! BBConsentAttributesViewController
+            let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.consentListVC) as! BBConsentAttributesViewController
             consentVC.organisaionDeatils = self.organisaionDeatils
             consentVC.purposeInfo = organisaionDeatils?.purposeConsents[indexPath.row].purpose
             self.navigationController?.pushViewController(consentVC, animated: true)
@@ -332,19 +332,19 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
             } else if serviceManager.serviceType == .UpdatePurpose {
                 callOrganisationDetailsApi()
             } else if serviceManager.serviceType == .requestDownloadData {
-                let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.downloadDataProgressVC) as! DownloadDataProgressViewController
+                let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                 downloadDataProgressVC.organisationId = organisationId
                 downloadDataProgressVC.requestType = RequestType.DownloadData
                 navigationController?.pushViewController(downloadDataProgressVC, animated: true)
             } else if serviceManager.serviceType == .requestForgetMe {
-                let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.downloadDataProgressVC) as! DownloadDataProgressViewController
+                let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                 downloadDataProgressVC.organisationId = organisationId
                 downloadDataProgressVC.requestType = RequestType.ForgetMe
                 navigationController?.pushViewController(downloadDataProgressVC, animated: true)
             } else if serviceManager.serviceType == .getDownloadDataStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
                     if data.RequestOngoing {
-                        let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.downloadDataProgressVC) as! DownloadDataProgressViewController
+                        let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = organisationId
                         downloadDataProgressVC.requestType = RequestType.DownloadData
                         downloadDataProgressVC.requestStatus = data
@@ -356,7 +356,7 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
             } else if serviceManager.serviceType == .getForgetMeStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
                     if data.RequestOngoing {
-                        let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllers.downloadDataProgressVC) as! DownloadDataProgressViewController
+                        let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = organisationId
                         downloadDataProgressVC.requestType = RequestType.ForgetMe
                         downloadDataProgressVC.requestStatus = data
