@@ -169,10 +169,10 @@
 		9086C5062AA87D1300C46CF5 /* BBConsentBaseWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C4FD2AA87D1300C46CF5 /* BBConsentBaseWebService.swift */; };
 		9086C5072AA87D1400C46CF5 /* BBConsentAttributesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */; };
 		9086C5082AA87D1400C46CF5 /* BBConsentOrganisationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5002AA87D1300C46CF5 /* BBConsentOrganisationViewController.swift */; };
-		9086C5092AA87D1400C46CF5 /* RequestStatusHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */; };
+		9086C5092AA87D1400C46CF5 /* BBConsentRequestStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5012AA87D1300C46CF5 /* BBConsentRequestStatusViewController.swift */; };
 		9086C50B2AA87D1400C46CF5 /* BBConsentAttributesHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5032AA87D1300C46CF5 /* BBConsentAttributesHeaderCell.swift */; };
 		9086C50C2AA87D1400C46CF5 /* BBConsentAttributesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5042AA87D1300C46CF5 /* BBConsentAttributesViewController.swift */; };
-		9086C50D2AA87D1400C46CF5 /* RequestStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5052AA87D1300C46CF5 /* RequestStatusTableViewCell.swift */; };
+		9086C50D2AA87D1400C46CF5 /* BBConsentRequestStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5052AA87D1300C46CF5 /* BBConsentRequestStatusTableViewCell.swift */; };
 		9086C5202AA87D3400C46CF5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5102AA87D3400C46CF5 /* UserInfo.swift */; };
 		9086C5212AA87D3400C46CF5 /* ConsentListingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5122AA87D3400C46CF5 /* ConsentListingResponse.swift */; };
 		9086C5222AA87D3400C46CF5 /* Purpose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5132AA87D3400C46CF5 /* Purpose.swift */; };
@@ -201,7 +201,7 @@
 		9086C54C2AA87FA900C46CF5 /* NotificationWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5452AA87FA900C46CF5 /* NotificationWebService.swift */; };
 		9086C54D2AA87FA900C46CF5 /* OrganisationWebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5472AA87FA900C46CF5 /* OrganisationWebServiceManager.swift */; };
 		9086C54E2AA87FA900C46CF5 /* OrganisationWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5482AA87FA900C46CF5 /* OrganisationWebService.swift */; };
-		9086C5502AA8801200C46CF5 /* DownloadDataProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C54F2AA8801200C46CF5 /* DownloadDataProgressViewController.swift */; };
+		9086C5502AA8801200C46CF5 /* BBConsentDownloadDataProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C54F2AA8801200C46CF5 /* BBConsentDownloadDataProgressViewController.swift */; };
 		9086C5522AA8806E00C46CF5 /* BBConsentBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5512AA8806E00C46CF5 /* BBConsentBaseViewController.swift */; };
 		9086C5552AA8812500C46CF5 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5532AA8812500C46CF5 /* Link.swift */; };
 		9086C5562AA8812500C46CF5 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C5542AA8812500C46CF5 /* Status.swift */; };
@@ -702,10 +702,10 @@
 		9086C4FD2AA87D1300C46CF5 /* BBConsentBaseWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentBaseWebService.swift; sourceTree = "<group>"; };
 		9086C4FF2AA87D1300C46CF5 /* BBConsentAttributesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesDetailViewController.swift; sourceTree = "<group>"; };
 		9086C5002AA87D1300C46CF5 /* BBConsentOrganisationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentOrganisationViewController.swift; sourceTree = "<group>"; };
-		9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatusHistoryViewController.swift; sourceTree = "<group>"; };
+		9086C5012AA87D1300C46CF5 /* BBConsentRequestStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentRequestStatusViewController.swift; sourceTree = "<group>"; };
 		9086C5032AA87D1300C46CF5 /* BBConsentAttributesHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesHeaderCell.swift; sourceTree = "<group>"; };
 		9086C5042AA87D1300C46CF5 /* BBConsentAttributesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentAttributesViewController.swift; sourceTree = "<group>"; };
-		9086C5052AA87D1300C46CF5 /* RequestStatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatusTableViewCell.swift; sourceTree = "<group>"; };
+		9086C5052AA87D1300C46CF5 /* BBConsentRequestStatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentRequestStatusTableViewCell.swift; sourceTree = "<group>"; };
 		9086C5102AA87D3400C46CF5 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		9086C5122AA87D3400C46CF5 /* ConsentListingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentListingResponse.swift; sourceTree = "<group>"; };
 		9086C5132AA87D3400C46CF5 /* Purpose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Purpose.swift; sourceTree = "<group>"; };
@@ -734,7 +734,7 @@
 		9086C5452AA87FA900C46CF5 /* NotificationWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationWebService.swift; sourceTree = "<group>"; };
 		9086C5472AA87FA900C46CF5 /* OrganisationWebServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganisationWebServiceManager.swift; sourceTree = "<group>"; };
 		9086C5482AA87FA900C46CF5 /* OrganisationWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganisationWebService.swift; sourceTree = "<group>"; };
-		9086C54F2AA8801200C46CF5 /* DownloadDataProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataProgressViewController.swift; sourceTree = "<group>"; };
+		9086C54F2AA8801200C46CF5 /* BBConsentDownloadDataProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentDownloadDataProgressViewController.swift; sourceTree = "<group>"; };
 		9086C5512AA8806E00C46CF5 /* BBConsentBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBConsentBaseViewController.swift; sourceTree = "<group>"; };
 		9086C5532AA8812500C46CF5 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		9086C5542AA8812500C46CF5 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -1403,10 +1403,8 @@
 				9086C5692AA9A5DC00C46CF5 /* DashBoardViewController */,
 				9086C56E2AAAF8EA00C46CF5 /* AttributesViewController */,
 				9086C5722AAF2D1200C46CF5 /* ConsentHistory */,
+				9086C57A2AB989A900C46CF5 /* RequestViewController */,
 				9086C55D2AA8882100C46CF5 /* LoginViewController.swift */,
-				9086C54F2AA8801200C46CF5 /* DownloadDataProgressViewController.swift */,
-				9086C5012AA87D1300C46CF5 /* RequestStatusHistoryViewController.swift */,
-				9086C5052AA87D1300C46CF5 /* RequestStatusTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1591,6 +1589,24 @@
 			isa = PBXGroup;
 			children = (
 				9086C5622AA8ACF400C46CF5 /* BBConsentHistoryListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9086C57A2AB989A900C46CF5 /* RequestViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9086C5012AA87D1300C46CF5 /* BBConsentRequestStatusViewController.swift */,
+				9086C54F2AA8801200C46CF5 /* BBConsentDownloadDataProgressViewController.swift */,
+				9086C57B2AB989BF00C46CF5 /* Cell */,
+			);
+			path = RequestViewController;
+			sourceTree = "<group>";
+		};
+		9086C57B2AB989BF00C46CF5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9086C5052AA87D1300C46CF5 /* BBConsentRequestStatusTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2514,13 +2530,13 @@
 				9086C5202AA87D3400C46CF5 /* UserInfo.swift in Sources */,
 				9086C5552AA8812500C46CF5 /* Link.swift in Sources */,
 				9086C5222AA87D3400C46CF5 /* Purpose.swift in Sources */,
-				9086C50D2AA87D1400C46CF5 /* RequestStatusTableViewCell.swift in Sources */,
+				9086C50D2AA87D1400C46CF5 /* BBConsentRequestStatusTableViewCell.swift in Sources */,
 				9086C4F42AA8767100C46CF5 /* BBConsentDashboardHeaderCell.swift in Sources */,
 				9086C54D2AA87FA900C46CF5 /* OrganisationWebServiceManager.swift in Sources */,
 				9086C5232AA87D3400C46CF5 /* ConsentStatus.swift in Sources */,
 				9086C5562AA8812500C46CF5 /* Status.swift in Sources */,
 				9086C4F32AA8767100C46CF5 /* OrgPopOver.swift in Sources */,
-				9086C5502AA8801200C46CF5 /* DownloadDataProgressViewController.swift in Sources */,
+				9086C5502AA8801200C46CF5 /* BBConsentDownloadDataProgressViewController.swift in Sources */,
 				9086C5632AA8ACF400C46CF5 /* BBConsentHistoryViewController.swift in Sources */,
 				9086C5662AA8B0F600C46CF5 /* BBConsentUtilityMethods.swift in Sources */,
 				9086C50B2AA87D1400C46CF5 /* BBConsentAttributesHeaderCell.swift in Sources */,
@@ -2540,7 +2556,7 @@
 				9086C52E2AA87D3400C46CF5 /* Consent.swift in Sources */,
 				9086C54E2AA87FA900C46CF5 /* OrganisationWebService.swift in Sources */,
 				9086C52D2AA87D3400C46CF5 /* ConsentListDetails.swift in Sources */,
-				9086C5092AA87D1400C46CF5 /* RequestStatusHistoryViewController.swift in Sources */,
+				9086C5092AA87D1400C46CF5 /* BBConsentRequestStatusViewController.swift in Sources */,
 				9086C52C2AA87D3400C46CF5 /* RequestStatus.swift in Sources */,
 				9086C54B2AA87FA900C46CF5 /* NotificationServiceManager.swift in Sources */,
 				9086C53E2AA87E4900C46CF5 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,

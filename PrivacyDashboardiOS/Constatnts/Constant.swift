@@ -78,6 +78,12 @@ struct Constant {
         static let areYouWantToDisallowAll = "Are you sure you want to disallow all ?"
         static let disallowAll = "Disallow All"
         static let invalidURL = "Invalid URL"
+        
+        static let cancelRequest = "Cancel request"
+        static let yourRequestCancelled = "Your request cancelled successfully"
+        static let OK = "OK"
+        static let cancel = "Cancel"
+        static let doYouWantToCancelThisRequest = "Do you want to cancel this request?"
     }
 
     struct CustomTabelCell {
@@ -104,7 +110,7 @@ struct Constant {
         static let consentCell = "ConsentCell"
     }
     
-    struct ViewControllers {
+    struct ViewControllerID {
         static let requestStatusHistoryVC = "RequestStatusHistoryViewController"
         static let consentHistoryVC = "ConsentHistoryVC"
         static let consentListVC = "ConsentListVC"
@@ -133,6 +139,13 @@ struct Constant {
         static let allow = "Allow"
         static let disallow = "Disallow"
         static let askMe = "AskMe"
-        static let noConsentHistory = "No history available"
+        static let noHistoryAbailable = "No history available"
+        static let downloadData = "Download Data"
+        static let deleteData = "Delete Data"
+        static let requestInitiated = "Request Initiated"
+        static let requestAcknowledged = "Request Acknowledged"
+        static let requestProcessed = "Request Processed"
+        static let downloadDataRequestStatus = "Download Data Request Status"
+        static let deleteDataRequestStatus = "Delete Data Request Status"
     }
 }

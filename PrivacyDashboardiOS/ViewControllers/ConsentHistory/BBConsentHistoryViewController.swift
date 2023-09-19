@@ -73,7 +73,7 @@ extension BBConsentHistoryViewController:WebServiceTaskManagerProtocol {
                     } else {
                         self.histories = data.consentHistory
                         if (self.histories?.count ?? 0) < 1 {
-                            self.historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString(Constant.Strings.noConsentHistory, comment: "")))
+                            self.historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString(Constant.Strings.noHistoryAbailable, comment: "")))
                         }
                     }
                     self.historyListTable.reloadData()

@@ -145,8 +145,7 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func getRequestedStatus(orgId: String) {
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-        self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-status"
+        self.url = baseUrl + "user/organizations/" + orgId + "/data-status"
         getServiceCall()
     }
     
