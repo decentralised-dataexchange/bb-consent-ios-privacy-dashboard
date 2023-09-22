@@ -40,6 +40,7 @@ class BBConsentOrganisationViewController: UIViewController {
         orgTableView.tableFooterView = UIView()
         backBtn.layer.cornerRadius =  backBtn.frame.size.height/2
         moreBtn.layer.cornerRadius =  moreBtn.frame.size.height/2
+        self.navigationController?.navigationBar.tintColor = .black
     }
     
     override func didReceiveMemoryWarning() {

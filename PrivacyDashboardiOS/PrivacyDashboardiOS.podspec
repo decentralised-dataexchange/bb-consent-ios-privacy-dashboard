@@ -31,7 +31,8 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '13.0'
 
   s.source_files = 'PrivacyDashboardiOS/**/*'
-  
+  s.resources = 'PrivacyDashboardiOS/**/*.{storyboard,xib,xcassets,json,png}'
+
    s.resource_bundles = {
      'PrivacyDashboardiOS' => ['PrivacyDashboardiOS/PrivacyDashboard.storyboard','PrivacyDashboardiOS/PrivacyDashboard.xcassets']
    }
