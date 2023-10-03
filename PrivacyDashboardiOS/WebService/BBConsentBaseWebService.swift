@@ -14,6 +14,7 @@ import SwiftyJSON
 
 //Staging Url
 var baseUrl = "https://demo-consent-bb-api.igrant.io/v1/"
+var baseUrl_v2 = "https://demo-consent-bb-api.igrant.io/v2/"
 var baseUrl_V1 = "https://staging-api.igrant.io/v1.1/"
 
 //Demo Url

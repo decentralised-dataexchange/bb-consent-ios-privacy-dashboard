@@ -17,10 +17,14 @@ class BBConsentRequestStatusViewController: UIViewController, UITableViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = false
         callHistoryListApi()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = NSLocalizedString(Constant.Strings.userRequests, comment: "")
+    }
+    
     func callHistoryListApi() {
         // addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()

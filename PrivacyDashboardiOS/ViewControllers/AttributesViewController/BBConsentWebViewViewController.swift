@@ -20,12 +20,16 @@ class BBConsentWebViewViewController: BBConsentBaseViewController, WKNavigationD
         let backButton = UIButton(type: UIButton.ButtonType.custom)
         backButton.frame =  CGRect.init(x: 0, y: 0, width: 10, height: 40)
         backButton.setTitle(" ", for: .normal)
-        self.navigationController?.navigationBar.isHidden = false
-        self.title = Constant.Strings.policy
+       
         if let url =  URL.init(string: urlString){
             //self.addLoadingIndicator()
             webview.load(URLRequest.init(url: url))
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.title = Constant.Strings.privacyPolicy
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -28,7 +28,6 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
         super.viewDidLoad()
         historyListTable.dataSource = self
         historyListTable.delegate = self
-        navigationController?.navigationBar.isHidden = false
         callHistoryListApi(orgID: self.orgId ?? "")
     }
 
@@ -37,8 +36,8 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.title = NSLocalizedString(Constant.Strings.consentHistory, comment: "")
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = NSLocalizedString(Constant.Strings.consentHistory, comment: "")
     }
     
 
@@ -50,12 +49,12 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
     }
 }
 
-extension BBConsentHistoryViewController:WebServiceTaskManagerProtocol {
+extension BBConsentHistoryViewController: WebServiceTaskManagerProtocol {
     
-    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)){
+    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
         // self.removeLoadingIndicator()
         
-        if response.error != nil{
+        if response.error != nil {
             self.showErrorAlert(message: (response.error)!)
             return
         }
@@ -83,7 +82,7 @@ extension BBConsentHistoryViewController:WebServiceTaskManagerProtocol {
     }
 }
 
-extension  BBConsentHistoryViewController : UITableViewDelegate,UITableViewDataSource {
+extension BBConsentHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return histories?.count ?? 0
@@ -98,25 +97,12 @@ extension  BBConsentHistoryViewController : UITableViewDelegate,UITableViewDataS
         cell.timeLbl.text = self.histories?[indexPath.row].timeStamp
         cell.history = self.histories?[indexPath.row]
         cell.showData()
-       
+        
         if indexPath.row % 2 == 0 {
             cell.contentView.backgroundColor = .white
         } else {
             cell.contentView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
         return cell
-    }
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        self.showDetailedView(indexPath: indexPath)
-        
-//
-//        let detailedVC = self.storyboard?.instantiateViewController(withIdentifier: "OrgNotificationDetailedVC") as! NotificationDetailsViewController
-//        detailedVC.hidesBottomBarWhenPushed = true
-//        detailedVC.notification = self.notificaions?[indexPath.row]
-//        if let notId = self.notificaions?[indexPath.row].iD{
-//            detailedVC.notificationId = notId
-//        }
-//        self.navigationController?.pushViewController(detailedVC, animated: true)
     }
 }
