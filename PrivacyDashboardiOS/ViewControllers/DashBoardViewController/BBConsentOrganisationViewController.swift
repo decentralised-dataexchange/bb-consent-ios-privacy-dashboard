@@ -108,9 +108,9 @@ class BBConsentOrganisationViewController: UIViewController {
             
             if let privacyPolicy = self.organisaionDeatils?.organization.privacyPolicy {
                 if self.verifyUrl(urlString: privacyPolicy) {
-                    let safariVC = SFSafariViewController(url: NSURL(string: privacyPolicy)! as URL)
-                    self.present(safariVC, animated: true, completion: nil)
-                    safariVC.delegate = self
+                    let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
+                    webviewVC.urlString = privacyPolicy
+                    self.navigationController?.pushViewController(webviewVC, animated: true)
                 } else {
                     self.showWarningAlert(message: Constant.Alert.KPromptMsgNotConfigured)
                 }
@@ -254,7 +254,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
                 return UITableViewAutomaticDimension
             }
         } else if indexPath.section == 1 {
-            return 42
+            return 62
         } else {
             return 80
         }

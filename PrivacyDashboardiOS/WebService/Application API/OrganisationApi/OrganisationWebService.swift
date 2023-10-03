@@ -116,10 +116,8 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func getDownloadDataStatus(orgId: String) {
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-//        self.url = baseUrl + "user/organizations/" + orgId + "/data-download/status"
-        self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-download/status"
-        postServiceCall()
+        self.url = baseUrl + "user/organizations/" + orgId + "/data-download/status"
+        getServiceCall()
     }
     
     func acceptEulaConsent(orgId: String, parameters : [String: AnyObject]) {
@@ -129,8 +127,7 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func getForgetMeStatus(orgId: String) {
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-        self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-delete/status"
+        self.url = baseUrl + "user/organizations/" + orgId + "/data-delete/status"
         getServiceCall()
     }
     

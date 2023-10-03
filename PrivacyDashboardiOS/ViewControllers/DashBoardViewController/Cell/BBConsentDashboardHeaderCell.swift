@@ -43,16 +43,16 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
             return r
         }
         
-//        self.orgImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
-//        if let imageUrl = self.orgData?.coverImageURL{
-//            let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
-//            self.orgImageView.kf.setImage(with: imageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
-//        }
-//        
-//        self.logoImageView.image = UIImage(named: Constant.Images.iGrantTick)
-//        if let imageUrl = self.orgData?.logoImageURL{
-//            let placeholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
-//            self.logoImageView.kf.setImage(with: imageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
-//        }
+        self.orgImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
+        if let imageUrl = self.orgData?.coverImageURL{
+            let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
+            self.orgImageView.kf.setImage(with: imageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
+        }
+        
+        self.logoImageView.image = UIImage(named: Constant.Images.iGrantTick)
+        if let imageUrl = self.orgData?.logoImageURL{
+            let placeholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
+            self.logoImageView.kf.setImage(with: imageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
+        }
     }
 }

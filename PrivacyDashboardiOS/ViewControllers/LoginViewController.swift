@@ -57,7 +57,7 @@ class LoginViewController: BBConsentBaseViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        return .darkContent
     }
     
  

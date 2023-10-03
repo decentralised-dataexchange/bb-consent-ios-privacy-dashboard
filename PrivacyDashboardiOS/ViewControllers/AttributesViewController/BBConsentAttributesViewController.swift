@@ -23,8 +23,6 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
-        self.title = purposeInfo?.name
         tableView.tableFooterView = UIView()
         addRefershNotification()
         callConsentListApi()
@@ -42,7 +40,9 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if isNeedToRefresh == true{
+        self.navigationController?.navigationBar.isHidden = false
+        self.title = purposeInfo?.name.unCamelCased
+        if isNeedToRefresh == true {
             isNeedToRefresh = false
             callConsentListApi()
         }
