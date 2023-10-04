@@ -672,7 +672,7 @@
 		85267210DFA991DDB96AB97714B523F6 /* ImageModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageModifier.swift; path = Sources/Networking/ImageModifier.swift; sourceTree = "<group>"; };
 		855AC52E9345297050D4ACD178A26819 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		85D84564C92D46B0303974E1F2F9A2E6 /* URLEncodedFormEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLEncodedFormEncoder.swift; path = Source/URLEncodedFormEncoder.swift; sourceTree = "<group>"; };
-		85E0C82215AC82698A6CDBEFBE5F65BF /* BBConsentPrivacyDashboardiOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BBConsentPrivacyDashboardiOS.swift; path = PrivacyDashboardiOS/Classes/BBConsentPrivacyDashboardiOS.swift; sourceTree = "<group>"; };
+		85E0C82215AC82698A6CDBEFBE5F65BF /* BBConsentPrivacyDashboardiOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BBConsentPrivacyDashboardiOS.swift; sourceTree = "<group>"; };
 		8630B575DE227BAB1A4C33BB69C39BEB /* URLConvertible+URLRequestConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URLConvertible+URLRequestConvertible.swift"; path = "Source/URLConvertible+URLRequestConvertible.swift"; sourceTree = "<group>"; };
 		8631C4DFF7EF2391B156D68F87FBEE03 /* PrivacyDashboardiOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PrivacyDashboardiOS; path = PrivacyDashboardiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8666BDEEBFB5B75E9BCB4D0FE4012838 /* EKAttributes+Shadow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "EKAttributes+Shadow.swift"; path = "Source/Model/EntryAttributes/EKAttributes+Shadow.swift"; sourceTree = "<group>"; };
@@ -1418,8 +1418,7 @@
 				9086C5572AA8812800C46CF5 /* UserInfo */,
 				9086C5112AA87D3400C46CF5 /* Organisation */,
 			);
-			name = Model;
-			path = Model/Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9086C5112AA87D3400C46CF5 /* Organisation */ = {
@@ -1609,6 +1608,32 @@
 				9086C5052AA87D1300C46CF5 /* BBConsentRequestStatusTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		9090AAF42ACC75ED007F9B75 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9086C4F82AA87A5200C46CF5 /* PrivacyDashboard.xcassets */,
+				9086C5772AB3039E00C46CF5 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9090AAF52ACC75FE007F9B75 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9086C4F92AA87A5200C46CF5 /* PrivacyDashboard.storyboard */,
+				85E0C82215AC82698A6CDBEFBE5F65BF /* BBConsentPrivacyDashboardiOS.swift */,
+				9086C5672AA9975E00C46CF5 /* Helper Classes */,
+				9086C4FE2AA87D1300C46CF5 /* ViewControllers */,
+				9086C4EA2AA8767100C46CF5 /* Cells */,
+				9086C50F2AA87D3400C46CF5 /* Model */,
+				9086C4FC2AA87D1300C46CF5 /* WebService */,
+				9086C4E82AA8767100C46CF5 /* Constatnts */,
+				9086C52F2AA87D6800C46CF5 /* Extension */,
+				9086C5322AA87E2D00C46CF5 /* Libraries */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		957D5EF34E703D63BD066296DF237C72 /* Support Files */ = {
@@ -1818,18 +1843,8 @@
 		E524A0122ED375896A8F18602DE8A8B5 /* PrivacyDashboardiOS */ = {
 			isa = PBXGroup;
 			children = (
-				9086C5772AB3039E00C46CF5 /* Localizable.strings */,
-				9086C4F92AA87A5200C46CF5 /* PrivacyDashboard.storyboard */,
-				9086C4F82AA87A5200C46CF5 /* PrivacyDashboard.xcassets */,
-				85E0C82215AC82698A6CDBEFBE5F65BF /* BBConsentPrivacyDashboardiOS.swift */,
-				9086C5672AA9975E00C46CF5 /* Helper Classes */,
-				9086C4FE2AA87D1300C46CF5 /* ViewControllers */,
-				9086C4EA2AA8767100C46CF5 /* Cells */,
-				9086C50F2AA87D3400C46CF5 /* Model */,
-				9086C4FC2AA87D1300C46CF5 /* WebService */,
-				9086C4E82AA8767100C46CF5 /* Constatnts */,
-				9086C52F2AA87D6800C46CF5 /* Extension */,
-				9086C5322AA87E2D00C46CF5 /* Libraries */,
+				9090AAF42ACC75ED007F9B75 /* Resources */,
+				9090AAF52ACC75FE007F9B75 /* Classes */,
 				788D82DA74F9CCD1DB03C2193BF1A029 /* Pod */,
 				957D5EF34E703D63BD066296DF237C72 /* Support Files */,
 			);
