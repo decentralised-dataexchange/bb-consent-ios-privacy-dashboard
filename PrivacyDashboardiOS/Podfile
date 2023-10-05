@@ -1,0 +1,114 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'AFDateHelper' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for AFDateHelper
+
+end
+
+target 'Alamofire' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Alamofire
+
+end
+
+target 'ExpandableLabel' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ExpandableLabel
+
+end
+
+target 'IQKeyboardManagerSwift' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for IQKeyboardManagerSwift
+
+end
+
+target 'Kingfisher' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Kingfisher
+
+end
+
+target 'MiniLayout' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for MiniLayout
+
+end
+
+target 'Pods-PrivacyDashboardiOS_Example' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Pods-PrivacyDashboardiOS_Example
+
+end
+
+target 'Pods-PrivacyDashboardiOS_Tests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Pods-PrivacyDashboardiOS_Tests
+
+end
+
+target 'PrivacyDashboardiOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for PrivacyDashboardiOS
+
+end
+
+target 'SDStateTableView' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SDStateTableView
+
+end
+
+target 'StepProgressView' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for StepProgressView
+
+end
+
+target 'SweeterSwift' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SweeterSwift
+
+end
+
+target 'SwiftEntryKit' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SwiftEntryKit
+
+end
+
+target 'SwiftyJSON' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SwiftyJSON
+
+end
