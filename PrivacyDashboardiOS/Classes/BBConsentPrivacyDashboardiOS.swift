@@ -32,8 +32,16 @@ public class BBConsentPrivacyDashboardiOS: UIViewController {
             let data = apiKey.data(using: .utf8) ?? Data()
             _ = BBConsentKeyChainUtils.save(key: "BBConsentToken", data: data)
             
-            let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
-            let storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+            let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
+            let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+            var storyboard = UIStoryboard()
+            if let resourceBundle = Bundle(url: bundleURL!) {
+                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+            } else {
+                let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+            }
+            
             let orgVC = storyboard.instantiateViewController(withIdentifier: "BBConsentOrganisationViewController") as? BBConsentOrganisationViewController ?? BBConsentOrganisationViewController()
             orgVC.organisationId = organisationId
             let navVC = UINavigationController.init(rootViewController: orgVC)

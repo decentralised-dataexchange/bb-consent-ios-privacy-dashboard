@@ -555,7 +555,6 @@
 		2F049F0FADD21CDE1DF0D2ACEEC9136E /* KF.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KF.swift; path = Sources/General/KF.swift; sourceTree = "<group>"; };
 		2F0CFA79E7053573C756AC592310652D /* MiniLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MiniLayout.modulemap; sourceTree = "<group>"; };
 		308FDFCBC950CF6ACF7559687EA75F59 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQNSArray+Sort.swift"; path = "IQKeyboardManagerSwift/Categories/IQNSArray+Sort.swift"; sourceTree = "<group>"; };
-		313BD43F9D8666E09B06A582D6B25ABD /* Pods-PrivacyDashboardiOS_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-PrivacyDashboardiOS_Tests"; path = Pods_PrivacyDashboardiOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3220F7A9ECCEADF2E385D3C0461BC38B /* IQKeyboardManager+Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+Debug.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+Debug.swift"; sourceTree = "<group>"; };
 		333241CC72112A017E4460D0BE124ACC /* SDStateTableView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SDStateTableView.modulemap; sourceTree = "<group>"; };
 		334D82C287BF322D525EEC3A9FF6059D /* EKAttributes+Presets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "EKAttributes+Presets.swift"; path = "Source/Model/EntryAttributes/EKAttributes+Presets.swift"; sourceTree = "<group>"; };
@@ -645,7 +644,6 @@
 		6EE14C3A76EC663198EC296B11DB24B2 /* Pods-PrivacyDashboardiOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PrivacyDashboardiOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6F0A73B93F498837D4AD53C84AE3B659 /* EKMessageContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EKMessageContentView.swift; path = Source/MessageViews/EKMessageContentView.swift; sourceTree = "<group>"; };
 		6FB11DC7BC8429A8DBCF33F185C8E620 /* PrivacyDashboardiOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PrivacyDashboardiOS-prefix.pch"; sourceTree = "<group>"; };
-		6FE698F2F0492AC3DFA611971CFF0373 /* Pods-PrivacyDashboardiOS_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-PrivacyDashboardiOS_Example"; path = Pods_PrivacyDashboardiOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70001D22263C02A092953DC3FB120AB5 /* Runtime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Runtime.swift; path = Sources/Utility/Runtime.swift; sourceTree = "<group>"; };
 		72065972D903B1287FF0D73543D8B6B2 /* IQUIViewController+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIViewController+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIViewController+Additions.swift"; sourceTree = "<group>"; };
 		72577F4D915990A19FA1FC065BF5BC9C /* Delegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Delegate.swift; path = Sources/Utility/Delegate.swift; sourceTree = "<group>"; };
@@ -1350,8 +1348,6 @@
 				A8E950A16D00F649C54FFB30F81D7842 /* IQKeyboardManagerSwift */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				BED92AA941958BAB7262153875FD85AB /* MiniLayout */,
-				6FE698F2F0492AC3DFA611971CFF0373 /* Pods-PrivacyDashboardiOS_Example */,
-				313BD43F9D8666E09B06A582D6B25ABD /* Pods-PrivacyDashboardiOS_Tests */,
 				8631C4DFF7EF2391B156D68F87FBEE03 /* PrivacyDashboardiOS */,
 				15D6C4DD1EFCC52CE1E4BDD077D94A6E /* SDStateTableView */,
 				4B5B8DC3423A88099D5BB9EF3188B8A8 /* StepProgressView */,
@@ -2036,7 +2032,6 @@
 			);
 			name = "Pods-PrivacyDashboardiOS_Tests";
 			productName = Pods_PrivacyDashboardiOS_Tests;
-			productReference = 313BD43F9D8666E09B06A582D6B25ABD /* Pods-PrivacyDashboardiOS_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 		29BE81B8A514EFEE007583562127DF99 /* SDStateTableView */ = {
@@ -2211,7 +2206,6 @@
 			);
 			name = "Pods-PrivacyDashboardiOS_Example";
 			productName = Pods_PrivacyDashboardiOS_Example;
-			productReference = 6FE698F2F0492AC3DFA611971CFF0373 /* Pods-PrivacyDashboardiOS_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 		E8022D22FAA6690B5E1C379C1BCE1491 /* Kingfisher */ = {
@@ -2305,7 +2299,7 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 			};
-			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "_Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -4001,7 +3995,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "_Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,

@@ -10,8 +10,16 @@ import UIKit
 
 struct Constant {
     static func getStoryboard(vc: AnyClass) -> UIStoryboard {
-        let myBundle = Bundle(for: vc.self)
-        let storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+        let frameworkBundle = Bundle(for: vc.self)
+        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+        
+        var storyboard = UIStoryboard()
+        if let resourceBundle = Bundle(url: bundleURL!) {
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+        } else {
+            let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+        }
         return storyboard
     }
     
