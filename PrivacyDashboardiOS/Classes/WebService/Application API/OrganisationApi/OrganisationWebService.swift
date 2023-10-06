@@ -32,7 +32,6 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func organisationDetails(orgId : String){
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
         self.url = baseUrl + "GetUserOrgsAndConsents" + "?orgID=" + orgId
         getServiceCall()
     }
@@ -103,15 +102,12 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
 
     func requestDownloadData(orgId: String) {
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-//        self.url = baseUrl + "user/organizations/" + orgId + "/data-download"
-        self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-download"
+        self.url = baseUrl + "user/organizations/" + orgId + "/data-download"
         postServiceCall()
     }
     
     func requestForgetMe(orgId: String) {
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-        self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-delete"
+        self.url = baseUrl + "user/organizations/" + orgId + "/data-delete"
         postServiceCall()
     }
     
@@ -132,11 +128,10 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func cancelRequest(orgId: String, requestID: String, type: RequestType) {
-        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
         if type == RequestType.DownloadData {
-             self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-download/" + requestID + "/cancel"
+            self.url = baseUrl + "user/organizations/" + orgId + "/data-download/" + requestID + "/cancel"
         } else {
-            self.url = baseUrl + "users/" + userID + "/organizations/" + orgId + "/data-delete/" + requestID + "/cancel"
+            self.url = baseUrl + "user/organizations/" + orgId + "/data-delete/" + requestID + "/cancel"
         }
        postServiceCall()
     }
