@@ -22,7 +22,7 @@ class BBConsentWebViewViewController: BBConsentBaseViewController, WKNavigationD
         backButton.setTitle(" ", for: .normal)
        
         if let url =  URL.init(string: urlString){
-            //self.addLoadingIndicator()
+            self.addLoadingIndicator()
             webview.load(URLRequest.init(url: url))
         }
     }
@@ -42,14 +42,14 @@ class BBConsentWebViewViewController: BBConsentBaseViewController, WKNavigationD
 
     //Equivalent of webViewDidFinishLoad:
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // self.removeLoadingIndicator()
+        self.removeLoadingIndicator()
         debugPrint("didFinish - webView.url: \(String(describing: webView.url?.description))")
     }
     
     //Equivalent of didFailLoadWithError:
        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
            let nserror = error as NSError
-            // self.removeLoadingIndicator()
+           self.removeLoadingIndicator()
            if nserror.code != NSURLErrorCancelled {
                webView.loadHTMLString("Page Not Found", baseURL: URL(string: "https://developer.apple.com/"))
            }

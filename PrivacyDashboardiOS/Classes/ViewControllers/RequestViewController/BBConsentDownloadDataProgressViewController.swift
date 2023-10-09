@@ -8,7 +8,7 @@
 import UIKit
 import StepProgressView
 
-class BBConsentDownloadDataProgressViewController: UIViewController {
+class BBConsentDownloadDataProgressViewController: BBConsentBaseViewController {
     @IBOutlet weak var stepView: StepProgressView!
     var requestStatus: RequestStatus?
     var organisationId: String?
@@ -87,7 +87,7 @@ class BBConsentDownloadDataProgressViewController: UIViewController {
     }
 
     func callCancelRequestApi() {
-        // self.addLoadingIndicator()
+        self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.cancelRequest(orgId: self.organisationId ?? "", requestId: self.requestStatus?.iD ?? "", type: self.requestType ?? RequestType.DownloadData)
@@ -95,7 +95,7 @@ class BBConsentDownloadDataProgressViewController: UIViewController {
 }
 extension BBConsentDownloadDataProgressViewController: WebServiceTaskManagerProtocol {
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
-        // self.removeLoadingIndicator()
+        self.removeLoadingIndicator()
         if response.error != nil{
             self.showErrorAlert(message: (response.error)!)
             return

@@ -8,7 +8,7 @@
 import SDStateTableView
 import UIKit
 
-class BBConsentRequestStatusViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BBConsentRequestStatusViewController: BBConsentBaseViewController, UITableViewDataSource, UITableViewDelegate {
     var orgId: String?
     var histories: [RequestStatus]?
     @IBOutlet var historyListTable: SDStateTableView!
@@ -26,14 +26,14 @@ class BBConsentRequestStatusViewController: UIViewController, UITableViewDataSou
     }
     
     func callHistoryListApi() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getRequestedStatus(orgId: orgId ?? "")
     }
 
     func loadMorehistoryListApi(nextUrl: String) {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.isLoadMore = true
@@ -41,35 +41,35 @@ class BBConsentRequestStatusViewController: UIViewController, UITableViewDataSou
     }
 
     func getDownloadDataStatus() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getDownloadDataStatus(orgId: orgId ?? "")
     }
 
     func getForgetMeStatus() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getForgetMeStatus(orgId: orgId ?? "")
     }
 
     func requestForgetMe() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.requestForgetMe(orgId: orgId ?? "")
     }
 
     func requestDownloadData() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.requestDownloadData(orgId: orgId ?? "")
     }
 
     func callCancelRequestApi(requestType: RequestType?, requestId: String?) {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.cancelRequest(orgId: orgId ?? "", requestId: requestId ?? "", type: requestType ?? RequestType.DownloadData)
@@ -164,7 +164,7 @@ class BBConsentRequestStatusViewController: UIViewController, UITableViewDataSou
 
 extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
     func didFinishTask(from manager: AnyObject, response: (data: RestResponse?, error: String?)) {
-        // removeLoadingIndicator()
+        removeLoadingIndicator()
         if response.error != nil {
             showErrorAlert(message: (response.error)!)
             return

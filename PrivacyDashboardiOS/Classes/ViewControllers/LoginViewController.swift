@@ -175,7 +175,7 @@ extension LoginViewController{
     
     
     func callLoginService(){
-            // self.addLoadingIndicator()
+            self.addLoadingIndicator()
             let serviceManager = LoginServiceManager()
             serviceManager.managerDelegate = self
             serviceManager.loginService(uname: (self.emailTxtFld.text)!, pwd: (self.passwordTxtFld.text)!)
@@ -185,7 +185,7 @@ extension LoginViewController{
 
 extension LoginViewController:WebServiceTaskManagerProtocol,UITextFieldDelegate{
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)){
-        // self.removeLoadingIndicator()
+        self.removeLoadingIndicator()
         if response.error != nil{
             self.showErrorAlert(message: response.error!)
         }else{

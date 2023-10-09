@@ -9,7 +9,7 @@ import Foundation
 import ExpandableLabel
 import SafariServices
 
-class BBConsentOrganisationViewController: UIViewController {
+class BBConsentOrganisationViewController: BBConsentBaseViewController {
     @IBOutlet weak var orgTableView: UITableView!
     @IBOutlet weak var navTitleLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
@@ -61,35 +61,35 @@ class BBConsentOrganisationViewController: UIViewController {
     }
     
     func callOrganisationDetailsApi(){
-        // self.addLoadingIndicator()
+        self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getOrganisationDetails(orgId: self.organisationId)
     }
     
     func requestForgetMe() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.requestForgetMe(orgId: organisationId)
     }
     
     func requestDownloadData() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.requestDownloadData(orgId: organisationId)
     }
     
     func getDownloadDataStatus() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getDownloadDataStatus(orgId: organisationId)
     }
     
     func getForgetMeStatus() {
-        // addLoadingIndicator()
+        addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getForgetMeStatus(orgId: organisationId)
@@ -143,7 +143,7 @@ class BBConsentOrganisationViewController: UIViewController {
     }
     
     @IBAction func allowAllButtonClicked() {
-        // self.addLoadingIndicator()
+        self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.allowAllConsentOfOrganisation(orgId: self.organisationId)
@@ -315,7 +315,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
 extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
     
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
-        // removeLoadingIndicator()
+        removeLoadingIndicator()
         
         if response.error != nil {
             if let serviceManager = manager as? OrganisationWebServiceManager {
@@ -394,7 +394,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
         let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message:alrtMsg , preferredStyle: .alert)
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
-                // self.addLoadingIndicator()
+                self.addLoadingIndicator()
                 serviceManager.updatePurpose(orgId: (self.organisaionDeatils?.organization.iD)!, consentID:  (self.organisaionDeatils?.consentID)!, attributeId: "", purposeId: (purposeInfo?.purpose.iD)!, status: value)
             }));
             alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
@@ -407,7 +407,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             }));
             
             alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
-                // self.addLoadingIndicator()
+                self.addLoadingIndicator()
                 serviceManager.updatePurpose(orgId: (self.organisaionDeatils?.organization.iD)!, consentID:  (self.organisaionDeatils?.consentID)!, attributeId: "", purposeId: (purposeInfo?.purpose.iD)!, status: value)
             }));
         }

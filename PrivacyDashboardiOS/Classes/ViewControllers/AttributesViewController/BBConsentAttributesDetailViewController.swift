@@ -51,7 +51,7 @@ class BBConsentAttributesDetailViewController: BBConsentBaseViewController {
     func changeConsentValue(valueDict:[String: AnyObject]) {
         if self.orgID != nil && consent?.iD != nil{
             NotificationCenter.default.post(name: .consentChange, object: nil)
-            // self.addLoadingIndicator()
+            self.addLoadingIndicator()
             let serviceManager = OrganisationWebServiceManager()
             serviceManager.managerDelegate = self
             serviceManager.updateConsent(orgId: (self.orgID)!, consentID: consentID, attributeId: (consent?.iD)!, purposeId:purposeID, valuesDict: valueDict)
@@ -159,7 +159,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
 extension BBConsentAttributesDetailViewController: WebServiceTaskManagerProtocol {
     
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
-        // self.removeLoadingIndicator()
+        self.removeLoadingIndicator()
         if response.error != nil{
             self.showErrorAlert(message: (response.error)!)
             return
