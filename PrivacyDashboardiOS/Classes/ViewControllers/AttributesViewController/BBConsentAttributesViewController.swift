@@ -103,7 +103,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     func callConsentListApi() {
-        // self.addLoadingIndicator()
+        self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.consentList(orgId: (self.organisaionDeatils?.organization.iD)!, purposeId: (self.purposeInfo?.iD)!, consentId: (self.organisaionDeatils?.consentID)!)
@@ -120,7 +120,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     func callDisallowAllApi(){
-        // self.addLoadingIndicator()
+        self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         let value = "Disallow"
@@ -132,7 +132,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
 extension BBConsentAttributesViewController: WebServiceTaskManagerProtocol {
     
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)){
-        // self.removeLoadingIndicator()
+        self.removeLoadingIndicator()
         
         if response.error != nil {
             self.showErrorAlert(message: (response.error)!)

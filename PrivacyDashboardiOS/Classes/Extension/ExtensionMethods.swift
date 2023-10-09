@@ -526,14 +526,4 @@ extension Data {
     func to<T>(type: T.Type) -> T {
         return self.withUnsafeBytes { $0.load(as: T.self) }
     }
-    
-//    func addLoadingIndicator(){
-//        DispatchQueue.main.async(execute: { () -> Void in
-//            MBProgressHUD.showAdded(to: self.view, animated: true)
-//        })
-//    }
-//
-//    func removeLoadingIndicator(){
-//        MBProgressHUD.hide(for: self.view, animated: true)
-//    }
 }

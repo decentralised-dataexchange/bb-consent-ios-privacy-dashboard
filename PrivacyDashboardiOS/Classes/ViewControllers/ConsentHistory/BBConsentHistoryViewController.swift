@@ -42,7 +42,7 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
     
 
     func callHistoryListApi(orgID: String) {
-        // self.addLoadingIndicator()
+        self.addLoadingIndicator()
         let serviceManager = NotificationServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.getConsentHistoryList()
@@ -52,7 +52,7 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
 extension BBConsentHistoryViewController: WebServiceTaskManagerProtocol {
     
     func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
-        // self.removeLoadingIndicator()
+        self.removeLoadingIndicator()
         
         if response.error != nil {
             self.showErrorAlert(message: (response.error)!)
