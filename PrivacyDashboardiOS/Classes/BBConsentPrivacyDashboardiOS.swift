@@ -10,6 +10,8 @@ import Foundation
 public class BBConsentPrivacyDashboardiOS: UIViewController {
     
     public static var shared = BBConsentPrivacyDashboardiOS()
+    public var turnOnUserRequests = false
+    
     var orgId: String?
     var userId: String?
     var hideBackButton = false

@@ -129,7 +129,9 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         
         // Add actions
         actionSheetController.addAction(firstAction)
-        actionSheetController.addAction(secondAction)
+        if BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests {
+            actionSheetController.addAction(secondAction)
+        }
         actionSheetController.addAction(thirdAction)
         actionSheetController.addAction(cancelAction)
         
