@@ -62,7 +62,11 @@ class BBConsentAttributesDetailViewController: BBConsentBaseViewController {
 extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection {
+            return 3
+        } else {
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
