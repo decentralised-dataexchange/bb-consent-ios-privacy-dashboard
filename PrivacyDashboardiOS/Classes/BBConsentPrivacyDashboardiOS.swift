@@ -18,7 +18,7 @@ public class BBConsentPrivacyDashboardiOS: UIViewController {
         debugPrint("### Log from PrivacyDashboardiOS SDK.")
     }
     
-    public func show(organisationId: String, apiKey: String, userId: String) {
+    public func show(organisationId: String, apiKey: String, userId: String, animate: Bool = true) {
         if #available(iOS 13.0, *) {
             let appearance = UIView.appearance()
             appearance.overrideUserInterfaceStyle = .light
@@ -33,7 +33,7 @@ public class BBConsentPrivacyDashboardiOS: UIViewController {
             _ = BBConsentKeyChainUtils.save(key: "BBConsentToken", data: data)
             
             let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
-            let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+            let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS") // 'PrivacyDashboardiOS.bundle' replaced with 'PrivacyDashboardiOS'
             var storyboard = UIStoryboard()
             if let resourceBundle = Bundle(url: bundleURL!) {
                 storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
@@ -46,7 +46,7 @@ public class BBConsentPrivacyDashboardiOS: UIViewController {
             orgVC.organisationId = organisationId
             let navVC = UINavigationController.init(rootViewController: orgVC)
             navVC.modalPresentationStyle = .fullScreen
-            UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+            UIApplication.topViewController()?.present(navVC, animated: animate, completion: nil)
             return
         }
         
