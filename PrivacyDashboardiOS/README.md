@@ -41,6 +41,13 @@ To enable Ask me section in attribute detail screen, add the following line:
 ```BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = true
 ```
 
+To disable PRivacyDashBoardiOS presenting animation, invoke SDK as shown:
+
+```#import PrivacyDashboardiOS
+BBConsentPrivacyDashboardiOS.shared.show(organisationId: <Org ID>, apiKey: <API key>, userId: <User ID>, animate: false)
+```
+By default it will be turned on.
+
 ## Author
 
 iGrant.io
