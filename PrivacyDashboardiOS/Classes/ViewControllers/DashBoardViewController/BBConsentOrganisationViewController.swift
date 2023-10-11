@@ -36,7 +36,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     
     func setupUI(){
         orgTableView.estimatedRowHeight = 52.0
-        self.orgTableView.rowHeight = UITableViewAutomaticDimension
+        self.orgTableView.rowHeight = UITableView.automaticDimension
         orgTableView.tableFooterView = UIView()
         backBtn.layer.cornerRadius =  backBtn.frame.size.height/2
         moreBtn.layer.cornerRadius =  moreBtn.frame.size.height/2
@@ -253,7 +253,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             if indexPath.row == 0 {
                 return 235
             } else {
-                return UITableViewAutomaticDimension
+                return UITableView.automaticDimension
             }
         } else if indexPath.section == 1 {
             return 62

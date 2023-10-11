@@ -185,8 +185,8 @@
 		8D5FAA7B35E6CA3E0F2D4065DAE5BBE6 /* StepProgressView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB677693656F0E6107DE1FCCCB91CF6C /* StepProgressView-dummy.m */; };
 		8F9E1EEF2FE52E3231A769722D5C4148 /* ServerTrustEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483ADACCDEA4483EC50B84B3B8766AFA /* ServerTrustEvaluation.swift */; };
 		8FE190BB17D51D4D96BDD59F3C038802 /* ConsentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7C7E1683FF1999D51AA051C2285AF3 /* ConsentDetails.swift */; };
-		900B8B042AD52D0C00964F12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B002AD52D0C00964F12 /* Localizable.strings */; };
-		900B8B052AD52D0C00964F12 /* PrivacyDashboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B022AD52D0C00964F12 /* PrivacyDashboard.xcassets */; };
+		900B8B1C2AD6E62B00964F12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B182AD6E62B00964F12 /* Localizable.strings */; };
+		900B8B1D2AD6E62B00964F12 /* PrivacyDashboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */; };
 		930FC355AB046F9F15ECCAB9F028E81C /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B81C187A0A76A6ABFDCC5FD3F65DC /* EKButtonBarView.swift */; };
 		93209671B01B76711F6E2022CADBAC9A /* Kingfisher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 458DE4C0B6C2FF2A6101DB3794F8E927 /* Kingfisher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941822CDF68EB8F4D49F150457A82616 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C99839CCCD101F4DF60E18055094C /* ResponseSerialization.swift */; };
@@ -725,9 +725,9 @@
 		8EC5891FE69F1A7D582D49CA20A472DC /* SDStateTableView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDStateTableView-prefix.pch"; sourceTree = "<group>"; };
 		8F0A2ADC6691FEE8D1445731D308D321 /* EKWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EKWindow.swift; path = Source/Infra/EKWindow.swift; sourceTree = "<group>"; };
 		8F6B7A927629ADCC75C4E7AFBE10EA93 /* Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.debug.xcconfig; sourceTree = "<group>"; };
-		900B8B012AD52D0C00964F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		900B8B022AD52D0C00964F12 /* PrivacyDashboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrivacyDashboard.xcassets; sourceTree = "<group>"; };
-		900B8B032AD52D0C00964F12 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		900B8B192AD6E62B00964F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrivacyDashboard.xcassets; sourceTree = "<group>"; };
+		900B8B1B2AD6E62B00964F12 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		917607151E07D3F125D980C0B727C78E /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		928D07A4D4BFA3A1F7067EA4B40F1328 /* CacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CacheSerializer.swift; path = Sources/Cache/CacheSerializer.swift; sourceTree = "<group>"; };
 		92C0658A18AFC53E330BE03444D22D03 /* IQKeyboardManagerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -1065,6 +1065,7 @@
 		1E331C78DF56A678381A6B474A9DC87D /* PrivacyDashboardiOS */ = {
 			isa = PBXGroup;
 			children = (
+				900B8B172AD6E62B00964F12 /* Resources */,
 				2AC855F1F54452FD5CB90687CBB716B7 /* Classes */,
 				23DD134A4E35059E2CAA18157D7DB0F2 /* Example */,
 				5210B2CE2AD462494CA7B13095C0E5A7 /* Pod */,
@@ -1103,7 +1104,6 @@
 		2AC855F1F54452FD5CB90687CBB716B7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				900B8AFF2AD52D0C00964F12 /* Resources */,
 				6BB2A2BB9DA1DBA0EA12A998BAFF761D /* BBConsentPrivacyDashboardiOS.swift */,
 				8B2F1F13F9DCA9A196EBE8A788F08399 /* PrivacyDashboard.storyboard */,
 				CC61BB4A58307401DD072067C55DAB4C /* Cells */,
@@ -1492,14 +1492,13 @@
 			path = "../Target Support Files/SweeterSwift";
 			sourceTree = "<group>";
 		};
-		900B8AFF2AD52D0C00964F12 /* Resources */ = {
+		900B8B172AD6E62B00964F12 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				900B8B002AD52D0C00964F12 /* Localizable.strings */,
-				900B8B022AD52D0C00964F12 /* PrivacyDashboard.xcassets */,
+				900B8B182AD6E62B00964F12 /* Localizable.strings */,
+				900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */,
 			);
-			name = Resources;
-			path = ../Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		906D04D1BC4ABA67D5990304D47ACF17 /* WebService */ = {
@@ -2479,9 +2478,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				900B8B052AD52D0C00964F12 /* PrivacyDashboard.xcassets in Resources */,
+				900B8B1D2AD6E62B00964F12 /* PrivacyDashboard.xcassets in Resources */,
 				B276C910482BEF5483D90EB0278890AD /* PrivacyDashboardiOS-PrivacyDashboardiOS in Resources */,
-				900B8B042AD52D0C00964F12 /* Localizable.strings in Resources */,
+				900B8B1C2AD6E62B00964F12 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3076,11 +3075,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		900B8B002AD52D0C00964F12 /* Localizable.strings */ = {
+		900B8B182AD6E62B00964F12 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				900B8B012AD52D0C00964F12 /* en */,
-				900B8B032AD52D0C00964F12 /* sv */,
+				900B8B192AD6E62B00964F12 /* en */,
+				900B8B1B2AD6E62B00964F12 /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3122,10 +3121,11 @@
 			};
 			name = Release;
 		};
-		0DA36EF1DA44A265722FB5D4F5C044D0 /* Debug */ = {
+		18EC393FBACC477A6EF8008FD8C3345A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A3E20950F3A28A9A0A303CC7AF1D593 /* ExpandableLabel.debug.xcconfig */;
+			baseConfigurationReference = FE92A595BB1F340A56557825B085DFCB /* PrivacyDashboardiOS.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -3134,23 +3134,24 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ExpandableLabel/ExpandableLabel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel.modulemap";
-				PRODUCT_MODULE_NAME = ExpandableLabel;
-				PRODUCT_NAME = ExpandableLabel;
+				MODULEMAP_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS.modulemap";
+				PRODUCT_MODULE_NAME = PrivacyDashboardiOS;
+				PRODUCT_NAME = PrivacyDashboardiOS;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		25DF631B909BA627C6AA2DD6EE3F01A9 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3245,9 +3246,9 @@
 			};
 			name = Debug;
 		};
-		50EF272E7083B719555D324054CB0E99 /* Release */ = {
+		4B2F8308119B6C2EA4CCD361EFDFA4A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9668C2B230FD110DFED7F20159E76052 /* SDStateTableView.release.xcconfig */;
+			baseConfigurationReference = 3A3E20950F3A28A9A0A303CC7AF1D593 /* ExpandableLabel.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -3257,24 +3258,23 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SDStateTableView/SDStateTableView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SDStateTableView/SDStateTableView-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/ExpandableLabel/ExpandableLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SDStateTableView/SDStateTableView.modulemap";
-				PRODUCT_MODULE_NAME = SDStateTableView;
-				PRODUCT_NAME = SDStateTableView;
+				MODULEMAP_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel.modulemap";
+				PRODUCT_MODULE_NAME = ExpandableLabel;
+				PRODUCT_NAME = ExpandableLabel;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		5F4D3F7304C8AF15D851E9B58C350980 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3371,37 +3371,6 @@
 			};
 			name = Release;
 		};
-		70E35029AE73582BC44B47A205F8D2BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8635D39A6996C5E77452B241AC7B96D0 /* PrivacyDashboardiOS.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS.modulemap";
-				PRODUCT_MODULE_NAME = PrivacyDashboardiOS;
-				PRODUCT_NAME = PrivacyDashboardiOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		79FDB89F6CA57D6734D528EAF266BD7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FCE35A0D95E175C196A6D9F10682D932 /* Alamofire.release.xcconfig */;
@@ -3495,6 +3464,37 @@
 			};
 			name = Release;
 		};
+		80D4E91B5BAC8DB6367F31F20598A3F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9668C2B230FD110DFED7F20159E76052 /* SDStateTableView.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SDStateTableView/SDStateTableView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SDStateTableView/SDStateTableView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SDStateTableView/SDStateTableView.modulemap";
+				PRODUCT_MODULE_NAME = SDStateTableView;
+				PRODUCT_NAME = SDStateTableView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		839C83627258261C372CF6F67B1A5206 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A870E05605278300E1720C199CFA1B53 /* SweeterSwift.debug.xcconfig */;
@@ -3524,38 +3524,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		8DCD6F7BE63021D200FF724A3CFA1B7F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE92A595BB1F340A56557825B085DFCB /* PrivacyDashboardiOS.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS.modulemap";
-				PRODUCT_MODULE_NAME = PrivacyDashboardiOS;
-				PRODUCT_NAME = PrivacyDashboardiOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		98A2FED692332B059F72A0554AB30342 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3684,6 +3652,37 @@
 			};
 			name = Release;
 		};
+		A4159357D30629BEF6E0CBD0349BC157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8635D39A6996C5E77452B241AC7B96D0 /* PrivacyDashboardiOS.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PrivacyDashboardiOS/PrivacyDashboardiOS.modulemap";
+				PRODUCT_MODULE_NAME = PrivacyDashboardiOS;
+				PRODUCT_NAME = PrivacyDashboardiOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		A7B31999A97C8CF2936266C9EA8524FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AC8B07F29F15EE728B0C7A5112BA9C2 /* SwiftEntryKit.debug.xcconfig */;
@@ -3743,37 +3742,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		BA4902B23381A9FD5F1BDD2B5C60B711 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA9FC53826E2EF93C631D08103495A65 /* ExpandableLabel.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ExpandableLabel/ExpandableLabel-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel.modulemap";
-				PRODUCT_MODULE_NAME = ExpandableLabel;
-				PRODUCT_NAME = ExpandableLabel;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		C25A3BF4F354C05C929AB780704BBE8D /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3918,6 +3886,37 @@
 			};
 			name = Debug;
 		};
+		DA2B0C642FD7BA90319A2B5828551BF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA9FC53826E2EF93C631D08103495A65 /* ExpandableLabel.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ExpandableLabel/ExpandableLabel-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ExpandableLabel/ExpandableLabel.modulemap";
+				PRODUCT_MODULE_NAME = ExpandableLabel;
+				PRODUCT_NAME = ExpandableLabel;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		DDE66E9EF2650949C1F28ED6BFEEEFED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F6B7A927629ADCC75C4E7AFBE10EA93 /* Alamofire.debug.xcconfig */;
@@ -3943,6 +3942,36 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E08533A55317D2C1066A120C24A35BD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CAF9688042E55161393578555006049 /* SDStateTableView.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SDStateTableView/SDStateTableView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SDStateTableView/SDStateTableView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SDStateTableView/SDStateTableView.modulemap";
+				PRODUCT_MODULE_NAME = SDStateTableView;
+				PRODUCT_NAME = SDStateTableView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -4033,36 +4062,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		FC0D88A9042D7B839F143206C617C7A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CAF9688042E55161393578555006049 /* SDStateTableView.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SDStateTableView/SDStateTableView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SDStateTableView/SDStateTableView-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SDStateTableView/SDStateTableView.modulemap";
-				PRODUCT_MODULE_NAME = SDStateTableView;
-				PRODUCT_NAME = SDStateTableView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -4204,8 +4203,8 @@
 		826BFD44B991ED0AD15D7B4F650125E5 /* Build configuration list for PBXNativeTarget "PrivacyDashboardiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				70E35029AE73582BC44B47A205F8D2BC /* Debug */,
-				8DCD6F7BE63021D200FF724A3CFA1B7F /* Release */,
+				A4159357D30629BEF6E0CBD0349BC157 /* Debug */,
+				18EC393FBACC477A6EF8008FD8C3345A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4213,8 +4212,8 @@
 		8BE74A3BBF9C439A2832C9CE35752EEF /* Build configuration list for PBXNativeTarget "ExpandableLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0DA36EF1DA44A265722FB5D4F5C044D0 /* Debug */,
-				BA4902B23381A9FD5F1BDD2B5C60B711 /* Release */,
+				4B2F8308119B6C2EA4CCD361EFDFA4A1 /* Debug */,
+				DA2B0C642FD7BA90319A2B5828551BF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4249,8 +4248,8 @@
 		B26271112DD95A65A4404A44E98A187F /* Build configuration list for PBXNativeTarget "SDStateTableView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FC0D88A9042D7B839F143206C617C7A0 /* Debug */,
-				50EF272E7083B719555D324054CB0E99 /* Release */,
+				E08533A55317D2C1066A120C24A35BD8 /* Debug */,
+				80D4E91B5BAC8DB6367F31F20598A3F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

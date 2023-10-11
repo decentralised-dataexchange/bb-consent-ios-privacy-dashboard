@@ -1,6 +1,6 @@
 {
   "name": "PrivacyDashboardiOS",
-  "version": "0.1.12",
+  "version": "2023.10.1",
   "summary": "A short description of PrivacyDashboardiOS.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git",
-    "tag": "0.1.12"
+    "tag": "2023.10.1"
   },
   "platforms": {
     "ios": "13.0"

@@ -183,7 +183,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         return 70
     }
