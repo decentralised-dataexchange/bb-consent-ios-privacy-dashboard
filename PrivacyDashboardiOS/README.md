@@ -19,7 +19,7 @@ PrivacyDashboardiOS is available through [CocoaPods](https://cocoapods.org). To 
 it, simply add the following line to your Podfile:
 
 ```ruby
-  pod 'PrivacyDashboardiOS'
+pod 'PrivacyDashboardiOS'
 ```
 
 ## Usage
@@ -27,23 +27,27 @@ it, simply add the following line to your Podfile:
 You can easily present the PrivacyDashboardHomeVC by the code shown below:
 Paste the below code in ViewDidAppear method.
 
-```#import PrivacyDashboardiOS
-   BBConsentPrivacyDashboardiOS.shared.show(organisationId: <Org ID>, apiKey: <API key>, userId: <User ID>)
+```swift
+#import PrivacyDashboardiOS
+BBConsentPrivacyDashboardiOS.shared.show(organisationId: <Org ID>, apiKey: <API key>, userId: <User ID>)
 ```
 
 To enable User requests, add the following line:
 
-```BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = true
+```swift
+BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = true
 ```
 
 To enable Ask me section in attribute detail screen, add the following line:
 
-```BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = true
+```swift
+BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = true
 ```
 
 To disable PRivacyDashBoardiOS presenting animation, invoke SDK as shown:
 
-```#import PrivacyDashboardiOS
+```swift
+#import PrivacyDashboardiOS
 BBConsentPrivacyDashboardiOS.shared.show(organisationId: <Org ID>, apiKey: <API key>, userId: <User ID>, animate: false)
 ```
 By default it will be turned on.
