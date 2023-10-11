@@ -11,18 +11,39 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+Environment iOS 13.0+
+
 ## Installation
 
 PrivacyDashboardiOS is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'PrivacyDashboardiOS'
+  pod 'PrivacyDashboardiOS'
+```
+
+## Usage
+
+You can easily present the PrivacyDashboardHomeVC by the code shown below:
+Paste the below code in ViewDidAppear method.
+
+```#import PrivacyDashboardiOS
+    BBConsentPrivacyDashboardiOS.shared.show(organisationId: "64f09f778e5f3800014a879a", apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NGYwYTYxZThlNWYzODAwMDE0YTg3YTYiLCJvcmdpZCI6IiIsImVudiI6IiIsImV4cCI6MTcyNDU5Njk2MX0.M3I6hJWtOyqbZXQwEGCK43AvROaoR_zncItmULpbFYE", userId: "64f0a61e8e5f3800014a87a6")
+```
+
+To enable User requests, add the following line:
+
+```BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = true
+```
+
+To enable Ask me section in attribute detail screen, add the following line:
+
+```BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = true
 ```
 
 ## Author
 
-Mumthasir mohammed, mumthasir.mohammed@igrant.io
+iGrant.io
 
 ## License
 
