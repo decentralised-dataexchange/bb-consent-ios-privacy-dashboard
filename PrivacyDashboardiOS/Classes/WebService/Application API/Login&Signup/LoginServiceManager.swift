@@ -109,7 +109,7 @@ class LoginServiceManager: BaseWebServiceManager {
         DispatchQueue.global().async{
             let loginService = LoginWebService()
             loginService.delegate = self
-            let data = UIImageJPEGRepresentation(image, 0.5)
+            let data = image.jpegData(compressionQuality: 0.5)
             let multipartData = MultipartData(data: data! as NSData, name: "userimage", fileName: "image.jpg", mimeType: "image/jpeg")
             loginService.uploadData = [multipartData]
             loginService.changeProfileImageService()

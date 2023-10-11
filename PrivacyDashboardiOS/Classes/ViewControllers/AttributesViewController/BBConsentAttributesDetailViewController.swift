@@ -29,7 +29,7 @@ class BBConsentAttributesDetailViewController: BBConsentBaseViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.title = consent?.descriptionField
         tableView.tableFooterView = UIView()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         if let data = purposeDetails?.consentID {
             consentID = data
         }
