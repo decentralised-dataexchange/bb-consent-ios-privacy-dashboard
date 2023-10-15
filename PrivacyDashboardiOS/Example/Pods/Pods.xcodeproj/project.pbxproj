@@ -189,6 +189,7 @@
 		900B8B1D2AD6E62B00964F12 /* PrivacyDashboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */; };
 		902EE1A22AD90CAB002BA0CB /* PrivacyDashboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */; };
 		902EE1A32AD90CF1002BA0CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 900B8B182AD6E62B00964F12 /* Localizable.strings */; };
+		902EE1A52ADBB13D002BA0CB /* PrivacyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B2F1F13F9DCA9A196EBE8A788F08399 /* PrivacyDashboard.storyboard */; };
 		930FC355AB046F9F15ECCAB9F028E81C /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B81C187A0A76A6ABFDCC5FD3F65DC /* EKButtonBarView.swift */; };
 		93209671B01B76711F6E2022CADBAC9A /* Kingfisher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 458DE4C0B6C2FF2A6101DB3794F8E927 /* Kingfisher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941822CDF68EB8F4D49F150457A82616 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C99839CCCD101F4DF60E18055094C /* ResponseSerialization.swift */; };
@@ -2504,6 +2505,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				902EE1A52ADBB13D002BA0CB /* PrivacyDashboard.storyboard in Resources */,
 				902EE1A22AD90CAB002BA0CB /* PrivacyDashboard.xcassets in Resources */,
 				902EE1A32AD90CF1002BA0CB /* Localizable.strings in Resources */,
 			);
