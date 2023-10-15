@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PrivacyDashboardiOS'
-  s.version          = '2023.10.3'
+  s.version          = '2023.10.4'
   s.summary          = 'A short description of PrivacyDashboardiOS.'
 
 # This description is used to generate tags and improve search results.
