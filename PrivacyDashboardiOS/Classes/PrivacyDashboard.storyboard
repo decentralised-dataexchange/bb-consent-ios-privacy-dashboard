@@ -153,7 +153,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USAGE PURPOSES" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecb-vU-GOc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATA AGREEMENTS" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecb-vU-GOc">
                                                     <rect key="frame" x="15" y="38" width="378" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="NZp-tw-ykn"/>
@@ -591,7 +591,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Kh-5O-InD">
                                                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY DATA CONSENTS" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="XJS-Bh-nOO">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATA ATTRIBUTES" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="XJS-Bh-nOO">
                                                                     <rect key="frame" x="15" y="12" width="180" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="180" id="grQ-c9-d9s"/>
