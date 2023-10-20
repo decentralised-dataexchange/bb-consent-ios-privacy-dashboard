@@ -146,7 +146,7 @@
                                             <outlet property="overViewLbl" destination="qBw-yN-Qoh" id="Jf8-SF-apG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderCell" rowHeight="70" id="jwH-ck-M7h">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderCell" rowHeight="70" id="jwH-ck-M7h" customClass="BBConsentDashboardDataAgreementCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="329" width="393" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jwH-ck-M7h" id="Y1G-gS-ot5">
@@ -185,6 +185,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="Ecb-vU-GOc" secondAttribute="trailing" id="grE-Nr-bkI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dataAgreementsLbl" destination="Ecb-vU-GOc" id="0YW-uS-zBD"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConsentCell" rowHeight="80" id="fax-C1-85c" customClass="BBConsentAttributeTableViewCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="399" width="393" height="80"/>
@@ -640,6 +643,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="dataAttributeLbl" destination="XJS-Bh-nOO" id="XUg-Xa-Coq"/>
                                                     <outlet property="policyButton" destination="Gry-9H-jPm" id="o3o-XL-dg9"/>
                                                 </connections>
                                             </tableViewCell>

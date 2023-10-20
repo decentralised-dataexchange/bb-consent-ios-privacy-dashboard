@@ -155,5 +155,7 @@ struct Constant {
         static let requestProcessed = "Request Processed"
         static let downloadDataRequestStatus = "Download Data Request Status"
         static let deleteDataRequestStatus = "Delete Data Request Status"
+        static let dataAgreements = "DATA AGREEMENTS"
+        static let dataAttributes = "DATA ATTRIBUTES"
     }
 }
