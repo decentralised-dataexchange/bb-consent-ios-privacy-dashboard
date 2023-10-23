@@ -67,8 +67,7 @@ extension BBConsentHistoryViewController: WebServiceTaskManagerProtocol {
                         self.histories = [ConsentHistory]()
                     }
                     if serviceManager.isLoadMore {
-                        self.histories?.append(contentsOf: data.consentHistory)
-                        
+                        self.histories?.append(contentsOf: data.consentHistory ?? [])
                     } else {
                         self.histories = data.consentHistory
                         if (self.histories?.count ?? 0) < 1 {
