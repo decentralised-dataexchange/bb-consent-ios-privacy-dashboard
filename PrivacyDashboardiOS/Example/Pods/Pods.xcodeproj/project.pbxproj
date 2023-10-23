@@ -1224,10 +1224,10 @@
 			children = (
 				EBDA3C57C4BA04D5D63633941B4CDDC6 /* LoginViewController.swift */,
 				EEEB327497ABD71D0F3BE16C2372402C /* WebViewViewController.swift */,
-				F45D7E19404EF166CED081C6ECAC8C92 /* AttributesViewController */,
 				6149B89267C6E492634667DFC3CA9604 /* BaseViewController */,
-				F0A2E3C29CC0A03432C48D6B6227CFA5 /* ConsentHistory */,
 				728A065D0560F92A2873DEBAB4BAB4CB /* DashBoardViewController */,
+				F45D7E19404EF166CED081C6ECAC8C92 /* AttributesViewController */,
+				F0A2E3C29CC0A03432C48D6B6227CFA5 /* ConsentHistory */,
 				6846A43021F61D427BCDDA7A4F8C2197 /* RequestViewController */,
 			);
 			path = ViewControllers;

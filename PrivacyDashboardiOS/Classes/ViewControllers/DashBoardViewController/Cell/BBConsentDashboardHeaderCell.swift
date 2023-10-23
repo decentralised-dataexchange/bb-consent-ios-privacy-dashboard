@@ -18,7 +18,7 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
     @IBOutlet weak var gradiantView: UIView!
     @IBOutlet weak var gradiantViewTop: UIView!
     
-    var orgData : Organization?
+    var orgData : OrganizationWrapper?
     
     override func awakeFromNib() {
         super.awakeFromNib()

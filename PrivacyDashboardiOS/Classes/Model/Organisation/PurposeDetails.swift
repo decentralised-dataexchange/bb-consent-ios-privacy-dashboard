@@ -6,11 +6,9 @@ import Foundation
 import SwiftyJSON
 
 class PurposeDetails {
-
-	var consentslist : [ConsentDetails]!
-	var count : Count!
-	var purpose : Purpose!
-
+	var consentslist : [ConsentDetails]?
+	var count : Count?
+	var purpose : Purpose?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -23,7 +21,7 @@ class PurposeDetails {
 		let consentslisArray = json["Consents"].arrayValue
 		for consentslisJson in consentslisArray{
 			let value = ConsentDetails(fromJson: consentslisJson)
-			consentslist.append(value)
+			consentslist?.append(value)
 		}
 		let countJson = json["Count"]
 		if !countJson.isEmpty{
@@ -34,4 +32,10 @@ class PurposeDetails {
 			purpose = Purpose(fromJson: purposeJson)
 		}
 	}
+}
+
+protocol PurposeDetailsWrapper {
+    var consentslist : [ConsentDetails]? { get }
+    var count : Count? { get }
+    var purpose : Purpose? { get }
 }

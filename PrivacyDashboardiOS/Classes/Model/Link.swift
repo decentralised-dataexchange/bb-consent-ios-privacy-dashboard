@@ -5,11 +5,9 @@
 import Foundation 
 import SwiftyJSON
 
-class Link{
-
-	var next : String!
-	var current : String!
-
+class Link: LinkWrapper {
+	var next : String?
+	var current : String?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -21,5 +19,9 @@ class Link{
 		next = json["next"].stringValue
 		current = json["self"].stringValue
 	}
+}
 
+protocol LinkWrapper {
+    var next : String? { get }
+    var current : String? { get }
 }

@@ -26,10 +26,10 @@ class BBConsentAttributeTableViewCell: UITableViewCell {
     func showData() {
         self.titleLbl.text = self.consentInfo?.descriptionField
         self.dataLbl.text = self.consentInfo?.value
-        if self.consentInfo?.status.consented == .Allow {
+        if self.consentInfo?.status?.consented == .Allow {
             self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.allow, comment: "")
         }
-        else if self.consentInfo?.status.consented == .AskMe {
+        else if self.consentInfo?.status?.consented == .AskMe {
             self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.askMe, comment: "")
         }
         else{

@@ -5,11 +5,10 @@
 import Foundation 
 import SwiftyJSON
 
-class ConsentHistoryData{
-
-	var consentHistory : [ConsentHistory]!
-	var links : Link!
-    var unReadCount : Int!
+class ConsentHistoryData {
+	var consentHistory : [ConsentHistory]?
+	var links : Link?
+    var unReadCount : Int?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -22,7 +21,7 @@ class ConsentHistoryData{
 		let consentHistoryArray = json["ConsentHistory"].arrayValue
 		for consentHistoryJson in consentHistoryArray{
 			let value = ConsentHistory(fromJson: consentHistoryJson)
-			consentHistory.append(value)
+			consentHistory?.append(value)
 		}
 		unReadCount = json["UnReadCount"].intValue
         let linksJson = json["Links"]
@@ -31,5 +30,10 @@ class ConsentHistoryData{
 			links = Link(fromJson: linksJson)
 		}
 	}
+}
 
+protocol ConsentHistoryDataWrapper {
+    var consentHistory : [ConsentHistoryWrapper]? { get }
+    var links : Link?  { get }
+    var unReadCount : Int?  { get }
 }

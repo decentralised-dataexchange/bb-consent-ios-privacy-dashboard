@@ -2,19 +2,17 @@
 //  RequestedStatusHistory.swift
 //  iGrant
 //
-//  Created by Mohamed Rebin on 08/07/19.
-//  Copyright © 2019 iGrant.com. All rights reserved.
-//
+
 
 import Foundation
 import SwiftyJSON
-class RequestedStatusHistory {
-    var DataRequests: [RequestStatus]!
+
+class RequestedStatusHistory: RequestedStatusHistoryWrapper {
+    var DataRequests: [RequestStatus]?
     var IsRequestsOngoing: Bool?
     var IsDataDeleteRequestOngoing: Bool?
     var IsDataDownloadRequestOngoing: Bool?
-    var links: Link!
-
+    var links: Link?
     var isActiveDeleteDataShown = false
     var isActiveDownloadDataShown = false
     /**
@@ -46,7 +44,17 @@ class RequestedStatusHistory {
                     isActiveDownloadDataShown = true
                 }
             }
-            DataRequests.append(value)
+            DataRequests?.append(value)
         }
     }
+}
+
+protocol RequestedStatusHistoryWrapper {
+    var DataRequests: [RequestStatus]? { get }
+    var IsRequestsOngoing: Bool? { get }
+    var IsDataDeleteRequestOngoing: Bool? { get }
+    var IsDataDownloadRequestOngoing: Bool? { get }
+    var links: Link? { get }
+    var isActiveDeleteDataShown: Bool { get }
+    var isActiveDownloadDataShown: Bool { get }
 }

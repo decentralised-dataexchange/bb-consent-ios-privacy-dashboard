@@ -1,28 +1,27 @@
 //
-//	Statu.swift
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+//    Statu.swift
+//    Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
-import Foundation 
+import Foundation
 import SwiftyJSON
 
-class ConsentStatus {
+class ConsentStatus: ConsentStatusWrapper {
+    var consented = ConsentType.Allow
+    var days : Int?
+    var remaining : Int?
+    var timeStamp : String?
 
-	var consented = ConsentType.Allow
-	var days : Int!
-	var remaining : Int!
-	var timeStamp : String!
-
-	/**
-	 * Instantiate the instance using the passed json values to set the properties values
-	 */
-	init(fromJson json: JSON!) {
-		if json.isEmpty{
-			return
-		}
+    /**
+     * Instantiate the instance using the passed json values to set the properties values
+     */
+    init(fromJson json: JSON!) {
+        if json.isEmpty{
+            return
+        }
 //        consented = json["Consented"].stringValue
-		days = json["Days"].intValue
-		remaining = json["Remaining"].intValue
-		timeStamp = json["TimeStamp"].stringValue
+        days = json["Days"].intValue
+        remaining = json["Remaining"].intValue
+        timeStamp = json["TimeStamp"].stringValue
         if json["Consented"].stringValue.lowercased() == "Allow".lowercased(){
             consented = .Allow
         }
@@ -35,5 +34,12 @@ class ConsentStatus {
         else{
             consented = .AskMe
         }
-	}
+    }
+}
+
+protocol ConsentStatusWrapper {
+    var consented: ConsentType { get set }
+    var days : Int? { get set }
+    var remaining : Int? { get }
+    var timeStamp : String? { get }
 }

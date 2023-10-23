@@ -6,11 +6,11 @@ import Foundation
 import SwiftyJSON
 
 
-class Status{
+class Status: StatusWrapper {
 
 	var consented = ConsentType.Allow
-	var days : Int!
-	var timeStamp : String!
+	var days : Int?
+	var timeStamp : String?
 
 
 	/**
@@ -36,4 +36,10 @@ class Status{
 		timeStamp = json["TimeStamp"].stringValue
 	}
 
+}
+
+protocol StatusWrapper {
+    var consented : ConsentType { get }
+    var days : Int? { get }
+    var timeStamp : String? { get }
 }

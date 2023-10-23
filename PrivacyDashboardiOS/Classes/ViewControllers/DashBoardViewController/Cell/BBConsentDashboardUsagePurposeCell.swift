@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PurposeCellDelegate: class {
+protocol PurposeCellDelegate: AnyObject {
     func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell)
 }
 
@@ -18,7 +18,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     @IBOutlet weak var dataLbl: UILabel!
     @IBOutlet weak var statusSwitch: UISwitch!
 
-    var consentInfo : PurposeConsent?
+    var consentInfo : PurposeConsentWrapper?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,14 +29,14 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
     
     func showData() {
-        if self.consentInfo?.purpose.lawfulUsage == true {
+        if self.consentInfo?.purpose?.lawfulUsage == true {
             self.statusSwitch.isOn = true
             self.statusSwitch.isEnabled = false
         } else {
             self.statusSwitch.isEnabled = true
         }
-        self.titleLbl.text = self.consentInfo?.purpose.name
-        if let consented = self.consentInfo?.count.consented {
+        self.titleLbl.text = self.consentInfo?.purpose?.name
+        if let consented = self.consentInfo?.count?.consented {
             var valueString = "Allow "
             
             if consented > 0 {
@@ -44,7 +44,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
                 valueString.append(": ")
                 let consentedStr = String(consented)
                 valueString.append(consentedStr)
-                if let total = self.consentInfo?.count.total {
+                if let total = self.consentInfo?.count?.total {
                     if total > 0 {
                         let totalStr = String(total)
                         valueString.append(" of ")
@@ -60,6 +60,6 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
 
     @IBAction func switchValueChanged(sender: UISwitch) {
-        self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo, cell: self)
+        self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self)
     }
 }
