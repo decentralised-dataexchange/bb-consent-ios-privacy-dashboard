@@ -5,14 +5,12 @@
 import Foundation 
 import SwiftyJSON
 
-class ConsentHistory{
-
-	var iD : String!
-	var log : String!
-	var orgID : String!
-	var purposeID : String!
-	var timeStamp : String!
-
+class ConsentHistory: ConsentHistoryWrapper {
+	var iD : String?
+	var log : String?
+	var orgID : String?
+	var purposeID : String?
+	var timeStamp : String?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -27,5 +25,12 @@ class ConsentHistory{
 		purposeID = json["PurposeID"].stringValue
 		timeStamp = json["TimeStamp"].stringValue
 	}
+}
 
+protocol ConsentHistoryWrapper {
+    var iD : String? { get }
+    var log : String? { get }
+    var orgID : String? { get }
+    var purposeID : String? { get }
+    var timeStamp : String? { get }
 }

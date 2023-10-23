@@ -106,7 +106,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         // Create an action
         let firstAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.privacyPolicy, comment: ""), style: .default) { action -> Void in
             
-            if let privacyPolicy = self.organisaionDeatils?.organization.privacyPolicy {
+            if let privacyPolicy = self.organisaionDeatils?.organization?.privacyPolicy {
                 if self.verifyUrl(urlString: privacyPolicy) {
                     let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
                     webviewVC.urlString = privacyPolicy
@@ -168,7 +168,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     
     @objc func showPrivacyPolicy() {
         popover.dismiss()
-        if let privacyPolicy = self.organisaionDeatils?.organization.privacyPolicy {
+        if let privacyPolicy = self.organisaionDeatils?.organization?.privacyPolicy {
             if self.verifyUrl(urlString: privacyPolicy) {
                 let safariVC = SFSafariViewController(url: NSURL(string: privacyPolicy)! as URL)
                 self.present(safariVC, animated: true, completion: nil)
@@ -224,7 +224,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if organisaionDeatils?.purposeConsents != nil {
-            if (organisaionDeatils?.purposeConsents.count ?? 0) > 0 {
+            if (organisaionDeatils?.purposeConsents?.count ?? 0) > 0 {
                 return 3
             } else {
                 return 1
@@ -240,8 +240,8 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         } else if section == 1 {
             return 1
         } else {
-            if (organisaionDeatils?.purposeConsents.count ?? 0) > 0 {
-                return  (organisaionDeatils?.purposeConsents.count)!
+            if (organisaionDeatils?.purposeConsents?.count ?? 0) > 0 {
+                return  organisaionDeatils?.purposeConsents?.count ?? 0
             }else{
                 return 0
             }
@@ -297,7 +297,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             return headerCell
         } else {
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
-            consentCell.consentInfo = organisaionDeatils?.purposeConsents[indexPath.row]
+            consentCell.consentInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
             consentCell.delegate = self
             consentCell.showData()
             return consentCell
@@ -308,7 +308,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         if indexPath.section == 2 {
             let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.consentListVC) as! BBConsentAttributesViewController
             consentVC.organisaionDeatils = self.organisaionDeatils
-            consentVC.purposeInfo = organisaionDeatils?.purposeConsents[indexPath.row].purpose
+            consentVC.purposeInfo = organisaionDeatils?.purposeConsents?[indexPath.row].purpose
             self.navigationController?.pushViewController(consentVC, animated: true)
         }
     }
@@ -346,7 +346,7 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
                 navigationController?.pushViewController(downloadDataProgressVC, animated: true)
             } else if serviceManager.serviceType == .getDownloadDataStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
-                    if data.RequestOngoing {
+                    if data.RequestOngoing ?? false {
                         let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = organisationId
                         downloadDataProgressVC.requestType = RequestType.DownloadData
@@ -358,7 +358,7 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
                 }
             } else if serviceManager.serviceType == .getForgetMeStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
-                    if data.RequestOngoing {
+                    if data.RequestOngoing ?? false {
                         let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = organisationId
                         downloadDataProgressVC.requestType = RequestType.ForgetMe
@@ -397,7 +397,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
                 self.addLoadingIndicator()
-                serviceManager.updatePurpose(orgId: (self.organisaionDeatils?.organization.iD)!, consentID:  (self.organisaionDeatils?.consentID)!, attributeId: "", purposeId: (purposeInfo?.purpose.iD)!, status: value)
+                serviceManager.updatePurpose(orgId: self.organisaionDeatils?.organization?.iD ?? "", consentID:  self.organisaionDeatils?.consentID ?? "", attributeId: "", purposeId: purposeInfo?.purpose?.iD ?? "", status: value)
             }));
             alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
@@ -410,7 +410,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             
             alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
                 self.addLoadingIndicator()
-                serviceManager.updatePurpose(orgId: (self.organisaionDeatils?.organization.iD)!, consentID:  (self.organisaionDeatils?.consentID)!, attributeId: "", purposeId: (purposeInfo?.purpose.iD)!, status: value)
+                serviceManager.updatePurpose(orgId: self.organisaionDeatils?.organization?.iD ?? "", consentID:  self.organisaionDeatils?.consentID ?? "", attributeId: "", purposeId: purposeInfo?.purpose?.iD ?? "", status: value)
             }));
         }
         present(alerController, animated: true, completion: nil)

@@ -85,7 +85,7 @@ class BBConsentRequestStatusViewController: BBConsentBaseViewController, UITable
         cell.showDate(dateval: histories?[indexPath.row].RequestedDate ?? "")
         cell.statusDetail.text = histories?[indexPath.row].StateStr
         if indexPath.row == (histories?.count)! - 1 {
-            if let url = self.requestHistoryDetails?.links.next {
+            if let url = self.requestHistoryDetails?.links?.next {
                 if url.isValidString {
                     loadMorehistoryListApi(nextUrl: url)
                 }
@@ -177,7 +177,7 @@ extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
                     }
                     requestHistoryDetails = data
                     if serviceManager.isLoadMore {
-                        histories?.append(contentsOf: data.DataRequests)
+                        histories?.append(contentsOf: data.DataRequests ?? [])
                     } else {
                         histories = data.DataRequests
                         if (histories?.count ?? 0) < 1 {
@@ -204,7 +204,7 @@ extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
                 navigationController?.pushViewController(downloadDataProgressVC, animated: true)
             } else if serviceManager.serviceType == .getDownloadDataStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
-                    if data.RequestOngoing {
+                    if data.RequestOngoing ?? false {
                         let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = orgId ?? ""
                         downloadDataProgressVC.requestType = RequestType.DownloadData
@@ -216,7 +216,7 @@ extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
                 }
             } else if serviceManager.serviceType == .getForgetMeStatus {
                 if let data = response.data?.responseModel as? RequestStatus {
-                    if data.RequestOngoing {
+                    if data.RequestOngoing ?? false {
                         let downloadDataProgressVC = storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
                         downloadDataProgressVC.organisationId = orgId ?? ""
                         downloadDataProgressVC.requestType = RequestType.ForgetMe

@@ -5,11 +5,9 @@
 import Foundation 
 import SwiftyJSON
 
-class PurposeConsent {
-
-	var count : Count!
-	var purpose : Purpose!
-
+class PurposeConsent: PurposeConsentWrapper {
+	var count : Count?
+	var purpose : Purpose?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -27,4 +25,9 @@ class PurposeConsent {
 			purpose = Purpose(fromJson: purposeJson)
 		}
 	}
+}
+
+protocol PurposeConsentWrapper {
+    var count : Count? { get }
+    var purpose : Purpose? { get }
 }

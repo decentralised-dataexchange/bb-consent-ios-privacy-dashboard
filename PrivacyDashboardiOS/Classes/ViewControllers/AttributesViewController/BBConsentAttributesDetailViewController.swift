@@ -34,7 +34,7 @@ class BBConsentAttributesDetailViewController: BBConsentBaseViewController {
             consentID = data
         }
         
-        if let data = purposeDetails?.consents.purpose.iD {
+        if let data = purposeDetails?.consents?.purpose?.iD {
             purposeID = data
         }
     }

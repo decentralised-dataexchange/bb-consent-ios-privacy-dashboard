@@ -6,12 +6,10 @@ import Foundation
 import SwiftyJSON
 
 class ConsentDetails {
-
-	var descriptionField : String!
-	var iD : String!
-	var status : ConsentStatus!
-	var value : String!
-
+	var descriptionField : String?
+	var iD : String?
+	var status : ConsentStatusWrapper?
+	var value : String?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -28,4 +26,11 @@ class ConsentDetails {
 		}
 		value = json["Value"].stringValue
 	}
+}
+
+protocol ConsentDetailsWrapper {
+    var descriptionField : String? { get }
+    var iD : String? { get }
+    var status : ConsentStatusWrapper? { get }
+    var value : String? { get } 
 }

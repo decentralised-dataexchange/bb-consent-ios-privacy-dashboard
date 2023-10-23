@@ -8,12 +8,12 @@
 import Foundation
 import SwiftyJSON
 
-class OrganisationDetails {
+class OrganisationDetails: OrganisationDetailsWrapper {
     
-    var consents : [Consent]!
-    var organization : Organization!
-    var purposeConsents : [PurposeConsent]!
-    var consentID : String!
+    var consents : [ConsentWrapper]?
+    var organization : OrganizationWrapper?
+    var purposeConsents : [PurposeConsentWrapper]?
+    var consentID : String?
 
     init(fromJson json: JSON!) {
         if json.isEmpty{
@@ -24,7 +24,7 @@ class OrganisationDetails {
         let consentsArray = json["Consents"].arrayValue
         for consentsJson in consentsArray{
             let value = Consent(fromJson: consentsJson)
-            consents.append(value)
+            consents?.append(value)
         }
         let organizationJson = json["Organization"]
         if !organizationJson.isEmpty{
@@ -34,7 +34,14 @@ class OrganisationDetails {
         let purposeConsentsArray = json["PurposeConsents"].arrayValue
         for purposeConsentsJson in purposeConsentsArray{
             let value = PurposeConsent(fromJson: purposeConsentsJson)
-            purposeConsents.append(value)
+            purposeConsents?.append(value)
         }
     }
+}
+
+protocol OrganisationDetailsWrapper {
+    var consents : [ConsentWrapper]? { get }
+    var organization : OrganizationWrapper? { get }
+    var purposeConsents : [PurposeConsentWrapper]? { get }
+    var consentID : String? { get }
 }
