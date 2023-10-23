@@ -310,9 +310,9 @@ extension OrganisationWebServiceManager {
         let responseData = response!.response!
         DispatchQueue.global().async {
             if let orgs = responseData["Organizations"].array {
-                var orgList = [Organization]()
+                var orgList = [OrganizationWrapper]()
                 for org in orgs {
-                    let orgObj = Organization.init(fromJson: org)
+                    let orgObj : OrganizationWrapper = Organization(fromJson: org)
                     orgList.append(orgObj)
                 }
                 response?.responseModel = orgList as AnyObject?

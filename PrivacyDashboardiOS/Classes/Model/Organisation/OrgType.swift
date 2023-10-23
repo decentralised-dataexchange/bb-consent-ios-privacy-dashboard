@@ -5,11 +5,10 @@
 import Foundation 
 import SwiftyJSON
 
-class OrgType {
-    
-	var iD : String!
-	var icon : URL!
-	var type : String!
+class OrgType: OrgTypeWrapper {
+	var iD : String?
+	var icon : URL?
+	var type : String?
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
@@ -21,8 +20,10 @@ class OrgType {
 		icon = json["ImageURL"].url
 		type = json["Type"].stringValue
 	}
-    
-    init() {
-        
-    }
+}
+
+protocol OrgTypeWrapper {
+    var iD : String? { get set }
+    var icon : URL? { get }
+    var type : String? { get set }
 }

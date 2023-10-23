@@ -5,12 +5,11 @@
 import Foundation 
 import SwiftyJSON
 
-class ConsentStatus {
-
+class ConsentStatus: ConsentStatusWrapper {
 	var consented = ConsentType.Allow
-	var days : Int!
-	var remaining : Int!
-	var timeStamp : String!
+	var days : Int?
+	var remaining : Int?
+	var timeStamp : String?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -36,4 +35,11 @@ class ConsentStatus {
             consented = .AskMe
         }
 	}
+}
+
+protocol ConsentStatusWrapper {
+    var consented: ConsentType { get set }
+    var days : Int? { get set }
+    var remaining : Int? { get }
+    var timeStamp : String? { get }
 }

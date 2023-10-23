@@ -5,14 +5,14 @@
 import Foundation 
 import SwiftyJSON
 
-class Consent {
+class Consent: ConsentWrapper {
 
-	var data : String!
-	var iD : String!
-	var orgID : String!
-	var status : Status!
-	var userID : String!
-	var value : String!
+	var data : String?
+	var iD : String?
+	var orgID : String?
+	var status : StatusWrapper?
+	var userID : String?
+	var value : String?
 
 
 	/**
@@ -32,4 +32,13 @@ class Consent {
 		userID = json["UserID"].stringValue
 		value = json["Value"].stringValue
 	}
+}
+
+protocol ConsentWrapper {
+    var data : String? { get }
+    var iD : String? { get }
+    var orgID : String? { get }
+    var status : StatusWrapper? { get }
+    var userID : String? { get }
+    var value : String? { get }
 }
