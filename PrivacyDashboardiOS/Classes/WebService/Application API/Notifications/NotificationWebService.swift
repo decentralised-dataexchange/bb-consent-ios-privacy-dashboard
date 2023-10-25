@@ -34,7 +34,7 @@ class NotificationWebService: BBConsentBaseWebService {
     func consentHistoryList(){
 //        let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
 //        self.url = baseUrl + "users/" + userID + "/consenthistory"
-        self.url = baseUrl + "/service/individual/record/data-agreement-record/history?" + "offset=0" + "&limit=10"
+        self.url = baseUrl + "/service/individual/record/data-agreement-record/history?"
         getServiceCall()
     }
     
