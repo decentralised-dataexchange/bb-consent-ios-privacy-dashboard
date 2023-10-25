@@ -5,11 +5,11 @@
 import Foundation 
 import SwiftyJSON
 
-class ConsentHistory: ConsentHistoryWrapper {
+class ConsentHistory: ConsentHistoryWrapperV2 {
 	var iD : String?
 	var log : String?
 	var orgID : String?
-	var purposeID : String?
+	var dataAgreementID : String?
 	var timeStamp : String?
 
 	/**
@@ -19,14 +19,24 @@ class ConsentHistory: ConsentHistoryWrapper {
 		if json.isEmpty{
 			return
 		}
-		iD = json["ID"].stringValue
-		log = json["Log"].stringValue
-		orgID = json["OrgID"].stringValue
-		purposeID = json["PurposeID"].stringValue
-		timeStamp = json["TimeStamp"].stringValue
+		iD = json["id"].stringValue
+		log = json["log"].stringValue
+		orgID = json["organisationId"].stringValue
+        dataAgreementID = json["dataAgreementId"].stringValue
+		timeStamp = json["timestamp"].stringValue
 	}
 }
 
+// Api version 2
+protocol ConsentHistoryWrapperV2 {
+    var iD : String? { get }
+    var log : String? { get }
+    var orgID : String? { get }
+    var dataAgreementID : String? { get }
+    var timeStamp : String? { get }
+}
+
+// Api version 1
 protocol ConsentHistoryWrapper {
     var iD : String? { get }
     var log : String? { get }

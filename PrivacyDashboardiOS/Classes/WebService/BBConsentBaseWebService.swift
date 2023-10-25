@@ -12,14 +12,13 @@ import SwiftyJSON
 //Production Url
 //var baseUrl = "https://api.igrant.io/v1/"
 
-//Staging Url
-var baseUrl = "https://demo-consent-bb-api.igrant.io/v1/"
-var baseUrl_v2 = "https://demo-consent-bb-api.igrant.io/v2/"
+// Staging Url
+var baseUrl = "https://staging-consent-bb-api.igrant.io/v2"
 var baseUrl_V1 = "https://staging-api.igrant.io/v1.1/"
 
-//Demo Url
-//var baseUrl = "https://demo-api.igrant.io/v1/"
-//var baseUrl_V1 = "https://demo-api.igrant.io/v1.1/"
+// Demo Url
+// var baseUrl = "https://demo-consent-bb-api.igrant.io/v1/"
+// var baseUrl_v2 = "https://demo-consent-bb-api.igrant.io/v2/"
 
 class RestResponse : NSObject {
     var response : JSON?
@@ -105,7 +104,7 @@ class BBConsentBaseWebService: NSObject {
         
         if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
-            let hearDict = ["Authorization":"ApiKey \(token)"]
+            let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict
         }
         
