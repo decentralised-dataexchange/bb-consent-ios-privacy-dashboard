@@ -24,6 +24,9 @@ enum OrganizationApiType {
     case cancelRequest
     case getRequestedStatus
     case acceptEula
+    case Organization
+    case GetDataAgreementRecords
+    case CreateDataAgreementRecord
 }
 
 class WebServiceTaskManager: NSObject {
@@ -38,6 +41,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
     var serviceType = OrganizationApiType.NonAddedOrgList
     let searchService = OrganisationWebService()
     var organisationId = ""
+    var dataAgreementId = ""
     var organisationType : String?
     var searchOrganisationInputStr = ""
     var consentDictionary = [String: AnyObject]()
@@ -70,6 +74,33 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
             self.searchService.organisationDetails(orgId: orgId)
         }
     }
+   
+    func getOrganization(orgId : String){
+        serviceType = .Organization
+        organisationId = orgId
+        DispatchQueue.global().async {
+            self.searchService.delegate = self
+            self.searchService.organization()
+        }
+    }
+    
+    func getAllDataAgreementRecords(orgId : String){
+        serviceType = .GetDataAgreementRecords
+        organisationId = orgId
+        DispatchQueue.global().async {
+            self.searchService.delegate = self
+            self.searchService.dataAgreementRecords()
+        }
+    }
+    
+    func createDataAgreementRecord(dataAgreementId : String){
+        serviceType = .CreateDataAgreementRecord
+        self.dataAgreementId = dataAgreementId
+        DispatchQueue.global().async {
+            self.searchService.delegate = self
+            self.searchService.createDataAgreementRecord(dataAgreementId: dataAgreementId)
+        }
+    }
     
     func consentNewOrganisation(orgId : String, subKey: String?){
         organisationId = orgId
@@ -81,18 +112,11 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
         }
     }
     
-    func consentList(orgId : String,purposeId:String,consentId : String ){
-        organisationId = orgId
+    func consentList(dataAgreementId: String){
         serviceType = .PurposeList
         DispatchQueue.global().async {
             self.searchService.delegate = self
-            //        var userId  =  ""
-            //        if  UserInfo.currentUser()?.userID != nil{
-            //            userId =  (UserInfo.currentUser()?.userID)!
-            //        }
-            let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-            let urlPart = "/consents/" + consentId + "/purposes/" + purposeId
-            self.searchService.url = baseUrl + "organizations/" + orgId + "/users/" + userID + urlPart
+            self.searchService.url = baseUrl + "/service/data-agreement/" + dataAgreementId + "/data-attributes?"
             self.searchService.getServiceCall()
         }
     }
@@ -238,6 +262,8 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
         case .NonAddedOrgList:getNonAddedOrganisationList()
         case .AddNewOrg: consentNewOrganisation(orgId: self.organisationId, subKey: self.subscriptionKey)
         case .OrgDetails:getOrganisationDetails(orgId: self.organisationId)
+        case .Organization: getOrganization(orgId: self.organisationId)
+        case .GetDataAgreementRecords: getAllDataAgreementRecords(orgId: self.organisationId)
         case .RemoveOrg:removeOrganisation(orgId: self.organisationId)
         case .AllowAlConsent:allowAllConsentOfOrganisation(orgId: self.organisationId)
         case .UpdateConsent: break
@@ -251,6 +277,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
         case .cancelRequest : cancelRequest(orgId: self.organisationId, requestId: self.requestId, type: self.requestType)
         case .getRequestedStatus : getRequestedStatus(orgId: self.organisationId)
         case .acceptEula : acceptEulaConsent(orgId: self.organisationId, parameters: self.consentDictionary)
+        case .CreateDataAgreementRecord: break
         }
     }
     
@@ -276,6 +303,8 @@ extension OrganisationWebServiceManager : BaseServiceDelegates {
             case .NonAddedOrgList:handleNonAddedOrgsResponse(response: response)
             case .AddNewOrg: handleAddNewOrgResponse(response: response)
             case .OrgDetails: handleOrgDetailsResponse(response: response)
+            case .Organization: handleOrganizationResponse(response: response)
+            case .GetDataAgreementRecords: handleDataAgreementResponse(response: response)
             case .RemoveOrg: handleRemoveOrgResponse(response: response)
             case .AllowAlConsent: handleAlloAllConsentResponse(response: response)
             case .UpdateConsent: handleUpdateConsentResponse(response: response)
@@ -289,6 +318,7 @@ extension OrganisationWebServiceManager : BaseServiceDelegates {
             case .cancelRequest : handleCanceRequestResponse(response: response)
             case .getRequestedStatus : handleRequestedStatusHistory(response: response)
             case .acceptEula : handleAcceptEulaConsentResponse(response: response)
+            case .CreateDataAgreementRecord: handleOrganizationResponse(response: response)
             }
         }
     }
@@ -329,6 +359,37 @@ extension OrganisationWebServiceManager {
         DispatchQueue.global().async {
             let orgDetails = OrganisationDetails(fromJson:responseData)
             response?.responseModel = orgDetails as AnyObject?
+            DispatchQueue.main.async {
+                self.managerDelegate?.didFinishTask(from: self, response: (data: response, error: nil))
+            }
+        }
+    }
+    
+    func handleOrganizationResponse(response:RestResponse?){
+        let responseData = response!.response!
+        DispatchQueue.global().async {
+            let organization = Organization(fromJson:responseData)
+            response?.responseModel = organization as AnyObject?
+            DispatchQueue.main.async {
+                self.managerDelegate?.didFinishTask(from: self, response: (data: response, error: nil))
+            }
+        }
+    }
+    
+    func handleDataAgreementResponse(response:RestResponse?){
+        let responseData = response!.response!
+        DispatchQueue.global().async {
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(responseData) {
+                if let json = String(data: encoded, encoding: .utf8) {
+                    print(json)
+                }
+                let decoder = JSONDecoder()
+                if let decoded = try? decoder.decode(DataAgreementRecords.self, from: encoded) {
+                    response?.responseModel = decoded as AnyObject
+                }
+            }
+            
             DispatchQueue.main.async {
                 self.managerDelegate?.didFinishTask(from: self, response: (data: response, error: nil))
             }

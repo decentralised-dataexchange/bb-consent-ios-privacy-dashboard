@@ -18,6 +18,8 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     @IBOutlet var topBarItemConstraint : NSLayoutConstraint!
     
     var organisaionDeatils : OrganisationDetails?
+    var records : DataAgreementRecords?
+    var organization : Organization?
     var organisationId = ""
     var isNeedToRefresh = false
     var overViewCollpased = true
@@ -31,7 +33,9 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
                                        name: .consentChange,
                                        object: nil)
         setupUI()
+        callOrganizationApi()
         callOrganisationDetailsApi()
+        getAllDataAgreementRecords()
     }
     
     func setupUI(){
@@ -60,11 +64,24 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         }
     }
     
-    func callOrganisationDetailsApi(){
+    func callOrganizationApi(){
         self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
+        serviceManager.getOrganization(orgId: self.organisationId)
+    }
+    
+    
+    func callOrganisationDetailsApi(){
+        let serviceManager = OrganisationWebServiceManager()
+        serviceManager.managerDelegate = self
         serviceManager.getOrganisationDetails(orgId: self.organisationId)
+    }
+    
+    func getAllDataAgreementRecords() {
+        let serviceManager = OrganisationWebServiceManager()
+        serviceManager.managerDelegate = self
+        serviceManager.getAllDataAgreementRecords(orgId: self.organisationId)
     }
     
     func requestForgetMe() {
@@ -266,7 +283,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         if  indexPath.section == 0 {
             if indexPath.row == 0 {
                 let orgCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedImageCellID,for: indexPath) as! BBConsentDashboardHeaderCell
-                orgCell.orgData = organisaionDeatils?.organization
+                orgCell.orgData = organization
                 orgCell.showData()
                 return orgCell
             } else {
@@ -286,8 +303,8 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
                     //  orgOverViewCell.overViewLbl.numberOfLines = 0
                 }
                 orgOverViewCell.overViewLbl.textReplacementType = .word
-                if organisaionDeatils?.organization?.descriptionField != nil {
-                    let desc = (organisaionDeatils?.organization?.descriptionField)!
+                if organization?.descriptionField != nil {
+                    let desc = organization?.descriptionField 
                     orgOverViewCell.overViewLbl.text = desc
                 }
                 return orgOverViewCell
@@ -297,7 +314,16 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             return headerCell
         } else {
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
+            consentCell.tag = indexPath.row
             consentCell.consentInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
+            let filteredRecord = records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  organisaionDeatils?.purposeConsents?[indexPath.row].iD })
+            if filteredRecord?.count ?? 0 > 0 {
+                let consentedCount = filteredRecord?[0].dataAttributes?.filter({ $0.optIn == true }).count ?? 0
+                let totalCount = filteredRecord?[0].dataAttributes?.count
+                
+                consentCell.consentedCount = consentedCount
+                consentCell.totalCount = totalCount
+            }
             consentCell.delegate = self
             consentCell.showData()
             return consentCell
@@ -308,7 +334,14 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         if indexPath.section == 2 {
             let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.consentListVC) as! BBConsentAttributesViewController
             consentVC.organisaionDeatils = self.organisaionDeatils
-            consentVC.purposeInfo = organisaionDeatils?.purposeConsents?[indexPath.row].purpose
+            consentVC.organization = self.organization
+            consentVC.purposeInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
+            
+            let filteredRecord = records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  organisaionDeatils?.purposeConsents?[indexPath.row].iD })
+            if filteredRecord?.count ?? 0 > 0 {
+                let consents = filteredRecord?[0].dataAttributes?.map({ $0.optIn ?? false })
+                consentVC.consents = consents
+            }
             self.navigationController?.pushViewController(consentVC, animated: true)
         }
     }
@@ -367,6 +400,33 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
                     } else {
                         requestForgetMe()
                     }
+                }
+            } else if serviceManager.serviceType == .Organization {
+                if let data = response.data?.responseModel as? Organization {
+                    organization = data
+                    orgTableView.reloadData()
+                }
+            } else if serviceManager.serviceType == .OrgDetails {
+                if let data = response.data?.responseModel as? OrganisationDetails {
+                    organisaionDeatils = data
+                    orgTableView.reloadData()
+                }
+            } else if serviceManager.serviceType == .GetDataAgreementRecords {
+                if let data = response.data?.responseModel as? DataAgreementRecords {
+                    records = data
+                    let idsWithAttributeRecords = records?.dataAgreementRecords?.map({ $0.dataAgreementId }) ?? []
+                    // Filtering dataAgreementId
+                    let dataArgumentIds = organisaionDeatils?.purposeConsents?.filter({ $0.lawfulUsage ?? false }).map({ $0.iD }) ?? []
+                    for item in dataArgumentIds {
+                        // If item doesnt have record already
+                        if !idsWithAttributeRecords.contains(item) {
+                            // Create add record api call
+                            let serviceManager = OrganisationWebServiceManager()
+                            serviceManager.managerDelegate = self
+                            serviceManager.createDataAgreementRecord(dataAgreementId: item ?? "")
+                        }
+                    }
+                    orgTableView.reloadData()
                 }
             }
         }

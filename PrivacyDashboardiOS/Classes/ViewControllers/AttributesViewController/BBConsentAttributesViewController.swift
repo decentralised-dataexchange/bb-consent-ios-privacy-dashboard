@@ -15,9 +15,13 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
    
     var overViewCollpased = true
     var organisaionDeatils : OrganisationDetails?
-    var purposeInfo : Purpose?
+    var organization : Organization?
+    var purposeInfo : PurposeConsentWrapperV2?
     var consentslist : [ConsentDetails]?
     var consentslistInfo : ConsentListingResponse?
+    var dataAttributes: [DataAttribute]?
+    var count: Count?
+    var consents: [Bool]?
     var isNeedToRefresh = false
     var isFromQR = false
     
@@ -67,8 +71,8 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     
     func manageDisallowButton() {
         if self.consentslistInfo?.consents?.purpose?.lawfulUsage == false {
-            if consentslistInfo?.consents?.count?.consented != nil {
-                if (consentslistInfo?.consents?.count?.consented )! < 1 {
+            if count?.consented != nil {
+                if (count?.consented )! < 1 {
                     disAllowAllBtn.isHidden = true
                     disAllowAllBtnHeightCostrint.constant = 0
                 } else {
@@ -87,7 +91,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     @IBAction func policyBtnClicked() {
-        if let url = self.consentslistInfo?.consents?.purpose?.policyURL {
+        if let url = organisaionDeatils?.purposeConsents?[0].policyURL {
             if url.isValidString{
                 let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
                 webviewVC.urlString = url
@@ -106,7 +110,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
         self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
-        serviceManager.consentList(orgId: self.organisaionDeatils?.organization?.iD ?? "", purposeId: self.purposeInfo?.iD ?? "" , consentId: self.organisaionDeatils?.consentID ?? "")
+        serviceManager.consentList(dataAgreementId: purposeInfo?.iD ?? "")
     }
     
     func showConfirmationAlert() {
@@ -125,7 +129,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
         serviceManager.managerDelegate = self
         let value = "Disallow"
         NotificationCenter.default.post(name: .consentChange, object: nil)
-        serviceManager.updatePurpose(orgId: self.organisaionDeatils?.organization?.iD ?? "", consentID:  self.organisaionDeatils?.consentID ?? "" , attributeId: "", purposeId: purposeInfo?.iD ?? "", status: value)
+//        serviceManager.updatePurpose(orgId: self.organisaionDeatils?.organization?.iD ?? "", consentID:  self.organisaionDeatils?.consentID ?? "" , attributeId: "", purposeId: purposeInfo?.iD ?? "", status: value)
     }
 }
 
@@ -152,6 +156,7 @@ extension BBConsentAttributesViewController: WebServiceTaskManagerProtocol {
         
         if let data = response.data?.responseModel as? ConsentListingResponse {
             self.consentslistInfo = data
+            self.dataAttributes = data.dataAttributes
             self.consentslist = data.consents?.consentslist
             self.tableView.reloadData()
             manageDisallowButton()
@@ -163,13 +168,13 @@ extension BBConsentAttributesViewController: WebServiceTaskManagerProtocol {
 extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if consentslist == nil {
+        if dataAttributes == nil {
             return 0
         } else {
             if section == 0 {
                 return 2
             }
-            return (consentslist?.count)!
+            return (dataAttributes?.count)!
         }
     }
     
@@ -217,7 +222,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
             default:
                 let consentHeaderCell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.consentHeaderTableViewCell,for: indexPath) as! BBConsentAttributesHeaderCell
                 
-                if let url = self.consentslistInfo?.consents?.purpose?.policyURL{
+                if let url = organisaionDeatils?.purposeConsents?[0].policyURL {
                     if url.isValidString{
                         consentHeaderCell.policyButton.isHidden = false
                     }else{
@@ -236,7 +241,8 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
         }
                 
         let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.consentCell ,for: indexPath) as! BBConsentAttributeTableViewCell
-        consentCell.consentInfo = consentslist?[indexPath.row]
+        consentCell.consentInfo = dataAttributes?[indexPath.row]
+        consentCell.consent = consents?[indexPath.row]
         consentCell.showData()
         if isFromQR {
             consentCell.consentTypeLbl.text =  NSLocalizedString(Constant.Alert.allow, comment: "")

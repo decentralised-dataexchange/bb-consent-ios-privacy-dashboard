@@ -18,8 +18,10 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     @IBOutlet weak var dataLbl: UILabel!
     @IBOutlet weak var statusSwitch: UISwitch!
 
-    var consentInfo : PurposeConsentWrapper?
-
+    var consentInfo : PurposeConsentWrapperV2?
+    var consentedCount: Int?
+    var totalCount: Int?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -29,22 +31,21 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
     
     func showData() {
-        if self.consentInfo?.purpose?.lawfulUsage == true {
+        if self.consentInfo?.lawfulUsage == true {
             self.statusSwitch.isOn = true
             self.statusSwitch.isEnabled = false
         } else {
             self.statusSwitch.isEnabled = true
         }
-        self.titleLbl.text = self.consentInfo?.purpose?.name
-        if let consented = self.consentInfo?.count?.consented {
-            var valueString = "Allow "
+        self.titleLbl.text = self.consentInfo?.name
+        var valueString = "Allow "
             
-            if consented > 0 {
+           if consentedCount ?? 0 > 0 {
                 self.statusSwitch.isOn = true
                 valueString.append(": ")
-                let consentedStr = String(consented)
+                let consentedStr = String(consentedCount ?? 0)
                 valueString.append(consentedStr)
-                if let total = self.consentInfo?.count?.total {
+                if let total = totalCount {
                     if total > 0 {
                         let totalStr = String(total)
                         valueString.append(" of ")
@@ -56,7 +57,6 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
                 self.statusSwitch.isOn = false
                 self.dataLbl.text = "Disallow"
             }
-        }
     }
 
     @IBAction func switchValueChanged(sender: UISwitch) {

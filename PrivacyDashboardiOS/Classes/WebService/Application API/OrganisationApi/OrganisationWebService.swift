@@ -32,8 +32,23 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func organisationDetails(orgId : String){
-        self.url = baseUrl + "GetUserOrgsAndConsents" + "?orgID=" + orgId
+        self.url = baseUrl + "/service/data-agreements"// "GetUserOrgsAndConsents" + "?orgID=" + orgId 
         getServiceCall()
+    }
+    
+    func organization() {
+        self.url = baseUrl + "/service/organisation"
+        getServiceCall()
+    }
+   
+    func dataAgreementRecords() {
+        self.url = baseUrl + "/service/individual/record/data-agreement-record"
+        getServiceCall()
+    }
+    
+    func createDataAgreementRecord(dataAgreementId: String) {
+        self.url = baseUrl + "/service/individual/record/data-agreement/" + dataAgreementId
+        postServiceCall()
     }
     
     func addOrganisation(orgId : String, subKey: String?){
