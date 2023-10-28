@@ -18,7 +18,7 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
     @IBOutlet weak var gradiantView: UIView!
     @IBOutlet weak var gradiantViewTop: UIView!
     
-    var orgData : OrganizationWrapper?
+    var orgData : Organization?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,20 +39,19 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
             if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
                 let token = String(data: tokendata, encoding: .utf8) ?? ""
                 r.setValue("ApiKey \(token)", forHTTPHeaderField: "Authorization")
+                r.setValue(BBConsentPrivacyDashboardiOS.shared.userId ?? "", forHTTPHeaderField:  "X-ConsentBB-IndividualId")
             }
             return r
         }
         
         self.orgImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
-        if let imageUrl = self.orgData?.coverImageURL{
-            let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
-            self.orgImageView.kf.setImage(with: imageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
-        }
+        let coverImageUrl = URL(string:  baseUrl + "/service/organisation/coverimage")
+        let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
+        self.orgImageView.kf.setImage(with: coverImageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
         
         self.logoImageView.image = UIImage(named: Constant.Images.iGrantTick)
-        if let imageUrl = self.orgData?.logoImageURL{
-            let placeholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
-            self.logoImageView.kf.setImage(with: imageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
-        }
+        let logoImageUrl = URL(string:  baseUrl + "/service/organisation/logoimage")
+        let coverImagePlaceholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
+        self.logoImageView.kf.setImage(with: logoImageUrl, placeholder: coverImagePlaceholder, options: [.requestModifier(modifier)])
     }
 }
