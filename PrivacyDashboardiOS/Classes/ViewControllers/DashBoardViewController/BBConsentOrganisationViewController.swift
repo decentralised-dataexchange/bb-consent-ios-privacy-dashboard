@@ -456,8 +456,8 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
         let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message:alrtMsg , preferredStyle: .alert)
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
-                self.addLoadingIndicator()
-                serviceManager.updatePurpose(orgId: self.organisaionDeatils?.organization?.iD ?? "", consentID:  self.organisaionDeatils?.consentID ?? "", attributeId: "", purposeId: purposeInfo?.purpose?.iD ?? "", status: value)
+                let filteredRecord = self.records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
+                serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
             }));
             alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
@@ -469,8 +469,8 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             }));
             
             alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
-                self.addLoadingIndicator()
-                serviceManager.updatePurpose(orgId: self.organisaionDeatils?.organization?.iD ?? "", consentID:  self.organisaionDeatils?.consentID ?? "", attributeId: "", purposeId: purposeInfo?.purpose?.iD ?? "", status: value)
+                let filteredRecord = self.records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
+                serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
             }));
         }
         present(alerController, animated: true, completion: nil)

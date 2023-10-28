@@ -160,23 +160,13 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
     }
     
     
-    func updatePurpose(orgId : String,consentID : String,attributeId : String,purposeId:String,status:String){
-            organisationId = orgId
-            serviceType = .AllowAlConsent
-            consentId = consentID
-            DispatchQueue.global().async {
-                self.searchService.delegate = self
-                //        var userId  =  ""
-                //        if  UserInfo.currentUser()?.userID != nil{
-                //            userId =  (UserInfo.currentUser()?.userID)!
-                //        }
-                let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
-                let urlPart = "/consents/" + consentID + "/purposes/" + purposeId + "/status"
-                self.searchService.url = baseUrl + "organizations/" + orgId + "/users/" + userID + urlPart
-                self.searchService.parameters = ["consented" : status as AnyObject]
-                self.searchService.postServiceCall()
-                //            self.searchService.changeConsent(orgId: orgId, consentID: consentID, parameter: valuesDict)
-            }
+    func updatePurpose(dataAgreementRecordId: String, dataAgreementId: String, status: Bool) {
+        serviceType = .AllowAlConsent
+        DispatchQueue.global().async {
+            self.searchService.url = baseUrl + "/service/individual/record/data-agreement-record/" + dataAgreementRecordId + "?dataAgreementId=" + dataAgreementId
+            self.searchService.parameters = ["optIn" : status]
+            self.searchService.putServiceCall()
+        }
     }
         
         func requestDownloadData(orgId : String){
