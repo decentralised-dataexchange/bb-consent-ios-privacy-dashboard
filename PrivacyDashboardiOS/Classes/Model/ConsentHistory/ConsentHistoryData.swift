@@ -42,7 +42,7 @@ protocol ConsentHistoryDataWrapperV2 {
     var pagination: Pagination? { get }
 }
 
-class Pagination: PaginationWrapper {
+class Pagination: PaginationWrapper, Codable {
     var currentPage: Int?
     var totalItems: Int?
     var totalPages: Int?

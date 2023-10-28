@@ -13,7 +13,8 @@ class BBConsentAttributeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dataLbl: UILabel!
     @IBOutlet weak var consentTypeLbl: UILabel!
-    var consentInfo : ConsentDetails?
+    var consentInfo : DataAttribute?
+    var consent: Bool?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,15 +25,11 @@ class BBConsentAttributeTableViewCell: UITableViewCell {
     }
 
     func showData() {
-        self.titleLbl.text = self.consentInfo?.descriptionField
-        self.dataLbl.text = self.consentInfo?.value
-        if self.consentInfo?.status?.consented == .Allow {
+        self.titleLbl.text = self.consentInfo?.description
+        self.dataLbl.text = ""
+        if consent == true {
             self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.allow, comment: "")
-        }
-        else if self.consentInfo?.status?.consented == .AskMe {
-            self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.askMe, comment: "")
-        }
-        else{
+        } else{
             self.consentTypeLbl.text = NSLocalizedString(Constant.Strings.disallow, comment: "")
         }
     }

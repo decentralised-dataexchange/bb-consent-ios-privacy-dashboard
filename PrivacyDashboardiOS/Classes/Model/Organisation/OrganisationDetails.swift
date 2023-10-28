@@ -12,7 +12,7 @@ class OrganisationDetails: OrganisationDetailsWrapper {
     
     var consents : [ConsentWrapper]?
     var organization : OrganizationWrapper?
-    var purposeConsents : [PurposeConsentWrapper]?
+    var purposeConsents : [PurposeConsentWrapperV2]?
     var consentID : String?
 
     init(fromJson json: JSON!) {
@@ -26,12 +26,8 @@ class OrganisationDetails: OrganisationDetailsWrapper {
             let value = Consent(fromJson: consentsJson)
             consents?.append(value)
         }
-        let organizationJson = json["Organization"]
-        if !organizationJson.isEmpty{
-            organization = Organization(fromJson: organizationJson)
-        }
         purposeConsents = [PurposeConsent]()
-        let purposeConsentsArray = json["PurposeConsents"].arrayValue
+        let purposeConsentsArray = json["dataAgreements"].arrayValue
         for purposeConsentsJson in purposeConsentsArray{
             let value = PurposeConsent(fromJson: purposeConsentsJson)
             purposeConsents?.append(value)
@@ -42,6 +38,6 @@ class OrganisationDetails: OrganisationDetailsWrapper {
 protocol OrganisationDetailsWrapper {
     var consents : [ConsentWrapper]? { get }
     var organization : OrganizationWrapper? { get }
-    var purposeConsents : [PurposeConsentWrapper]? { get }
+    var purposeConsents : [PurposeConsentWrapperV2]? { get }
     var consentID : String? { get }
 }

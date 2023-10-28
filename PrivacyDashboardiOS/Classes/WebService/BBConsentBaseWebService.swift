@@ -63,7 +63,7 @@ class BBConsentBaseWebService: NSObject {
     var serviceType = WebServiceType.None
     var delegate : BaseServiceDelegates?
     var url: String?
-    var parameters = [String: AnyObject]()
+    var parameters = [String: Any]()
     var uploadData: [MultipartData]?
     var header:[String : String]?
     var requestInfo : [String:String]?
@@ -154,7 +154,7 @@ class BBConsentBaseWebService: NSObject {
         
         if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
-            let hearDict = ["Authorization":"ApiKey \(token)"]
+            let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict
         }
         
@@ -197,7 +197,7 @@ class BBConsentBaseWebService: NSObject {
         
         if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
-            let hearDict = ["Authorization":"ApiKey \(token)"]
+            let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict
         }
         

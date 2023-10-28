@@ -6,6 +6,7 @@ import Foundation
 import SwiftyJSON
 
 class ConsentListingResponse: ConsentListingResponseWrapper {
+    var dataAttributes: [DataAttribute]?
 	var consentID : String?
 	var consents : PurposeDetails?
 	var iD : String?
@@ -19,6 +20,14 @@ class ConsentListingResponse: ConsentListingResponseWrapper {
 		if json.isEmpty{
 			return
 		}
+        
+        let dataAttributesArray = json["dataAttributes"].arrayValue
+        dataAttributes = [DataAttribute]()
+        for dataAttribute in dataAttributesArray{
+            let value = DataAttribute(fromJson: dataAttribute)
+            dataAttributes?.append(value)
+        }
+        
 		consentID = json["ConsentID"].stringValue
 		let consentsJson = json["Consents"]
 		if !consentsJson.isEmpty{
@@ -37,4 +46,28 @@ protocol ConsentListingResponseWrapper {
     var iD : String? { get }
     var orgID : String? { get }
     var userID : String? { get }
+    var dataAttributes: [DataAttribute]? { get }
 }
+
+// MARK: - DataAttribute
+class DataAttribute {
+    var id, version: String?
+    var agreementIDS: [JSON]?
+    var name, description: String?
+    var sensitivity: Bool?
+    var category: String?
+    
+    init(fromJson json: JSON!){
+        if json.isEmpty{
+            return
+        }
+        id = json["id"].stringValue
+        version = json["version"].stringValue
+        agreementIDS = json["agreementIds"].arrayValue
+        name = json["name"].stringValue
+        description = json["description"].stringValue
+        sensitivity = json["sensitivity"].boolValue
+        category = json["category"].stringValue
+    }
+}
+

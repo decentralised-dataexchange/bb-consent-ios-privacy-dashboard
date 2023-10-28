@@ -5,9 +5,13 @@
 import Foundation 
 import SwiftyJSON
 
-class PurposeConsent: PurposeConsentWrapper {
-	var count : Count?
-	var purpose : Purpose?
+class PurposeConsent: PurposeConsentWrapperV2 {
+    var count : Count?
+    var descriptionField : String?
+    var iD : String?
+    var lawfulUsage : Bool?
+    var policyURL : String?
+    var name: String?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -16,18 +20,24 @@ class PurposeConsent: PurposeConsentWrapper {
 		if json.isEmpty{
 			return
 		}
-		let countJson = json["Count"]
-		if !countJson.isEmpty{
-			count = Count(fromJson: countJson)
-		}
-		let purposeJson = json["Purpose"]
-		if !purposeJson.isEmpty{
-			purpose = Purpose(fromJson: purposeJson)
-		}
+        descriptionField = json["purposeDescription"].stringValue
+        iD = json["id"].stringValue
+        lawfulUsage = (json["lawfulBasis"] == "consent" || json["lawfulBasis"] == "legitimate_interest")
+        policyURL = json["policy"]["url"].stringValue
+        name = json["purpose"].stringValue
 	}
 }
 
 protocol PurposeConsentWrapper {
     var count : Count? { get }
     var purpose : Purpose? { get }
+}
+
+protocol PurposeConsentWrapperV2 {
+    var count : Count? { get }
+    var descriptionField : String? { get }
+    var iD : String? { get }
+    var lawfulUsage : Bool? { get }
+    var policyURL : String? { get }
+    var name: String? { get }
 }

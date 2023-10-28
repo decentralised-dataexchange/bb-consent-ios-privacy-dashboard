@@ -23,29 +23,14 @@ class Organization: OrganizationWrapper {
         if json.isEmpty{
             return
         }
-        descriptionField = json["Description"].stringValue
-        iD = json["ID"].stringValue
-        imageURL = json["ImageURL"].url
-        logoImageURL = json["LogoImageURL"].url
-        coverImageURL = json["CoverImageURL"].url
-        privacyPolicy = json["PolicyURL"].stringValue
-        location = json["Location"].stringValue
-        name = json["Name"].stringValue
-        
-        let typeJson = json["Type"]
-        if !typeJson.isEmpty{
-            type = OrgType(fromJson: typeJson)
-        }
-        if let orgID = json["OrgID"].string{
-            iD = orgID
-        }
-        if let typeVal = json["Type"].string{
-            type = OrgType.init(fromJson: typeJson)
-            type?.type = typeVal
-        }
-        if let typeId = json["TypeID"].string{
-            type?.iD = typeId
-        }
+        descriptionField = json["organisation"]["description"].stringValue
+        iD = json["organisation"]["id"].stringValue
+        imageURL = json["organisation"]["ImageURL"].url
+        logoImageURL = json["organisation"]["logoImageUrl"].url
+        coverImageURL = json["organisation"]["coverImageUrl"].url
+        privacyPolicy = json["organisation"]["policyUrl"].stringValue
+        location = json["organisation"]["location"].stringValue
+        name = json["organisation"]["name"].stringValue
     }
 }
 
