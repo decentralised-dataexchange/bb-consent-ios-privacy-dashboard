@@ -31,8 +31,8 @@ class NotificationWebService: BBConsentBaseWebService {
 //        PATCH()
 //    }
     
-    func consentHistoryList(){
-        self.url = baseUrl + "/service/individual/record/data-agreement-record/history?offset=0&limit=150"
+    func consentHistoryList(offset: Int) {
+        self.url = baseUrl + "/service/individual/record/data-agreement-record/history?" + "offset=\(offset)" + "&limit=\(10)"
         getServiceCall()
     }
     

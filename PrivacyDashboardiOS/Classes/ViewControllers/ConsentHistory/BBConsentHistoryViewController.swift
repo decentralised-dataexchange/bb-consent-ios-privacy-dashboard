@@ -22,6 +22,7 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
     var histories: [ConsentHistory]?
     var orgId: String?
     var orgList:[Organization] = []
+    var offset = 0
     
     
     override func viewDidLoad() {
@@ -41,11 +42,12 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
     }
     
 
-    func callHistoryListApi(orgID: String) {
+    func callHistoryListApi(orgID: String, isLoadMore: Bool = false) {
         self.addLoadingIndicator()
         let serviceManager = NotificationServiceManager()
         serviceManager.managerDelegate = self
-        serviceManager.getConsentHistoryList()
+        serviceManager.isLoadMore = isLoadMore
+        serviceManager.getConsentHistoryList(offset: self.offset)
     }
 }
 
@@ -68,6 +70,7 @@ extension BBConsentHistoryViewController: WebServiceTaskManagerProtocol {
                     }
                     if serviceManager.isLoadMore {
                         self.histories?.append(contentsOf: data.consentHistory ?? [])
+                        serviceManager.isLoadMore = false
                     } else {
                         self.histories = data.consentHistory
                         if (self.histories?.count ?? 0) < 1 {
@@ -103,5 +106,12 @@ extension BBConsentHistoryViewController: UITableViewDelegate, UITableViewDataSo
             cell.contentView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (histories?.count ?? 0) - 1 {
+            offset += 10
+            callHistoryListApi(orgID: self.orgId ?? "", isLoadMore: true)
+        }
     }
 }
