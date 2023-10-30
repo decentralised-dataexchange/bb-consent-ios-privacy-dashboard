@@ -457,7 +457,9 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
                 let filteredRecord = self.records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
-                serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                if filteredRecord?.count ?? 0 > 0 {
+                    serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                }
             }));
             alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
@@ -470,7 +472,9 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             
             alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
                 let filteredRecord = self.records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
-                serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                if filteredRecord?.count ?? 0 > 0 {
+                    serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                }
             }));
         }
         present(alerController, animated: true, completion: nil)
