@@ -59,12 +59,12 @@ class NotificationServiceManager: BaseWebServiceManager {
 //        }
 //    }
     
-    func getConsentHistoryList(){
+    func getConsentHistoryList(offset: Int){
         self.serviceType = .ConsentHistoryList
         DispatchQueue.global().async{
             let loginService = NotificationWebService()
             loginService.delegate = self
-            loginService.consentHistoryList()
+            loginService.consentHistoryList(offset: offset)
         }
     }
     
