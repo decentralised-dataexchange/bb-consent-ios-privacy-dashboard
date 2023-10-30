@@ -252,7 +252,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && BBConsentPrivacyDashboardiOS.shared.turnOnAttributeDetailScreen {
             if self.consentslistInfo?.consents?.purpose?.lawfulUsage == false && !isFromQR {
                 let consentVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.consentVC) as! BBConsentAttributesDetailViewController
                 consentVC.consent = consentslist?[indexPath.row]

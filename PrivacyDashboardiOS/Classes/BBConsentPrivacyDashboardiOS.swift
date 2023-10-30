@@ -12,7 +12,8 @@ public class BBConsentPrivacyDashboardiOS: UIViewController {
     public static var shared = BBConsentPrivacyDashboardiOS()
     public var turnOnUserRequests = false
     public var turnOnAskMeSection = false
-
+    public var turnOnAttributeDetailScreen = false
+    
     var orgId: String?
     var userId: String?
     var hideBackButton = false
