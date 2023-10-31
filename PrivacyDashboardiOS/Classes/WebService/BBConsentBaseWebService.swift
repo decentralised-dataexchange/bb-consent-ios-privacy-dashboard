@@ -9,17 +9,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-//Production Url
-//var baseUrl = "https://api.igrant.io/v1/"
-
-// Staging Url
-var baseUrl = "https://staging-consent-bb-api.igrant.io/v2"
-var baseUrl_V1 = "https://staging-api.igrant.io/v1.1/"
-
-// Demo Url
-// var baseUrl = "https://demo-consent-bb-api.igrant.io/v1/"
-// var baseUrl_v2 = "https://demo-consent-bb-api.igrant.io/v2/"
-
 class RestResponse : NSObject {
     var response : JSON?
     var responseModel : AnyObject?
@@ -68,6 +57,7 @@ class BBConsentBaseWebService: NSObject {
     var header:[String : String]?
     var requestInfo : [String:String]?
     var errorMsg : String?
+    var baseUrl = BBConsentPrivacyDashboardiOS.shared.baseUrl
     
     
     func refreshToken() {
