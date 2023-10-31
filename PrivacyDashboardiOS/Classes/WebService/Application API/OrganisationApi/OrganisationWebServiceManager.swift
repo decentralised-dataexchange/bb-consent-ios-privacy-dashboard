@@ -50,6 +50,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
     var requestId = ""
     var requestType = RequestType.DownloadData
     var isLoadMore = false
+    var baseUrl = BBConsentPrivacyDashboardiOS.shared.baseUrl
     
     func refreshToken(){
         let service = BBConsentBaseWebService()
@@ -116,7 +117,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
         serviceType = .PurposeList
         DispatchQueue.global().async {
             self.searchService.delegate = self
-            self.searchService.url = baseUrl + "/service/data-agreement/" + dataAgreementId + "/data-attributes?"
+            self.searchService.url = self.baseUrl + "/service/data-agreement/" + dataAgreementId + "/data-attributes?"
             self.searchService.getServiceCall()
         }
     }
@@ -152,7 +153,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
             //        }
             let userID = BBConsentPrivacyDashboardiOS.shared.userId ?? ""
             let urlPart = "/consents/" + consentID + "/purposes/" + purposeId + "/attributes/" + attributeId
-            self.searchService.url = baseUrl + "organizations/" + orgId + "/users/" + userID + urlPart
+            self.searchService.url = self.baseUrl + "organizations/" + orgId + "/users/" + userID + urlPart
             self.searchService.parameters = valuesDict
             self.searchService.patchServiceCall()
 //            self.searchService.changeConsent(orgId: orgId, consentID: consentID, parameter: valuesDict)
@@ -163,7 +164,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
     func updatePurpose(dataAgreementRecordId: String, dataAgreementId: String, status: Bool) {
         serviceType = .AllowAlConsent
         DispatchQueue.global().async {
-            self.searchService.url = baseUrl + "/service/individual/record/data-agreement-record/" + dataAgreementRecordId + "?dataAgreementId=" + dataAgreementId
+            self.searchService.url = self.baseUrl + "/service/individual/record/data-agreement-record/" + dataAgreementRecordId + "?dataAgreementId=" + dataAgreementId
             self.searchService.parameters = ["optIn" : status]
             self.searchService.putServiceCall()
         }

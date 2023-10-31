@@ -123,7 +123,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         // Create an action
         let firstAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.privacyPolicy, comment: ""), style: .default) { action -> Void in
             
-            if let privacyPolicy = self.organisaionDeatils?.organization?.privacyPolicy {
+            if let privacyPolicy =  self.organization?.privacyPolicy {
                 if self.verifyUrl(urlString: privacyPolicy) {
                     let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
                     webviewVC.urlString = privacyPolicy

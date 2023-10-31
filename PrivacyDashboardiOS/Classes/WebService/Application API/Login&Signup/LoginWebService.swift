@@ -10,7 +10,7 @@ import UIKit
 
 class LoginWebService: BBConsentBaseWebService {
     func callLoginService(){
-        self.url = baseUrl_V1 + "users/login"
+        self.url = baseUrl + "users/login"
         postServiceCall()
     }
     

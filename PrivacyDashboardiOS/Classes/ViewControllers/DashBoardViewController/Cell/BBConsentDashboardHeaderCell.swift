@@ -19,6 +19,7 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
     @IBOutlet weak var gradiantViewTop: UIView!
     
     var orgData : Organization?
+    var baseUrl = BBConsentPrivacyDashboardiOS.shared.baseUrl
     
     override func awakeFromNib() {
         super.awakeFromNib()
