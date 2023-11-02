@@ -21,6 +21,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     var consentInfo : PurposeConsentWrapperV2?
     var consentedCount: Int?
     var totalCount: Int?
+    var swictOn: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +32,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
     
     func showData() {
-        if self.consentInfo?.lawfulUsage == true {
+        if self.swictOn == true {
             self.statusSwitch.isOn = true
             self.statusSwitch.isEnabled = false
         } else {

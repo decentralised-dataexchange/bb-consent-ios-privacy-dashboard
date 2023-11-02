@@ -52,7 +52,6 @@ protocol ConsentListingResponseWrapper {
 // MARK: - DataAttribute
 class DataAttribute {
     var id, version: String?
-    var agreementIDS: [JSON]?
     var name, description: String?
     var sensitivity: Bool?
     var category: String?
@@ -63,7 +62,6 @@ class DataAttribute {
         }
         id = json["id"].stringValue
         version = json["version"].stringValue
-        agreementIDS = json["agreementIds"].arrayValue
         name = json["name"].stringValue
         description = json["description"].stringValue
         sensitivity = json["sensitivity"].boolValue

@@ -32,7 +32,7 @@ class NotificationWebService: BBConsentBaseWebService {
 //    }
     
     func consentHistoryList(offset: Int) {
-        self.url = baseUrl + "/service/individual/record/data-agreement-record/history?" + "offset=\(offset)" + "&limit=\(10)"
+        self.url = baseUrl + "/service/individual/record/consent-record/history?" + "offset=\(offset)" + "&limit=\(10)"
         getServiceCall()
     }
     
