@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PrivacyDashboardiOS'
-  s.version          = '2023.10.9'
-  s.summary          = 'A short description of PrivacyDashboardiOS.'
+  s.version          = '2023.11.1'
+  s.summary          = 'Govstack PrivacyDashboard SDKs – Effortlessly embed a comprehensive privacy dashboard into any mobile application out of the box, ensuring adherence to Govstacks consent management framework. Prioritise user trust and transparency with this seamless integration tool.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,16 +17,14 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'This SDKS is developed to provide an out-of-the-box privacy dashboard feature based on the Govstack consent building block framework. It is designed to integrate seamlessly into mobile applications; the dashboard provides a transparent view of how user data is utilised. Using data agreements, users and developers are kept informed about data procedures. Individual users can monitor their data usage, whilst developers are guided to handle the data appropriately, all by the Govstack consent management framework.'
 
   s.homepage         = 'https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Mumthasir mohammed' => 'mumthasir.mohammed@igrant.io' }
   s.source           = { :git => 'https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://www.linkedin.com/company/igrantio'
 
   s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
