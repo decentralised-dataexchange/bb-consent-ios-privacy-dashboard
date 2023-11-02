@@ -316,14 +316,11 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
             consentCell.tag = indexPath.row
             consentCell.consentInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
-            let filteredRecord = records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  organisaionDeatils?.purposeConsents?[indexPath.row].iD })
-            if filteredRecord?.count ?? 0 > 0 {
-                let consentedCount = filteredRecord?[0].dataAttributes?.filter({ $0.optIn == true }).count ?? 0
-                let totalCount = filteredRecord?[0].dataAttributes?.count
-                
-                consentCell.consentedCount = consentedCount
-                consentCell.totalCount = totalCount
-            }
+            consentCell.swictOn  = records?.consentRecords?[indexPath.row].optIn ?? false
+            let consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            let totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            consentCell.consentedCount = consentedCount
+            consentCell.totalCount = totalCount
             consentCell.delegate = self
             consentCell.showData()
             return consentCell
@@ -337,11 +334,12 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             consentVC.organization = self.organization
             consentVC.purposeInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
             
-            let filteredRecord = records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  organisaionDeatils?.purposeConsents?[indexPath.row].iD })
-            if filteredRecord?.count ?? 0 > 0 {
-                let consents = filteredRecord?[0].dataAttributes?.map({ $0.optIn ?? false })
+           // let filteredRecord = records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  organisaionDeatils?.purposeConsents?[indexPath.row].iD })
+           // if filteredRecord?.count ?? 0 > 0 {
+            let consents = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.map({ $0.sensitivity ?? false })
+            // filteredRecord?[0].dataAttributes?.map({ $0.optIn ?? false })
                 consentVC.consents = consents
-            }
+           // }
             self.navigationController?.pushViewController(consentVC, animated: true)
         }
     }
@@ -414,17 +412,17 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
             } else if serviceManager.serviceType == .GetDataAgreementRecords {
                 if let data = response.data?.responseModel as? DataAgreementRecords {
                     records = data
-                    let idsWithAttributeRecords = records?.dataAgreementRecords?.map({ $0.dataAgreementId }) ?? []
-                    // Filtering dataAgreementId
-                    let dataArgumentIds = organisaionDeatils?.purposeConsents?.filter({ $0.lawfulUsage ?? false }).map({ $0.iD }) ?? []
-                    for item in dataArgumentIds {
+                    let dataAgreementIDs = organisaionDeatils?.purposeConsents?.map({ $0.iD }) ?? []
+                    let idsWithAttributeRecords = records?.consentRecords?.map({ $0.dataAgreementId }) ?? []
+                                        
+                    for item in dataAgreementIDs {
                         // If item doesnt have record already
                         if !idsWithAttributeRecords.contains(item) {
                             // Create add record api call
                             let serviceManager = OrganisationWebServiceManager()
                             serviceManager.managerDelegate = self
                             serviceManager.createDataAgreementRecord(dataAgreementId: item ?? "")
-                        }
+                       }
                     }
                     orgTableView.reloadData()
                 }
@@ -456,7 +454,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
         let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message:alrtMsg , preferredStyle: .alert)
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
-                let filteredRecord = self.records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
+                let filteredRecord = self.records?.consentRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
                 if filteredRecord?.count ?? 0 > 0 {
                     serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
                 }
@@ -471,7 +469,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             }));
             
             alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
-                let filteredRecord = self.records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
+                let filteredRecord = self.records?.consentRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
                 if filteredRecord?.count ?? 0 > 0 {
                     serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
                 }

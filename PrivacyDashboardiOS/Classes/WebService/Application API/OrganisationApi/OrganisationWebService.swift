@@ -42,7 +42,7 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
    
     func dataAgreementRecords() {
-        self.url = baseUrl + "/service/individual/record/data-agreement-record"
+        self.url = baseUrl + "/service/individual/record/consent-record"
         getServiceCall()
     }
     

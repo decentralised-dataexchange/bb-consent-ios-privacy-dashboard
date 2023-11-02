@@ -17,7 +17,7 @@ class ConsentHistoryData: ConsentHistoryDataWrapperV2 {
 			return
 		}
 		consentHistory = [ConsentHistory]()
-		let consentHistoryArray = json["dataAgreementRecordHistory"].arrayValue
+		let consentHistoryArray = json["consentRecordHistory"].arrayValue
 		for consentHistoryJson in consentHistoryArray{
 			let value = ConsentHistory(fromJson: consentHistoryJson)
 			consentHistory?.append(value)

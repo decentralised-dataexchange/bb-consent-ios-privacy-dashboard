@@ -9,26 +9,14 @@ import Foundation
 
 // MARK: - DataAgreementRecords
 struct DataAgreementRecords: Codable {
-    var  dataAgreementRecords: [DataAgreementRecord]?
+    var consentRecords: [ConsentRecord]?
     var pagination: Pagination?
 }
 
 // MARK: - DataAgreementRecord
-class DataAgreementRecord: Codable {
-    var id: String?
-    var dataAgreementId: String?
-    var dataAgreementRevisionId: String?
-    var dataAgreementRevisionHash: String?
-    var dataAttributes: [DataAttributeDetails]?
+class ConsentRecord: Codable {
+    var id, dataAgreementId, dataAgreementRevisionId, dataAgreementRevisionHash: String?
     var individualID: String?
     var optIn: Bool?
-    var state, signatureId: String?
-}
-
-// MARK: - DataAttribute
-class DataAttributeDetails: Codable {
-    var id: String?
-    var dataAttributeRevisionId: String?
-    var dataAttributeRevisionHash: String?
-    var optIn: Bool?
+    var state, signatureID: String?
 }

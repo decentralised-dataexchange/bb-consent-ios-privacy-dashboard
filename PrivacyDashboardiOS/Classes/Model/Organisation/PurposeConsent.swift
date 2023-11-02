@@ -6,12 +6,14 @@ import Foundation
 import SwiftyJSON
 
 class PurposeConsent: PurposeConsentWrapperV2 {
+    var active: Bool?
     var count : Count?
     var descriptionField : String?
     var iD : String?
     var lawfulUsage : Bool?
     var policyURL : String?
     var name: String?
+    var dataAttributes: [DataAttribute]?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -25,6 +27,14 @@ class PurposeConsent: PurposeConsentWrapperV2 {
         lawfulUsage = (json["lawfulBasis"] == "consent" || json["lawfulBasis"] == "legitimate_interest")
         policyURL = json["policy"]["url"].stringValue
         name = json["purpose"].stringValue
+        active = json["active"].boolValue
+        
+        let dataAttributesArray = json["dataAttributes"].arrayValue
+        dataAttributes = [DataAttribute]()
+        for dataAttribute in dataAttributesArray{
+            let value = DataAttribute(fromJson: dataAttribute)
+            dataAttributes?.append(value)
+        }
 	}
 }
 
@@ -40,4 +50,6 @@ protocol PurposeConsentWrapperV2 {
     var lawfulUsage : Bool? { get }
     var policyURL : String? { get }
     var name: String? { get }
+    var dataAttributes: [DataAttribute]? { get }
+    var active: Bool? { get }
 }

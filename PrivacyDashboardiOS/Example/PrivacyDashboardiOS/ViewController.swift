@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = false
         BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = false
         BBConsentPrivacyDashboardiOS.shared.turnOnAttributeDetailScreen = false
-        BBConsentPrivacyDashboardiOS.shared.baseUrl = "https://demo-consent-bb-api.igrant.io/v2"
+        BBConsentPrivacyDashboardiOS.shared.baseUrl = "https://staging-consent-bb-api.igrant.io/v2"
         BBConsentPrivacyDashboardiOS.shared.show(organisationId: "64f09f778e5f3800014a879a", apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", userId: "65378403b3f442eb9381b38d")
     }
 
