@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PrivacyDashboardiOS'
-  s.version          = '2023.11.1'
+  s.version          = '2023.11.3'
   s.summary          = 'Govstack PrivacyDashboard SDKs – Effortlessly embed a comprehensive privacy dashboard into any mobile application out of the box, ensuring adherence to Govstacks consent management framework. Prioritise user trust and transparency with this seamless integration tool.'
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Mumthasir mohammed' => 'mumthasir.mohammed@igrant.io' }
+  s.author           = { 'iGrant.io' => 'support@igrant.io' }
   s.source           = { :git => 'https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git', :tag => s.version.to_s }
   s.social_media_url = 'https://www.linkedin.com/company/igrantio'
 
