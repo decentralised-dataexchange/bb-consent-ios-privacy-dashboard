@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="PD8-gB-CU5">
-                                <rect key="frame" x="0.0" y="-50" width="393" height="902"/>
+                                <rect key="frame" x="0.0" y="-60" width="393" height="912"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="235" id="cCX-oj-O9Z" customClass="BBConsentDashboardHeaderCell" customModule="PrivacyDashboardiOS" customModuleProvider="target">
@@ -427,7 +427,7 @@
                             <constraint firstItem="wCA-e4-T4B" firstAttribute="top" secondItem="rpP-wK-ERN" secondAttribute="top" id="XpU-G1-X3I"/>
                             <constraint firstItem="z7X-5v-FOH" firstAttribute="bottom" secondItem="rpP-wK-ERN" secondAttribute="bottom" id="tdP-HD-1Mz"/>
                             <constraint firstItem="PD8-gB-CU5" firstAttribute="trailing" secondItem="rpP-wK-ERN" secondAttribute="trailing" id="weD-qq-Wa7"/>
-                            <constraint firstItem="PD8-gB-CU5" firstAttribute="top" secondItem="ymC-ip-fPX" secondAttribute="top" constant="-50" id="x9Z-5B-KS7"/>
+                            <constraint firstItem="PD8-gB-CU5" firstAttribute="top" secondItem="ymC-ip-fPX" secondAttribute="top" constant="-60" id="x9Z-5B-KS7"/>
                             <constraint firstItem="rpP-wK-ERN" firstAttribute="trailing" secondItem="wCA-e4-T4B" secondAttribute="trailing" id="xAE-oW-i4e"/>
                             <constraint firstItem="PD8-gB-CU5" firstAttribute="leading" secondItem="rpP-wK-ERN" secondAttribute="leading" id="zGX-hj-xQI"/>
                         </constraints>
