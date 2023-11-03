@@ -32,32 +32,25 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
     
     func showData() {
-        if self.swictOn == true {
-            self.statusSwitch.isOn = true
-            self.statusSwitch.isEnabled = false
-        } else {
-            self.statusSwitch.isEnabled = true
-        }
+        self.statusSwitch.isOn = self.swictOn ? true : false
+        self.statusSwitch.isEnabled = consentInfo?.lawfulUsage ?? false ? true : false
+        
         self.titleLbl.text = self.consentInfo?.name
         var valueString = "Allow "
-            
-           if consentedCount ?? 0 > 0 {
-                self.statusSwitch.isOn = true
-                valueString.append(": ")
-                let consentedStr = String(consentedCount ?? 0)
-                valueString.append(consentedStr)
-                if let total = totalCount {
-                    if total > 0 {
-                        let totalStr = String(total)
-                        valueString.append(" of ")
-                        valueString.append(totalStr)
-                    }
+        
+        if consentedCount ?? 0 > 0 {
+            valueString.append(": ")
+            let consentedStr = String(consentedCount ?? 0)
+            valueString.append(consentedStr)
+            if let total = totalCount {
+                if total > 0 {
+                    let totalStr = String(total)
+                    valueString.append(" of ")
+                    valueString.append(totalStr)
                 }
-                self.dataLbl.text = valueString
-            } else {
-                self.statusSwitch.isOn = false
-                self.dataLbl.text = "Disallow"
             }
+            self.dataLbl.text = valueString
+        }
     }
 
     @IBAction func switchValueChanged(sender: UISwitch) {
