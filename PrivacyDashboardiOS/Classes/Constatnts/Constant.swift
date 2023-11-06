@@ -158,4 +158,11 @@ struct Constant {
         static let dataAgreements = "DATA AGREEMENTS"
         static let dataAttributes = "DATA ATTRIBUTES"
     }
+    
+    struct URLStrings {
+        static let createIndividual = BBConsentPrivacyDashboardiOS.shared.baseUrl + "/service/individual"
+        static let readIndividual = BBConsentPrivacyDashboardiOS.shared.baseUrl + "/service/individual/"
+        static let updateIndividual = BBConsentPrivacyDashboardiOS.shared.baseUrl + "/service/individual/"
+        static let fetchAllIndividuals = BBConsentPrivacyDashboardiOS.shared.baseUrl + "/service/individuals"
+    }
 }

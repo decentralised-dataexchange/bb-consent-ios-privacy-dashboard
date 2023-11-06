@@ -58,7 +58,8 @@ class BBConsentBaseWebService: NSObject {
     var requestInfo : [String:String]?
     var errorMsg : String?
     var baseUrl = BBConsentPrivacyDashboardiOS.shared.baseUrl
-    
+    static var shared = BBConsentBaseWebService()
+
     
     func refreshToken() {
         let refreshToken : String = (UserInfo.currentUser()?.refreshToken)!
@@ -329,6 +330,56 @@ class BBConsentBaseWebService: NSObject {
             case .failure(let encodingError):
                 print(encodingError)
                 self.failureWithError(error: encodingError)
+            }
+        }
+    }
+}
+
+// MARK: - Single Almofire call for all API's
+extension BBConsentBaseWebService {
+    
+    enum ApiType: String {
+        case get = "GET"
+        case post = "POST"
+        case put = "PUT"
+    }
+    
+    func makeAPICall(urlString: String, parameters: [String: Any] = [:], headers: [String: String] = [:], method: ApiType, completion:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
+        
+        if UserInfo.currentUser()?.token != nil{
+            let token : String  = (UserInfo.currentUser()?.token)!
+            let hearDict = ["Authorization":"Bearer \(token)"]
+            header = hearDict
+        }else{
+            header = nil
+        }
+        
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+            let token = String(data: tokendata, encoding: .utf8) ?? ""
+            let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
+            header = hearDict
+        }
+        
+        var encoding: ParameterEncoding = JSONEncoding.default
+        if method == .get {
+            encoding = URLEncoding.default
+        }
+        
+        AF.request(urlString, method: HTTPMethod(rawValue: method.rawValue), parameters: parameters, encoding: encoding, headers: HTTPHeaders.init(header ?? [:]))
+            .responseJSON { response in
+            debugPrint("### URL Request: \(String(describing: response.request))")
+            debugPrint("### URL Response: \(String(describing: response.response))")
+            debugPrint("### Data: \(String(describing: response.data))")
+            debugPrint("### Result: \(response.result)")
+            debugPrint("### Parameters: \(parameters)")
+            
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value as Any)
+                completion(true, json.rawValue as! [String : Any])
+            case .failure(let error):
+                debugPrint(error)
+                completion(false, [:])
             }
         }
     }

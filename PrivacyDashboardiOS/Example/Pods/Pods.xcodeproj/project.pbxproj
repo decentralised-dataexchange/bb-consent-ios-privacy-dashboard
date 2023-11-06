@@ -192,6 +192,7 @@
 		902EE1A52ADBB13D002BA0CB /* PrivacyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B2F1F13F9DCA9A196EBE8A788F08399 /* PrivacyDashboard.storyboard */; };
 		902EE1A72AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */; };
 		90BF1CEB2AEAB60100A46289 /* DataAgreementRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */; };
+		90E71AF72AF8B31600574475 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71AF62AF8B31600574475 /* Individual.swift */; };
 		930FC355AB046F9F15ECCAB9F028E81C /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B81C187A0A76A6ABFDCC5FD3F65DC /* EKButtonBarView.swift */; };
 		93209671B01B76711F6E2022CADBAC9A /* Kingfisher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 458DE4C0B6C2FF2A6101DB3794F8E927 /* Kingfisher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941822CDF68EB8F4D49F150457A82616 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C99839CCCD101F4DF60E18055094C /* ResponseSerialization.swift */; };
@@ -735,6 +736,7 @@
 		900B8B1B2AD6E62B00964F12 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentDashboardDataAgreementCell.swift; sourceTree = "<group>"; };
 		90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAgreementRecords.swift; sourceTree = "<group>"; };
+		90E71AF62AF8B31600574475 /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		917607151E07D3F125D980C0B727C78E /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		928D07A4D4BFA3A1F7067EA4B40F1328 /* CacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CacheSerializer.swift; path = Sources/Cache/CacheSerializer.swift; sourceTree = "<group>"; };
 		92C0658A18AFC53E330BE03444D22D03 /* IQKeyboardManagerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -1253,7 +1255,7 @@
 				D1576F79C2D25D6D560C9C5F01649E25 /* Status.swift */,
 				FA26B2D4184C10981B4BDDA99C66ECAF /* ConsentHistory */,
 				453767E6479D13B57294A1AC29016BEA /* Organisation */,
-				649214EA8AC50CD090D5FFE7E92E6356 /* UserInfo */,
+				649214EA8AC50CD090D5FFE7E92E6356 /* User */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1342,12 +1344,13 @@
 			path = BaseViewController;
 			sourceTree = "<group>";
 		};
-		649214EA8AC50CD090D5FFE7E92E6356 /* UserInfo */ = {
+		649214EA8AC50CD090D5FFE7E92E6356 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				B6AF08241A487A3F0E3EF2956303B6AF /* UserInfo.swift */,
+				90E71AF62AF8B31600574475 /* Individual.swift */,
 			);
-			path = UserInfo;
+			path = User;
 			sourceTree = "<group>";
 		};
 		6625D72D58B79130D815A3A6D7072BCE /* iOS */ = {
@@ -2756,6 +2759,7 @@
 				153274FFD55D1841BA01090430155214 /* PurposeConsent.swift in Sources */,
 				DA0238A52F6D668B832D63A5452A9B86 /* PurposeDetails.swift in Sources */,
 				38F8B4BB0B6D80F7CB8BA6D5695760AB /* RequestedStatusHistory.swift in Sources */,
+				90E71AF72AF8B31600574475 /* Individual.swift in Sources */,
 				F9B3E94AE30132AE897D29AEC03AAFF2 /* RequestStatus.swift in Sources */,
 				4E91D0FF982F5AFF091BDC8D546C464F /* SDStateTableView.swift in Sources */,
 				C448AD09BFFB9F35F94CD3319F243408 /* SkyFloatingLabelTextField.swift in Sources */,
