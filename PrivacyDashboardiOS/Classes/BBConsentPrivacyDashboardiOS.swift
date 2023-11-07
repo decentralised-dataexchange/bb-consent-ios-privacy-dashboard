@@ -91,3 +91,65 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - 'Individual' related api calls
+extension BBConsentPrivacyDashboardiOS {
+    public func createAnIndividual(id:String?, externalId:String?, externalIdType: String?, identityProviderId: String?, name: String, iamId: String?, email: String, phone:String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
+        let individual = Individual(id: id, externalID: externalId, externalIDType: externalId, identityProviderID: identityProviderId, name: name, iamID: iamId, email: email, phone: phone)
+        let record = IndividualRecord(individual: individual)
+        let data = try! JSONEncoder.init().encode(record)
+        let dictionary = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
+        
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.createIndividual, parameters: dictionary, method: .post) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+                
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
+            }
+        }
+    }
+    
+    public func readAnIndividual(individualId: String,  completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.readIndividual + individualId, parameters: [:], method: .get) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
+            }
+        }
+    }
+    
+    public func updateAnIndividual(individualId: String, externalId:String?, externalIdType: String?, identityProviderId: String?, name: String, iamId: String?, email: String, phone:String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
+        let individual = Individual(id: individualId, externalID: externalId, externalIDType: externalId, identityProviderID: identityProviderId, name: name, iamID: iamId, email: email, phone: phone)
+        let record = IndividualRecord(individual: individual)
+        let data = try! JSONEncoder.init().encode(record)
+        let dictionary = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
+        
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.readIndividual + individualId, parameters: dictionary ,method: .put) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
+            }
+        }
+    }
+    
+    public func fetchAllIndividuals(completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchAllIndividuals, parameters: [:] ,method: .get) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
+            }
+        }
+    }
+}
