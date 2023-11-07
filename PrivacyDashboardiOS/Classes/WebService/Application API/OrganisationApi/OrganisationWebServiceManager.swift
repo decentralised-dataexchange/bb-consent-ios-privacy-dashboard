@@ -166,6 +166,7 @@ class OrganisationWebServiceManager: WebServiceTaskManager {
         DispatchQueue.global().async {
             self.searchService.url = self.baseUrl + "/service/individual/record/consent-record/" + dataAgreementRecordId + "?dataAgreementId=" + dataAgreementId
             self.searchService.parameters = ["optIn" : status]
+            self.searchService.delegate = self
             self.searchService.putServiceCall()
         }
     }

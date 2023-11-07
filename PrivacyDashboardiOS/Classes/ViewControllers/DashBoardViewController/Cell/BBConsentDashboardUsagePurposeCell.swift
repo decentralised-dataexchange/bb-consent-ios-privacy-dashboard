@@ -50,6 +50,8 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
                 }
             }
             self.dataLbl.text = valueString
+        } else {
+            self.dataLbl.text = "Disallow"
         }
     }
 
