@@ -193,6 +193,7 @@
 		902EE1A72AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */; };
 		90BF1CEB2AEAB60100A46289 /* DataAgreementRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */; };
 		90E71AF72AF8B31600574475 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71AF62AF8B31600574475 /* Individual.swift */; };
+		90E71AF92AF91A0300574475 /* PrivacyDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71AF82AF91A0300574475 /* PrivacyDashboard.swift */; };
 		930FC355AB046F9F15ECCAB9F028E81C /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B81C187A0A76A6ABFDCC5FD3F65DC /* EKButtonBarView.swift */; };
 		93209671B01B76711F6E2022CADBAC9A /* Kingfisher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 458DE4C0B6C2FF2A6101DB3794F8E927 /* Kingfisher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941822CDF68EB8F4D49F150457A82616 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C99839CCCD101F4DF60E18055094C /* ResponseSerialization.swift */; };
@@ -737,6 +738,7 @@
 		902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentDashboardDataAgreementCell.swift; sourceTree = "<group>"; };
 		90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAgreementRecords.swift; sourceTree = "<group>"; };
 		90E71AF62AF8B31600574475 /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
+		90E71AF82AF91A0300574475 /* PrivacyDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyDashboard.swift; sourceTree = "<group>"; };
 		917607151E07D3F125D980C0B727C78E /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		928D07A4D4BFA3A1F7067EA4B40F1328 /* CacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CacheSerializer.swift; path = Sources/Cache/CacheSerializer.swift; sourceTree = "<group>"; };
 		92C0658A18AFC53E330BE03444D22D03 /* IQKeyboardManagerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -1113,8 +1115,9 @@
 		2AC855F1F54452FD5CB90687CBB716B7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6BB2A2BB9DA1DBA0EA12A998BAFF761D /* BBConsentPrivacyDashboardiOS.swift */,
+				90E71AF82AF91A0300574475 /* PrivacyDashboard.swift */,
 				8B2F1F13F9DCA9A196EBE8A788F08399 /* PrivacyDashboard.storyboard */,
+				6BB2A2BB9DA1DBA0EA12A998BAFF761D /* BBConsentPrivacyDashboardiOS.swift */,
 				CC61BB4A58307401DD072067C55DAB4C /* Cells */,
 				EBF0ABE09325C92F6D7A3C5302EF06F0 /* Constatnts */,
 				3236EA40676DDD678F8935642CBDB341 /* Extension */,
@@ -2748,6 +2751,7 @@
 				99D6162057DEFB09B92F499A8ADEACEA /* NotificationServiceManager.swift in Sources */,
 				7CDD8E2AF32EECAF8CC489C7C8D41B06 /* NotificationWebService.swift in Sources */,
 				131C1CAD041BB15CBD578D9DE3200F1E /* OrganisationDetails.swift in Sources */,
+				90E71AF92AF91A0300574475 /* PrivacyDashboard.swift in Sources */,
 				DE0BDF7766E352BF31E63F7E39C1681D /* OrganisationWebService.swift in Sources */,
 				95428D2CD2A89DA32CB24D6BA5B4D5E9 /* OrganisationWebServiceManager.swift in Sources */,
 				BDA0AF4CECF26D347A6EF3526B22FC1F /* Organization.swift in Sources */,

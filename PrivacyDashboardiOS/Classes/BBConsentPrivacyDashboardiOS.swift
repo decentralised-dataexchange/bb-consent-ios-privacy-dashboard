@@ -7,9 +7,8 @@
 
 import Foundation
 
-public class BBConsentPrivacyDashboardiOS: UIViewController {
-    
-    public static var shared = BBConsentPrivacyDashboardiOS()
+class BBConsentPrivacyDashboardiOS: UIViewController {
+    static var shared = BBConsentPrivacyDashboardiOS()
     public var turnOnUserRequests = false
     public var turnOnAskMeSection = false
     public var turnOnAttributeDetailScreen = false
@@ -20,11 +19,11 @@ public class BBConsentPrivacyDashboardiOS: UIViewController {
     var userId: String?
     var hideBackButton = false
     
-    public func log() {
+    func log() {
         debugPrint("### Log from PrivacyDashboardiOS SDK.")
     }
     
-    public func show(organisationId: String, apiKey: String, userId: String, animate: Bool = true) {
+    func show(organisationId: String, apiKey: String, userId: String, animate: Bool = true) {
         if #available(iOS 13.0, *) {
             let appearance = UIView.appearance()
             appearance.overrideUserInterfaceStyle = .light
