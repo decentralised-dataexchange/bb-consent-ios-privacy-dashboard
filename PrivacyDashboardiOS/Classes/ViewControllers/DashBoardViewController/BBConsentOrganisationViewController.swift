@@ -316,9 +316,18 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
             consentCell.tag = indexPath.row
             consentCell.consentInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
-            consentCell.swictOn  = records?.consentRecords?[indexPath.row].optIn ?? false
-            let consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
-            let totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            
+            // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from two api's)
+            let dataAgreementIdsFromOrg = organisaionDeatils?.purposeConsents?.map({ $0.iD ?? ""})
+            let record = records?.consentRecords?.filter({ $0.dataAgreementId == dataAgreementIdsFromOrg?[indexPath.row]})
+            consentCell.swictOn  = record?[0].optIn ?? false
+            
+            var consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            var totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            if record?[0].optIn  == false {
+                consentedCount = 0
+            }
+            
             consentCell.consentedCount = consentedCount
             consentCell.totalCount = totalCount
             consentCell.delegate = self
@@ -362,7 +371,7 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
         
         if let serviceManager = manager as? OrganisationWebServiceManager {
             if serviceManager.serviceType == .AllowAlConsent {
-                callOrganisationDetailsApi()
+                getAllDataAgreementRecords()
             } else if serviceManager.serviceType == .UpdatePurpose {
                 callOrganisationDetailsApi()
             } else if serviceManager.serviceType == .requestDownloadData {
