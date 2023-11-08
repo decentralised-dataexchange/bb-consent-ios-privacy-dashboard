@@ -16,6 +16,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet var topConstraint : NSLayoutConstraint!
     @IBOutlet var topBarItemConstraint : NSLayoutConstraint!
+    @IBOutlet weak var noDataAgreementsLbl: UILabel!
     
     var organisaionDeatils : OrganisationDetails?
     var records : DataAgreementRecords?
@@ -45,6 +46,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         backBtn.layer.cornerRadius =  backBtn.frame.size.height/2
         moreBtn.layer.cornerRadius =  moreBtn.frame.size.height/2
         self.navigationController?.navigationBar.tintColor = .black
+        noDataAgreementsLbl.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -260,6 +262,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             if (organisaionDeatils?.purposeConsents?.count ?? 0) > 0 {
                 return  organisaionDeatils?.purposeConsents?.count ?? 0
             }else{
+                noDataAgreementsLbl.isHidden = false
                 return 0
             }
         }
@@ -320,11 +323,12 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from two api's)
             let dataAgreementIdsFromOrg = organisaionDeatils?.purposeConsents?.map({ $0.iD ?? ""})
             let record = records?.consentRecords?.filter({ $0.dataAgreementId == dataAgreementIdsFromOrg?[indexPath.row]})
-            consentCell.swictOn  = record?[0].optIn ?? false
+            consentCell.swictOn = record?.count ?? 0 > 0 ?  record?[0].optIn ?? false : false
             
             var consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
-            var totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
-            if record?[0].optIn  == false {
+            let totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            
+            if record?.count ?? 0 > 0, record?[0].optIn  == false {
                 consentedCount = 0
             }
             

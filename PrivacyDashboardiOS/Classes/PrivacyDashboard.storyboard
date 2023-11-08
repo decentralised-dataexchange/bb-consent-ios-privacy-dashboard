@@ -354,6 +354,16 @@
                                     <outlet property="delegate" destination="1wF-7H-h88" id="dwR-g9-vGL"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data agreement records found!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zl2-Gw-UGc">
+                                <rect key="frame" x="10" y="415" width="367" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="367" id="Ari-tC-SvB"/>
+                                    <constraint firstAttribute="height" constant="21" id="FuQ-Rn-fzi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-e4-T4B">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <subviews>
@@ -421,10 +431,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="PD8-gB-CU5" secondAttribute="bottom" id="3fY-En-80x"/>
+                            <constraint firstItem="zl2-Gw-UGc" firstAttribute="centerY" secondItem="rpP-wK-ERN" secondAttribute="centerY" constant="-13" id="6We-E9-afD"/>
                             <constraint firstItem="wCA-e4-T4B" firstAttribute="leading" secondItem="rpP-wK-ERN" secondAttribute="leading" id="7gZ-7p-EcC"/>
                             <constraint firstItem="z7X-5v-FOH" firstAttribute="trailing" secondItem="rpP-wK-ERN" secondAttribute="trailing" id="9We-DJ-cyL"/>
                             <constraint firstItem="z7X-5v-FOH" firstAttribute="leading" secondItem="rpP-wK-ERN" secondAttribute="leading" id="GnR-xI-ORz"/>
                             <constraint firstItem="wCA-e4-T4B" firstAttribute="top" secondItem="rpP-wK-ERN" secondAttribute="top" id="XpU-G1-X3I"/>
+                            <constraint firstItem="zl2-Gw-UGc" firstAttribute="centerX" secondItem="rpP-wK-ERN" secondAttribute="centerX" constant="-3" id="i2Z-Ii-mpt"/>
                             <constraint firstItem="z7X-5v-FOH" firstAttribute="bottom" secondItem="rpP-wK-ERN" secondAttribute="bottom" id="tdP-HD-1Mz"/>
                             <constraint firstItem="PD8-gB-CU5" firstAttribute="trailing" secondItem="rpP-wK-ERN" secondAttribute="trailing" id="weD-qq-Wa7"/>
                             <constraint firstItem="PD8-gB-CU5" firstAttribute="top" secondItem="ymC-ip-fPX" secondAttribute="top" constant="-60" id="x9Z-5B-KS7"/>
@@ -436,6 +448,7 @@
                         <outlet property="backBtn" destination="azt-02-taZ" id="U4T-9O-svy"/>
                         <outlet property="moreBtn" destination="o4T-TZ-gBc" id="MIP-CA-7h7"/>
                         <outlet property="navTitleLbl" destination="3Cz-hh-qtJ" id="bFL-YJ-MlW"/>
+                        <outlet property="noDataAgreementsLbl" destination="zl2-Gw-UGc" id="eEn-GS-Td7"/>
                         <outlet property="orgTableView" destination="PD8-gB-CU5" id="k3Y-zF-kwR"/>
                         <outlet property="topBarItemConstraint" destination="XpU-G1-X3I" id="RmE-dG-Pyl"/>
                         <outlet property="topConstraint" destination="x9Z-5B-KS7" id="exz-N5-s8G"/>
@@ -443,7 +456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4x-HC-t0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="25"/>
+            <point key="canvasLocation" x="881.67938931297704" y="24.647887323943664"/>
         </scene>
         <!--Consent Attributes View Controller-->
         <scene sceneID="vGj-o5-dOR">
