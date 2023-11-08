@@ -350,7 +350,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from different api's)
             let dataAgreementIdsFromOrg = organisaionDeatils?.purposeConsents?.map({ $0.iD ?? ""})
             let record = records?.consentRecords?.filter({ $0.dataAgreementId == dataAgreementIdsFromOrg?[indexPath.row]})
-            consentVC.consentVal = record?[0].optIn ?? false
+            consentVC.consentVal = record?.count ?? 0 > 0 ? record?[0].optIn ?? false : false
             self.navigationController?.pushViewController(consentVC, animated: true)
         }
     }
