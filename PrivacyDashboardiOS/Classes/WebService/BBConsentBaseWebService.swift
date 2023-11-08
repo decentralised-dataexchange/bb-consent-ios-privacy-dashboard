@@ -85,15 +85,14 @@ class BBConsentBaseWebService: NSObject {
     }
 
     func getServiceCall() {
-        if UserInfo.currentUser()?.token != nil{
-            let token : String = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
-            header = nil
         }
         
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict
@@ -135,15 +134,14 @@ class BBConsentBaseWebService: NSObject {
     
     
     func postServiceCall() {
-        if UserInfo.currentUser()?.token != nil{
-            let token : String  = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
-            header = nil
         }
         
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict
@@ -178,15 +176,14 @@ class BBConsentBaseWebService: NSObject {
     }
     
     func putServiceCall() {
-        if UserInfo.currentUser()?.token != nil{
-            let token : String  = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
-            header = nil
         }
         
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict
@@ -219,14 +216,14 @@ class BBConsentBaseWebService: NSObject {
     
     
     func patchServiceCall() {
-        if UserInfo.currentUser()?.token != nil{
-            let token : String  = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
-            
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
         }
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)"]
             header = hearDict
@@ -260,14 +257,14 @@ class BBConsentBaseWebService: NSObject {
     
     
     func deleteServiceCall() {
-        if UserInfo.currentUser()?.token != nil{
-            let token : String  = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
-            header = nil
         }
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)"]
             header = hearDict
@@ -296,14 +293,14 @@ class BBConsentBaseWebService: NSObject {
     }
     
     func upload(data: [MultipartData]) {
-        if UserInfo.currentUser()?.token != nil{
-            let token : String  = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
-            header = nil
         }
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)"]
             header = hearDict
@@ -345,16 +342,14 @@ extension BBConsentBaseWebService {
     }
     
     func makeAPICall(urlString: String, parameters: [String: Any] = [:], headers: [String: String] = [:], method: ApiType, completion:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
-        
-        if UserInfo.currentUser()?.token != nil{
-            let token : String  = (UserInfo.currentUser()?.token)!
-            let hearDict = ["Authorization":"Bearer \(token)"]
+        // Note: If Apikey or UserID not available, use accessToken
+        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
+            let hearDict = ["accesstoken":"\(accessToken)"]
             header = hearDict
-        }else{
-            header = nil
         }
         
-        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+        if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
             let token = String(data: tokendata, encoding: .utf8) ?? ""
             let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
             header = hearDict

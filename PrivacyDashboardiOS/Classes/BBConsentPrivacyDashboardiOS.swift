@@ -17,25 +17,26 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
 
     var orgId: String?
     var userId: String?
+    var accessToken: String?
     var hideBackButton = false
     
     func log() {
         debugPrint("### Log from PrivacyDashboardiOS SDK.")
     }
     
-    func show(organisationId: String, apiKey: String, userId: String, animate: Bool = true) {
+    func show(organisationId: String, apiKey: String, userId: String, accessToken: String, animate: Bool = true) {
         if #available(iOS 13.0, *) {
             let appearance = UIView.appearance()
             appearance.overrideUserInterfaceStyle = .light
         }
         
-        orgId = organisationId
+        self.orgId = organisationId
         self.userId = userId
         if(!apiKey.isEmpty) {
             let serviceManager = LoginServiceManager()
             serviceManager.getUserDetails()
             let data = apiKey.data(using: .utf8) ?? Data()
-            _ = BBConsentKeyChainUtils.save(key: "BBConsentToken", data: data)
+            _ = BBConsentKeyChainUtils.save(key: "BBConsentApiKey", data: data)
             
             let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
             let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle") 
@@ -65,16 +66,10 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
                 showBackButton()
             }
             UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
-        } else {
-            let loginVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-            let loginNav = UINavigationController.init(rootViewController: loginVC)
-            loginVC.orgId = organisationId
-            self.userId = userId
-            loginNav.modalPresentationStyle = .fullScreen
-            if !hideBackButton{
-                showBackButton()
-            }
-            UIApplication.topViewController()?.present(loginNav, animated: true, completion: nil)
+        }
+        
+        if accessToken != "" {
+            self.accessToken = accessToken
         }
     }
 
