@@ -9,12 +9,12 @@ import Foundation
 
 public class PrivacyDashboard {
     // MARK: - Invoking 'PrivacyDashboard' iOS SDK
-    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, turnOnAske: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool) {
+    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool) {
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = turnOnUserRequest
-        BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = turnOnAske
+        BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = turnOnAskme
         BBConsentPrivacyDashboardiOS.shared.turnOnAttributeDetailScreen = turnOnAttributeDetail
         BBConsentPrivacyDashboardiOS.shared.baseUrl = withBaseUrl
-        BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId)
+        BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken)
     }
     
     // MARK: - 'Individual' related api calls

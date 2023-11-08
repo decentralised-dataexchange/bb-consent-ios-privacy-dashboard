@@ -37,7 +37,7 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
         let modifier = AnyModifier { request in
             var r = request
             r.setValue("Bearer \(UserInfo.currentUser()?.token ?? "")", forHTTPHeaderField: "Authorization")
-            if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentToken") {
+            if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
                 let token = String(data: tokendata, encoding: .utf8) ?? ""
                 r.setValue("ApiKey \(token)", forHTTPHeaderField: "Authorization")
                 r.setValue(BBConsentPrivacyDashboardiOS.shared.userId ?? "", forHTTPHeaderField:  "X-ConsentBB-IndividualId")
