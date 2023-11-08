@@ -46,12 +46,12 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
         }
         
         self.orgImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
-        let coverImageUrl = URL(string:  baseUrl + "/service/organisation/coverimage")
+        let coverImageUrl = URL(string: (orgData?.coverImageURL ?? ""))
         let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
         self.orgImageView.kf.setImage(with: coverImageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
         
         self.logoImageView.image = UIImage(named: Constant.Images.iGrantTick)
-        let logoImageUrl = URL(string:  baseUrl + "/service/organisation/logoimage")
+        let logoImageUrl = URL(string: (orgData?.logoImageURL ?? ""))
         let coverImagePlaceholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
         self.logoImageView.kf.setImage(with: logoImageUrl, placeholder: coverImagePlaceholder, options: [.requestModifier(modifier)])
     }
