@@ -327,7 +327,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             
             var consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
             let totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
-            
+        
             if record?.count ?? 0 > 0, record?[0].optIn  == false {
                 consentedCount = 0
             }
@@ -346,13 +346,11 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             consentVC.organisaionDeatils = self.organisaionDeatils
             consentVC.organization = self.organization
             consentVC.purposeInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
-            
-           // let filteredRecord = records?.dataAgreementRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  organisaionDeatils?.purposeConsents?[indexPath.row].iD })
-           // if filteredRecord?.count ?? 0 > 0 {
-            let consents = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.map({ $0.sensitivity ?? false })
-            // filteredRecord?[0].dataAttributes?.map({ $0.optIn ?? false })
-                consentVC.consents = consents
-           // }
+           
+            // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from different api's)
+            let dataAgreementIdsFromOrg = organisaionDeatils?.purposeConsents?.map({ $0.iD ?? ""})
+            let record = records?.consentRecords?.filter({ $0.dataAgreementId == dataAgreementIdsFromOrg?[indexPath.row]})
+            consentVC.consentVal = record?[0].optIn ?? false
             self.navigationController?.pushViewController(consentVC, animated: true)
         }
     }
