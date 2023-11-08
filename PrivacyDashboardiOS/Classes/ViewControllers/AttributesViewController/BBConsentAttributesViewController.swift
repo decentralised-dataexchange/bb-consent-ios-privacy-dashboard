@@ -21,7 +21,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     var consentslistInfo : ConsentListingResponse?
     var dataAttributes: [DataAttribute]?
     var count: Count?
-    var consents: [Bool]?
+    var consentVal: Bool?
     var isNeedToRefresh = false
     var isFromQR = false
     
@@ -214,8 +214,8 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                     //   orgOverViewCell.overViewLbl.numberOfLines = 0
                 }
                 orgOverViewCell.overViewLbl.textReplacementType = .word
-                if self.consentslistInfo?.consents?.purpose?.descriptionField != nil {
-                    let desc = (self.consentslistInfo?.consents?.purpose?.descriptionField)!
+                if purposeInfo?.descriptionField != nil {
+                    let desc = purposeInfo?.descriptionField
                     orgOverViewCell.overViewLbl.text = desc
                 }
                 return orgOverViewCell
@@ -241,8 +241,9 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
         }
                 
         let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.consentCell ,for: indexPath) as! BBConsentAttributeTableViewCell
+        consentCell.rightArrow.isHidden = BBConsentPrivacyDashboardiOS.shared.turnOnAttributeDetailScreen == true ? false : true
         consentCell.consentInfo = dataAttributes?[indexPath.row]
-        consentCell.consent = consents?[indexPath.row]
+        consentCell.consent = consentVal
         consentCell.showData()
         if isFromQR {
             consentCell.consentTypeLbl.text =  NSLocalizedString(Constant.Alert.allow, comment: "")

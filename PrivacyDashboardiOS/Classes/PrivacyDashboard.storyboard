@@ -508,27 +508,26 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRm-cn-3Nr">
-                                                            <rect key="frame" x="15" y="11" width="363" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="4u5-Su-DiL"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="Phone number"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8086644704" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-4q-4JM">
-                                                            <rect key="frame" x="15" y="38.666666666666664" width="363" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="71G-yK-NxP"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="whO-My-fYr">
+                                                            <rect key="frame" x="15" y="17.333333333333332" width="363" height="35.333333333333343"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRm-cn-3Nr">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="363" height="17.666666666666668"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="Phone number"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8086644704" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-4q-4JM">
+                                                                    <rect key="frame" x="0.0" y="17.666666666666664" width="363" height="17.666666666666664"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="DuO-9q-KSK">
                                                             <rect key="frame" x="264" y="23" width="92" height="24"/>
                                                             <constraints>
@@ -562,19 +561,16 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="yc0-U9-Nkd" firstAttribute="leading" secondItem="DuO-9q-KSK" secondAttribute="trailing" constant="13" id="B7t-nj-Eee"/>
-                                                        <constraint firstItem="kRm-cn-3Nr" firstAttribute="top" secondItem="szl-In-VDo" secondAttribute="top" constant="11" id="G8G-hh-gwJ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="CeQ-4q-4JM" secondAttribute="trailing" constant="15" id="Kue-fN-zJU"/>
+                                                        <constraint firstItem="whO-My-fYr" firstAttribute="leading" secondItem="szl-In-VDo" secondAttribute="leading" constant="15" id="PHh-RG-zpy"/>
                                                         <constraint firstItem="rGq-7f-Ef0" firstAttribute="leading" secondItem="szl-In-VDo" secondAttribute="leading" constant="15" id="RsS-26-v5e"/>
                                                         <constraint firstItem="DuO-9q-KSK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="szl-In-VDo" secondAttribute="leading" constant="20" symbolic="YES" id="Ufu-QQ-6Bh"/>
-                                                        <constraint firstItem="kRm-cn-3Nr" firstAttribute="leading" secondItem="szl-In-VDo" secondAttribute="leading" constant="15" id="WfG-Kj-wEs"/>
                                                         <constraint firstAttribute="trailing" secondItem="yc0-U9-Nkd" secondAttribute="trailing" constant="15" id="XEd-zh-i54"/>
                                                         <constraint firstAttribute="trailing" secondItem="rGq-7f-Ef0" secondAttribute="trailing" id="Zxu-yq-CZK"/>
+                                                        <constraint firstItem="whO-My-fYr" firstAttribute="centerX" secondItem="szl-In-VDo" secondAttribute="centerX" id="czJ-ML-gqc"/>
                                                         <constraint firstItem="yc0-U9-Nkd" firstAttribute="centerY" secondItem="szl-In-VDo" secondAttribute="centerY" id="gFF-ca-FV0"/>
                                                         <constraint firstItem="DuO-9q-KSK" firstAttribute="centerY" secondItem="szl-In-VDo" secondAttribute="centerY" id="mAw-eB-ZMC"/>
-                                                        <constraint firstItem="CeQ-4q-4JM" firstAttribute="leading" secondItem="szl-In-VDo" secondAttribute="leading" constant="15" id="mDQ-ge-GMK"/>
-                                                        <constraint firstItem="rGq-7f-Ef0" firstAttribute="top" secondItem="CeQ-4q-4JM" secondAttribute="bottom" constant="11" id="o7x-3j-3WP"/>
                                                         <constraint firstAttribute="bottom" secondItem="rGq-7f-Ef0" secondAttribute="bottom" id="qvH-IN-AMB"/>
-                                                        <constraint firstAttribute="trailing" secondItem="kRm-cn-3Nr" secondAttribute="trailing" constant="15" id="v85-SE-2dw"/>
+                                                        <constraint firstItem="whO-My-fYr" firstAttribute="centerY" secondItem="DuO-9q-KSK" secondAttribute="centerY" id="sPF-RW-NHV"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
