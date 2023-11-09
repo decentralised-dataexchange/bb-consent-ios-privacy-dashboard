@@ -527,3 +527,15 @@ extension Data {
         return self.withUnsafeBytes { $0.load(as: T.self) }
     }
 }
+
+extension NSMutableAttributedString {
+    // Set part of string as URL
+    public func setSubstringAsLink(substring: String, linkURL: String) -> Bool {
+        let range = self.mutableString.range(of: substring)
+        if range.location != NSNotFound {
+            self.addAttribute(NSAttributedString.Key.link, value: linkURL, range: range)
+            return true
+        }
+        return false
+    }
+}

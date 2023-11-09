@@ -17,6 +17,38 @@ public class PrivacyDashboard {
         BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken)
     }
     
+    public static func showDataSharingUI(apiKey: String, userId: String, accessToken: String? = nil, baseUrlString: String, dataAgreementId: String, organisationName: String? = nil, organisationLogoImageUrl: String? = nil, termsOfServiceText : String, termsOfServiceUrl: String, cancelButtonText: String) {
+        let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
+        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+        var storyboard = UIStoryboard()
+        if let resourceBundle = Bundle(url: bundleURL!) {
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+        } else {
+            let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+        }
+        
+        let sharingVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataSharingVC") as? BBConsentDataSharingVC ?? BBConsentDataSharingVC()
+     
+        // Passing Auth info and other required info
+        BBConsentPrivacyDashboardiOS.shared.userId = userId
+        BBConsentPrivacyDashboardiOS.shared.accessToken = accessToken
+        let data = apiKey.data(using: .utf8) ?? Data()
+        _ = BBConsentKeyChainUtils.save(key: "BBConsentApiKey", data: data)
+        BBConsentPrivacyDashboardiOS.shared.baseUrl = baseUrlString
+       
+        sharingVC.dataAgreementId = dataAgreementId
+        sharingVC.theirOrgName = organisationName
+        sharingVC.theirLogoImageUrl = organisationLogoImageUrl
+        sharingVC.termsOfServiceText = termsOfServiceText
+        sharingVC.termsOFServiceUrl = termsOfServiceUrl
+        sharingVC.cancelButtonText = cancelButtonText
+        
+        let navVC = UINavigationController.init(rootViewController: sharingVC)
+        navVC.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+    }
+    
     // MARK: - 'Individual' related api calls
     public static func createAnIndividual(id:String?, externalId:String?, externalIdType: String?, identityProviderId: String?, name: String, iamId: String?, email: String, phone:String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
         let individual = Individual(id: id, externalID: externalId, externalIDType: externalId, identityProviderID: identityProviderId, name: name, iamID: iamId, email: email, phone: phone)
