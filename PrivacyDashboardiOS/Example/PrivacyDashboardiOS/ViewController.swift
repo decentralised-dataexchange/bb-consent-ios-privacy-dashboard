@@ -27,9 +27,7 @@ class ViewController: UIViewController {
         PrivacyDashboard.showDataSharingUI(apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
                                            userId: "65378403b3f442eb9381b38d",
                                            baseUrlString: "https://staging-consent-bb-api.igrant.io/v2",
-                                           dataAgreementId: "654cf08a9684ed907ce07c26",
-                                           organisationName: "My company",
-                                           organisationLogoImageUrl: "https://picsum.photos/id/1/200/300",
+                                           dataAgreementId: "654e53e404f529c0c34b081f",
                                            termsOfServiceText: "Terms of service.",
                                            termsOfServiceUrl: "http://google.com",
                                            cancelButtonText: "Cancel")

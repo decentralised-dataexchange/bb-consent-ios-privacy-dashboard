@@ -29,24 +29,33 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     var termsOfServiceText: String?
     var termsOFServiceUrl: String?
     var cancelButtonText: String?
-
+    var sendDataBack : (([String: Any]) -> Void)?
+    
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
-        callOrganizationApi()
-        callOrganisationDetailsApi()
+        readDataAgreementRecord { success, resultVal in
+            if resultVal["errorCode"] as? Int == 500 {
+                // If no record found for the data agreement ID
+                // Show Datashare UI
+                self.setUI()
+                self.callOrganizationApi()
+                self.callOrganisationDetailsApi()
+            } else {
+                // Return the records reponse
+                self.sendDataBack?(resultVal)
+            }
+        }
     }
     
     func setUI() {
-        overrideUserInterfaceStyle = .light
         cancelButton.backgroundColor = .clear
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.black.cgColor
         cancelButton.setTitle(cancelButtonText, for: .normal)
     }
     
-    func setOganisationInfo() {
+    func setOrganisationInfo() {
         setLogoImageView()
         setDynamicTextInfos()
     }
@@ -126,19 +135,20 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     }
     
     func createAttributesView() {
-        let dataAttrubutes = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
-        if let someArray = dataAttrubutes?.map({ $0.name }) {
-            for nValue in someArray {
-                let label = PaddingLabel()
-                label.edgeInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-                label.attributedText = NSAttributedString(string: nValue ?? "", attributes:
-                                                            [.underlineStyle: NSUnderlineStyle.single.rawValue])
-                label.textColor = .black
-                labelStackView.addArrangedSubview(label)
-            }
-            labelStackView.backgroundColor = .lightGray.withAlphaComponent(0.2)
-            labelStackView.layer.cornerRadius = 10
+        let purpose = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
+        let dataAttributes = purpose?.map({ $0.dataAttributes })
+        let someArray = dataAttributes?[0]?.map({ $0.name }) ?? []
+        for nValue in someArray {
+            let label = PaddingLabel()
+            label.edgeInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+            label.attributedText = NSAttributedString(string: nValue ?? "", attributes:
+                                                        [.underlineStyle: NSUnderlineStyle.single.rawValue])
+            label.textColor = .black
+            labelStackView.addArrangedSubview(label)
         }
+        labelStackView.backgroundColor = .lightGray.withAlphaComponent(0.2)
+        labelStackView.layer.cornerRadius = 10
+        
     }
     
     // MARK: IBActions
@@ -147,10 +157,24 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     }
     
     @IBAction func tapOnAuthoriseButton(_ sender: Any) {
+        // Create record Api call
+        // Return the reponse
         
     }
     
     // MARK: API Calls
+    func readDataAgreementRecord(completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void){
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + (dataAgreementId ?? ""), parameters: [:], method: .get) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
+            }
+        }
+    }
+    
     func callOrganizationApi(){
         self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
@@ -180,7 +204,7 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
             if serviceManager.serviceType == .Organization {
                 if let data = response.data?.responseModel as? Organization {
                     organizationData = data
-                    setOganisationInfo()
+                    setOrganisationInfo()
                 }
             } else if serviceManager.serviceType == .OrgDetails {
                 if let data = response.data?.responseModel as? OrganisationDetails {
@@ -195,6 +219,10 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         if (URL.absoluteString == "dataAgreement://") {
             debugPrint("Navigate to data agreement detail screen!")
+            let dataAgreementRecord = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
+            let dataAgreementVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
+            dataAgreementVC.dataAgreementRecord = dataAgreementRecord
+            self.navigationController?.pushViewController(dataAgreementVC, animated: true)
         } else if (URL.absoluteString == termsOFServiceUrl) {
             let url = Foundation.URL(string: termsOFServiceUrl ?? "")!
             UIApplication.shared.open(url)
