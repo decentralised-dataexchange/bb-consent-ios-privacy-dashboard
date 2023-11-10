@@ -43,6 +43,9 @@ public class PrivacyDashboard {
         sharingVC.termsOfServiceText = termsOfServiceText
         sharingVC.termsOFServiceUrl = termsOfServiceUrl
         sharingVC.cancelButtonText = cancelButtonText
+        sharingVC.sendDataBack = { data in
+            debugPrint(data)
+        }
         
         let navVC = UINavigationController.init(rootViewController: sharingVC)
         navVC.modalPresentationStyle = .fullScreen
