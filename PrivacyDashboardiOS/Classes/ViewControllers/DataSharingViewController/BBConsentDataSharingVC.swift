@@ -34,18 +34,9 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        readDataAgreementRecord { success, resultVal in
-            if resultVal["errorCode"] as? Int == 500 {
-                // If no record found for the data agreement ID
-                // Show Datashare UI
-                self.setUI()
-                self.callOrganizationApi()
-                self.callOrganisationDetailsApi()
-            } else {
-                // Return the records reponse
-                self.sendDataBack?(resultVal)
-            }
-        }
+        self.setUI()
+        self.callOrganizationApi()
+        self.callOrganisationDetailsApi()
     }
     
     func setUI() {
@@ -58,6 +49,15 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     func setOrganisationInfo() {
         setLogoImageView()
         setDynamicTextInfos()
+    }
+    
+    fileprivate func setDynamicTextInfos() {
+        arrangeFirstLabel()
+        // Second label
+        textLabelTwo.text = "By clicking Authorise, \(organizationData?.name ?? "") App will be able to read the following data attributes:"
+        // Third label
+        textLabelThree.text = "Make sure that you trust \(organizationData?.name ?? "")"
+        arrangeTermsAndServiceTextView()
     }
     
     fileprivate func setLogoImageView() {
@@ -89,7 +89,7 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
         }
     }
     
-    fileprivate func setDynamicTextInfos() {
+    fileprivate func arrangeFirstLabel() {
         // First label
         let boldAttribute = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
         let normalAttribute = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
@@ -106,14 +106,13 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
         } else {
             partThree = NSMutableAttributedString(string: "the user", attributes: normalAttribute)
         }
-      
+        
         partThree.append(partFour)
         partOne.append(partThree)
         textLabelOne.attributedText = partOne
-        // Second label
-        textLabelTwo.text = "By clicking Authorise, \(organizationData?.name ?? "") App will be able to read the following data attributes:"
-        // Third label
-        textLabelThree.text = "Make sure that you trust \(organizationData?.name ?? "")"
+    }
+    
+    fileprivate func arrangeTermsAndServiceTextView() {
         // Data agreement & Terms of service textview
         let normalAttributeTwo = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]
         let linkAttribute = [NSMutableAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]
@@ -157,20 +156,25 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     }
     
     @IBAction func tapOnAuthoriseButton(_ sender: Any) {
-        // Create record Api call
+        // Calling create record Api call then,
         // Return the reponse
-        
+        self.createRecordApiCall()
     }
     
     // MARK: API Calls
-    func readDataAgreementRecord(completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void){
-        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + (dataAgreementId ?? ""), parameters: [:], method: .get) { success, resultVal in
+    func createRecordApiCall() {
+        self.addLoadingIndicator()
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + (dataAgreementId ?? ""), parameters: [:], method: .post) { success, resultVal in
             if success {
                 debugPrint(resultVal)
-                completionBlock(true, resultVal)
+                self.sendDataBack?(resultVal)
+                self.removeLoadingIndicator()
+                self.dismiss(animated: true)
             } else {
                 debugPrint(resultVal)
-                completionBlock(false, resultVal)
+                self.sendDataBack?(resultVal)
+                self.removeLoadingIndicator()
+                self.dismiss(animated: true)
             }
         }
     }
@@ -218,7 +222,6 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         if (URL.absoluteString == "dataAgreement://") {
-            debugPrint("Navigate to data agreement detail screen!")
             let dataAgreementRecord = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
             let dataAgreementVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
             dataAgreementVC.dataAgreementRecord = dataAgreementRecord

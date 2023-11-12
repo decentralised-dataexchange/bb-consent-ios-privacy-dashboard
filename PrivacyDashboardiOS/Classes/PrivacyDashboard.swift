@@ -8,6 +8,8 @@
 import Foundation
 
 public class PrivacyDashboard {
+    public static var receiveDataBackFromPrivacyDashboard : (([String: Any]) -> Void)?
+    
     // MARK: - Invoking 'PrivacyDashboard' iOS SDK
     public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool) {
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = turnOnUserRequest
@@ -27,16 +29,15 @@ public class PrivacyDashboard {
             let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
             storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
         }
-        
-        let sharingVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataSharingVC") as? BBConsentDataSharingVC ?? BBConsentDataSharingVC()
-     
-        // Passing Auth info and other required info
+        // Passing Auth info
         BBConsentPrivacyDashboardiOS.shared.userId = userId
         BBConsentPrivacyDashboardiOS.shared.accessToken = accessToken
+        let sharingVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataSharingVC") as? BBConsentDataSharingVC ?? BBConsentDataSharingVC()
+        // Passing other required info
         let data = apiKey.data(using: .utf8) ?? Data()
         _ = BBConsentKeyChainUtils.save(key: "BBConsentApiKey", data: data)
         BBConsentPrivacyDashboardiOS.shared.baseUrl = baseUrlString
-       
+        
         sharingVC.dataAgreementId = dataAgreementId
         sharingVC.theirOrgName = organisationName
         sharingVC.theirLogoImageUrl = organisationLogoImageUrl
@@ -45,13 +46,36 @@ public class PrivacyDashboard {
         sharingVC.cancelButtonText = cancelButtonText
         sharingVC.sendDataBack = { data in
             debugPrint(data)
+            self.receiveDataBackFromPrivacyDashboard?(data)
         }
         
-        let navVC = UINavigationController.init(rootViewController: sharingVC)
-        navVC.modalPresentationStyle = .fullScreen
-        UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+        readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
+            if resultVal["errorCode"] as? Int != 500 {
+                // If existing record found for the data agreement ID (status code will be !500)
+                // Return the records reponse
+                self.receiveDataBackFromPrivacyDashboard?(resultVal)
+            } else {
+                // If no record found for the data agreement ID (status code will be 500)
+                // Navigate to Data sharing UI screen
+                let navVC = UINavigationController.init(rootViewController: sharingVC)
+                navVC.modalPresentationStyle = .fullScreen
+                UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+            }
+        }
     }
     
+    // MARK: - Read data agreement api call
+    private static func readDataAgreementRecordApi(dataAgreementId: String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void){
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + dataAgreementId, parameters: [:], method: .get) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
+            }
+        }
+    }
     // MARK: - 'Individual' related api calls
     public static func createAnIndividual(id:String?, externalId:String?, externalIdType: String?, identityProviderId: String?, name: String, iamId: String?, email: String, phone:String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
         let individual = Individual(id: id, externalID: externalId, externalIDType: externalId, identityProviderID: identityProviderId, name: name, iamID: iamId, email: email, phone: phone)
