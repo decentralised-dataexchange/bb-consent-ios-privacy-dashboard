@@ -10,6 +10,7 @@ import Kingfisher
 
 class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManagerProtocol, UITextViewDelegate {
     // MARK: IBOutlets
+    @IBOutlet weak var authoriseButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var labelStackView: UIStackView!
     @IBOutlet weak var ourLogoImageView: UIImageView!
@@ -35,7 +36,6 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
-        self.callOrganizationApi()
         self.callOrganisationDetailsApi()
     }
     
@@ -44,6 +44,8 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.black.cgColor
         cancelButton.setTitle(cancelButtonText, for: .normal)
+        cancelButton.isHidden = true
+        authoriseButton.isHidden = true
     }
     
     func setOrganisationInfo() {
@@ -73,7 +75,7 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
             return r
         }
         
-        self.ourLogoImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
+        self.betweenLogosImageView.image = UIImage(named: "ic_between_logo", in: Bundle(for: type(of:self)), compatibleWith: nil)
         let logoUrlFromOrgData = URL(string: (organizationData?.logoImageURL ?? ""))
         let placeholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
         if let logoUrlFromClient = URL(string: theirLogoImageUrl ?? "") {
@@ -202,8 +204,16 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
             } else if serviceManager.serviceType == .OrgDetails {
                 if let data = response.data?.responseModel as? OrganisationDetails {
                     organizationDetailsData = data
-                    createAttributesView()
-                    self.removeLoadingIndicator()
+                    let dataAgreementRecord = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
+                    if dataAgreementRecord?[0].methodOfUse == "data_source" &&  dataAgreementRecord?[0].thirdPartyDisclosure == "true" {
+                        callOrganizationApi()
+                        createAttributesView()
+                        cancelButton.isHidden = false
+                        authoriseButton.isHidden = false
+                        self.removeLoadingIndicator()
+                    } else {
+                        self.dismiss(animated: false)
+                    }
                 }
             }
         }
