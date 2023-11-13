@@ -51,15 +51,81 @@ public class PrivacyDashboard {
         
         readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
             if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
-                // If existing record found for the data agreement ID (status code will be !500)
+                // If existing record found for the data agreement ID
                 // Return the records reponse
                 self.receiveDataBackFromPrivacyDashboard?(resultVal)
             } else {
-                // If no record found for the data agreement ID (status code will be 500)
+                // If no record found for the data agreement ID 
                 // Navigate to Data sharing UI screen
                 let navVC = UINavigationController.init(rootViewController: sharingVC)
                 navVC.modalPresentationStyle = .fullScreen
                 UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    public static func configure(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, accessToken: String = "") {
+        let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
+        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+        var storyboard = UIStoryboard()
+        if let resourceBundle = Bundle(url: bundleURL!) {
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+        } else {
+            let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+        }
+        BBConsentPrivacyDashboardiOS.shared.userId = withUserId
+        BBConsentPrivacyDashboardiOS.shared.accessToken = accessToken
+        let sharingVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataSharingVC") as? BBConsentDataSharingVC ?? BBConsentDataSharingVC()
+        // Passing other required info
+        let data = withApiKey.data(using: .utf8) ?? Data()
+        _ = BBConsentKeyChainUtils.save(key: "BBConsentApiKey", data: data)
+        BBConsentPrivacyDashboardiOS.shared.baseUrl = withBaseUrl
+        sharingVC.dataAgreementId = withOrgId
+    }
+    
+    public static func updateDataAgreementStatus(dataAgreementId: String, status: Bool) {
+        readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
+            if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
+                // If existing record found for the data agreement ID
+                let resultDict = resultVal["consentRecord"] as? [String: Any]
+                guard let recordId = resultDict?["id"] else { return }
+                updateRecordApiCall(dataAgreementId: dataAgreementId, recordId: recordId as! String, status: status) { resultVal in
+                    debugPrint(resultVal)
+                    self.receiveDataBackFromPrivacyDashboard?(resultVal)
+                }
+            } else {
+                // If no record found for the data agreement ID
+                createRecordApiCall(dataAgreementId: dataAgreementId) { resultVal in
+                    debugPrint(resultVal)
+                    self.receiveDataBackFromPrivacyDashboard?(resultVal)
+                }
+            }
+        }
+    }
+    
+    private static func createRecordApiCall(dataAgreementId: String, completion: @escaping (_ resultVal: [String: Any]) -> Void) {
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + (dataAgreementId), parameters: [:], method: .post) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completion(resultVal)
+            } else {
+                debugPrint(resultVal)
+                completion(resultVal)
+            }
+        }
+    }
+    
+    private static func updateRecordApiCall(dataAgreementId: String, recordId: String, status: Bool, completion: @escaping (_ resultVal: [String: Any]) -> Void) {
+        let parameters = ["optIn" : status]
+        let url =  BBConsentPrivacyDashboardiOS.shared.baseUrl  + "/service/individual/record/consent-record/" + (recordId) + "?dataAgreementId=" + dataAgreementId
+        BBConsentBaseWebService.shared.makeAPICall(urlString: url, parameters: parameters, method: .put) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completion(resultVal)
+            } else {
+                debugPrint(resultVal)
+                completion(resultVal)
             }
         }
     }

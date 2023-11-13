@@ -24,19 +24,22 @@ class ViewController: UIViewController {
 //                                              turnOnUserRequest: false,
 //                                              turnOnAttributeDetail: false)
         
-        PrivacyDashboard.showDataSharingUI(apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
-                                           userId: "65378403b3f442eb9381b38d",
-                                           baseUrlString: "https://staging-consent-bb-api.igrant.io/v2",
-                                           dataAgreementId: "6551b99a7adedd223d2e61e4",
-                                           organisationName: "My company",
-                                           organisationLogoImageUrl: "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png",
-                                           termsOfServiceText: "Terms of service.",
-                                           termsOfServiceUrl: "http://google.com",
-                                           cancelButtonText: "Cancel")
+//        PrivacyDashboard.showDataSharingUI(apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
+//                                           userId: "65378403b3f442eb9381b38d",
+//                                           baseUrlString: "https://staging-consent-bb-api.igrant.io/v2",
+//                                           dataAgreementId: "6551b99a7adedd223d2e61e4",
+//                                           organisationName: "My company",
+//                                           organisationLogoImageUrl: "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png",
+//                                           termsOfServiceText: "Terms of service.",
+//                                           termsOfServiceUrl: "http://google.com",
+//                                           cancelButtonText: "Cancel")
         
         PrivacyDashboard.receiveDataBackFromPrivacyDashboard  = { data in
             debugPrint("Data receieved here:\(data)")
         }
+        
+        PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", withUserId: "65378403b3f442eb9381b38d", withOrgId: "64f09f778e5f3800014a879a", withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2")
+        PrivacyDashboard.updateDataAgreementStatus(dataAgreementId: "6551c9ba7654351e98a58734", status: true)
     }
 
     override func didReceiveMemoryWarning() {
