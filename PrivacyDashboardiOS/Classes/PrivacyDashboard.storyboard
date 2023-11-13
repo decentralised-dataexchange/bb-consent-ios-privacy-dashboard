@@ -1395,11 +1395,11 @@
                         <outlet property="cancelButton" destination="xo6-bB-sML" id="C3N-la-snf"/>
                         <outlet property="dataAgreementTextView" destination="LMM-9V-pEM" id="ibt-zz-k2k"/>
                         <outlet property="labelStackView" destination="VHX-og-DaS" id="t0r-VY-mRD"/>
-                        <outlet property="ourLogoImageView" destination="u2c-D1-sgm" id="P4R-VE-3GG"/>
+                        <outlet property="ourLogoImageView" destination="bQA-Vk-k7D" id="hwn-Ey-WFa"/>
                         <outlet property="textLabelOne" destination="wAj-Jg-b2P" id="vHN-jk-g9w"/>
                         <outlet property="textLabelThree" destination="tkF-0Y-meX" id="bPL-xu-XKD"/>
                         <outlet property="textLabelTwo" destination="zWm-pT-3xV" id="rVv-t1-Sck"/>
-                        <outlet property="thierLogoImageView" destination="bQA-Vk-k7D" id="Ff6-tV-rXN"/>
+                        <outlet property="thierLogoImageView" destination="u2c-D1-sgm" id="Ag4-NH-TL9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8H-uQ-d7K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1475,8 +1475,8 @@
     </scenes>
     <resources>
         <image name="default_cover_image" width="1500" height="500"/>
-        <image name="ic_between_logo" width="128" height="120"/>
-        <image name="ic_igrant_tick" width="696" height="593"/>
+        <image name="ic_between_logo" width="64" height="60"/>
+        <image name="ic_igrant_tick" width="348" height="296.5"/>
         <image name="ic_nav_more" width="27.333333969116211" height="27.333333969116211"/>
         <image name="ic_orgback" width="16" height="16"/>
         <image name="ic_right_arrow" width="12" height="18.5"/>

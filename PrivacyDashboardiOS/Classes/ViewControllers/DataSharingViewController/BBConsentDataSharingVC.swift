@@ -54,9 +54,9 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     fileprivate func setDynamicTextInfos() {
         arrangeFirstLabel()
         // Second label
-        textLabelTwo.text = "By clicking Authorise, \(organizationData?.name ?? "") App will be able to read the following data attributes:"
+        textLabelTwo.text = "By clicking Authorise, \(theirOrgName ?? "") App will be able to read the following data attributes:"
         // Third label
-        textLabelThree.text = "Make sure that you trust \(organizationData?.name ?? "")"
+        textLabelThree.text = "Make sure that you trust \(theirOrgName ?? "")"
         arrangeTermsAndServiceTextView()
     }
     
@@ -74,19 +74,12 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
         }
         
         self.ourLogoImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
-        let logoImageUrl = URL(string: (organizationData?.logoImageURL ?? ""))
-        let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
-        self.ourLogoImageView.kf.setImage(with: logoImageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
-        
-        if let url = theirLogoImageUrl {
-            self.thierLogoImageView.isHidden = false
-            self.betweenLogosImageView.isHidden = false
-            let logoImageUrl = URL(string: (url))
-            self.thierLogoImageView.kf.setImage(with: logoImageUrl)
-        } else {
-            self.thierLogoImageView.isHidden = true
-            self.betweenLogosImageView.isHidden = true
+        let logoUrlFromOrgData = URL(string: (organizationData?.logoImageURL ?? ""))
+        let placeholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
+        if let logoUrlFromClient = URL(string: theirLogoImageUrl ?? "") {
+            self.thierLogoImageView.kf.setImage(with: logoUrlFromClient, placeholder: placeholder, options: [.requestModifier(modifier)])
         }
+        self.ourLogoImageView.kf.setImage(with: logoUrlFromOrgData, placeholder: placeholder, options: [.requestModifier(modifier)])
     }
     
     fileprivate func arrangeFirstLabel() {
@@ -94,18 +87,14 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
         let boldAttribute = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
         let normalAttribute = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
         
-        let partOne = NSMutableAttributedString(string: organizationData?.name ?? "", attributes: boldAttribute)
+        let partOne = NSMutableAttributedString(string: theirOrgName ?? "", attributes: boldAttribute)
         let partTwo = NSMutableAttributedString(string: " wants to access the following data from ", attributes: normalAttribute)
         partOne.append(partTwo)
         
         var partThree = NSMutableAttributedString()
         var partFour = NSMutableAttributedString()
-        if let name = theirOrgName {
-            partThree = NSMutableAttributedString(string: name, attributes: boldAttribute)
-            partFour = NSMutableAttributedString(string: " for user", attributes: normalAttribute)
-        } else {
-            partThree = NSMutableAttributedString(string: "the user", attributes: normalAttribute)
-        }
+        partThree = NSMutableAttributedString(string: organizationData?.name ?? "", attributes: boldAttribute)
+        partFour = NSMutableAttributedString(string: " for user", attributes: normalAttribute)
         
         partThree.append(partFour)
         partOne.append(partThree)
