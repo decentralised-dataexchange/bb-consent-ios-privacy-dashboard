@@ -19,7 +19,7 @@ public class PrivacyDashboard {
         BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken)
     }
     
-    public static func showDataSharingUI(apiKey: String, userId: String, accessToken: String? = nil, baseUrlString: String, dataAgreementId: String, organisationName: String? = nil, organisationLogoImageUrl: String? = nil, termsOfServiceText : String, termsOfServiceUrl: String, cancelButtonText: String) {
+    public static func showDataSharingUI(apiKey: String, userId: String, accessToken: String? = nil, baseUrlString: String, dataAgreementId: String, organisationName: String, organisationLogoImageUrl: String, termsOfServiceText : String, termsOfServiceUrl: String, cancelButtonText: String) {
         let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
         let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
         var storyboard = UIStoryboard()
@@ -50,7 +50,7 @@ public class PrivacyDashboard {
         }
         
         readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
-            if resultVal["errorCode"] as? Int != 500 {
+            if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
                 // If existing record found for the data agreement ID (status code will be !500)
                 // Return the records reponse
                 self.receiveDataBackFromPrivacyDashboard?(resultVal)

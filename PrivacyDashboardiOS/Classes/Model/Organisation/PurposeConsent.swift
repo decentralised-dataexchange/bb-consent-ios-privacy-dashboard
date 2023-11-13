@@ -23,6 +23,7 @@ class PurposeConsent: PurposeConsentWrapperV2 {
     var storageLocation: String?
     var DPIAdate: String?
     var DPIASummary: String?
+    var methodOfUse: String?
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -46,6 +47,7 @@ class PurposeConsent: PurposeConsentWrapperV2 {
         storageLocation = json["policy"]["storageLocation"].stringValue
         DPIAdate = json["dpiaDate"].stringValue
         DPIASummary = json?["dpiaSummaryUrl"].stringValue
+        methodOfUse = json?["methodOfUse"].stringValue
         
         let dataAttributesArray = json["dataAttributes"].arrayValue
         dataAttributes = [DataAttribute]()
@@ -79,4 +81,5 @@ protocol PurposeConsentWrapperV2 {
     var storageLocation: String? { get }
     var DPIAdate: String? { get }
     var DPIASummary: String? { get }
+    var methodOfUse: String? { get }
 }
