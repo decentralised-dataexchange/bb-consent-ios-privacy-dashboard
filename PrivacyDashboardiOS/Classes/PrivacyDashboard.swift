@@ -49,7 +49,7 @@ public class PrivacyDashboard {
             self.receiveDataBackFromPrivacyDashboard?(data)
         }
         
-        readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
+        readDataAgreementApi(dataAgreementId: dataAgreementId) { success, resultVal in
             if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
                 // If existing record found for the data agreement ID
                 // Return the records reponse
@@ -85,7 +85,7 @@ public class PrivacyDashboard {
     }
     
     public static func updateDataAgreementStatus(dataAgreementId: String, status: Bool) {
-        readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
+        readDataAgreementApi(dataAgreementId: dataAgreementId) { success, resultVal in
             if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
                 // If existing record found for the data agreement ID
                 let resultDict = resultVal["consentRecord"] as? [String: Any]
@@ -131,7 +131,7 @@ public class PrivacyDashboard {
     }
     
     // MARK: - Read data agreement api call
-    private static func readDataAgreementRecordApi(dataAgreementId: String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void){
+    public static func readDataAgreementApi(dataAgreementId: String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void){
         BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + dataAgreementId, parameters: [:], method: .get) { success, resultVal in
             if success {
                 debugPrint(resultVal)
