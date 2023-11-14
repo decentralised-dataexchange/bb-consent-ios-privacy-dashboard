@@ -326,10 +326,14 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             consentCell.swictOn = record?.count ?? 0 > 0 ?  record?[0].optIn ?? false : false
             
             var consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
-            let totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            var totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
         
             if record?.count ?? 0 > 0, record?[0].optIn  == false {
                 consentedCount = 0
+                totalCount = 0
+            } else if record?.count == 0 {
+                consentedCount = 0
+                totalCount = 0
             }
             
             consentCell.consentedCount = consentedCount
