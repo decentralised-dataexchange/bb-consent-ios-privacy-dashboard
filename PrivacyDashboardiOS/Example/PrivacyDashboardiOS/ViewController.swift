@@ -53,6 +53,9 @@ class ViewController: UIViewController {
 //        PrivacyDashboard.fetchAllIndividuals { success, resultVal in
 //            debugPrint(resultVal)
 //        }
+        
+        // 7. Open Data agreement policy UI
+//        PrivacyDashboard.showDataAgreementPolicy(dataAgreementRecord: dict)
     }
 
     override func didReceiveMemoryWarning() {

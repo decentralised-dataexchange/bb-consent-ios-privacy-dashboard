@@ -205,7 +205,7 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
                 if let data = response.data?.responseModel as? OrganisationDetails {
                     organizationDetailsData = data
                     let dataAgreementRecord = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
-                    if dataAgreementRecord?[0].methodOfUse == "data_source" &&  dataAgreementRecord?[0].thirdPartyDisclosure == "true" {
+                    if dataAgreementRecord?.count ?? 0 > 0, dataAgreementRecord?[0].methodOfUse == "data_source" &&  dataAgreementRecord?[0].thirdPartyDisclosure == "true" {
                         callOrganizationApi()
                         createAttributesView()
                         cancelButton.isHidden = false
@@ -223,7 +223,7 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
         if (URL.absoluteString == "dataAgreement://") {
             let dataAgreementRecord = organizationDetailsData?.purposeConsents?.filter({ $0.iD == dataAgreementId })
             let dataAgreementVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
-            dataAgreementVC.dataAgreementRecord = dataAgreementRecord
+            dataAgreementVC.dataAgreement = dataAgreementRecord
             self.navigationController?.pushViewController(dataAgreementVC, animated: true)
         } else if (URL.absoluteString == termsOFServiceUrl) {
             let url = Foundation.URL(string: termsOFServiceUrl ?? "")!
