@@ -14,11 +14,11 @@ class DACell: UITableViewCell {
 }
 
 class BBConsentDataAgreementVC: UITableViewController {
-    var dataAgreementRecord: [PurposeConsentWrapperV2]?
+    var dataAgreement: [PurposeConsentWrapperV2]?
     var purposeSectionDic = [String:Any]()
     var policySectionDict = [String:Any]()
     var DPIASectionDic = [String:Any]()
-    var dataAgreementRecordDic = [[String: Any]]()
+    var dataAgreementDic = [[String: Any]]()
     
     override func viewDidLoad() {
         setUI()
@@ -33,11 +33,13 @@ class BBConsentDataAgreementVC: UITableViewController {
         navigationController?.navigationBar.tintColor = .black
     }
     
-    func setData(){
-        purposeSectionDic = ["Purpose": dataAgreementRecord?[0].name ?? "", "Purpose Description": dataAgreementRecord?[0].descriptionField ?? "", "Lawful basis of processing": dataAgreementRecord?[0].lawfulBasis ?? ""]
-        policySectionDict = ["Policy URL": dataAgreementRecord?[0].policyURL ?? "", "Jurisdiction": dataAgreementRecord?[0].jurisdiction ?? "", "Third party data sharing": dataAgreementRecord?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreementRecord?[0].industryScope ?? "", "Geographic restriction": dataAgreementRecord?[0].geaographicRestriction ?? "", "Retention period": dataAgreementRecord?[0].retentionPeriod ?? "", "Storage Location": dataAgreementRecord?[0].storageLocation ?? ""]
-        DPIASectionDic = ["DPIA Date": dataAgreementRecord?[0].DPIAdate ?? "", "DPIA Summary": dataAgreementRecord?[0].DPIASummary ?? ""]
-        dataAgreementRecordDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
+    func setData() {
+        if dataAgreementDic.count < 1 {
+            purposeSectionDic = ["Purpose": dataAgreement?[0].name ?? "", "Purpose Description": dataAgreement?[0].descriptionField ?? "", "Lawful basis of processing": dataAgreement?[0].lawfulBasis ?? ""]
+            policySectionDict = ["Policy URL": dataAgreement?[0].policyURL ?? "", "Jurisdiction": dataAgreement?[0].jurisdiction ?? "", "Third party data sharing": dataAgreement?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreement?[0].industryScope ?? "", "Geographic restriction": dataAgreement?[0].geaographicRestriction ?? "", "Retention period": dataAgreement?[0].retentionPeriod ?? "", "Storage Location": dataAgreement?[0].storageLocation ?? ""]
+            DPIASectionDic = ["DPIA Date": dataAgreement?[0].DPIAdate ?? "", "DPIA Summary": dataAgreement?[0].DPIASummary ?? ""]
+            dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
+        }
     }
     
     // MARK: TableView delegates & datasources
@@ -46,11 +48,11 @@ class BBConsentDataAgreementVC: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        dataAgreementRecordDic.count
+        dataAgreementDic.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataAgreementRecordDic[section].count
+        dataAgreementDic[section].count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -97,7 +99,7 @@ class BBConsentDataAgreementVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DACell", for: indexPath) as! DACell
-        let item = dataAgreementRecordDic[indexPath.section]
+        let item = dataAgreementDic[indexPath.section]
         let keys = item.map({ $0.key })
         let values = item.map({ $0.value })
         cell.titleLabel.text = keys[indexPath.row]

@@ -142,6 +142,23 @@ public class PrivacyDashboard {
             }
         }
     }
+    
+    public static func showDataAgreementPolicy(dataAgreementDic: [String: Any]) {
+        let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
+        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+        var storyboard = UIStoryboard()
+        if let resourceBundle = Bundle(url: bundleURL!) {
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+        } else {
+            let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+        }
+        let dataAgreementVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
+        dataAgreementVC.dataAgreementDic = [dataAgreementDic]
+        let navVC = UINavigationController.init(rootViewController: dataAgreementVC)
+        UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+    }
+    
     // MARK: - 'Individual' related api calls
     public static func createAnIndividual(id:String?, externalId:String?, externalIdType: String?, identityProviderId: String?, name: String, iamId: String?, email: String, phone:String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
         let individual = Individual(id: id, externalID: externalId, externalIDType: externalId, identityProviderID: identityProviderId, name: name, iamID: iamId, email: email, phone: phone)
