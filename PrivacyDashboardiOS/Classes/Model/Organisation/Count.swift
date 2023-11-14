@@ -5,7 +5,7 @@
 import Foundation
 import SwiftyJSON
 
-public class Count: CountWrapper {
+ class Count: CountWrapper {
     var consented : Int?
     var total : Int?
 

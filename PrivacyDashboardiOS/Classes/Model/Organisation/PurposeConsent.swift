@@ -63,7 +63,7 @@ protocol PurposeConsentWrapper {
     var purpose : Purpose? { get }
 }
 
-public protocol PurposeConsentWrapperV2 {
+protocol PurposeConsentWrapperV2 {
     var count : Count? { get }
     var descriptionField : String? { get }
     var iD : String? { get }
