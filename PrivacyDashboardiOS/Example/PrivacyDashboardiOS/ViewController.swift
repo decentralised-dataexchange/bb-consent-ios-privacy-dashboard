@@ -35,12 +35,14 @@ class ViewController: UIViewController {
                                            termsOfServiceText: "Terms of service.",
                                            termsOfServiceUrl: "http://google.com",
                                            cancelButtonText: "Cancel")
+       
         
        // 3. Call back method to receive response back
         PrivacyDashboard.receiveDataBackFromPrivacyDashboard  = { data in
             debugPrint("Data receieved here:\(data)")
         }
         
+
         // 4. Setting API configuring params
         //  PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", withUserId: "65378403b3f442eb9381b38d", withOrgId: "64f09f778e5f3800014a879a", withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2")
         
