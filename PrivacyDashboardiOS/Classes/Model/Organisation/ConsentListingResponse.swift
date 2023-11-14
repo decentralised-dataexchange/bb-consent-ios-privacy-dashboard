@@ -50,7 +50,7 @@ protocol ConsentListingResponseWrapper {
 }
 
 // MARK: - DataAttribute
-public class DataAttribute {
+class DataAttribute {
     var id, version: String?
     var name, description: String?
     var sensitivity: Bool?
