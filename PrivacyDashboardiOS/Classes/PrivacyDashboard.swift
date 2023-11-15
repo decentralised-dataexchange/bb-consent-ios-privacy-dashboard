@@ -160,8 +160,8 @@ public class PrivacyDashboard {
     }
     
     // MARK: - 'Individual' related api calls
-    public static func createAnIndividual(id:String?, externalId:String?, externalIdType: String?, identityProviderId: String?, name: String, iamId: String?, email: String, phone:String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
-        let individual = Individual(id: id, externalID: externalId, externalIDType: externalId, identityProviderID: identityProviderId, name: name, iamID: iamId, email: email, phone: phone)
+    public static func createAnIndividual(name: String?, email: String?, phone:String?, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
+        let individual = Individual(id: nil, externalID: nil, externalIDType: nil, identityProviderID: nil, name: name, iamID: nil, email: email, phone: phone)
         let record = IndividualRecord(individual: individual)
         let data = try! JSONEncoder.init().encode(record)
         let dictionary = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
