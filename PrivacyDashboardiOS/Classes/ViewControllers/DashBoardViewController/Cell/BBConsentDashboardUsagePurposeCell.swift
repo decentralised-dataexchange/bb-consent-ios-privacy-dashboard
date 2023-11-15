@@ -33,12 +33,17 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     
     func showData() {
         self.statusSwitch.isOn = self.swictOn ? true : false
-        self.statusSwitch.isEnabled = consentInfo?.lawfulUsage ?? false ? true : false
+        if consentInfo?.lawfulUsage ?? false == true {
+            self.statusSwitch.isEnabled = true
+        } else {
+            self.statusSwitch.isEnabled = false
+            self.statusSwitch.isOn = true
+        }
         
         self.titleLbl.text = self.consentInfo?.name
-        var valueString = "Allow "
         
         if consentedCount ?? 0 > 0 {
+            var valueString = "Allow "
             valueString.append(": ")
             let consentedStr = String(consentedCount ?? 0)
             valueString.append(consentedStr)
