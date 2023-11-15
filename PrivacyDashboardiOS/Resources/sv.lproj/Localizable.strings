@@ -5,3 +5,43 @@
   Created by Mumthasir mohammed on 14/09/23.
   
 */
+"bb_consent_cancel" = "Cancel";
+"bb_consent_general_more" = "" ;
+"bb_consent_dashboard_overview" = "" ;
+"bb_consent_dashboard_usage_purpose" = "" ;
+"bb_consent_dashboard_data_agreements" = "" ;
+"bb_consent_dashboard_disallow" = "" ;
+"bb_consent_dashboard_allow" = "" ;
+"bb_consent_dashboard_read_less" = "" ;
+"bb_consent_dashboard_read_more" = "" ;
+"bb_consent_dashboard_empty_message" = "" ;
+"bb_consent_data_attribute_allow" = "" ;
+"bb_consent_data_attribute_my_data_consents" = "" ;
+"bb_consent_data_attribute_data_attributes"  = "" ;
+"bb_consent_data_attribute_read_policy" = "" ;
+"bb_consent_web_view_privacy_policy"  = "" ;
+"bb_consent_web_view_policy"  = "" ;
+"bb_consent_history_consent_history"  = "" ;
+"bb_consent_history_empty_consent_history" = "" ;
+"bb_consent_data_attribute_detail_ask_me" = "" ;
+"bb_consent_data_attribute_detail_allow_consent_rule"  = "" ;
+"bb_consent_data_attribute_detail_disallow_consent_rule"  = "" ;
+"bb_consent_data_attribute_detail_askme_consent_rule"  = "" ;
+"bb_consent_data_attribute_detail_consent"  = "" ;
+"bb_consent_data_attribute_detail_days_with_count"  = "" ;
+"bb_consent_error_internet"  = "" ;
+"bb_consent_error_unexpected"  = "" ;
+"bb_consent_user_request_new_request"  = "" ;
+"bb_consent_user_request_user_request"  = "" ;
+"bb_consent_user_request_download_data"  = "" ;
+"bb_consent_user_request_forget_me"  = "" ;
+"bb_consent_user_request_cancel_request"  = "" ;
+"bb_consent_user_request_request_initiated"  = "" ;
+"bb_consent_user_request_request_acknowledged" = "" ;
+"bb_consent_user_request_request_processed"  = "" ;
+"bb_consent_user_request_confirmation"  = "" ;
+"bb_consent_user_request_confirmation_message"  = "" ;
+"bb_consent_user_request_data_delete"  = "" ;
+"bb_consent_user_request_confirm"  = "" ;
+"bb_consent_user_request_request_cancelled"  = "" ;
+"bb_consent_user_request_delete_data"  = "" ;

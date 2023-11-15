@@ -65,7 +65,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGv-pI-uwc">
-                                                    <rect key="frame" x="15" y="111.66666666666669" width="74" height="74"/>
+                                                    <rect key="frame" x="15" y="103" width="74" height="74"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="74" id="A1r-by-PrG"/>
@@ -73,7 +73,7 @@
                                                     </constraints>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_igrant_tick" translatesAutoresizingMaskIntoConstraints="NO" id="lXW-18-pqy">
-                                                    <rect key="frame" x="19" y="115.66666666666669" width="66" height="66"/>
+                                                    <rect key="frame" x="19" y="107" width="66" height="66"/>
                                                     <color key="backgroundColor" red="0.87429744009999999" green="0.87842917440000001" blue="0.88245391849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="66" id="2bB-Kc-ixk"/>
@@ -87,7 +87,7 @@
                                                 <constraint firstItem="wqT-cg-t03" firstAttribute="leading" secondItem="uJI-vv-le7" secondAttribute="leading" constant="15" id="Mv1-cg-y8O"/>
                                                 <constraint firstItem="Bul-mB-TDI" firstAttribute="top" secondItem="wqT-cg-t03" secondAttribute="bottom" constant="2" id="R18-fT-TLM"/>
                                                 <constraint firstAttribute="trailing" secondItem="PqS-cP-Ocb" secondAttribute="trailing" id="TSd-Dc-lzR"/>
-                                                <constraint firstItem="wqT-cg-t03" firstAttribute="top" secondItem="vGv-pI-uwc" secondAttribute="bottom" constant="-8.6666666666666572" id="YRk-LH-ACY"/>
+                                                <constraint firstItem="wqT-cg-t03" firstAttribute="top" secondItem="vGv-pI-uwc" secondAttribute="bottom" id="YRk-LH-ACY"/>
                                                 <constraint firstItem="lXW-18-pqy" firstAttribute="centerX" secondItem="vGv-pI-uwc" secondAttribute="centerX" id="ZGA-OJ-9m0"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bul-mB-TDI" secondAttribute="trailing" constant="13" id="hkG-2F-qDv"/>
                                                 <constraint firstItem="Bul-mB-TDI" firstAttribute="leading" secondItem="uJI-vv-le7" secondAttribute="leading" constant="15" id="iQ0-l8-tTf"/>
