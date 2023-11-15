@@ -196,6 +196,7 @@
 		90E71AF92AF91A0300574475 /* PrivacyDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71AF82AF91A0300574475 /* PrivacyDashboard.swift */; };
 		90E71B202AFCB66900574475 /* BBConsentDataSharingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71B1E2AFCB2FD00574475 /* BBConsentDataSharingVC.swift */; };
 		90E71B222AFDF72D00574475 /* BBConsentDataAgreementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71B212AFDF72D00574475 /* BBConsentDataAgreementVC.swift */; };
+		90E71B272B04F17A00574475 /* DAPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71B262B04F17A00574475 /* DAPolicy.swift */; };
 		930FC355AB046F9F15ECCAB9F028E81C /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B81C187A0A76A6ABFDCC5FD3F65DC /* EKButtonBarView.swift */; };
 		93209671B01B76711F6E2022CADBAC9A /* Kingfisher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 458DE4C0B6C2FF2A6101DB3794F8E927 /* Kingfisher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		941822CDF68EB8F4D49F150457A82616 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C99839CCCD101F4DF60E18055094C /* ResponseSerialization.swift */; };
@@ -744,6 +745,7 @@
 		90E71B212AFDF72D00574475 /* BBConsentDataAgreementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentDataAgreementVC.swift; sourceTree = "<group>"; };
 		90E71B242B03B22E00574475 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		90E71B252B03B23700574475 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		90E71B262B04F17A00574475 /* DAPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAPolicy.swift; sourceTree = "<group>"; };
 		917607151E07D3F125D980C0B727C78E /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		928D07A4D4BFA3A1F7067EA4B40F1328 /* CacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CacheSerializer.swift; path = Sources/Cache/CacheSerializer.swift; sourceTree = "<group>"; };
 		92C0658A18AFC53E330BE03444D22D03 /* IQKeyboardManagerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -1210,6 +1212,7 @@
 				7FD0754E98749F2F1C52944D45581DAF /* RequestedStatusHistory.swift */,
 				716F7E79524727961B1722CC17FEF662 /* RequestStatus.swift */,
 				90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */,
+				90E71B262B04F17A00574475 /* DAPolicy.swift */,
 			);
 			path = Organisation;
 			sourceTree = "<group>";
@@ -2744,6 +2747,7 @@
 				5196CD1356DA2D80C3D31B0033ADA075 /* BBConsentOrganisationViewController.swift in Sources */,
 				70E4C09DE085AEFD23767B50A93C1212 /* BBConsentPopOver.swift in Sources */,
 				36B80458F2E61EC8DB6B69B64E8079B2 /* BBConsentPrivacyDashboardiOS.swift in Sources */,
+				90E71B272B04F17A00574475 /* DAPolicy.swift in Sources */,
 				E49DFB60AE44B93AECDA9F66D8602CDB /* BBConsentRequestStatusTableViewCell.swift in Sources */,
 				90E71B222AFDF72D00574475 /* BBConsentDataAgreementVC.swift in Sources */,
 				E448102058C3E3D3DE2C26696F3FDC77 /* BBConsentRequestStatusViewController.swift in Sources */,

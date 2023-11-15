@@ -49,7 +49,7 @@ public class PrivacyDashboard {
             self.receiveDataBackFromPrivacyDashboard?(data)
         }
         
-        readDataAgreementApi(dataAgreementId: dataAgreementId) { success, resultVal in
+        readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
             if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
                 // If existing record found for the data agreement ID
                 // Return the records reponse
@@ -85,7 +85,7 @@ public class PrivacyDashboard {
     }
     
     public static func updateDataAgreementStatus(dataAgreementId: String, status: Bool) {
-        readDataAgreementApi(dataAgreementId: dataAgreementId) { success, resultVal in
+        readDataAgreementRecordApi(dataAgreementId: dataAgreementId) { success, resultVal in
             if resultVal["errorCode"] as? Int != 500 && !(resultVal["consentRecord"] is NSNull) {
                 // If existing record found for the data agreement ID
                 let resultDict = resultVal["consentRecord"] as? [String: Any]
@@ -105,7 +105,7 @@ public class PrivacyDashboard {
     }
     
     private static func createRecordApiCall(dataAgreementId: String, completion: @escaping (_ resultVal: [String: Any]) -> Void) {
-        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + (dataAgreementId), parameters: [:], method: .post) { success, resultVal in
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreementRecord + (dataAgreementId), parameters: [:], method: .post) { success, resultVal in
             if success {
                 debugPrint(resultVal)
                 completion(resultVal)
@@ -126,6 +126,19 @@ public class PrivacyDashboard {
             } else {
                 debugPrint(resultVal)
                 completion(resultVal)
+            }
+        }
+    }
+    
+    // MARK: - Read data agreement record api call
+    public static func readDataAgreementRecordApi(dataAgreementId: String, completionBlock:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void){
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreementRecord + dataAgreementId, parameters: [:], method: .get) { success, resultVal in
+            if success {
+                debugPrint(resultVal)
+                completionBlock(true, resultVal)
+            } else {
+                debugPrint(resultVal)
+                completionBlock(false, resultVal)
             }
         }
     }
@@ -155,8 +168,7 @@ public class PrivacyDashboard {
         }
         let dataAgreementVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
         dataAgreementVC.dataAgreementDic = [dataAgreementDic]
-        let navVC = UINavigationController.init(rootViewController: dataAgreementVC)
-        UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+        UIApplication.topViewController()?.navigationController?.pushViewController(dataAgreementVC, animated: true)
     }
     
     // MARK: - 'Individual' related api calls
