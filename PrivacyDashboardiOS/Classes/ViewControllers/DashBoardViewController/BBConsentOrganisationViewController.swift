@@ -36,7 +36,6 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         setupUI()
         callOrganizationApi()
         callOrganisationDetailsApi()
-        getAllDataAgreementRecords()
     }
     
     func setupUI(){
@@ -331,7 +330,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             if record?.count ?? 0 > 0, record?[0].optIn  == false {
                 consentedCount = 0
                 totalCount = 0
-            } else if record?.count == 0 {
+            } else if record?.count == 0 || record?.count == nil {
                 consentedCount = 0
                 totalCount = 0
             }
@@ -422,12 +421,13 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
             } else if serviceManager.serviceType == .OrgDetails {
                 if let data = response.data?.responseModel as? OrganisationDetails {
                     organisaionDeatils = data
+                    getAllDataAgreementRecords()
                     orgTableView.reloadData()
                 }
             } else if serviceManager.serviceType == .GetDataAgreementRecords {
                 if let data = response.data?.responseModel as? DataAgreementRecords {
                     records = data
-                    let dataAgreementIDs = organisaionDeatils?.purposeConsents?.map({ $0.iD }) ?? []
+                    let dataAgreementIDs = organisaionDeatils?.purposeConsents?.filter({ $0.lawfulUsage == false }).map({ $0.iD ?? "" }) ?? []
                     let idsWithAttributeRecords = records?.consentRecords?.map({ $0.dataAgreementId }) ?? []
                                         
                     for item in dataAgreementIDs {
@@ -436,11 +436,13 @@ extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
                             // Create add record api call
                             let serviceManager = OrganisationWebServiceManager()
                             serviceManager.managerDelegate = self
-                            serviceManager.createDataAgreementRecord(dataAgreementId: item ?? "")
+                            serviceManager.createDataAgreementRecord(dataAgreementId: item)
                        }
                     }
                     orgTableView.reloadData()
                 }
+            } else if serviceManager.serviceType == .CreateDataAgreementRecord {
+                getAllDataAgreementRecords()
             }
         }
         
@@ -487,6 +489,8 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                 let filteredRecord = self.records?.consentRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
                 if filteredRecord?.count ?? 0 > 0 {
                     serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                } else {
+                    serviceManager.createDataAgreementRecord(dataAgreementId: self.organisaionDeatils?.purposeConsents?[cell.tag].iD ?? "")
                 }
             }));
         }

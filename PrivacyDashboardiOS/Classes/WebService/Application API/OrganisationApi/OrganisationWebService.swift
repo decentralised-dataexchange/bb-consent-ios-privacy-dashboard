@@ -32,7 +32,7 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
     
     func organisationDetails(orgId : String){
-        self.url = baseUrl + "/service/data-agreements?offset=1&limit=500"
+        self.url = baseUrl + "/service/data-agreements?offset=0&limit=500"
         getServiceCall()
     }
     
@@ -42,7 +42,7 @@ class OrganisationWebService: BBConsentBaseWebService {
     }
    
     func dataAgreementRecords() {
-        self.url = baseUrl + "/service/individual/record/consent-record?offset=1&limit=500"
+        self.url = baseUrl + "/service/individual/record/consent-record?offset=0&limit=500"
         getServiceCall()
     }
     
