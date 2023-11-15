@@ -56,6 +56,20 @@ class ViewController: UIViewController {
         
         // 7. Open Data agreement policy UI
 //        PrivacyDashboard.showDataAgreementPolicy(dataAgreementRecord: dict)
+
+        // 8. Read data agreement 
+        PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65539173ed8be121fe2a59af") { success, resultVal in
+            print(resultVal)
+            let dict = resultVal["dataAgreement"] as? [String: Any]
+            if let theJSONData = try? JSONSerialization.data(withJSONObject: dict ?? [:], options: .prettyPrinted),
+               let theJSONText = String(data: theJSONData, encoding: String.Encoding.ascii) {
+                if let json = theJSONText.data(using: String.Encoding.utf8) {
+                    if let jsonData = try? JSONSerialization.jsonObject(with: json, options: .allowFragments) as? [String:AnyObject] {
+                        PrivacyDashboard.showDataAgreementPolicy(dataAgreementDic: jsonData)
+                    }
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

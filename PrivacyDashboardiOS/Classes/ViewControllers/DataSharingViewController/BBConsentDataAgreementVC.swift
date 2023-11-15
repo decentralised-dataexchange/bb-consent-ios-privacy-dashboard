@@ -19,8 +19,15 @@ class BBConsentDataAgreementVC: UITableViewController {
     var policySectionDict = [String:Any]()
     var DPIASectionDic = [String:Any]()
     var dataAgreementDic = [[String: Any]]()
+    var instance: DAPolicy?
     
     override func viewDidLoad() {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dataAgreementDic[0])
+            instance = try JSONDecoder().decode(DAPolicy.self, from: jsonData)
+        } catch {
+            debugPrint(error)
+        }
         setUI()
         setData()
     }
@@ -34,10 +41,15 @@ class BBConsentDataAgreementVC: UITableViewController {
     }
     
     func setData() {
-        if dataAgreementDic.count < 1 {
+        if dataAgreement?.count ?? 0 > 0 {
             purposeSectionDic = ["Purpose": dataAgreement?[0].name ?? "", "Purpose Description": dataAgreement?[0].descriptionField ?? "", "Lawful basis of processing": dataAgreement?[0].lawfulBasis ?? ""]
             policySectionDict = ["Policy URL": dataAgreement?[0].policyURL ?? "", "Jurisdiction": dataAgreement?[0].jurisdiction ?? "", "Third party data sharing": dataAgreement?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreement?[0].industryScope ?? "", "Geographic restriction": dataAgreement?[0].geaographicRestriction ?? "", "Retention period": dataAgreement?[0].retentionPeriod ?? "", "Storage Location": dataAgreement?[0].storageLocation ?? ""]
             DPIASectionDic = ["DPIA Date": dataAgreement?[0].DPIAdate ?? "", "DPIA Summary": dataAgreement?[0].DPIASummary ?? ""]
+            dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
+        } else {
+            purposeSectionDic = ["Purpose": instance?.purpose ?? "", "Purpose Description": instance?.purposeDescription ?? "", "Lawful basis of processing": instance?.lawfulBasis ?? ""]
+            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? "", "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": instance?.policy?.dataRetentionPeriodDays ?? "", "Storage Location": instance?.policy?.storageLocation ?? ""]
+            DPIASectionDic = ["DPIA Date":instance?.dpiaDate ?? "", "DPIA Summary": instance?.dpiaSummaryURL ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
         }
     }

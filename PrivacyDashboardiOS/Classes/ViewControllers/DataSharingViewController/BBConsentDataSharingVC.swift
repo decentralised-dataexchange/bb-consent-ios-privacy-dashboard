@@ -155,7 +155,7 @@ class BBConsentDataSharingVC: BBConsentBaseViewController, WebServiceTaskManager
     // MARK: API Calls
     func createRecordApiCall() {
         self.addLoadingIndicator()
-        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreement + (dataAgreementId ?? ""), parameters: [:], method: .post) { success, resultVal in
+        BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.fetchDataAgreementRecord + (dataAgreementId ?? ""), parameters: [:], method: .post) { success, resultVal in
             if success {
                 debugPrint(resultVal)
                 self.sendDataBack?(resultVal)
