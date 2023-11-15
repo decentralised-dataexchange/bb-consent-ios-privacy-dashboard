@@ -737,7 +737,6 @@
 		8F6B7A927629ADCC75C4E7AFBE10EA93 /* Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.debug.xcconfig; sourceTree = "<group>"; };
 		900B8B192AD6E62B00964F12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrivacyDashboard.xcassets; sourceTree = "<group>"; };
-		900B8B1B2AD6E62B00964F12 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentDashboardDataAgreementCell.swift; sourceTree = "<group>"; };
 		90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAgreementRecords.swift; sourceTree = "<group>"; };
 		90E71AF62AF8B31600574475 /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
@@ -2432,6 +2431,7 @@
 				Base,
 				en,
 				sv,
+				fi,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = AA0C71F41E95462904AF53429C7861C5 /* Products */;
@@ -3123,7 +3123,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				900B8B192AD6E62B00964F12 /* en */,
-				900B8B1B2AD6E62B00964F12 /* sv */,
+				90E71B242B03B22E00574475 /* sv */,
+				90E71B252B03B23700574475 /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

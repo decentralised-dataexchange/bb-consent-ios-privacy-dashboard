@@ -46,6 +46,7 @@ class BBConsentDataAgreementVC: UITableViewController {
             policySectionDict = ["Policy URL": dataAgreement?[0].policyURL ?? "", "Jurisdiction": dataAgreement?[0].jurisdiction ?? "", "Third party data sharing": dataAgreement?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreement?[0].industryScope ?? "", "Geographic restriction": dataAgreement?[0].geaographicRestriction ?? "", "Retention period": dataAgreement?[0].retentionPeriod ?? "", "Storage Location": dataAgreement?[0].storageLocation ?? ""]
             DPIASectionDic = ["DPIA Date": dataAgreement?[0].DPIAdate ?? "", "DPIA Summary": dataAgreement?[0].DPIASummary ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
+
         } else {
             purposeSectionDic = ["Purpose": instance?.purpose ?? "", "Purpose Description": instance?.purposeDescription ?? "", "Lawful basis of processing": instance?.lawfulBasis ?? ""]
             policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? "", "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": instance?.policy?.dataRetentionPeriodDays ?? "", "Storage Location": instance?.policy?.storageLocation ?? ""]

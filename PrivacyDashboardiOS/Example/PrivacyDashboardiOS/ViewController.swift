@@ -26,15 +26,15 @@ class ViewController: UIViewController {
 //                                              turnOnAttributeDetail: false)
         
         // 2. For showing Data sharing UI
-        PrivacyDashboard.showDataSharingUI(apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
-                                           userId: "65378403b3f442eb9381b38d",
-                                           baseUrlString: "https://staging-consent-bb-api.igrant.io/v2",
-                                           dataAgreementId: "65522d05b792e39cff5cab2c",
-                                           organisationName: "My company",
-                                           organisationLogoImageUrl: "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png",
-                                           termsOfServiceText: "Terms of service.",
-                                           termsOfServiceUrl: "http://google.com",
-                                           cancelButtonText: "Cancel")
+//        PrivacyDashboard.showDataSharingUI(apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
+//                                           userId: "65378403b3f442eb9381b38d",
+//                                           baseUrlString: "https://staging-consent-bb-api.igrant.io/v2",
+//                                           dataAgreementId: "65522d05b792e39cff5cab2c",
+//                                           organisationName: "My company",
+//                                           organisationLogoImageUrl: "https://www.kasandbox.org/programming-images/avatars/old-spice-man-blue.png",
+//                                           termsOfServiceText: "Terms of service.",
+//                                           termsOfServiceUrl: "http://google.com",
+//                                           cancelButtonText: "Cancel")
        
         
        // 3. Call back method to receive response back
@@ -44,7 +44,8 @@ class ViewController: UIViewController {
         
 
         // 4. Setting API configuring params
-        //  PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", withUserId: "65378403b3f442eb9381b38d", withOrgId: "64f09f778e5f3800014a879a", withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2")
+          PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", withUserId: "65378403b3f442eb9381b38d", withOrgId: "64f09f778e5f3800014a879a", withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2")
+        
         
         // 5. Update Data agreement
 //        PrivacyDashboard.updateDataAgreementStatus(dataAgreementId: "6551c9ba7654351e98a58734", status: true)
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
         
         // 7. Open Data agreement policy UI
 //        PrivacyDashboard.showDataAgreementPolicy(dataAgreementRecord: dict)
-
+        
         // 8. Read data agreement 
         PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65539173ed8be121fe2a59af") { success, resultVal in
             print(resultVal)
@@ -70,6 +71,11 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
+        // 8. Read data agreement 
+//        PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65535cad70eaa866249023d4") { success, resultVal in
+//            print(resultVal)
+//        }
     }
 
     override func didReceiveMemoryWarning() {
