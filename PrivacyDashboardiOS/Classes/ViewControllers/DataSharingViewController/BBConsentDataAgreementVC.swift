@@ -20,6 +20,7 @@ class BBConsentDataAgreementVC: UITableViewController {
     var DPIASectionDic = [String:Any]()
     var dataAgreementDic = [[String: Any]]()
     var instance: DAPolicy?
+    var showCloseButton = false
     
     override func viewDidLoad() {
         do {
@@ -33,11 +34,20 @@ class BBConsentDataAgreementVC: UITableViewController {
     }
     
     func setUI() {
+        if showCloseButton {
+            let button1 = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: #selector(tapOnClose))
+            self.navigationItem.rightBarButtonItem  = button1
+        }
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DAcell")
         self.navigationItem.title = "Data Agreement"
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.tintColor = .black
+    }
+    
+    @objc func tapOnClose() {
+        self.dismiss(animated: true)
     }
     
     func setData() {

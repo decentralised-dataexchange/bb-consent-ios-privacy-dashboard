@@ -168,7 +168,10 @@ public class PrivacyDashboard {
         }
         let dataAgreementVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
         dataAgreementVC.dataAgreementDic = [dataAgreementDic]
-        UIApplication.topViewController()?.navigationController?.pushViewController(dataAgreementVC, animated: true)
+        dataAgreementVC.showCloseButton = true
+        let navVC = UINavigationController.init(rootViewController: dataAgreementVC)
+        navVC.modalPresentationStyle = .fullScreen
+        UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
     }
     
     // MARK: - 'Individual' related api calls
