@@ -180,6 +180,7 @@ public class PrivacyDashboard {
         let record = IndividualRecord(individual: individual)
         let data = try! JSONEncoder.init().encode(record)
         let dictionary = try! JSONSerialization.jsonObject(with: data) as! [String: Any]
+        BBConsentPrivacyDashboardiOS.shared.userId = "NO USER ID NEEDED HERE" // Only for create indvidual call
         
         BBConsentBaseWebService.shared.makeAPICall(urlString: Constant.URLStrings.createIndividual, parameters: dictionary, method: .post) { success, resultVal in
             if success {

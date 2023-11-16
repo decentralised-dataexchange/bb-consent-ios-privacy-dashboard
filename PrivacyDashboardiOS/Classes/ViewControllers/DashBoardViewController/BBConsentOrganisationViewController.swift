@@ -468,7 +468,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             titleStr = Constant.Alert.disallow
         }
         
-        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message:alrtMsg , preferredStyle: .alert)
+        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message:alrtMsg , preferredStyle: .alert)
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
                 let filteredRecord = self.records?.consentRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })

@@ -45,7 +45,7 @@ class LoginViewController: BBConsentBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = Constant.AppSetupConstant.KAppName
+        // self.title = Constant.AppSetupConstant.KAppName
         uiSetup()
         setupKeyboard()
         // Do any additional setup after loading the view.

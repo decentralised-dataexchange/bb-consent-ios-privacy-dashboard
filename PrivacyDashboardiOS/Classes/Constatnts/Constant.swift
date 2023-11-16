@@ -32,7 +32,7 @@ struct Constant {
    }
     struct AppSetupConstant {
         static let KSavingUSerInfoUserDefaultKey = "UserSession"
-        static let KAppName = "Data4Diabetes"
+        static let KAlertTitle = "Alert"
         static let KTokenExpired = "Invalid token, Authorization failed"
     }
     

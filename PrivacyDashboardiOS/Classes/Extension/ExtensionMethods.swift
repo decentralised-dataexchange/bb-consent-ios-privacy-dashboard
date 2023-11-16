@@ -41,7 +41,7 @@ extension UIViewController {
     }
     
     func showWarningAlert(message: String) {
-        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAppName, message: message)
+        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAlertTitle, message: message)
     }
 
     func popVC() {
@@ -53,19 +53,19 @@ extension UIViewController {
     }
     
     func showErrorAlert(message: String) {
-        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAppName, message: message)
+        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAlertTitle, message: message)
     }
     
     func showSucessAlert(message: String) {
-        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAppName, message: message)
+        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAlertTitle, message: message)
     }
     
     func showNoPermissionAlertWithMessage(message: String) {
-        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAppName, message: message)
+        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAlertTitle, message: message)
     }
     
     func showNoPermissionAlert() {
-        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAppName, message: NSLocalizedString("You dont have permission", comment: ""))
+        self.showAlertwithTitle(title: Constant.AppSetupConstant.KAlertTitle, message: NSLocalizedString("You dont have permission", comment: ""))
     }
 
     func presentShareView(content: AnyObject) {
