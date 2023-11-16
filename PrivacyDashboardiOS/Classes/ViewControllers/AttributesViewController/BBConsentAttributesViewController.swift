@@ -114,7 +114,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     func showConfirmationAlert() {
-        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAppName, message: NSLocalizedString(Constant.Alert.areYouWantToDisallowAll, comment: ""), preferredStyle: .alert)
+        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message: NSLocalizedString(Constant.Alert.areYouWantToDisallowAll, comment: ""), preferredStyle: .alert)
         alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.disallowAll, comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
             self.callDisallowAllApi()
         }));
