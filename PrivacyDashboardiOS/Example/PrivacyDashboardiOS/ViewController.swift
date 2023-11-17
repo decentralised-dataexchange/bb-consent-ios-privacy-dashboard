@@ -17,13 +17,14 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
     // 1. For showing Privacy Dashboard
-//        PrivacyDashboard.showPrivacyDashboard(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
-//                                              withUserId: "65378403b3f442eb9381b38d",
-//                                              withOrgId: "64f09f778e5f3800014a879a",
-//                                              withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2",
-//                                              turnOnAskme: false,
-//                                              turnOnUserRequest: false,
-//                                              turnOnAttributeDetail: false)
+        PrivacyDashboard.showPrivacyDashboard(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
+                                              withUserId: "6556f6cc617a19d996bd80a7",
+                                              withOrgId: "64f09f778e5f3800014a879a",
+                                              withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2",
+                                              withLocale: "en",
+                                              turnOnAskme: false,
+                                              turnOnUserRequest: false,
+                                              turnOnAttributeDetail: false)
         
         // 2. For showing Data sharing UI
 //        PrivacyDashboard.showDataSharingUI(apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY",
@@ -44,7 +45,7 @@ class ViewController: UIViewController {
         
 
         // 4. Setting API configuring params
-          PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", withUserId: "65378403b3f442eb9381b38d", withOrgId: "64f09f778e5f3800014a879a", withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2")
+//          PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsic2VydmljZSJdLCJPcmdhbmlzYXRpb25JZCI6IjY1MjY1Nzk2OTM4MGYzNWZhMWMzMDI0NSIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2NTI2NTc5NjkzODBmMzVmYTFjMzAyNDMiLCJleHAiOjE3MDA3MjkxOTF9.2rkHNiLDjQi8WOy4CWn96sMBx8KkvFCUMU0Xe6oXNbY", withUserId: "65378403b3f442eb9381b38d", withOrgId: "64f09f778e5f3800014a879a", withBaseUrl: "https://staging-consent-bb-api.igrant.io/v2")
         
         
         // 5. Update Data agreement
@@ -59,23 +60,24 @@ class ViewController: UIViewController {
 //        PrivacyDashboard.showDataAgreementPolicy(dataAgreementRecord: dict)
         
         // 8. Read data agreement 
-        PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65539173ed8be121fe2a59af") { success, resultVal in
-            print(resultVal)
-            let dict = resultVal["dataAgreement"] as? [String: Any]
-            if let theJSONData = try? JSONSerialization.data(withJSONObject: dict ?? [:], options: .prettyPrinted),
-               let theJSONText = String(data: theJSONData, encoding: String.Encoding.ascii) {
-                if let json = theJSONText.data(using: String.Encoding.utf8) {
-                    if let jsonData = try? JSONSerialization.jsonObject(with: json, options: .allowFragments) as? [String:AnyObject] {
-                        PrivacyDashboard.showDataAgreementPolicy(dataAgreementDic: jsonData)
-                    }
-                }
-            }
-        }
+//        PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65539173ed8be121fe2a59af") { success, resultVal in
+//            print(resultVal)
+//            let dict = resultVal["dataAgreement"] as? [String: Any]
+//            if let theJSONData = try? JSONSerialization.data(withJSONObject: dict ?? [:], options: .prettyPrinted),
+//               let theJSONText = String(data: theJSONData, encoding: String.Encoding.ascii) {
+//                if let json = theJSONText.data(using: String.Encoding.utf8) {
+//                    if let jsonData = try? JSONSerialization.jsonObject(with: json, options: .allowFragments) as? [String:AnyObject] {
+//                        PrivacyDashboard.showDataAgreementPolicy(dataAgreementDic: jsonData)
+//                    }
+//                }
+//            }
+//        }
         
         // 8. Read data agreement 
 //        PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65535cad70eaa866249023d4") { success, resultVal in
 //            print(resultVal)
 //        }
+        
     }
 
     override func didReceiveMemoryWarning() {

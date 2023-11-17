@@ -22,7 +22,7 @@ class BBConsentRequestStatusViewController: BBConsentBaseViewController, UITable
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = NSLocalizedString(Constant.Strings.userRequests, comment: "")
+        navigationItem.title = Constant.Strings.userRequests
     }
     
     func callHistoryListApi() {
@@ -181,7 +181,7 @@ extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
                     } else {
                         histories = data.DataRequests
                         if (histories?.count ?? 0) < 1 {
-                            historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString(Constant.Strings.noHistoryAbailable, comment: "")))
+                            historyListTable.setState(.withImage(image: nil, title: "", message: Constant.Strings.noHistoryAbailable))
                         }
                     }
                 }
@@ -227,10 +227,10 @@ extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
                     }
                 }
             } else if serviceManager.serviceType == .cancelRequest {
-                let alert = UIAlertController(title: NSLocalizedString(Constant.Alert.cancelRequest, comment: ""), message: NSLocalizedString(Constant.Alert.yourRequestCancelled, comment: ""), preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: Constant.Alert.cancelRequest, message: Constant.Alert.yourRequestCancelled, preferredStyle: UIAlertController.Style.alert)
 
                 // Add an action (button)
-                alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.OK, comment: ""), style: UIAlertAction.Style.default, handler: { _ in
+                alert.addAction(UIAlertAction(title: Constant.Alert.OK, style: UIAlertAction.Style.default, handler: { _ in
                     self.histories?.removeAll()
                     self.callHistoryListApi()
                     alert.dismiss(animated: true, completion: nil)

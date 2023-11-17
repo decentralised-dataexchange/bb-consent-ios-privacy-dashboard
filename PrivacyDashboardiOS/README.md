@@ -31,6 +31,12 @@ PrivacyDashboard.showPrivacyDashboard(withApiKey: <apiKey>,
 We can also show the privacy dashboard with `accessToken` (optional parameter).
 > **_Note:_** If we have `accessToken` then no need to pass `API key` and `User ID`
 
+To set app language, pass language code to `withLocale`. 
+Now supporting three languages ie: English, Swedish and Finnish (By default it'll be English) 
+```
+.withLocale: "en",
+```
+
 To enable user requests, set the `turnOnUserRequest` to `true`
 ```
 .turnOnUserRequest : true

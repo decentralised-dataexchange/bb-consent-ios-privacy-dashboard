@@ -43,7 +43,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
         self.titleLbl.text = self.consentInfo?.name
         
         if consentedCount ?? 0 > 0 {
-            var valueString = "Allow "
+            var valueString = "bb_consent_data_attribute_allow".localized
             valueString.append(": ")
             let consentedStr = String(consentedCount ?? 0)
             valueString.append(consentedStr)
@@ -56,7 +56,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
             }
             self.dataLbl.text = valueString
         } else {
-            self.dataLbl.text = "Disallow"
+            self.dataLbl.text = "bb_consent_dashboard_disallow".localized
         }
     }
 
