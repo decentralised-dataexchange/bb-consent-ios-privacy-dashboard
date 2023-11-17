@@ -122,7 +122,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Create an action
-        let firstAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.privacyPolicy, comment: ""), style: .default) { action -> Void in
+        let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.privacyPolicy, style: .default) { action -> Void in
             
             if let privacyPolicy =  self.organization?.privacyPolicy {
                 if self.verifyUrl(urlString: privacyPolicy) {
@@ -135,15 +135,15 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
             }
         }
         
-        let secondAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.userRequests, comment: ""), style: .default) { action -> Void in
+        let secondAction: UIAlertAction = UIAlertAction(title: Constant.Strings.userRequests, style: .default) { action -> Void in
             self.showRequestedStatus()
         }
         
-        let thirdAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.consentHistory, comment: ""), style: .default) { action -> Void in
+        let thirdAction: UIAlertAction = UIAlertAction(title: Constant.Strings.consentHistory, style: .default) { action -> Void in
             self.showConsentHistory()
         }
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel) { action -> Void in }
+        let cancelAction: UIAlertAction = UIAlertAction(title: Constant.Strings.cancel, style: .cancel) { action -> Void in }
         
         // Add actions
         actionSheetController.addAction(firstAction)
@@ -476,12 +476,12 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                     serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
                 }
             }));
-            alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
+            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .cancel, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
             }));
             
         } else {
-            alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
+            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .destructive, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
             }));
             

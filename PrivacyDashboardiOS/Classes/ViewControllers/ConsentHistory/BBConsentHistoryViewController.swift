@@ -38,7 +38,7 @@ class BBConsentHistoryViewController: BBConsentBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = NSLocalizedString(Constant.Strings.consentHistory, comment: "")
+        navigationItem.title = Constant.Strings.consentHistory
     }
     
 
@@ -74,7 +74,7 @@ extension BBConsentHistoryViewController: WebServiceTaskManagerProtocol {
                     } else {
                         self.histories = data.consentHistory
                         if (self.histories?.count ?? 0) < 1 {
-                            self.historyListTable.setState(.withImage(image: nil, title: "", message: NSLocalizedString(Constant.Strings.noHistoryAbailable, comment: "")))
+                            self.historyListTable.setState(.withImage(image: nil, title: "", message: Constant.Strings.noHistoryAbailable))
                         }
                     }
                     self.historyListTable.reloadData()

@@ -14,13 +14,13 @@ class BBConsentDashBoardOverviewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Read More")
-        let colorRange = NSMakeRange(0,"Read More".count)
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "bb_consent_dashboard_read_more".localized)
+        let colorRange = NSMakeRange(0,"bb_consent_dashboard_read_more".localized.count)
         attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red:0.59, green:0.59, blue:0.61, alpha:1), range:colorRange)
         overViewLbl.collapsedAttributedLink = attributeString
         
-        let readLessattributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Read Less")
-        let colorRangeReadLess = NSMakeRange(0,"Read Less".count)
+        let readLessattributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "bb_consent_dashboard_read_less".localized)
+        let colorRangeReadLess = NSMakeRange(0,"bb_consent_dashboard_read_less".localized.count)
         readLessattributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red:1, green:0.53, blue:0.54, alpha:1), range:colorRangeReadLess)
         overViewLbl.expandedAttributedLink = readLessattributeString
     }

@@ -16,9 +16,9 @@ class BBConsentDownloadDataProgressViewController: BBConsentBaseViewController {
     @IBOutlet weak var cancelButton: UIButton!
     var fromHistory = false;
     let Steps = [
-        NSLocalizedString(Constant.Strings.requestInitiated, comment: ""),
-        NSLocalizedString(Constant.Strings.requestAcknowledged, comment: ""),
-        NSLocalizedString(Constant.Strings.requestProcessed, comment: "")
+        Constant.Strings.requestInitiated,
+        Constant.Strings.requestAcknowledged,
+        Constant.Strings.requestProcessed
     ]
     
     override func viewDidLoad() {
@@ -44,9 +44,9 @@ class BBConsentDownloadDataProgressViewController: BBConsentBaseViewController {
         self.navigationController?.navigationBar.isHidden = false
         
         if self.requestType == RequestType.DownloadData || self.requestStatus?.type == 2 {
-            self.title = NSLocalizedString(Constant.Strings.downloadDataRequestStatus, comment: "")
+            self.title = Constant.Strings.downloadDataRequestStatus
         } else {
-            self.title = NSLocalizedString(Constant.Strings.deleteDataRequestStatus, comment: "")
+            self.title = Constant.Strings.deleteDataRequestStatus
         }
         let comments = [ 0 : formattedDate(dateStr: requestStatus?.RequestedDate ?? ""),
                          1 : " ",
@@ -70,15 +70,15 @@ class BBConsentDownloadDataProgressViewController: BBConsentBaseViewController {
         return timeStamp
     }
     @IBAction func cancelButtonAction(_ sender: Any) {
-        let alert = UIAlertController(title: NSLocalizedString(Constant.Alert.cancelRequest, comment: ""), message: NSLocalizedString(Constant.Alert.doYouWantToCancelThisRequest, comment: ""), preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: Constant.Alert.cancelRequest, message: Constant.Alert.doYouWantToCancelThisRequest, preferredStyle: UIAlertController.Style.alert)
         
         // Add an action (button)
-        alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.OK, comment: ""), style: UIAlertAction.Style.default, handler: { action in
+        alert.addAction(UIAlertAction(title: Constant.Alert.OK, style: UIAlertAction.Style.default, handler: { action in
             self.callCancelRequestApi()
             alert.dismiss(animated: true, completion: nil)
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.cancel, comment: ""), style: UIAlertAction.Style.default, handler: { action in
+        alert.addAction(UIAlertAction(title: Constant.Alert.cancel, style: UIAlertAction.Style.default, handler: { action in
             alert.dismiss(animated: true, completion: nil)
         }))
         
@@ -103,10 +103,10 @@ extension BBConsentDownloadDataProgressViewController: WebServiceTaskManagerProt
         
         if let serviceManager = manager as? OrganisationWebServiceManager{
             if serviceManager.serviceType == .cancelRequest{
-                let alert = UIAlertController(title: NSLocalizedString(Constant.Alert.cancelRequest, comment: ""), message: NSLocalizedString(Constant.Alert.yourRequestCancelled, comment: ""), preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: Constant.Alert.cancelRequest, message: Constant.Alert.yourRequestCancelled, preferredStyle: UIAlertController.Style.alert)
                 
                 // Add an action (button)
-                alert.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.OK, comment: ""), style: UIAlertAction.Style.default, handler: { action in
+                alert.addAction(UIAlertAction(title: Constant.Alert.OK, style: UIAlertAction.Style.default, handler: { action in
                     self.navigationController?.popViewController(animated: true)
                     alert.dismiss(animated: true, completion: nil)
                 }))

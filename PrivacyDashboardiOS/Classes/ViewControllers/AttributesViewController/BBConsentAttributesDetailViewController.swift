@@ -81,7 +81,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
         if indexPath.row != 2 {
             let allowCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedConsentAllowCellID,for: indexPath)
             if indexPath.row == 0 {
-                allowCell.textLabel?.text = NSLocalizedString(Constant.Alert.allow, comment: "")
+                allowCell.textLabel?.text = Constant.Alert.allow
                 if consent?.status?.consented == .Allow {
                     allowCell.accessoryType = .checkmark
                     preIndexPath = indexPath
@@ -89,7 +89,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
                     allowCell.accessoryType = .none
                 }
             } else {
-                allowCell.textLabel?.text = NSLocalizedString(Constant.Alert.disallow, comment: "")
+                allowCell.textLabel?.text = Constant.Alert.disallow
                 if consent?.status?.consented == .Disallow {
                     preIndexPath = indexPath
                     allowCell.accessoryType = .checkmark
@@ -108,14 +108,14 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
             if consent?.status?.consented == .AskMe {
                 askMeCell.tickImage.isHidden = false
                 let days : Int = (consent?.status?.days)!
-                askMeCell.selectedDaysLbl.text = "\(days) " + NSLocalizedString(Constant.Strings.days, comment: "")
+                askMeCell.selectedDaysLbl.text = "\(days) " + Constant.Strings.days
                 askMeCell.askMeSlider.setValue(Float(days), animated: false)
                 preIndexPath = indexPath
 
             } else {
                 let days = 30
                 askMeCell.tickImage.isHidden = true
-                askMeCell.selectedDaysLbl.text = "\(days) " + NSLocalizedString(Constant.Strings.days, comment: "")
+                askMeCell.selectedDaysLbl.text = "\(days) " + Constant.Strings.days
                 askMeCell.askMeSlider.setValue(Float(days), animated: false)
             }
             return askMeCell
@@ -123,7 +123,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return NSLocalizedString(Constant.Strings.consent, comment: "")
+        return Constant.Strings.consent
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -133,11 +133,11 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
         }
         
         if consent?.status?.consented == .Allow {
-            return NSLocalizedString(Constant.Strings.consentAllowedNoteOne, comment: "") + (consentTitle) + NSLocalizedString(Constant.Strings.consentAllowedNoteTwo, comment: "")
+            return Constant.Strings.consentAllowedNoteOne + (consentTitle) + Constant.Strings.consentAllowedNoteTwo
         } else if consent?.status?.consented == .Disallow {
-            return NSLocalizedString(Constant.Strings.consentDisAllowedNote, comment: "")
+            return Constant.Strings.consentDisAllowedNote
         } else {
-            return NSLocalizedString(Constant.Strings.consentDefaultNote, comment: "")
+            return Constant.Strings.consentDefaultNote
         }
     }
     

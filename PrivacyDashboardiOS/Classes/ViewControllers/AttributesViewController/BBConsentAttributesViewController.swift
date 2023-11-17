@@ -114,11 +114,11 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     func showConfirmationAlert() {
-        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message: NSLocalizedString(Constant.Alert.areYouWantToDisallowAll, comment: ""), preferredStyle: .alert)
-        alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Alert.disallowAll, comment: ""), style: .destructive, handler: {(action:UIAlertAction) in
+        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message: Constant.Alert.areYouWantToDisallowAll, preferredStyle: .alert)
+        alerController.addAction(UIAlertAction(title: Constant.Alert.disallowAll, style: .destructive, handler: {(action:UIAlertAction) in
             self.callDisallowAllApi()
         }));
-        alerController.addAction(UIAlertAction(title: NSLocalizedString(Constant.Strings.cancel, comment: ""), style: .cancel, handler: {(action:UIAlertAction) in
+        alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .cancel, handler: {(action:UIAlertAction) in
         }));
         present(alerController, animated: true, completion: nil)
     }
@@ -246,7 +246,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
         consentCell.consent = consentVal
         consentCell.showData()
         if isFromQR {
-            consentCell.consentTypeLbl.text =  NSLocalizedString(Constant.Alert.allow, comment: "")
+            consentCell.consentTypeLbl.text =  Constant.Alert.allow
             //  consentCell.rightArrow.isHidden = true
         }
         return consentCell

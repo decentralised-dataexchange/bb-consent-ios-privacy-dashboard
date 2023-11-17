@@ -539,3 +539,11 @@ extension NSMutableAttributedString {
         return false
     }
 }
+
+extension String {
+    var localized: String {
+        let languageCode = BBConsentPrivacyDashboardiOS.shared.languageCode
+        let bundle = Bundle(url: Bundle.main.bundleURL.appendingPathComponent("Frameworks").appendingPathComponent("PrivacyDashboardiOS.framework").appendingPathComponent("/\(languageCode).lproj")) ?? Bundle.main
+        return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
+    }
+}

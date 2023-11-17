@@ -12,6 +12,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
     public var turnOnUserRequests = false
     public var turnOnAskMeSection = false
     public var turnOnAttributeDetailScreen = false
+    public var languageCode = "en"
     // Demo server by default
     public var baseUrl = "https://demo-consent-bb-api.igrant.io/v2"
 
