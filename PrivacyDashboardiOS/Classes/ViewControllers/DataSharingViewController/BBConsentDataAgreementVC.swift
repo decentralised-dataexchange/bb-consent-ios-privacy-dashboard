@@ -10,7 +10,7 @@ import Foundation
 // MARK: Custom cell
 class DACell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var descLabel: UITextView!
 }
 
 class BBConsentDataAgreementVC: UITableViewController {
@@ -59,15 +59,15 @@ class BBConsentDataAgreementVC: UITableViewController {
 
         } else {
             purposeSectionDic = ["Purpose": instance?.purpose ?? "", "Purpose Description": instance?.purposeDescription ?? "", "Lawful basis of processing": instance?.lawfulBasis ?? ""]
-            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? "", "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": instance?.policy?.dataRetentionPeriodDays ?? "", "Storage Location": instance?.policy?.storageLocation ?? ""]
-            DPIASectionDic = ["DPIA Date":instance?.dpiaDate ?? "", "DPIA Summary": instance?.dpiaSummaryURL ?? ""]
+            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? 0, "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": instance?.policy?.dataRetentionPeriodDays ?? 0, "Storage Location": instance?.policy?.storageLocation ?? ""]
+            DPIASectionDic = ["DPIA Date":instance?.dpiaDate ?? "", "DPIA Summary": instance?.dpiaSummaryUrl ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
         }
     }
     
     // MARK: TableView delegates & datasources
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 65
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -126,7 +126,8 @@ class BBConsentDataAgreementVC: UITableViewController {
         let keys = item.map({ $0.key })
         let values = item.map({ $0.value })
         cell.titleLabel.text = keys[indexPath.row]
-        cell.descLabel.text = values[indexPath.row] as? String
+        let val = "\(values[indexPath.row])"
+        cell.descLabel.text = val
         return cell
     }
 }

@@ -17,7 +17,7 @@ class DAPolicy: Codable {
     var id, controllerID, lawfulBasis, version: String?
     var methodOfUse, dpiaDate: String?
     var active: Bool?
-    var dpiaSummaryURL: String?
+    var dpiaSummaryUrl: String?
     var controllerURL: String?
 
     enum CodingKeys: String, CodingKey {
@@ -26,11 +26,11 @@ class DAPolicy: Codable {
         case controllerName, signature, id
         case controllerID
         case lawfulBasis, version, methodOfUse, dpiaDate, active
-        case dpiaSummaryURL
+        case dpiaSummaryUrl
         case controllerURL
     }
 
-    init(forgettable: Bool?, policy: Policy?, purpose: String?, lifecycle: String?, purposeDescription: String?, dataAttributes: [DataAttributeInPolicy]?, compatibleWithVersionID: String?, controllerName: String?, signature: Signature?, id: String?, controllerID: String?, lawfulBasis: String?, version: String?, methodOfUse: String?, dpiaDate: String?, active: Bool?, dpiaSummaryURL: String?, controllerURL: String?) {
+    init(forgettable: Bool?, policy: Policy?, purpose: String?, lifecycle: String?, purposeDescription: String?, dataAttributes: [DataAttributeInPolicy]?, compatibleWithVersionID: String?, controllerName: String?, signature: Signature?, id: String?, controllerID: String?, lawfulBasis: String?, version: String?, methodOfUse: String?, dpiaDate: String?, active: Bool?, dpiaSummaryUrl: String?, controllerURL: String?) {
         self.forgettable = forgettable
         self.policy = policy
         self.purpose = purpose
@@ -47,7 +47,7 @@ class DAPolicy: Codable {
         self.methodOfUse = methodOfUse
         self.dpiaDate = dpiaDate
         self.active = active
-        self.dpiaSummaryURL = dpiaSummaryURL
+        self.dpiaSummaryUrl = dpiaSummaryUrl
         self.controllerURL = controllerURL
     }
 }
