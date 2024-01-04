@@ -11,7 +11,7 @@ import ExpandableLabel
 
 class BBConsentDashBoardOverviewCell: UITableViewCell {
     @IBOutlet weak var overViewLbl: ExpandableLabel!
-
+    @IBOutlet weak var overViewTitleLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "bb_consent_dashboard_read_more".localized)

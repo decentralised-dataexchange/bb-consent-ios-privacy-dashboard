@@ -12,7 +12,7 @@ class BBConsentDashboardDataAgreementCell: UITableViewCell {
     @IBOutlet weak var dataAgreementsLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        dataAgreementsLbl.text = Constant.Strings.dataAgreements
+        dataAgreementsLbl.text = Constant.Strings.dataAgreements.localized
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

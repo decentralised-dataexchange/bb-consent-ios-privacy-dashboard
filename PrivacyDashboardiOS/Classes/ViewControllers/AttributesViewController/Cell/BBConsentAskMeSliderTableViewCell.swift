@@ -33,7 +33,7 @@ class BBConsentAskMeSliderTableViewCell: UITableViewCell {
     
     @IBAction func sliderValueChanged(sender: UISlider) {
         slidercurrentValue = Int(sender.value)
-        selectedDaysLbl.text = "\(slidercurrentValue) \(Constant.Strings.days)"
+        selectedDaysLbl.text = "\(slidercurrentValue) \(Constant.Strings.days.localized)"
         self.delegate?.askMeSliderValueChanged(days: slidercurrentValue)
     }
     

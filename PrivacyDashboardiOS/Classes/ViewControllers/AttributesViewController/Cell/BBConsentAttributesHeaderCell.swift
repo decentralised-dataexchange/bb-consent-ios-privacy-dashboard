@@ -12,7 +12,7 @@ class BBConsentAttributesHeaderCell: UITableViewCell {
     @IBOutlet weak var policyButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
-        dataAttributeLbl.text = Constant.Strings.dataAttributes
+        dataAttributeLbl.text = Constant.Strings.dataAttributes.localized
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -108,14 +108,14 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
             if consent?.status?.consented == .AskMe {
                 askMeCell.tickImage.isHidden = false
                 let days : Int = (consent?.status?.days)!
-                askMeCell.selectedDaysLbl.text = "\(days) " + Constant.Strings.days
+                askMeCell.selectedDaysLbl.text = "\(days) " + Constant.Strings.days.localized
                 askMeCell.askMeSlider.setValue(Float(days), animated: false)
                 preIndexPath = indexPath
 
             } else {
                 let days = 30
                 askMeCell.tickImage.isHidden = true
-                askMeCell.selectedDaysLbl.text = "\(days) " + Constant.Strings.days
+                askMeCell.selectedDaysLbl.text = "\(days) " + Constant.Strings.days.localized
                 askMeCell.askMeSlider.setValue(Float(days), animated: false)
             }
             return askMeCell
@@ -123,7 +123,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Constant.Strings.consent
+        return Constant.Strings.consent.localized
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
@@ -133,11 +133,11 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
         }
         
         if consent?.status?.consented == .Allow {
-            return Constant.Strings.consentAllowedNoteOne + (consentTitle) + Constant.Strings.consentAllowedNoteTwo
+            return Constant.Strings.consentAllowedNoteOne.localized + (consentTitle) + Constant.Strings.consentAllowedNoteTwo
         } else if consent?.status?.consented == .Disallow {
-            return Constant.Strings.consentDisAllowedNote
+            return Constant.Strings.consentDisAllowedNote.localized
         } else {
-            return Constant.Strings.consentDefaultNote
+            return Constant.Strings.consentDefaultNote.localized
         }
     }
     
