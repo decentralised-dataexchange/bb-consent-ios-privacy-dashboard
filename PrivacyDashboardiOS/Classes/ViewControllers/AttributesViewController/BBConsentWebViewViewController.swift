@@ -29,7 +29,7 @@ class BBConsentWebViewViewController: BBConsentBaseViewController, WKNavigationD
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
-        self.title = Constant.Strings.privacyPolicy
+        self.title = Constant.Strings.privacyPolicy.localized
     }
     
     override func viewDidAppear(_ animated: Bool) {
