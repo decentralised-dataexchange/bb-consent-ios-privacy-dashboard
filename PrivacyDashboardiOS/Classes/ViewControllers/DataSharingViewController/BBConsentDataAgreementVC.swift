@@ -52,14 +52,20 @@ class BBConsentDataAgreementVC: UITableViewController {
     
     func setData() {
         if dataAgreement?.count ?? 0 > 0 {
+            let years = (Int(dataAgreement?[0].retentionPeriod ?? "") ?? 0)/365
+            let retenetionPeriod = (years > 1) ? "\(years) Years" : "\(years) Year"
+
             purposeSectionDic = ["Purpose": dataAgreement?[0].name ?? "", "Purpose Description": dataAgreement?[0].descriptionField ?? "", "Lawful basis of processing": dataAgreement?[0].lawfulBasis ?? ""]
-            policySectionDict = ["Policy URL": dataAgreement?[0].policyURL ?? "", "Jurisdiction": dataAgreement?[0].jurisdiction ?? "", "Third party data sharing": dataAgreement?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreement?[0].industryScope ?? "", "Geographic restriction": dataAgreement?[0].geaographicRestriction ?? "", "Retention period": dataAgreement?[0].retentionPeriod ?? "", "Storage Location": dataAgreement?[0].storageLocation ?? ""]
+            policySectionDict = ["Policy URL": dataAgreement?[0].policyURL ?? "", "Jurisdiction": dataAgreement?[0].jurisdiction ?? "", "Third party data sharing": dataAgreement?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreement?[0].industryScope ?? "", "Geographic restriction": dataAgreement?[0].geaographicRestriction ?? "", "Retention period": retenetionPeriod, "Storage Location": dataAgreement?[0].storageLocation ?? ""]
             DPIASectionDic = ["DPIA Date": dataAgreement?[0].DPIAdate ?? "", "DPIA Summary": dataAgreement?[0].DPIASummary ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
 
         } else {
+            let years = Int(instance?.policy?.dataRetentionPeriodDays ?? 0)/365
+            let retenetionPeriod = (years > 1) ? "\(years) Years" : "\(years) Year"
+            
             purposeSectionDic = ["Purpose": instance?.purpose ?? "", "Purpose Description": instance?.purposeDescription ?? "", "Lawful basis of processing": instance?.lawfulBasis ?? ""]
-            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? 0, "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": instance?.policy?.dataRetentionPeriodDays ?? 0, "Storage Location": instance?.policy?.storageLocation ?? ""]
+            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? 0, "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": retenetionPeriod, "Storage Location": instance?.policy?.storageLocation ?? ""]
             DPIASectionDic = ["DPIA Date":instance?.dpiaDate ?? "", "DPIA Summary": instance?.dpiaSummaryUrl ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
         }
