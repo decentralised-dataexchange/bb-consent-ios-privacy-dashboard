@@ -22,7 +22,7 @@ class BBConsentRequestStatusViewController: BBConsentBaseViewController, UITable
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = Constant.Strings.userRequests
+        navigationItem.title = Constant.Strings.userRequests.localized
     }
     
     func callHistoryListApi() {
@@ -139,15 +139,15 @@ class BBConsentRequestStatusViewController: BBConsentBaseViewController, UITable
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         // Create an action
-        let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.downloadData, style: .default) { _ -> Void in
+        let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.downloadData.localized, style: .default) { _ -> Void in
             self.getDownloadDataStatus()
         }
 
-        let secondAction: UIAlertAction = UIAlertAction(title: Constant.Strings.deleteData, style: .default) { _ -> Void in
+        let secondAction: UIAlertAction = UIAlertAction(title: Constant.Strings.deleteData.localized, style: .default) { _ -> Void in
             self.getForgetMeStatus()
         }
 
-        let cancelAction: UIAlertAction = UIAlertAction(title: Constant.Strings.cancel, style: .cancel) { _ -> Void in }
+        let cancelAction: UIAlertAction = UIAlertAction(title: Constant.Strings.cancel.localized, style: .cancel) { _ -> Void in }
 
         // Add actions
         actionSheetController.addAction(firstAction)
@@ -181,7 +181,7 @@ extension BBConsentRequestStatusViewController: WebServiceTaskManagerProtocol {
                     } else {
                         histories = data.DataRequests
                         if (histories?.count ?? 0) < 1 {
-                            historyListTable.setState(.withImage(image: nil, title: "", message: Constant.Strings.noHistoryAbailable))
+                            historyListTable.setState(.withImage(image: nil, title: "", message: Constant.Strings.noHistoryAbailable.localized))
                         }
                     }
                 }

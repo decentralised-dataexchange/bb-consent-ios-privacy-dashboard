@@ -16,9 +16,9 @@ class BBConsentDownloadDataProgressViewController: BBConsentBaseViewController {
     @IBOutlet weak var cancelButton: UIButton!
     var fromHistory = false;
     let Steps = [
-        Constant.Strings.requestInitiated,
-        Constant.Strings.requestAcknowledged,
-        Constant.Strings.requestProcessed
+        Constant.Strings.requestInitiated.localized,
+        Constant.Strings.requestAcknowledged.localized,
+        Constant.Strings.requestProcessed.localized
     ]
     
     override func viewDidLoad() {

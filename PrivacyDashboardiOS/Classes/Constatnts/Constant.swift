@@ -80,17 +80,17 @@ struct Constant {
         static let KPromptMsgNotConfigured = "Not Configured"
         
         static let areYouSureYouWantToAllow = "Are you sure you want to allow?"
-        static let allow = "bb_consent_data_attribute_allow".localized
+        static let allow = "bb_consent_data_attribute_allow"
         static let areYouSureYouWantToDisAllow = "Are you sure you want to disallow?"
-        static let disallow = "bb_consent_dashboard_disallow".localized
+        static let disallow = "bb_consent_dashboard_disallow"
         static let areYouWantToDisallowAll = "Are you sure you want to disallow all ?"
         static let disallowAll = "Disallow All"
         static let invalidURL = "Invalid URL"
         
-        static let cancelRequest = "bb_consent_user_request_cancel_request".localized
+        static let cancelRequest = "bb_consent_user_request_cancel_request"
         static let yourRequestCancelled = "Your request cancelled successfully"
         static let OK = "OK"
-        static let cancel = "bb_consent_cancel".localized
+        static let cancel = "bb_consent_cancel"
         static let doYouWantToCancelThisRequest = "Do you want to cancel this request?"
     }
 
@@ -133,30 +133,30 @@ struct Constant {
     }
     
     struct Strings {
-        static let days = "bb_consent_data_attribute_detail_days_with_count".localized
-        static let consent = "bb_consent_data_attribute_detail_consent".localized
-        static let consentAllowedNoteOne = "bb_consent_data_attribute_detail_allow_consent_rule".localized
+        static let days = "bb_consent_data_attribute_detail_days_with_count"
+        static let consent = "bb_consent_data_attribute_detail_consent"
+        static let consentAllowedNoteOne = "bb_consent_data_attribute_detail_allow_consent_rule"
         static let consentAllowedNoteTwo = " permanently for any analytics or third party usage beyond the purposes you have signed up with."
-        static let consentDisAllowedNote = "bb_consent_data_attribute_detail_disallow_consent_rule".localized
-        static let consentDefaultNote = "bb_consent_data_attribute_detail_askme_consent_rule".localized
-        static let cancel = "bb_consent_cancel".localized
-        static let privacyPolicy = "bb_consent_web_view_privacy_policy".localized
-        static let policy = "bb_consent_web_view_policy".localized
-        static let userRequests = "bb_consent_user_request_user_request".localized
-        static let consentHistory = "bb_consent_history_consent_history".localized
-        static let allow = "bb_consent_data_attribute_allow".localized
-        static let disallow = "bb_consent_dashboard_disallow".localized
+        static let consentDisAllowedNote = "bb_consent_data_attribute_detail_disallow_consent_rule"
+        static let consentDefaultNote = "bb_consent_data_attribute_detail_askme_consent_rule"
+        static let cancel = "bb_consent_cancel"
+        static let privacyPolicy = "bb_consent_web_view_privacy_policy"
+        static let policy = "bb_consent_web_view_policy"
+        static let userRequests = "bb_consent_user_request_user_request"
+        static let consentHistory = "bb_consent_history_consent_history"
+        static let allow = "bb_consent_data_attribute_allow"
+        static let disallow = "bb_consent_dashboard_disallow"
         static let askMe = "AskMe"
-        static let noHistoryAbailable = "bb_consent_history_empty_consent_history".localized
-        static let downloadData = "bb_consent_user_request_download_data".localized
-        static let deleteData = "bb_consent_user_request_delete_data".localized
-        static let requestInitiated = "bb_consent_user_request_request_initiated".localized
-        static let requestAcknowledged = "bb_consent_user_request_request_acknowledged".localized
-        static let requestProcessed = "bb_consent_user_request_request_processed".localized
+        static let noHistoryAbailable = "bb_consent_history_empty_consent_history"
+        static let downloadData = "bb_consent_user_request_download_data"
+        static let deleteData = "bb_consent_user_request_delete_data"
+        static let requestInitiated = "bb_consent_user_request_request_initiated"
+        static let requestAcknowledged = "bb_consent_user_request_request_acknowledged"
+        static let requestProcessed = "bb_consent_user_request_request_processed"
         static let downloadDataRequestStatus = "Download Data Request Status"
         static let deleteDataRequestStatus = "Delete Data Request Status"
-        static let dataAgreements = "bb_consent_dashboard_data_agreements".localized
-        static let dataAttributes = "bb_consent_data_attribute_data_attributes" .localized
+        static let dataAgreements = "bb_consent_dashboard_data_agreements"
+        static let dataAttributes = "bb_consent_data_attribute_data_attributes"
     }
     
     struct URLStrings {

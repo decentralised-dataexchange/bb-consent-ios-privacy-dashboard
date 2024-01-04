@@ -118,7 +118,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
         alerController.addAction(UIAlertAction(title: Constant.Alert.disallowAll, style: .destructive, handler: {(action:UIAlertAction) in
             self.callDisallowAllApi()
         }));
-        alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+        alerController.addAction(UIAlertAction(title: Constant.Strings.cancel.localized, style: .cancel, handler: {(action:UIAlertAction) in
         }));
         present(alerController, animated: true, completion: nil)
     }
@@ -203,7 +203,8 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                 orgOverViewCell.overViewLbl.delegate = self
                 orgOverViewCell.layoutIfNeeded()
                 orgOverViewCell.overViewLbl.shouldCollapse = true
-                
+                orgOverViewCell.overViewTitleLbl?.text = "bb_consent_dashboard_overview".localized
+
                 if overViewCollpased == true {
                     //   orgOverViewCell.overViewLbl.collapsed = overViewCollpased
                     //   orgOverViewCell.overViewLbl.numberOfLines = 3
@@ -235,6 +236,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                 consentHeaderCell.policyButton.layer.borderColor = UIColor(red:0.62, green:0.62, blue:0.62, alpha:1).cgColor
                 consentHeaderCell.policyButton.layer.borderWidth = 0.5
                 consentHeaderCell.policyButton.addTarget(self, action: #selector(policyBtnClicked), for: .touchUpInside)
+                consentHeaderCell.policyButton.setTitle("bb_consent_data_attribute_read_policy".localized, for: .normal)
                 return consentHeaderCell
                 
             }

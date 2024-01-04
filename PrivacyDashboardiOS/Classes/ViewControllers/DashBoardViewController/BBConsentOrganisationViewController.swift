@@ -151,7 +151,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Create an action
-        let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.privacyPolicy, style: .default) { action -> Void in
+        let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.privacyPolicy.localized, style: .default) { action -> Void in
             
             if let privacyPolicy =  self.organizationObj?.organisation.policyURL {
                 if self.verifyUrl(urlString: privacyPolicy) {
@@ -164,15 +164,15 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
             }
         }
         
-        let secondAction: UIAlertAction = UIAlertAction(title: Constant.Strings.userRequests, style: .default) { action -> Void in
+        let secondAction: UIAlertAction = UIAlertAction(title: Constant.Strings.userRequests.localized, style: .default) { action -> Void in
             self.showRequestedStatus()
         }
         
-        let thirdAction: UIAlertAction = UIAlertAction(title: Constant.Strings.consentHistory, style: .default) { action -> Void in
+        let thirdAction: UIAlertAction = UIAlertAction(title: Constant.Strings.consentHistory.localized, style: .default) { action -> Void in
             self.showConsentHistory()
         }
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: Constant.Strings.cancel, style: .cancel) { action -> Void in }
+        let cancelAction: UIAlertAction = UIAlertAction(title: Constant.Strings.cancel.localized, style: .cancel) { action -> Void in }
         
         // Add actions
         actionSheetController.addAction(firstAction)
@@ -299,7 +299,8 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
                 orgOverViewCell.overViewLbl.delegate = self
                 orgOverViewCell.layoutIfNeeded()
                 orgOverViewCell.overViewLbl.shouldCollapse = true
-                
+                orgOverViewCell.overViewTitleLbl?.text = "bb_consent_dashboard_overview".localized
+
                 if overViewCollpased == true {
                     //  orgOverViewCell.overViewLbl.collapsed = overViewCollpased
                     //  orgOverViewCell.overViewLbl.numberOfLines = 3
@@ -392,12 +393,12 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                     })
                 }
             }));
-            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .cancel, handler: {(action:UIAlertAction) in
+            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel.localized, style: .cancel, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
             }));
             
         } else {
-            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .destructive, handler: {(action:UIAlertAction) in
+            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel.localized, style: .destructive, handler: {(action:UIAlertAction) in
                 cell.statusSwitch.isOn = !cell.statusSwitch.isOn
             }));
             

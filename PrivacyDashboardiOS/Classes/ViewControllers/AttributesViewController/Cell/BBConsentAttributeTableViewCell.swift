@@ -28,9 +28,9 @@ class BBConsentAttributeTableViewCell: UITableViewCell {
         self.titleLbl.text = self.consentInfo?.name
         self.dataLbl.text = ""
         if consent == true {
-            self.consentTypeLbl.text = Constant.Strings.allow
+            self.consentTypeLbl.text = Constant.Strings.allow.localized
         } else{
-            self.consentTypeLbl.text = Constant.Strings.disallow
+            self.consentTypeLbl.text = Constant.Strings.disallow.localized
         }
     }
 }
