@@ -81,7 +81,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
         if indexPath.row != 2 {
             let allowCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedConsentAllowCellID,for: indexPath)
             if indexPath.row == 0 {
-                allowCell.textLabel?.text = Constant.Alert.allow
+                allowCell.textLabel?.text = Constant.Alert.allow.localized
                 if consent?.status?.consented == .Allow {
                     allowCell.accessoryType = .checkmark
                     preIndexPath = indexPath
@@ -89,7 +89,7 @@ extension BBConsentAttributesDetailViewController: UITableViewDelegate,UITableVi
                     allowCell.accessoryType = .none
                 }
             } else {
-                allowCell.textLabel?.text = Constant.Alert.disallow
+                allowCell.textLabel?.text = Constant.Alert.disallow.localized
                 if consent?.status?.consented == .Disallow {
                     preIndexPath = indexPath
                     allowCell.accessoryType = .checkmark
