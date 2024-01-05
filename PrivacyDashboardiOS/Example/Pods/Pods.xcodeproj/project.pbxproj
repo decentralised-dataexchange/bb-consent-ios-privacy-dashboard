@@ -192,6 +192,9 @@
 		902EE1A52ADBB13D002BA0CB /* PrivacyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B2F1F13F9DCA9A196EBE8A788F08399 /* PrivacyDashboard.storyboard */; };
 		902EE1A72AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */; };
 		90BF1CEB2AEAB60100A46289 /* DataAgreementRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */; };
+		90C586D42B46DAC500A38D1F /* DataAgreementsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C586D32B46DAC500A38D1F /* DataAgreementsModel.swift */; };
+		90C586D72B47F1C300A38D1F /* RecordsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C586D62B47F1C300A38D1F /* RecordsModel.swift */; };
+		90C586D92B4808DE00A38D1F /* OrganisationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C586D82B4808DE00A38D1F /* OrganisationModel.swift */; };
 		90E71AF72AF8B31600574475 /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71AF62AF8B31600574475 /* Individual.swift */; };
 		90E71AF92AF91A0300574475 /* PrivacyDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71AF82AF91A0300574475 /* PrivacyDashboard.swift */; };
 		90E71B202AFCB66900574475 /* BBConsentDataSharingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E71B1E2AFCB2FD00574475 /* BBConsentDataSharingVC.swift */; };
@@ -739,6 +742,9 @@
 		900B8B1A2AD6E62B00964F12 /* PrivacyDashboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrivacyDashboard.xcassets; sourceTree = "<group>"; };
 		902EE1A62AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentDashboardDataAgreementCell.swift; sourceTree = "<group>"; };
 		90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAgreementRecords.swift; sourceTree = "<group>"; };
+		90C586D32B46DAC500A38D1F /* DataAgreementsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAgreementsModel.swift; sourceTree = "<group>"; };
+		90C586D62B47F1C300A38D1F /* RecordsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsModel.swift; sourceTree = "<group>"; };
+		90C586D82B4808DE00A38D1F /* OrganisationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationModel.swift; sourceTree = "<group>"; };
 		90E71AF62AF8B31600574475 /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
 		90E71AF82AF91A0300574475 /* PrivacyDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyDashboard.swift; sourceTree = "<group>"; };
 		90E71B1E2AFCB2FD00574475 /* BBConsentDataSharingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBConsentDataSharingVC.swift; sourceTree = "<group>"; };
@@ -1213,6 +1219,9 @@
 				716F7E79524727961B1722CC17FEF662 /* RequestStatus.swift */,
 				90BF1CEA2AEAB60100A46289 /* DataAgreementRecords.swift */,
 				90E71B262B04F17A00574475 /* DAPolicy.swift */,
+				90C586D32B46DAC500A38D1F /* DataAgreementsModel.swift */,
+				90C586D62B47F1C300A38D1F /* RecordsModel.swift */,
+				90C586D82B4808DE00A38D1F /* OrganisationModel.swift */,
 			);
 			path = Organisation;
 			sourceTree = "<group>";
@@ -2743,6 +2752,7 @@
 				8AF486B32706F11B1F642B8128AB351D /* BBConsentHistoryListTableViewCell.swift in Sources */,
 				90E71B202AFCB66900574475 /* BBConsentDataSharingVC.swift in Sources */,
 				C0957765FA341501C5299D0B6C9C7E13 /* BBConsentHistoryViewController.swift in Sources */,
+				90C586D72B47F1C300A38D1F /* RecordsModel.swift in Sources */,
 				8B4905E2B8AFC7964ED9DF6EAE83E24A /* BBConsentKeychainUtils.swift in Sources */,
 				5196CD1356DA2D80C3D31B0033ADA075 /* BBConsentOrganisationViewController.swift in Sources */,
 				70E4C09DE085AEFD23767B50A93C1212 /* BBConsentPopOver.swift in Sources */,
@@ -2762,6 +2772,7 @@
 				7B14AC6ED3974AB784BDF93BFFB68C1C /* ConsentListingResponse.swift in Sources */,
 				DD680DE7AF2B04F869413DEB6A15E8C7 /* ConsentStatus.swift in Sources */,
 				CE3C55AE354167E7236DC1E38B22742B /* Constant.swift in Sources */,
+				90C586D92B4808DE00A38D1F /* OrganisationModel.swift in Sources */,
 				B216BBEEAAA6A9A519648E68A23101F1 /* Count.swift in Sources */,
 				902EE1A72AE21D5E002BA0CB /* BBConsentDashboardDataAgreementCell.swift in Sources */,
 				8B06DCAAF5A098F2A2862A59A905DFF0 /* ExpandableLabel.swift in Sources */,
@@ -2784,6 +2795,7 @@
 				6481AB5FC97077675254AB78F58EE08F /* Purpose.swift in Sources */,
 				153274FFD55D1841BA01090430155214 /* PurposeConsent.swift in Sources */,
 				DA0238A52F6D668B832D63A5452A9B86 /* PurposeDetails.swift in Sources */,
+				90C586D42B46DAC500A38D1F /* DataAgreementsModel.swift in Sources */,
 				38F8B4BB0B6D80F7CB8BA6D5695760AB /* RequestedStatusHistory.swift in Sources */,
 				90E71AF72AF8B31600574475 /* Individual.swift in Sources */,
 				F9B3E94AE30132AE897D29AEC03AAFF2 /* RequestStatus.swift in Sources */,

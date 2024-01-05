@@ -18,7 +18,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     @IBOutlet weak var dataLbl: UILabel!
     @IBOutlet weak var statusSwitch: UISwitch!
 
-    var consentInfo : PurposeConsentWrapperV2?
+    var consentInfo : DataAgreements?
     var consentedCount: Int?
     var totalCount: Int?
     var swictOn: Bool = false
@@ -33,14 +33,14 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     
     func showData() {
         self.statusSwitch.isOn = self.swictOn ? true : false
-        if consentInfo?.lawfulUsage ?? false == true {
+        if consentInfo?.lawfulBasis == "consent" || consentInfo?.lawfulBasis == "legitimate_interest" {
             self.statusSwitch.isEnabled = true
         } else {
             self.statusSwitch.isEnabled = false
             self.statusSwitch.isOn = true
         }
         
-        self.titleLbl.text = self.consentInfo?.name
+        self.titleLbl.text = self.consentInfo?.purpose
         
         if consentedCount ?? 0 > 0 {
             var valueString = "bb_consent_data_attribute_allow".localized

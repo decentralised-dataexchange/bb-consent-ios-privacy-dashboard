@@ -14,9 +14,9 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     @IBOutlet  var disAllowAllBtnHeightCostrint: NSLayoutConstraint!
    
     var overViewCollpased = true
-    var organisaionDeatils : OrganisationDetails?
-    var organization : Organization?
-    var purposeInfo : PurposeConsentWrapperV2?
+    var dataAgreementsModel : DataAgreementsModel?
+    var organization : OrganisationModel?
+    var purposeInfo : DataAgreements?
     var consentslist : [ConsentDetails]?
     var consentslistInfo : ConsentListingResponse?
     var dataAttributes: [DataAttribute]?
@@ -45,7 +45,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        self.title = purposeInfo?.name?.unCamelCased
+        self.title = purposeInfo?.purpose.unCamelCased
         if isNeedToRefresh == true {
             isNeedToRefresh = false
             callConsentListApi()
@@ -91,7 +91,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
     }
     
     @IBAction func policyBtnClicked() {
-        if let url = organisaionDeatils?.purposeConsents?[0].policyURL {
+        if let url = dataAgreementsModel?.dataAgreements[0].policy.url {
             if url.isValidString{
                 let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
                 webviewVC.urlString = url
@@ -110,7 +110,7 @@ class BBConsentAttributesViewController: BBConsentBaseViewController {
         self.addLoadingIndicator()
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
-        serviceManager.consentList(dataAgreementId: purposeInfo?.iD ?? "")
+        serviceManager.consentList(dataAgreementId: purposeInfo?.id ?? "")
     }
     
     func showConfirmationAlert() {
@@ -214,15 +214,15 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                     //   orgOverViewCell.overViewLbl.numberOfLines = 0
                 }
                 orgOverViewCell.overViewLbl.textReplacementType = .word
-                if purposeInfo?.descriptionField != nil {
-                    let desc = purposeInfo?.descriptionField
+                if purposeInfo?.purposeDescription != nil {
+                    let desc = purposeInfo?.purposeDescription
                     orgOverViewCell.overViewLbl.text = desc
                 }
                 return orgOverViewCell
             default:
                 let consentHeaderCell = tableView.dequeueReusableCell(withIdentifier: Constant.CustomTabelCell.consentHeaderTableViewCell,for: indexPath) as! BBConsentAttributesHeaderCell
                 
-                if let url = organisaionDeatils?.purposeConsents?[0].policyURL {
+                if let url = dataAgreementsModel?.dataAgreements[0].policy.url {
                     if url.isValidString{
                         consentHeaderCell.policyButton.isHidden = false
                     }else{
@@ -259,7 +259,7 @@ extension  BBConsentAttributesViewController : UITableViewDelegate,UITableViewDa
                 consentVC.consent = consentslist?[indexPath.row]
                 consentVC.orgID = self.consentslistInfo?.orgID
                 consentVC.purposeDetails = self.consentslistInfo
-                consentVC.purposeName = self.purposeInfo?.name ?? ""
+                consentVC.purposeName = self.purposeInfo?.controllerName ?? ""
                 self.navigationController?.pushViewController(consentVC, animated: true)
             }
         }

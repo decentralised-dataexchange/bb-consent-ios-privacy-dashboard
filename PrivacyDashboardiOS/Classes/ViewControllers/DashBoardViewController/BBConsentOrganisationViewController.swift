@@ -18,24 +18,23 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     @IBOutlet var topBarItemConstraint : NSLayoutConstraint!
     @IBOutlet weak var noDataAgreementsLbl: UILabel!
     
-    var organisaionDeatils : OrganisationDetails?
-    var records : DataAgreementRecords?
-    var organization : Organization?
     var organisationId = ""
     var isNeedToRefresh = false
     var overViewCollpased = true
     let popover = BBConsentPopOver()
     
+    let baseUrl = BBConsentPrivacyDashboardiOS.shared.baseUrl
+    let api = OrganisationWebService()
+    var dataAgreementsObj: DataAgreementsModel?
+    var consentRecordsObj : RecordsModel?
+    var organizationObj : OrganisationModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(BBConsentOrganisationViewController.consentValueModified),
-                                       name: .consentChange,
-                                       object: nil)
         setupUI()
-        callOrganizationApi()
-        callOrganisationDetailsApi()
+        callOrganisationApi()
+        callRecordsApi()
+        callDataAgreementsApi()
     }
     
     func setupUI(){
@@ -61,56 +60,86 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         self.navigationController?.navigationBar.isHidden = true
         if isNeedToRefresh == true{
             isNeedToRefresh = false
-            callOrganisationDetailsApi()
+            callDataAgreementsApi()
         }
     }
     
-    func callOrganizationApi(){
-        self.addLoadingIndicator()
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.getOrganization(orgId: self.organisationId)
+    func callOrganisationApi() {
+        let url =  baseUrl + "/service/organisation"
+        self.api.makeAPICall(urlString: url, method:.get) { status, result in
+            if status {
+                let jsonDecoder = JSONDecoder()
+                if let data = try? JSONSerialization.data(withJSONObject: result, options: .prettyPrinted) {
+                    let model = try? jsonDecoder.decode(OrganisationModel.self, from: data)
+                    debugPrint("### Organiosation:\(String(describing: model))")
+                    self.organizationObj = model
+                    self.orgTableView.reloadData()
+                }
+            }
+        }
+    }
+
+    
+    func callDataAgreementsApi() {
+        let url = baseUrl + "/service/data-agreements?offset=0&limit=500"
+        self.api.makeAPICall(urlString: url, method:.get) { status, result in
+            if status {
+                let jsonDecoder = JSONDecoder()
+                if let data = try? JSONSerialization.data(withJSONObject: result, options: .prettyPrinted) {
+                    let model = try? jsonDecoder.decode(DataAgreementsModel.self, from: data)
+                    debugPrint("### DataAgreements:\(String(describing: model))")
+                    self.dataAgreementsObj = model
+                    self.orgTableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func callRecordsApi() {
+        let url = baseUrl + "/service/individual/record/consent-record?offset=0&limit=500"
+        self.api.makeAPICall(urlString: url, method:.get) { status, result in
+            if status {
+                let jsonDecoder = JSONDecoder()
+                if let data = try? JSONSerialization.data(withJSONObject: result, options: .prettyPrinted) {
+                    let model = try? jsonDecoder.decode(RecordsModel.self, from: data)
+                    debugPrint("### Records:\(String(describing: model))")
+                    self.consentRecordsObj = model
+                    self.orgTableView.reloadData()
+                    self.CheckAndCreateRecordForContractType()
+                }
+            }
+        }
+    }
+    
+    func callCreateDataAgreementApi(dataAgreementId: String) {
+        let url = baseUrl + "/service/individual/record/data-agreement/" + dataAgreementId
+        self.api.makeAPICall(urlString: url, method:.post) { status, result in
+            debugPrint(status)
+            self.orgTableView.reloadData()
+        }
+    }
+    
+    func callUpdatePurposeApi(dataAgreementRecordId: String, dataAgreementId: String, status: Bool, updateCompletion: @escaping (Bool) -> ()) {
+        let url = baseUrl + "/service/individual/record/consent-record/" + dataAgreementRecordId + "?dataAgreementId=" + dataAgreementId
+        let params  = ["optIn" : status]
+        self.api.makeAPICall(urlString: url,parameters: params, method:.put) { status, result in
+            if status {
+                updateCompletion(true)
+            }
+        }
     }
     
     
-    func callOrganisationDetailsApi(){
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.getOrganisationDetails(orgId: self.organisationId)
-    }
-    
-    func getAllDataAgreementRecords() {
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.getAllDataAgreementRecords(orgId: self.organisationId)
-    }
-    
-    func requestForgetMe() {
-        addLoadingIndicator()
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.requestForgetMe(orgId: organisationId)
-    }
-    
-    func requestDownloadData() {
-        addLoadingIndicator()
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.requestDownloadData(orgId: organisationId)
-    }
-    
-    func getDownloadDataStatus() {
-        addLoadingIndicator()
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.getDownloadDataStatus(orgId: organisationId)
-    }
-    
-    func getForgetMeStatus() {
-        addLoadingIndicator()
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.getForgetMeStatus(orgId: organisationId)
+    func CheckAndCreateRecordForContractType() {
+        let dataAgreementIDs = dataAgreementsObj?.dataAgreements.filter({ $0.lawfulBasis != "consent" && $0.lawfulBasis != "legitimate_interest"  }).map({ $0.id }) ?? []
+        let idsWithAttributeRecords = consentRecordsObj?.consentRecords.map({ $0.dataAgreementID }) ?? []
+        for item in dataAgreementIDs {
+            // If item doesnt have record already
+            if !idsWithAttributeRecords.contains(item) {
+                // Create add record api call
+                callCreateDataAgreementApi(dataAgreementId: item)
+            }
+        }
     }
     
     @IBAction func backButtonClicked() {
@@ -124,7 +153,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         // Create an action
         let firstAction: UIAlertAction = UIAlertAction(title: Constant.Strings.privacyPolicy, style: .default) { action -> Void in
             
-            if let privacyPolicy =  self.organization?.privacyPolicy {
+            if let privacyPolicy =  self.organizationObj?.organisation.policyURL {
                 if self.verifyUrl(urlString: privacyPolicy) {
                     let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
                     webviewVC.urlString = privacyPolicy
@@ -154,7 +183,6 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         actionSheetController.addAction(cancelAction)
         
         // Present an actionSheet...
-        // present(actionSheetController, animated: true, completion: nil)   // doesn't work for iPad
         actionSheetController.popoverPresentationController?.sourceView = moreBtn // works for both iPhone & iPad
         
         present(actionSheetController, animated: true) {
@@ -162,23 +190,10 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         }
     }
     
-    @IBAction func allowAllButtonClicked() {
-        self.addLoadingIndicator()
-        let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
-        serviceManager.allowAllConsentOfOrganisation(orgId: self.organisationId)
-    }
-    
-    @objc func consentValueModified() {
-        isNeedToRefresh = true
-    }
-    
     func showPopOver() {
         let popOverview = OrgPopOver.instanceFromNib(vc: self.classForCoder)
         let startPoint = CGPoint(x: self.view.frame.width - 30, y: 60)
         popOverview.privacyPolicyButton.addTarget(self, action: #selector(showPrivacyPolicy), for: .touchUpInside)
-        popOverview.downloadDataButton.addTarget(self, action: #selector(tappedOnDownloadData), for: .touchUpInside)
-        popOverview.forgetMeButton.addTarget(self, action: #selector(tappedOnForgetMeButton), for: .touchUpInside)
         popOverview.requestedStatus.addTarget(self, action: #selector(tappedOnRequestedStatusButton), for: .touchUpInside)
         popOverview.consentHistory.addTarget(self, action: #selector(tappedOnConsentHistoryButton), for: .touchUpInside)
         popover.show(popOverview, point: startPoint)
@@ -186,7 +201,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     
     @objc func showPrivacyPolicy() {
         popover.dismiss()
-        if let privacyPolicy = self.organisaionDeatils?.organization?.privacyPolicy {
+        if let privacyPolicy = self.organizationObj?.organisation.policyURL{
             if self.verifyUrl(urlString: privacyPolicy) {
                 let safariVC = SFSafariViewController(url: NSURL(string: privacyPolicy)! as URL)
                 self.present(safariVC, animated: true, completion: nil)
@@ -205,16 +220,6 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     @objc func tappedOnConsentHistoryButton() {
         popover.dismiss()
         self.showConsentHistory()
-    }
-    
-    @objc func tappedOnDownloadData() {
-        popover.dismiss()
-        self.getDownloadDataStatus()
-    }
-    
-    @objc func tappedOnForgetMeButton() {
-        popover.dismiss()
-        self.getForgetMeStatus()
     }
     
     func showRequestedStatus() {
@@ -241,8 +246,8 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
 extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if organisaionDeatils?.purposeConsents != nil {
-            if (organisaionDeatils?.purposeConsents?.count ?? 0) > 0 {
+        if dataAgreementsObj?.dataAgreements != nil {
+            if (dataAgreementsObj?.dataAgreements.count ?? 0) > 0 {
                 return 3
             } else {
                 return 1
@@ -258,9 +263,9 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         } else if section == 1 {
             return 1
         } else {
-            if (organisaionDeatils?.purposeConsents?.count ?? 0) > 0 {
-                return  organisaionDeatils?.purposeConsents?.count ?? 0
-            }else{
+            if (dataAgreementsObj?.dataAgreements.count ?? 0) > 0 {
+                return  dataAgreementsObj?.dataAgreements.count ?? 0
+            } else {
                 noDataAgreementsLbl.isHidden = false
                 return 0
             }
@@ -285,7 +290,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         if  indexPath.section == 0 {
             if indexPath.row == 0 {
                 let orgCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.KOrgDetailedImageCellID,for: indexPath) as! BBConsentDashboardHeaderCell
-                orgCell.orgData = organization
+                orgCell.orgData = organizationObj
                 orgCell.showData()
                 return orgCell
             } else {
@@ -305,8 +310,8 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
                     //  orgOverViewCell.overViewLbl.numberOfLines = 0
                 }
                 orgOverViewCell.overViewLbl.textReplacementType = .word
-                if organization?.descriptionField != nil {
-                    let desc = organization?.descriptionField 
+                if organizationObj?.organisation.description != nil {
+                    let desc = organizationObj?.organisation.description
                     orgOverViewCell.overViewLbl.text = desc
                 }
                 return orgOverViewCell
@@ -317,15 +322,15 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
         } else {
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
             consentCell.tag = indexPath.row
-            consentCell.consentInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
+            consentCell.consentInfo = dataAgreementsObj?.dataAgreements[indexPath.row]
             
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from two api's)
-            let dataAgreementIdsFromOrg = organisaionDeatils?.purposeConsents?.map({ $0.iD ?? ""})
-            let record = records?.consentRecords?.filter({ $0.dataAgreementId == dataAgreementIdsFromOrg?[indexPath.row]})
+            let dataAgreementIdsFromOrg =  dataAgreementsObj?.dataAgreements.map({ $0.id })
+            let record = consentRecordsObj?.consentRecords.filter({ $0.dataAgreementID == dataAgreementIdsFromOrg?[indexPath.row]})
             consentCell.swictOn = record?.count ?? 0 > 0 ?  record?[0].optIn ?? false : false
             
-            var consentedCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
-            var totalCount = organisaionDeatils?.purposeConsents?[indexPath.row].dataAttributes?.count
+            var consentedCount = dataAgreementsObj?.dataAgreements[indexPath.row].dataAttributes.count
+            var totalCount = dataAgreementsObj?.dataAgreements[indexPath.row].dataAttributes.count
         
             if record?.count ?? 0 > 0, record?[0].optIn  == false {
                 consentedCount = 0
@@ -346,109 +351,15 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             let consentVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.consentListVC) as! BBConsentAttributesViewController
-            consentVC.organisaionDeatils = self.organisaionDeatils
-            consentVC.organization = self.organization
-            consentVC.purposeInfo = organisaionDeatils?.purposeConsents?[indexPath.row]
+            consentVC.dataAgreementsModel = self.dataAgreementsObj
+            consentVC.organization = self.organizationObj
+            consentVC.purposeInfo = dataAgreementsObj?.dataAgreements[indexPath.row] 
            
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from different api's)
-            let dataAgreementIdsFromOrg = organisaionDeatils?.purposeConsents?.map({ $0.iD ?? ""})
-            let record = records?.consentRecords?.filter({ $0.dataAgreementId == dataAgreementIdsFromOrg?[indexPath.row]})
+            let dataAgreementIdsFromOrg = dataAgreementsObj?.dataAgreements.map({ $0.id }) 
+            let record = consentRecordsObj?.consentRecords.filter({ $0.dataAgreementID == dataAgreementIdsFromOrg?[indexPath.row]})
             consentVC.consentVal = record?.count ?? 0 > 0 ? record?[0].optIn ?? false : false
             self.navigationController?.pushViewController(consentVC, animated: true)
-        }
-    }
-}
-
-extension BBConsentOrganisationViewController: WebServiceTaskManagerProtocol {
-    
-    func didFinishTask(from manager:AnyObject, response:(data:RestResponse?,error:String?)) {
-        removeLoadingIndicator()
-        
-        if response.error != nil {
-            if let serviceManager = manager as? OrganisationWebServiceManager {
-                if serviceManager.serviceType == .OrgDetails {
-                    
-                }
-            }
-            showErrorAlert(message: (response.error)!)
-            return
-        }
-        
-        if let serviceManager = manager as? OrganisationWebServiceManager {
-            if serviceManager.serviceType == .AllowAlConsent {
-                getAllDataAgreementRecords()
-            } else if serviceManager.serviceType == .UpdatePurpose {
-                callOrganisationDetailsApi()
-            } else if serviceManager.serviceType == .requestDownloadData {
-                let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
-                downloadDataProgressVC.organisationId = organisationId
-                downloadDataProgressVC.requestType = RequestType.DownloadData
-                navigationController?.pushViewController(downloadDataProgressVC, animated: true)
-            } else if serviceManager.serviceType == .requestForgetMe {
-                let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
-                downloadDataProgressVC.organisationId = organisationId
-                downloadDataProgressVC.requestType = RequestType.ForgetMe
-                navigationController?.pushViewController(downloadDataProgressVC, animated: true)
-            } else if serviceManager.serviceType == .getDownloadDataStatus {
-                if let data = response.data?.responseModel as? RequestStatus {
-                    if data.RequestOngoing ?? false {
-                        let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
-                        downloadDataProgressVC.organisationId = organisationId
-                        downloadDataProgressVC.requestType = RequestType.DownloadData
-                        downloadDataProgressVC.requestStatus = data
-                        navigationController?.pushViewController(downloadDataProgressVC, animated: true)
-                    } else {
-                        requestDownloadData()
-                    }
-                }
-            } else if serviceManager.serviceType == .getForgetMeStatus {
-                if let data = response.data?.responseModel as? RequestStatus {
-                    if data.RequestOngoing ?? false {
-                        let downloadDataProgressVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: Constant.ViewControllerID.downloadDataProgressVC) as! BBConsentDownloadDataProgressViewController
-                        downloadDataProgressVC.organisationId = organisationId
-                        downloadDataProgressVC.requestType = RequestType.ForgetMe
-                        downloadDataProgressVC.requestStatus = data
-                        navigationController?.pushViewController(downloadDataProgressVC, animated: true)
-                    } else {
-                        requestForgetMe()
-                    }
-                }
-            } else if serviceManager.serviceType == .Organization {
-                if let data = response.data?.responseModel as? Organization {
-                    organization = data
-                    orgTableView.reloadData()
-                }
-            } else if serviceManager.serviceType == .OrgDetails {
-                if let data = response.data?.responseModel as? OrganisationDetails {
-                    organisaionDeatils = data
-                    getAllDataAgreementRecords()
-                    orgTableView.reloadData()
-                }
-            } else if serviceManager.serviceType == .GetDataAgreementRecords {
-                if let data = response.data?.responseModel as? DataAgreementRecords {
-                    records = data
-                    let dataAgreementIDs = organisaionDeatils?.purposeConsents?.filter({ $0.lawfulUsage == false }).map({ $0.iD ?? "" }) ?? []
-                    let idsWithAttributeRecords = records?.consentRecords?.map({ $0.dataAgreementId }) ?? []
-                                        
-                    for item in dataAgreementIDs {
-                        // If item doesnt have record already
-                        if !idsWithAttributeRecords.contains(item) {
-                            // Create add record api call
-                            let serviceManager = OrganisationWebServiceManager()
-                            serviceManager.managerDelegate = self
-                            serviceManager.createDataAgreementRecord(dataAgreementId: item)
-                       }
-                    }
-                    orgTableView.reloadData()
-                }
-            } else if serviceManager.serviceType == .CreateDataAgreementRecord {
-                getAllDataAgreementRecords()
-            }
-        }
-        
-        if let data = response.data?.responseModel as? OrganisationDetails {
-            organisaionDeatils = data
-            orgTableView.reloadData()
         }
     }
 }
@@ -457,7 +368,7 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
     
     func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell) {
         let serviceManager = OrganisationWebServiceManager()
-        serviceManager.managerDelegate = self
+        // serviceManager.managerDelegate = self
         var alrtMsg = Constant.Alert.areYouSureYouWantToAllow
         var value = Constant.Alert.allow
         var titleStr = Constant.Alert.allow
@@ -471,9 +382,14 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
         let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message:alrtMsg , preferredStyle: .alert)
         if status == false {
             alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
-                let filteredRecord = self.records?.consentRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
+                let filteredRecord = self.consentRecordsObj?.consentRecords.map({ $0 }).filter({ $0.dataAgreementID ==  self.dataAgreementsObj?.dataAgreements[cell.tag].id })
                 if filteredRecord?.count ?? 0 > 0 {
-                    serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                    self.callUpdatePurposeApi(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementID ?? "", status: status, updateCompletion: { success in
+                        if success {
+                            filteredRecord?[0].optIn = status
+                            self.orgTableView.reloadData()
+                        }
+                    })
                 }
             }));
             alerController.addAction(UIAlertAction(title: Constant.Strings.cancel, style: .cancel, handler: {(action:UIAlertAction) in
@@ -486,11 +402,16 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
             }));
             
             alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
-                let filteredRecord = self.records?.consentRecords?.map({ $0 }).filter({ $0.dataAgreementId ==  self.organisaionDeatils?.purposeConsents?[cell.tag].iD })
+                let filteredRecord = self.consentRecordsObj?.consentRecords.map({ $0 }).filter({ $0.dataAgreementID ==  self.dataAgreementsObj?.dataAgreements[cell.tag].id })
                 if filteredRecord?.count ?? 0 > 0 {
-                    serviceManager.updatePurpose(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementId ?? "", status: status)
+                    self.callUpdatePurposeApi(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementID ?? "", status: status, updateCompletion: { success in
+                        if success {
+                            filteredRecord?[0].optIn = status
+                            self.orgTableView.reloadData()
+                        }
+                    })
                 } else {
-                    serviceManager.createDataAgreementRecord(dataAgreementId: self.organisaionDeatils?.purposeConsents?[cell.tag].iD ?? "")
+                    serviceManager.createDataAgreementRecord(dataAgreementId: self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "")
                 }
             }));
         }

@@ -24,8 +24,10 @@ class BBConsentDataAgreementVC: UITableViewController {
     
     override func viewDidLoad() {
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: dataAgreementDic[0])
-            instance = try JSONDecoder().decode(DAPolicy.self, from: jsonData)
+            if !dataAgreementDic.isEmpty {
+                let jsonData = try JSONSerialization.data(withJSONObject: dataAgreementDic[0])
+                instance = try JSONDecoder().decode(DAPolicy.self, from: jsonData)
+            }
         } catch {
             debugPrint(error)
         }

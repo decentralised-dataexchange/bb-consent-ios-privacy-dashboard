@@ -18,7 +18,7 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
     @IBOutlet weak var gradiantView: UIView!
     @IBOutlet weak var gradiantViewTop: UIView!
     
-    var orgData : Organization?
+    var orgData : OrganisationModel?
     var baseUrl = BBConsentPrivacyDashboardiOS.shared.baseUrl
     
     override func awakeFromNib() {
@@ -32,8 +32,8 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
     }
     
     func showData() {
-        self.nameLbl.text = self.orgData?.name
-        self.locationLbl.text = self.orgData?.location
+        self.nameLbl.text = self.orgData?.organisation.name
+        self.locationLbl.text = self.orgData?.organisation.location
         let modifier = AnyModifier { request in
             var r = request
             r.setValue("Bearer \(UserInfo.currentUser()?.token ?? "")", forHTTPHeaderField: "Authorization")
@@ -46,12 +46,12 @@ class BBConsentDashboardHeaderCell: UITableViewCell {
         }
         
         self.orgImageView.image = UIImage(named: Constant.Images.defaultCoverImage)
-        let coverImageUrl = URL(string: (orgData?.coverImageURL ?? ""))
+        let coverImageUrl = URL(string: (orgData?.organisation.coverImageURL ?? ""))
         let placeholder = UIImage(named: Constant.Images.defaultCoverImage, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
         self.orgImageView.kf.setImage(with: coverImageUrl, placeholder: placeholder, options: [.requestModifier(modifier)])
         
         self.logoImageView.image = UIImage(named: Constant.Images.iGrantTick)
-        let logoImageUrl = URL(string: (orgData?.logoImageURL ?? ""))
+        let logoImageUrl = URL(string: (orgData?.organisation.logoImageURL ?? ""))
         let coverImagePlaceholder = UIImage(named: Constant.Images.iGrantTick, in: Constant.getResourcesBundle(vc: BBConsentBaseViewController().classForCoder), compatibleWith: nil)
         self.logoImageView.kf.setImage(with: logoImageUrl, placeholder: coverImagePlaceholder, options: [.requestModifier(modifier)])
     }
