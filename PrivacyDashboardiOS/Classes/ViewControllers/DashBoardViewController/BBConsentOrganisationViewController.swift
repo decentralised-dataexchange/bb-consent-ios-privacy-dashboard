@@ -370,14 +370,14 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
     func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell) {
         let serviceManager = OrganisationWebServiceManager()
         // serviceManager.managerDelegate = self
-        var alrtMsg = Constant.Alert.areYouSureYouWantToAllow
-        var value = Constant.Alert.allow
-        var titleStr = Constant.Alert.allow
+        var alrtMsg = Constant.Alert.areYouSureYouWantToAllow.localized
+        var value = Constant.Alert.allow.localized
+        var titleStr = Constant.Alert.allow.localized
        
         if status == false {
-            alrtMsg = Constant.Alert.areYouSureYouWantToDisAllow
-            value = Constant.Alert.disallow
-            titleStr = Constant.Alert.disallow
+            alrtMsg = Constant.Alert.areYouSureYouWantToDisAllow.localized
+            value = Constant.Alert.disallow.localized
+            titleStr = Constant.Alert.disallow.localized
         }
         
         let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message:alrtMsg , preferredStyle: .alert)
