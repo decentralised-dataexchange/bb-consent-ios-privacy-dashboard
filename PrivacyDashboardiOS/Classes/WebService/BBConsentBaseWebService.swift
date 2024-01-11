@@ -354,8 +354,7 @@ extension BBConsentBaseWebService {
     }
     
     func makeAPICall(urlString: String, parameters: [String: Any] = [:], headers: [String: String] = [:], method: ApiType, completion:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
-        // Note: If Apikey or UserID not available, use accessToken
-        if BBConsentPrivacyDashboardiOS.shared.userId == "" || BBConsentKeyChainUtils.load(key: "BBConsentApiKey") == nil {
+        if BBConsentPrivacyDashboardiOS.shared.accessToken != "" && BBConsentPrivacyDashboardiOS.shared.accessToken != nil {
             let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
             let hearDict = ["Authorization":"Bearer \(accessToken)"]
             header = hearDict
