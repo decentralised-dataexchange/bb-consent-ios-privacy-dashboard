@@ -42,7 +42,7 @@ class BBConsentDataAgreementVC: UITableViewController {
         }
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DAcell")
-        self.navigationItem.title = "Data Agreement"
+        self.navigationItem.title = "bb_consent_data_agreement_policy_data_agreement".localized
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.tintColor = .black
@@ -55,20 +55,20 @@ class BBConsentDataAgreementVC: UITableViewController {
     func setData() {
         if dataAgreement?.count ?? 0 > 0 {
             let years = (Int(dataAgreement?[0].retentionPeriod ?? "") ?? 0)/365
-            let retenetionPeriod = (years > 1) ? "\(years) Years" : "\(years) Year"
+            let retenetionPeriod = (years > 1) ? "\(years )" + "bb_consent_data_agreement_years".localized : "\(years )" + "bb_consent_data_agreement_years".localized
 
-            purposeSectionDic = ["Purpose": dataAgreement?[0].name ?? "", "Purpose Description": dataAgreement?[0].descriptionField ?? "", "Lawful basis of processing": dataAgreement?[0].lawfulBasis ?? ""]
-            policySectionDict = ["Policy URL": dataAgreement?[0].policyURL ?? "", "Jurisdiction": dataAgreement?[0].jurisdiction ?? "", "Third party data sharing": dataAgreement?[0].thirdPartyDisclosure ?? "", "Industry scope": dataAgreement?[0].industryScope ?? "", "Geographic restriction": dataAgreement?[0].geaographicRestriction ?? "", "Retention period": retenetionPeriod, "Storage Location": dataAgreement?[0].storageLocation ?? ""]
-            DPIASectionDic = ["DPIA Date": dataAgreement?[0].DPIAdate ?? "", "DPIA Summary": dataAgreement?[0].DPIASummary ?? ""]
+            purposeSectionDic = ["bb_consent_data_agreement_policy_purpose": dataAgreement?[0].name ?? "", "bb_consent_data_agreement_policy_purpose_description": dataAgreement?[0].descriptionField ?? "", "bb_consent_data_agreement_policy_lawful_basis_of_processing": dataAgreement?[0].lawfulBasis ?? ""]
+            policySectionDict = ["bb_consent_data_agreement_policy_policy_url": dataAgreement?[0].policyURL ?? "", "bb_consent_data_agreement_policy_jurisdiction": dataAgreement?[0].jurisdiction ?? "", "bb_consent_data_agreement_policy_third_party_disclosure": dataAgreement?[0].thirdPartyDisclosure ?? "", "bb_consent_data_agreement_policy_industry_scope": dataAgreement?[0].industryScope ?? "", "bb_consent_data_agreement_policy_geographic_restriction": dataAgreement?[0].geaographicRestriction ?? "", "bb_consent_data_agreement_policy_retention_period": retenetionPeriod, "bb_consent_data_agreement_policy_storage_location": dataAgreement?[0].storageLocation ?? ""]
+            DPIASectionDic = ["bb_consent_data_agreement_policy_dpia_date": dataAgreement?[0].DPIAdate ?? "", "bb_consent_data_agreement_policy_dpia_summary": dataAgreement?[0].DPIASummary ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
 
         } else {
             let years = Int(instance?.policy?.dataRetentionPeriodDays ?? 0)/365
-            let retenetionPeriod = (years > 1) ? "\(years) Years" : "\(years) Year"
+            let retenetionPeriod = (years > 1) ? "\(years )"+"bb_consent_data_agreement_years".localized : "\(years )" + "bb_consent_data_agreement_years".localized
             
-            purposeSectionDic = ["Purpose": instance?.purpose ?? "", "Purpose Description": instance?.purposeDescription ?? "", "Lawful basis of processing": instance?.lawfulBasis ?? ""]
-            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "Jurisdiction": instance?.policy?.jurisdiction ?? "", "Third party data sharing": instance?.policy?.thirdPartyDataSharing ?? 0, "Industry scope": instance?.policy?.industrySector ?? "", "Geographic restriction": instance?.policy?.geographicRestriction ?? "", "Retention period": retenetionPeriod, "Storage Location": instance?.policy?.storageLocation ?? ""]
-            DPIASectionDic = ["DPIA Date":instance?.dpiaDate ?? "", "DPIA Summary": instance?.dpiaSummaryUrl ?? ""]
+            purposeSectionDic = ["bb_consent_data_agreement_policy_purpose": instance?.purpose ?? "", "bb_consent_data_agreement_policy_purpose_description": instance?.purposeDescription ?? "", "bb_consent_data_agreement_policy_lawful_basis_of_processing": instance?.lawfulBasis ?? ""]
+            policySectionDict = ["Policy URL": instance?.policy?.url ?? "", "bb_consent_data_agreement_policy_jurisdiction": instance?.policy?.jurisdiction ?? "", "bb_consent_data_agreement_policy_third_party_disclosure": instance?.policy?.thirdPartyDataSharing ?? 0, "bb_consent_data_agreement_policy_industry_scope": instance?.policy?.industrySector ?? "", "bb_consent_data_agreement_policy_geographic_restriction": instance?.policy?.geographicRestriction ?? "", "bb_consent_data_agreement_policy_retention_period": retenetionPeriod, "bb_consent_data_agreement_policy_storage_location": instance?.policy?.storageLocation ?? ""]
+            DPIASectionDic = ["bb_consent_data_agreement_policy_dpia_date":instance?.dpiaDate ?? "", "bb_consent_data_agreement_policy_dpia_summary": instance?.dpiaSummaryUrl ?? ""]
             dataAgreementDic = [purposeSectionDic, policySectionDict, DPIASectionDic]
         }
     }
@@ -133,9 +133,9 @@ class BBConsentDataAgreementVC: UITableViewController {
         let item = dataAgreementDic[indexPath.section]
         let keys = item.map({ $0.key })
         let values = item.map({ $0.value })
-        cell.titleLabel.text = keys[indexPath.row]
+        cell.titleLabel.text = keys[indexPath.row].localized
         let val = "\(values[indexPath.row])"
-        cell.descLabel.text = val
+        cell.descLabel.text = val.localized
         return cell
     }
 }

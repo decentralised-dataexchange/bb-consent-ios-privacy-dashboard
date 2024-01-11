@@ -65,7 +65,7 @@ public class PrivacyDashboard {
         }
     }
     
-    public static func configure(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, accessToken: String = "") {
+    public static func configure(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String, accessToken: String = "") {
         let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
         let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
         var storyboard = UIStoryboard()
@@ -75,6 +75,8 @@ public class PrivacyDashboard {
             let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
             storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
         }
+        
+        BBConsentPrivacyDashboardiOS.shared.languageCode = withLocale == "" ? "en" : withLocale
         BBConsentPrivacyDashboardiOS.shared.userId = withUserId
         BBConsentPrivacyDashboardiOS.shared.accessToken = accessToken
         let sharingVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataSharingVC") as? BBConsentDataSharingVC ?? BBConsentDataSharingVC()
