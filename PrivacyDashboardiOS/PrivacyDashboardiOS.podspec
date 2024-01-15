@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PrivacyDashboardiOS'
-  s.version          = '2024.1.2'
+  s.version          = '2024.1.3'
   s.summary          = 'Govstack PrivacyDashboard SDKs – Effortlessly embed a comprehensive privacy dashboard into any mobile application out of the box, ensuring adherence to Govstacks consent management framework. Prioritise user trust and transparency with this seamless integration tool.'
 
 # This description is used to generate tags and improve search results.
