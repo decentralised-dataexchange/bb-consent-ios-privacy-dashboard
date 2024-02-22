@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Records
 class RecordsModel: Codable {
-    let consentRecords: [ConsentRecordModel]
+    var consentRecords: [ConsentRecordModel]
     let pagination: RecordsPagination
 }
 
