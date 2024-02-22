@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PrivacyDashboardiOS'
-  s.version          = '2024.1.4'
+  s.version          = '2024.2.1'
   s.summary          = 'Govstack PrivacyDashboard SDKs – Effortlessly embed a comprehensive privacy dashboard into any mobile application out of the box, ensuring adherence to Govstacks consent management framework. Prioritise user trust and transparency with this seamless integration tool.'
 
 # This description is used to generate tags and improve search results.
@@ -29,12 +29,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.swift_version = '5.0'
   s.source_files = '**/Classes/**/*.{h,m,swift,storyboard}'
-  s.source_files = 'PrivacyDashboardiOS/Classes/**/*', 'PrivacyDashboardiOS/Classes/*', 'PrivacyDashboardiOS/Resources/*'
+# s.source_files = 'PrivacyDashboardiOS/Classes/**/*', 'PrivacyDashboardiOS/Classes/*', 'PrivacyDashboardiOS/Resources/*'
 # s.source_files = 'PrivacyDashboardiOS/*' 'PrivacyDashboardiOS/Classes/**/*', 'PrivacyDashboardiOS/Classes/*', 'PrivacyDashboardiOS/Resources/*'
 #  s.resources = 'PrivacyDashboardiOS/**/*'
 
    s.resource_bundles = {
-     'PrivacyDashboardiOS' => ['PrivacyDashboardiOS/Classes/PrivacyDashboard.storyboard', 'PrivacyDashboardiOS/Resources/PrivacyDashboard.xcassets', 'PrivacyDashboardiOS/Resources/*.lproj']
+     'PrivacyDashboardiOS' => ['**/Classes/*.storyboard', '**/Resources/*.xcassets', 'PrivacyDashboardiOS/Resources/*.lproj']
    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
