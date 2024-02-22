@@ -111,11 +111,18 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         }
     }
     
-    func callCreateDataAgreementApi(dataAgreementId: String) {
+    func callCreateDataAgreementApi(dataAgreementId: String, completion: @escaping(ConsentRecordModel?)-> Void) {
         let url = baseUrl + "/service/individual/record/data-agreement/" + dataAgreementId
         self.api.makeAPICall(urlString: url, method:.post) { status, result in
-            debugPrint(status)
-            self.orgTableView.reloadData()
+            if status {
+                let jsonDecoder = JSONDecoder()
+                debugPrint(result["consentRecord"] ?? [:])
+                if let data = try? JSONSerialization.data(withJSONObject: result["consentRecord"] ?? [:], options: .prettyPrinted) {
+                    let model = try? jsonDecoder.decode(ConsentRecordModel.self, from: data)
+                    debugPrint("### ConsentRecordModel:\(String(describing: model))")
+                    completion(model)
+                }
+            }
         }
     }
     
@@ -137,7 +144,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
             // If item doesnt have record already
             if !idsWithAttributeRecords.contains(item) {
                 // Create add record api call
-                callCreateDataAgreementApi(dataAgreementId: item)
+                callCreateDataAgreementApi(dataAgreementId: item) { _ in }
             }
         }
     }
@@ -412,7 +419,12 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                         }
                     })
                 } else {
-                    serviceManager.createDataAgreementRecord(dataAgreementId: self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "")
+                    self.callCreateDataAgreementApi(dataAgreementId: self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "") { model in
+                        if let consentRecordModel = model {
+                            self.consentRecordsObj?.consentRecords.append(consentRecordModel)
+                            self.orgTableView.reloadData()
+                        }
+                    }
                 }
             }));
         }
