@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 #  s.resources = 'PrivacyDashboardiOS/**/*'
 
    s.resource_bundles = {
-     'PrivacyDashboardiOS' => ['**/Classes/*.storyboard', '**/Resources/*.xcassets', 'PrivacyDashboardiOS/Resources/*.lproj']
+     'PrivacyDashboardiOS' => ['**/Classes/*.storyboard', '**/Resources/*.xcassets', '**/Resources/*.lproj']
    }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
