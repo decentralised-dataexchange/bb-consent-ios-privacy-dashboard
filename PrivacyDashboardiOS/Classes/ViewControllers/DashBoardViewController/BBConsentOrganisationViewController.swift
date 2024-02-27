@@ -144,7 +144,12 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
             // If item doesnt have record already
             if !idsWithAttributeRecords.contains(item) {
                 // Create add record api call
-                callCreateDataAgreementApi(dataAgreementId: item) { _ in }
+                callCreateDataAgreementApi(dataAgreementId: item) { model in
+                    if let consentRecordModel = model {
+                        self.consentRecordsObj?.consentRecords.append(consentRecordModel)
+                        self.orgTableView.reloadData()
+                    }
+                }
             }
         }
     }
