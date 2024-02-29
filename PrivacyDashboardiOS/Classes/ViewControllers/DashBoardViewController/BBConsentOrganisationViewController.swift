@@ -32,9 +32,10 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        callDataAgreementsApi { _ in
+            self.callRecordsApi()
+        }
         callOrganisationApi()
-        callRecordsApi()
-        callDataAgreementsApi()
     }
     
     func setupUI(){
@@ -60,7 +61,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         self.navigationController?.navigationBar.isHidden = true
         if isNeedToRefresh == true{
             isNeedToRefresh = false
-            callDataAgreementsApi()
+            callDataAgreementsApi { _ in }
         }
     }
     
@@ -80,7 +81,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     }
 
     
-    func callDataAgreementsApi() {
+    func callDataAgreementsApi(completion: @escaping(Bool)-> Void) {
         let url = baseUrl + "/service/data-agreements?offset=0&limit=500"
         self.api.makeAPICall(urlString: url, method:.get) { status, result in
             if status {
@@ -89,7 +90,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
                     let model = try? jsonDecoder.decode(DataAgreementsModel.self, from: data)
                     debugPrint("### DataAgreements:\(String(describing: model))")
                     self.dataAgreementsObj = model
-                    self.orgTableView.reloadData()
+                    completion(true)
                 }
             }
         }
