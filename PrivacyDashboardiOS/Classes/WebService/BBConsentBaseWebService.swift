@@ -368,6 +368,9 @@ extension BBConsentBaseWebService {
             }
         }
         
+        /// Specify organisation ID in the header to support multi-tenancy
+        header?["organizationId"] = BBConsentPrivacyDashboardiOS.shared.orgId ?? ""
+        
         var encoding: ParameterEncoding = JSONEncoding.default
         if method == .get {
             encoding = URLEncoding.default
