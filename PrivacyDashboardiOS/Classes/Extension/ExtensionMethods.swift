@@ -546,7 +546,12 @@ extension String {
         if let bundle = Bundle(url: Bundle.main.bundleURL.appendingPathComponent("Frameworks").appendingPathComponent("PrivacyDashboardiOS.framework").appendingPathComponent("/\(languageCode).lproj")) {
             return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
         } else {
-            let bundle = Bundle(url: Bundle.main.bundleURL.appendingPathComponent("PrivacyDashboardiOS.bundle").appendingPathComponent("\(languageCode).lproj")) ?? Bundle.main
+            /// Cocoapods will copy localization string files to the receiver project
+            /// and generate a new bundle to prevent name collisions. This bundle is
+            /// specified in PrivacyDashboardiOS.podspec as resource_bundle.
+            /// Reference: https://medium.com/@shenghuawu/localization-cocoapods-5d1e9f34f6e6
+            let path = Bundle(for: PrivacyDashboard.self).path(forResource: "PrivacyDashboardiOS",ofType: "bundle")!
+            let bundle = Bundle(path: path) ?? Bundle.main
             return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
         }
     }
