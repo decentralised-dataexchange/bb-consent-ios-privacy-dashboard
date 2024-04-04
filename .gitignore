@@ -57,4 +57,5 @@ fastlane/screenshots
 #
 # *.cert
 # *.mobileprovision
-PrivacyDashboardiOS/Example/Pods
+Pods/
+Example/Pods/

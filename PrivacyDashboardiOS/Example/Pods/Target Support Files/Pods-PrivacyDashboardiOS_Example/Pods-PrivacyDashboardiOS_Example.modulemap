@@ -1,6 +1,0 @@
-framework module Pods_PrivacyDashboardiOS_Example {
-  umbrella header "Pods-PrivacyDashboardiOS_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
