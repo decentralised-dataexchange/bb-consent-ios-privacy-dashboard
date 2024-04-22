@@ -141,6 +141,8 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     func CheckAndCreateRecordForContractType() {
         let dataAgreementIDs = dataAgreementsObj?.dataAgreements.filter({ $0.lawfulBasis != "consent" && $0.lawfulBasis != "legitimate_interest"  }).map({ $0.id }) ?? []
         let idsWithAttributeRecords = consentRecordsObj?.consentRecords.map({ $0.dataAgreementID }) ?? []
+        let recordIds = consentRecordsObj?.consentRecords.map({ $0.id }) ?? []
+
         for item in dataAgreementIDs {
             // If item doesnt have record already
             if !idsWithAttributeRecords.contains(item) {
@@ -148,6 +150,15 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
                 callCreateDataAgreementApi(dataAgreementId: item) { model in
                     if let consentRecordModel = model {
                         self.consentRecordsObj?.consentRecords.append(consentRecordModel)
+                        self.orgTableView.reloadData()
+                    }
+                }
+            } else {
+                // Update record api call
+                let indexOfItem = idsWithAttributeRecords.firstIndex(of: item) ?? 0
+                callUpdatePurposeApi(dataAgreementRecordId: recordIds[indexOfItem], dataAgreementId: item, status: true) { success in
+                    if success {
+                        self.consentRecordsObj?.consentRecords[indexOfItem].optIn = true
                         self.orgTableView.reloadData()
                     }
                 }
