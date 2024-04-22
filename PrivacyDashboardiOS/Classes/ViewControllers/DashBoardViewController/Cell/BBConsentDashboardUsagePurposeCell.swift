@@ -37,7 +37,6 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
             self.statusSwitch.isEnabled = true
         } else {
             self.statusSwitch.isEnabled = false
-            self.statusSwitch.isOn = true
         }
         
         self.titleLbl.text = self.consentInfo?.purpose
