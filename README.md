@@ -23,21 +23,23 @@ This repository hosts source code for the reference implementation of the GovSta
 
 Released. Refer to the [wiki page](https://github.com/decentralised-dataexchange/bb-consent-docs/wiki/wps-and-deliverables) for the latest status of the deliverables. 
 
-## 1. iOS Configuration
+## 1. Installation
 [PrivacyDashboardiOS](https://cocoapods.org/pods/PrivacyDashboardiOS#about) is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile after all [pod set up](https://guides.cocoapods.org/using/getting-started.html) done:
 
 ```ruby
 pod 'PrivacyDashboardiOS','2023.11.10'
 ```
-## 2. iOS Integration
+## 2. Integration
 
 Import PrivacyDashboard SDK
+
 ```
 #import PrivacyDashboardiOS
 ```
 #### Privacy Dashboard
 
-We can initiate the privacy dashboard by calling:
+Initiate the privacy dashboard with the code block below:
+
 ```
 PrivacyDashboard.showPrivacyDashboard(withApiKey: <apiKey>,
                                       withUserId: <userId>,
@@ -47,7 +49,10 @@ PrivacyDashboard.showPrivacyDashboard(withApiKey: <apiKey>,
                                       turnOnUserRequest: <Bool>,
                                       turnOnAttributeDetail: <Bool>)
 ```
-We can also show the privacy dashboard with `accessToken` (optional parameter).
+## Supported Functions
+
+We can show the privacy dashboard with `accessToken` (optional parameter).
+
 > **_Note:_** If we have `accessToken` then no need to pass `API key` and `User ID`
 
 To set app language, pass language code to `withLocale`. 
