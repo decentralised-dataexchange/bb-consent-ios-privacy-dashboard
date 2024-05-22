@@ -49,7 +49,6 @@ PrivacyDashboard.showPrivacyDashboard(withApiKey: <apiKey>,
                                       turnOnUserRequest: <Bool>,
                                       turnOnAttributeDetail: <Bool>)
 ```
-## Supported Functions
 
 We can show the privacy dashboard with `accessToken` (optional parameter).
 
@@ -73,6 +72,9 @@ To enable Attribute detail screen, set the `turnOnAttributeDetail` to `true`
 ```
  .turnOnAttributeDetail : true
 ```
+
+## Supported Functions
+
 #### Data Sharing UI
 To initiate the Data sharing UI
 ```
