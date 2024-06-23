@@ -354,47 +354,51 @@ extension BBConsentBaseWebService {
     }
     
     func makeAPICall(urlString: String, parameters: [String: Any] = [:], headers: [String: String] = [:], method: ApiType, completion:@escaping (_ success: Bool, _ resultVal: [String: Any]) -> Void) {
-        if BBConsentPrivacyDashboardiOS.shared.accessToken != "" && BBConsentPrivacyDashboardiOS.shared.accessToken != nil {
-            let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken ?? ""
-            let hearDict = ["Authorization":"Bearer \(accessToken)"]
-            header = hearDict
-        } else {
-            if let tokendata = BBConsentKeyChainUtils.load(key: "BBConsentApiKey") {
-                let token = String(data: tokendata, encoding: .utf8) ?? ""
-                let hearDict = ["Authorization":"ApiKey \(token)", "X-ConsentBB-IndividualId": BBConsentPrivacyDashboardiOS.shared.userId ?? ""]
-                header = hearDict
-            } else {
-                debugPrint("### No API key available!")
+        var finalHeaders = headers
+        
+        if let accessToken = BBConsentPrivacyDashboardiOS.shared.accessToken, !accessToken.isEmpty {
+            finalHeaders["Authorization"] = "Bearer \(accessToken)"
+        } else if let tokenData = BBConsentKeyChainUtils.load(key: "BBConsentApiKey"), let token = String(data: tokenData, encoding: .utf8), !token.isEmpty {
+            finalHeaders["Authorization"] = "ApiKey \(token)"
+            if let userId = BBConsentPrivacyDashboardiOS.shared.userId, !userId.isEmpty {
+                finalHeaders["X-ConsentBB-IndividualId"] = userId
             }
+        } else {
+            debugPrint("### No API key available!")
         }
         
-        /// Specify organisation ID in the header to support multi-tenancy
-        header?["organizationId"] = BBConsentPrivacyDashboardiOS.shared.orgId ?? ""
+        if let orgId = BBConsentPrivacyDashboardiOS.shared.orgId, !orgId.isEmpty {
+            finalHeaders["organizationId"] = orgId
+        }
         
         var encoding: ParameterEncoding = JSONEncoding.default
         if method == .get {
             encoding = URLEncoding.default
         }
         
-        AF.request(urlString, method: HTTPMethod(rawValue: method.rawValue), parameters: parameters, encoding: encoding, headers: HTTPHeaders.init(header ?? [:]))
+        AF.request(urlString, method: HTTPMethod(rawValue: method.rawValue), parameters: parameters, encoding: encoding, headers: HTTPHeaders(finalHeaders))
             .responseJSON { response in
-            debugPrint("### URL Request: \(String(describing: response.request))")
-            debugPrint("### URL Response: \(String(describing: response.response))")
-            debugPrint("### Data: \(String(describing: response.data))")
-            debugPrint("### Result: \(response.result)")
-            debugPrint("### Parameters: \(parameters)")
-            
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value as Any)
-                completion(true, json.rawValue as! [String : Any])
-            case .failure(let error):
-                debugPrint(error)
-                completion(false, [:])
+                debugPrint("### URL Request: \(String(describing: response.request))")
+                debugPrint("### URL Response: \(String(describing: response.response))")
+                debugPrint("### Data: \(String(describing: response.data))")
+                debugPrint("### Result: \(response.result)")
+                debugPrint("### Parameters: \(parameters)")
+                
+                switch response.result {
+                case .success(let value):
+                    if let json = value as? [String: Any] {
+                        completion(true, json)
+                    } else {
+                        completion(false, [:])
+                    }
+                case .failure(let error):
+                    debugPrint(error)
+                    completion(false, [:])
+                }
             }
-        }
     }
 }
+
 
 let kResponseBaseKey = "data"
 protocol WebServiceTaskManagerProtocol {
