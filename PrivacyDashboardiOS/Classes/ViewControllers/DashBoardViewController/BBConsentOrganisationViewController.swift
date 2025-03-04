@@ -28,6 +28,8 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     var dataAgreementsObj: DataAgreementsModel?
     var consentRecordsObj : RecordsModel?
     var organizationObj : OrganisationModel?
+    
+    public var onConsentChange: ((Bool, String) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -348,7 +350,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
             consentCell.tag = indexPath.row
             consentCell.consentInfo = dataAgreementsObj?.dataAgreements[indexPath.row]
-            
+            consentCell.onConsentChange = onConsentChange
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from two api's)
             let dataAgreementIdsFromOrg =  dataAgreementsObj?.dataAgreements.map({ $0.id })
             let record = consentRecordsObj?.consentRecords.filter({ $0.dataAgreementID == dataAgreementIdsFromOrg?[indexPath.row]})

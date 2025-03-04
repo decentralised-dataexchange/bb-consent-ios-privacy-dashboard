@@ -11,12 +11,13 @@ public class PrivacyDashboard {
     public static var receiveDataBackFromPrivacyDashboard : (([String: Any]) -> Void)?
     
     // MARK: - Invoking 'PrivacyDashboard' iOS SDK
-    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool) {
-        BBConsentPrivacyDashboardiOS.shared.languageCode = withLocale 
+    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String) -> Void)? = nil) {
+        BBConsentPrivacyDashboardiOS.shared.languageCode = withLocale
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = turnOnUserRequest
         BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = turnOnAskme
         BBConsentPrivacyDashboardiOS.shared.turnOnAttributeDetailScreen = turnOnAttributeDetail
         BBConsentPrivacyDashboardiOS.shared.baseUrl = withBaseUrl
+        BBConsentPrivacyDashboardiOS.shared.onConsentChange = onConsentChange
         BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken)
     }
     
