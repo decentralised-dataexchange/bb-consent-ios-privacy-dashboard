@@ -1,4 +1,3 @@
-
 //
 //  BBConsentDashboardUsagePurposeCell.swift
 //  PrivacyDashboardiOS
@@ -22,6 +21,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     var consentedCount: Int?
     var totalCount: Int?
     var swictOn: Bool = false
+    public var onConsentChange: ((Bool, String) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -60,6 +60,11 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
 
     @IBAction func switchValueChanged(sender: UISwitch) {
-        self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self)
+        if let onConsentChange = onConsentChange {
+            onConsentChange(sender.isOn, consentInfo?.id ?? "")
+            self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self)
+        } else {
+            self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self)
+        }
     }
 }
