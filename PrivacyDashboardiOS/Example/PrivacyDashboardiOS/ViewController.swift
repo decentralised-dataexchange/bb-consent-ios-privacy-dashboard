@@ -24,7 +24,10 @@ class ViewController: UIViewController {
                                                       withLocale: "en",
                                                       turnOnAskme: false,
                                                       turnOnUserRequest: false,
-                                                      turnOnAttributeDetail: false)
+                                                      turnOnAttributeDetail: false,
+                                                      onConsentChange: { success, resultVal in
+                                                            debugPrint("Consent change here:\(success) - \(resultVal)")
+                                                })
         
         // 2. For showing Data sharing UI
         //      PrivacyDashboard.showDataSharingUI(apiKey: <API Key >,
