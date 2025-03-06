@@ -16,6 +16,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
     // Demo server by default
     public var baseUrl = "https://demo-consent-bb-api.igrant.io/v2"
     public var onConsentChange: ((Bool, String) -> Void)?
+    var shouldShowAlertOnConsentChange: Bool?
     
     var orgId: String?
     var userId: String?
@@ -53,6 +54,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
             let orgVC = storyboard.instantiateViewController(withIdentifier: "BBConsentOrganisationViewController") as? BBConsentOrganisationViewController ?? BBConsentOrganisationViewController()
             orgVC.organisationId = organisationId
             orgVC.onConsentChange = onConsentChange
+            orgVC.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
             let navVC = UINavigationController.init(rootViewController: orgVC)
             navVC.modalPresentationStyle = .fullScreen
             UIApplication.topViewController()?.present(navVC, animated: animate, completion: nil)

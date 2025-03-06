@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PurposeCellDelegate: AnyObject {
-    func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell)
+    func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell, shouldShowPopup: Bool)
 }
 
 class BBConsentDashboardUsagePurposeCell: UITableViewCell {
@@ -22,6 +22,7 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     var totalCount: Int?
     var swictOn: Bool = false
     public var onConsentChange: ((Bool, String) -> Void)?
+    var shouldShowAlertOnConsentChange: Bool?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -60,11 +61,6 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     }
 
     @IBAction func switchValueChanged(sender: UISwitch) {
-        if let onConsentChange = onConsentChange {
-            onConsentChange(sender.isOn, consentInfo?.id ?? "")
-            self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self)
-        } else {
-            self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self)
-        }
+        self.delegate?.purposeSwitchValueChanged(status: sender.isOn, purposeInfo: self.consentInfo as? PurposeConsent, cell: self, shouldShowPopup: shouldShowAlertOnConsentChange ?? true)
     }
 }

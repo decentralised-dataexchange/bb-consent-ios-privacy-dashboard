@@ -30,6 +30,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     var organizationObj : OrganisationModel?
     
     public var onConsentChange: ((Bool, String) -> Void)?
+    var shouldShowAlertOnConsentChange: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -351,6 +352,7 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             consentCell.tag = indexPath.row
             consentCell.consentInfo = dataAgreementsObj?.dataAgreements[indexPath.row]
             consentCell.onConsentChange = onConsentChange
+            consentCell.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from two api's)
             let dataAgreementIdsFromOrg =  dataAgreementsObj?.dataAgreements.map({ $0.id })
             let record = consentRecordsObj?.consentRecords.filter({ $0.dataAgreementID == dataAgreementIdsFromOrg?[indexPath.row]})
@@ -393,61 +395,62 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
 
 extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeCellDelegate {
     
-    func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell) {
-        let serviceManager = OrganisationWebServiceManager()
-        // serviceManager.managerDelegate = self
-        var alrtMsg = Constant.Alert.areYouSureYouWantToAllow.localized
-        var value = Constant.Alert.allow.localized
-        var titleStr = Constant.Alert.allow.localized
-       
-        if status == false {
-            alrtMsg = Constant.Alert.areYouSureYouWantToDisAllow.localized
-            value = Constant.Alert.disallow.localized
-            titleStr = Constant.Alert.disallow.localized
-        }
+    func purposeSwitchValueChanged(status:Bool,purposeInfo:PurposeConsent?,cell:BBConsentDashboardUsagePurposeCell, shouldShowPopup: Bool) {
         
-        let alerController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message:alrtMsg , preferredStyle: .alert)
-        if status == false {
-            alerController.addAction(UIAlertAction(title: titleStr, style: .destructive, handler: {(action:UIAlertAction) in
-                let filteredRecord = self.consentRecordsObj?.consentRecords.map({ $0 }).filter({ $0.dataAgreementID ==  self.dataAgreementsObj?.dataAgreements[cell.tag].id })
-                if filteredRecord?.count ?? 0 > 0 {
-                    self.callUpdatePurposeApi(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementID ?? "", status: status, updateCompletion: { success in
-                        if success {
-                            filteredRecord?[0].optIn = status
-                            self.orgTableView.reloadData()
+        let performAction = {
+                let filteredRecord = self.consentRecordsObj?.consentRecords.filter { $0.dataAgreementID == self.dataAgreementsObj?.dataAgreements[cell.tag].id }
+                
+                if status == false {
+                    if let record = filteredRecord?.first {
+                        self.callUpdatePurposeApi(dataAgreementRecordId: record.id , dataAgreementId: record.dataAgreementID , status: status) { success in
+                            if success {
+                                if let onConsentChange = self.onConsentChange {
+                                    onConsentChange(status, record.dataAgreementID )
+                                }
+                                record.optIn = status
+                                self.orgTableView.reloadData()
+                            }
                         }
-                    })
-                }
-            }));
-            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel.localized, style: .cancel, handler: {(action:UIAlertAction) in
-                cell.statusSwitch.isOn = !cell.statusSwitch.isOn
-            }));
-            
-        } else {
-            alerController.addAction(UIAlertAction(title: Constant.Strings.cancel.localized, style: .destructive, handler: {(action:UIAlertAction) in
-                cell.statusSwitch.isOn = !cell.statusSwitch.isOn
-            }));
-            
-            alerController.addAction(UIAlertAction(title: value, style: .default, handler: {(action:UIAlertAction) in
-                let filteredRecord = self.consentRecordsObj?.consentRecords.map({ $0 }).filter({ $0.dataAgreementID ==  self.dataAgreementsObj?.dataAgreements[cell.tag].id })
-                if filteredRecord?.count ?? 0 > 0 {
-                    self.callUpdatePurposeApi(dataAgreementRecordId: filteredRecord?[0].id ?? "", dataAgreementId:  filteredRecord?[0].dataAgreementID ?? "", status: status, updateCompletion: { success in
-                        if success {
-                            filteredRecord?[0].optIn = status
-                            self.orgTableView.reloadData()
-                        }
-                    })
+                    }
                 } else {
-                    self.callCreateDataAgreementApi(dataAgreementId: self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "") { model in
-                        if let consentRecordModel = model {
-                            self.consentRecordsObj?.consentRecords.append(consentRecordModel)
-                            self.orgTableView.reloadData()
+                    if let record = filteredRecord?.first {
+                        self.callUpdatePurposeApi(dataAgreementRecordId: record.id , dataAgreementId: record.dataAgreementID , status: status) { success in
+                            if success {
+                                if let onConsentChange = self.onConsentChange {
+                                    onConsentChange(status, record.dataAgreementID )
+                                }
+                                record.optIn = status
+                                self.orgTableView.reloadData()
+                            }
+                        }
+                    } else {
+                        self.callCreateDataAgreementApi(dataAgreementId: self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "") { model in
+                            if let consentRecordModel = model {
+                                self.consentRecordsObj?.consentRecords.append(consentRecordModel)
+                                self.orgTableView.reloadData()
+                            }
                         }
                     }
                 }
-            }));
-        }
-        present(alerController, animated: true, completion: nil)
+            }
+        if shouldShowPopup {
+                let alrtMsg = status ? Constant.Alert.areYouSureYouWantToAllow.localized : Constant.Alert.areYouSureYouWantToDisAllow.localized
+                let value = status ? Constant.Alert.allow.localized : Constant.Alert.disallow.localized
+                
+                let alertController = UIAlertController(title: Constant.AppSetupConstant.KAlertTitle, message: alrtMsg, preferredStyle: .alert)
+                
+            alertController.addAction(UIAlertAction(title: Constant.Strings.cancel.localized, style: status ? .destructive : .cancel) { _ in
+                    cell.statusSwitch.isOn = !cell.statusSwitch.isOn
+                })
+                
+                alertController.addAction(UIAlertAction(title: value, style: status ? .default : .destructive) { _ in
+                    performAction()
+                })
+                
+                present(alertController, animated: true, completion: nil)
+            } else {
+                performAction()
+            }
     }
 
     func willExpandLabel(_ label: ExpandableLabel) {
