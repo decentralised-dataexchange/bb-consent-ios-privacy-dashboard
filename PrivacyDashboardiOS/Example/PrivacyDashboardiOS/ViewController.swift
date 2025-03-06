@@ -17,16 +17,16 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         // 1. For showing Privacy Dashboard
-                PrivacyDashboard.showPrivacyDashboard(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsiY29uZmlnIiwiYXVkaXQiLCJzZXJ2aWNlIiwib25ib2FyZCJdLCJPcmdhbmlzYXRpb25JZCI6IjYzOGRkM2IxMmY1ZDE3MDAwMTQ0MzFlYyIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2MzhkZDM3ODJmNWQxNzAwMDE0NDMxZWIiLCJEYXRhVmVyaWZpZXJVc2VySWQiOiIiLCJFbnYiOiIiLCJleHAiOjE3NDk2NTA4NzZ9.a2nXRztms8PrE4i3cjElTpn9ktQVmyVd1-NGNoFJ7QU",
-                                                      withUserId: "6606870683175119a9ab6740",
-                                                      withOrgId: "638dd3b12f5d1700014431ec",
-                                                      withBaseUrl: "https://staging-api.igrant.io/v2",
+                PrivacyDashboard.showPrivacyDashboard(withApiKey: "<API Key>",
+                                                      withUserId: "<User ID>",
+                                                      withOrgId: "<Org ID>",
+                                                      withBaseUrl: "<Base Url>",
                                                       withLocale: "en",
                                                       turnOnAskme: false,
                                                       turnOnUserRequest: false,
                                                       turnOnAttributeDetail: false,
-                                                      onConsentChange: { success, resultVal in
-                                                            debugPrint("Consent change here:\(success) - \(resultVal)")
+                                                      onConsentChange: { success, resultVal, consentRecordID  in
+                                                            debugPrint("Consent change here:\(success) - \(resultVal) \(consentRecordID)")
                                                 })
         
         // 2. For showing Data sharing UI
@@ -48,10 +48,10 @@ class ViewController: UIViewController {
         
 
         // 4. Setting API configuring params
-                PrivacyDashboard.configure(withApiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTY29wZXMiOlsiY29uZmlnIiwiYXVkaXQiLCJzZXJ2aWNlIiwib25ib2FyZCJdLCJPcmdhbmlzYXRpb25JZCI6IjYzOGRkM2IxMmY1ZDE3MDAwMTQ0MzFlYyIsIk9yZ2FuaXNhdGlvbkFkbWluSWQiOiI2MzhkZDM3ODJmNWQxNzAwMDE0NDMxZWIiLCJEYXRhVmVyaWZpZXJVc2VySWQiOiIiLCJFbnYiOiIiLCJleHAiOjE3NDk2NTA4NzZ9.a2nXRztms8PrE4i3cjElTpn9ktQVmyVd1-NGNoFJ7QU",
-                                           withUserId: "6606870683175119a9ab6740",
-                                           withOrgId: "638dd3b12f5d1700014431ec",
-                                           withBaseUrl: "https://staging-api.igrant.io/v2",
+                PrivacyDashboard.configure(withApiKey: "<API Key>",
+                                           withUserId: "<User ID>",
+                                           withOrgId: "<Org ID>",
+                                           withBaseUrl: "<Base Url>",
                                            withLocale: "en")
         
         
@@ -67,8 +67,8 @@ class ViewController: UIViewController {
         // 7. Open Data agreement policy UI
         //        PrivacyDashboard.showDataAgreementPolicy(dataAgreementRecord: <JSON data of "dataAgreement" response>)
         
-        // 8. Read data agreement 
-                PrivacyDashboard.readDataAgreementApi(dataAgreementId: "65f22388e41f97425dcf284c") { success, resultVal in
+        // 8. Read data agreement
+                PrivacyDashboard.readDataAgreementApi(dataAgreementId: "<Data Agreement ID>") { success, resultVal in
                     print(resultVal)
                 }
         
@@ -78,4 +78,3 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
-
