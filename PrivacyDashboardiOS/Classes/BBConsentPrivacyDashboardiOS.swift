@@ -15,7 +15,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
     public var languageCode = "en"
     // Demo server by default
     public var baseUrl = "https://demo-consent-bb-api.igrant.io/v2"
-    public var onConsentChange: ((Bool, String) -> Void)?
+    public var onConsentChange: ((Bool, String, String) -> Void)?
     var shouldShowAlertOnConsentChange: Bool?
     
     var orgId: String?

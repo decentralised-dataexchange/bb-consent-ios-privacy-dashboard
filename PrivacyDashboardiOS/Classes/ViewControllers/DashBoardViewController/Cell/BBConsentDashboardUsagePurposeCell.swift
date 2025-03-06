@@ -21,7 +21,6 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
     var consentedCount: Int?
     var totalCount: Int?
     var swictOn: Bool = false
-    public var onConsentChange: ((Bool, String) -> Void)?
     var shouldShowAlertOnConsentChange: Bool?
     
     override func awakeFromNib() {

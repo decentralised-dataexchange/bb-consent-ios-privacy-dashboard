@@ -29,7 +29,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     var consentRecordsObj : RecordsModel?
     var organizationObj : OrganisationModel?
     
-    public var onConsentChange: ((Bool, String) -> Void)?
+    public var onConsentChange: ((Bool, String, String) -> Void)?
     var shouldShowAlertOnConsentChange: Bool?
 
     override func viewDidLoad() {
@@ -130,12 +130,14 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         }
     }
     
-    func callUpdatePurposeApi(dataAgreementRecordId: String, dataAgreementId: String, status: Bool, updateCompletion: @escaping (Bool) -> ()) {
+    func callUpdatePurposeApi(dataAgreementRecordId: String, dataAgreementId: String, status: Bool, updateCompletion: @escaping (Bool, String) -> ()) {
         let url = baseUrl + "/service/individual/record/consent-record/" + dataAgreementRecordId + "?dataAgreementId=" + dataAgreementId
         let params  = ["optIn" : status]
         self.api.makeAPICall(urlString: url,parameters: params, method:.put) { status, result in
             if status {
-                updateCompletion(true)
+                let resultDict = result["consentRecord"] as? [String: Any]
+                let consentRecordID = resultDict?["id"] as? String
+                updateCompletion(true, consentRecordID ?? "")
             }
         }
     }
@@ -159,7 +161,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
             } else {
                 // Update record api call
                 let indexOfItem = idsWithAttributeRecords.firstIndex(of: item) ?? 0
-                callUpdatePurposeApi(dataAgreementRecordId: recordIds[indexOfItem], dataAgreementId: item, status: true) { success in
+                callUpdatePurposeApi(dataAgreementRecordId: recordIds[indexOfItem], dataAgreementId: item, status: true) { success, _  in
                     if success {
                         self.consentRecordsObj?.consentRecords[indexOfItem].optIn = true
                         self.orgTableView.reloadData()
@@ -351,7 +353,6 @@ extension BBConsentOrganisationViewController: UITableViewDelegate, UITableViewD
             let consentCell = tableView.dequeueReusableCell(withIdentifier:Constant.CustomTabelCell.purposeCell,for: indexPath) as! BBConsentDashboardUsagePurposeCell
             consentCell.tag = indexPath.row
             consentCell.consentInfo = dataAgreementsObj?.dataAgreements[indexPath.row]
-            consentCell.onConsentChange = onConsentChange
             consentCell.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
             // Note: filtering dataAgreement from records to check 'optIn' value (both are getting from two api's)
             let dataAgreementIdsFromOrg =  dataAgreementsObj?.dataAgreements.map({ $0.id })
@@ -402,10 +403,10 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                 
                 if status == false {
                     if let record = filteredRecord?.first {
-                        self.callUpdatePurposeApi(dataAgreementRecordId: record.id , dataAgreementId: record.dataAgreementID , status: status) { success in
+                        self.callUpdatePurposeApi(dataAgreementRecordId: record.id , dataAgreementId: record.dataAgreementID , status: status) { success, consentRecordID in
                             if success {
                                 if let onConsentChange = self.onConsentChange {
-                                    onConsentChange(status, record.dataAgreementID )
+                                    onConsentChange(status, record.dataAgreementID , consentRecordID )
                                 }
                                 record.optIn = status
                                 self.orgTableView.reloadData()
@@ -414,10 +415,10 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                     }
                 } else {
                     if let record = filteredRecord?.first {
-                        self.callUpdatePurposeApi(dataAgreementRecordId: record.id , dataAgreementId: record.dataAgreementID , status: status) { success in
+                        self.callUpdatePurposeApi(dataAgreementRecordId: record.id , dataAgreementId: record.dataAgreementID , status: status) { success, consentRecordID in
                             if success {
                                 if let onConsentChange = self.onConsentChange {
-                                    onConsentChange(status, record.dataAgreementID )
+                                    onConsentChange(status, record.dataAgreementID , consentRecordID )
                                 }
                                 record.optIn = status
                                 self.orgTableView.reloadData()
