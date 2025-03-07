@@ -427,6 +427,9 @@ extension BBConsentOrganisationViewController: ExpandableLabelDelegate ,PurposeC
                     } else {
                         self.callCreateDataAgreementApi(dataAgreementId: self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "") { model in
                             if let consentRecordModel = model {
+                                if let onConsentChange = self.onConsentChange {
+                                    onConsentChange(status, self.dataAgreementsObj?.dataAgreements[cell.tag].id ?? "" , consentRecordModel.id )
+                                }
                                 self.consentRecordsObj?.consentRecords.append(consentRecordModel)
                                 self.orgTableView.reloadData()
                             }
