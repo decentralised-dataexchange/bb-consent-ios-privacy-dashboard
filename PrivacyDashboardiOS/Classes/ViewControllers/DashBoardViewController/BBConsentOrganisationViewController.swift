@@ -31,6 +31,7 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
     
     public var onConsentChange: ((Bool, String, String) -> Void)?
     var shouldShowAlertOnConsentChange: Bool?
+    var dataAgreementIDs: [String]? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +93,16 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
                 if let data = try? JSONSerialization.data(withJSONObject: result, options: .prettyPrinted) {
                     let model = try? jsonDecoder.decode(DataAgreementsModel.self, from: data)
                     debugPrint("### DataAgreements:\(String(describing: model))")
-                    self.dataAgreementsObj = model
+                    if self.dataAgreementIDs ==  nil {
+                        self.dataAgreementsObj = model
+                    } else {
+                        guard let model = model, let dataAgreementIDs = self.dataAgreementIDs else {
+                            return
+                        }
+                        let record = model.dataAgreements.filter({dataAgreementIDs.contains( $0.id)})
+                        let pagination = model.pagination
+                        self.dataAgreementsObj = DataAgreementsModel(dataAgreements: record, pagination: pagination)
+                    }
                     completion(true)
                 }
             }

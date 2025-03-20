@@ -11,7 +11,7 @@ public class PrivacyDashboard {
     public static var receiveDataBackFromPrivacyDashboard : (([String: Any]) -> Void)?
     
     // MARK: - Invoking 'PrivacyDashboard' iOS SDK
-    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String, String) -> Void)? = nil, shouldShowAlertOnConsentChange: Bool = true) {
+    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String, String) -> Void)? = nil, shouldShowAlertOnConsentChange: Bool = true, dataAgreementIDs: [String]? = nil) {
         BBConsentPrivacyDashboardiOS.shared.languageCode = withLocale
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = turnOnUserRequest
         BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = turnOnAskme
@@ -19,6 +19,7 @@ public class PrivacyDashboard {
         BBConsentPrivacyDashboardiOS.shared.baseUrl = withBaseUrl
         BBConsentPrivacyDashboardiOS.shared.onConsentChange = onConsentChange
         BBConsentPrivacyDashboardiOS.shared.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
+        BBConsentPrivacyDashboardiOS.shared.dataAgreementIDs = dataAgreementIDs ?? nil
         BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken)
     }
     
