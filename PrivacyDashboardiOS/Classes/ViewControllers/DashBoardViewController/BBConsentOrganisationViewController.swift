@@ -37,6 +37,12 @@ class BBConsentOrganisationViewController: BBConsentBaseViewController {
         super.viewDidLoad()
         setupUI()
         callDataAgreementsApi { _ in
+            if self.dataAgreementsObj?.dataAgreements.count == 0 {
+                self.noDataAgreementsLbl.isHidden = false
+                self.noDataAgreementsLbl.text = "No active data agreements available"
+            } else {
+                self.noDataAgreementsLbl.isHidden = true
+            }
             self.callRecordsApi()
         }
         callOrganisationApi()
