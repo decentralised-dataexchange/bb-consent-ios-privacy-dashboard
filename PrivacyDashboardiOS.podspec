@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/decentralised-dataexchange/bb-consent-ios-privacy-dashboard.git', :tag => s.version.to_s }
   s.social_media_url = 'https://www.linkedin.com/company/igrantio'
 
-  s.ios.deployment_target = '13.0'
+  s.ios.deployment_target = '15.0'
   s.swift_version = '5.0'
   s.source_files = '**/Classes/**/*.{h,m,swift,storyboard}'
 # s.source_files = 'PrivacyDashboardiOS/Classes/**/*', 'PrivacyDashboardiOS/Classes/*', 'PrivacyDashboardiOS/Resources/*'
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 5.4.1'
   s.dependency 'SwiftyJSON'
-  s.dependency 'IQKeyboardManagerSwift'
+  s.dependency 'IQKeyboardManagerSwift', '~>6.5.11'
   s.dependency "ExpandableLabel"
   s.dependency 'MiniLayout', '~> 1.3.0'
   s.dependency 'StepProgressView'
