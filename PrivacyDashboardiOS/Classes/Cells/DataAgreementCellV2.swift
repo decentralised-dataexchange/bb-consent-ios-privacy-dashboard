@@ -7,15 +7,15 @@
 
 
 //
-//  CovidValuesRowTableViewCell.swift
+//  DataAgreementCellV2.swift
 //  dataWallet
 //
-//  Created by sreelekh N on 21/12/21.
+//  Created by sonya N on 21/12/21.
 //
 
 import UIKit
 
-final class DataAgreementCell: UITableViewCell {
+final class DataAgreementCellV2: UITableViewCell {
     
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet weak var lineView: UIView!

@@ -31,8 +31,8 @@ class BBConsentDataAgreementVC: UITableViewController {
         } catch {
             debugPrint(error)
         }
-        let bundle = Bundle(for: DataAgreementCell.self)
-        tableView.register(UINib(nibName: "DataAgreementCell", bundle: bundle), forCellReuseIdentifier: "DataAgreementCell")
+        let bundle = Bundle(for: DataAgreementCellV2.self)
+        tableView.register(UINib(nibName: "DataAgreementCellV2", bundle: bundle), forCellReuseIdentifier: "DataAgreementCellV2")
         setUI()
         setData()
     }
@@ -89,7 +89,7 @@ class BBConsentDataAgreementVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DataAgreementCell", for: indexPath) as! DataAgreementCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DataAgreementCellV2", for: indexPath) as! DataAgreementCellV2
         let item = dataAgreementDic[indexPath.section]
         let totalRowsInSection = item.count
         let keys = item.map({ $0.key })
