@@ -541,18 +541,26 @@ extension NSMutableAttributedString {
 }
 
 extension String {
+    
     var localized: String {
         let languageCode = BBConsentPrivacyDashboardiOS.shared.languageCode
-        if let bundle = Bundle(url: Bundle.main.bundleURL.appendingPathComponent("Frameworks").appendingPathComponent("PrivacyDashboardiOS.framework").appendingPathComponent("/\(languageCode).lproj")) {
-            return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
+        
+        if let resourceBundlePath = Bundle(for: PrivacyDashboard.self).path(forResource: "PrivacyDashboardiOS", ofType: "bundle"),
+           let resourceBundle = Bundle(path: resourceBundlePath),
+           let languageBundlePath = resourceBundle.path(forResource: languageCode, ofType: "lproj"),
+           let languageBundle = Bundle(path: languageBundlePath) {
+            return NSLocalizedString(self, tableName: nil, bundle: languageBundle, value: "", comment: "")
         } else {
-            /// Cocoapods will copy localization string files to the receiver project
-            /// and generate a new bundle to prevent name collisions. This bundle is
-            /// specified in PrivacyDashboardiOS.podspec as resource_bundle.
-            /// Reference: https://medium.com/@shenghuawu/localization-cocoapods-5d1e9f34f6e6
-            let path = Bundle(for: PrivacyDashboard.self).path(forResource: "PrivacyDashboardiOS",ofType: "bundle")!
-            let bundle = Bundle(path: path) ?? Bundle.main
-            return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
+            if let resourceBundlePath = Bundle(for: PrivacyDashboard.self).path(forResource: "PrivacyDashboardiOS", ofType: "bundle"),
+               let resourceBundle = Bundle(path: resourceBundlePath),
+               let englishBundlePath = resourceBundle.path(forResource: "en", ofType: "lproj"),
+               let englishBundle = Bundle(path: englishBundlePath) {
+                return NSLocalizedString(self, tableName: nil, bundle: englishBundle, value: "", comment: "")
+            }
         }
+        
+        let path = Bundle(for: PrivacyDashboard.self).path(forResource: "PrivacyDashboardiOS", ofType: "bundle")!
+        let bundle = Bundle(path: path) ?? Bundle.main
+        return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
     }
 }
