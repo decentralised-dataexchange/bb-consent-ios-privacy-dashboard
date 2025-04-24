@@ -41,5 +41,5 @@ Pod::Spec.new do |s|
   s.dependency 'SDStateTableView'
   s.dependency 'SwiftEntryKit'
   s.dependency 'AFDateHelper'
-  s.dependency 'Kingfisher'
+  s.dependency 'Kingfisher', '~>8.3.2'
 end
