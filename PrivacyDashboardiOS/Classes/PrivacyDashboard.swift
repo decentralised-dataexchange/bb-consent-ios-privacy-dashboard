@@ -7,11 +7,16 @@
 
 import Foundation
 
+public enum ViewMode {
+    case fullScreen
+    case bottomSheet
+}
+
 public class PrivacyDashboard {
     public static var receiveDataBackFromPrivacyDashboard : (([String: Any]) -> Void)?
     
     // MARK: - Invoking 'PrivacyDashboard' iOS SDK
-    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String, String) -> Void)? = nil, shouldShowAlertOnConsentChange: Bool = true, dataAgreementIDs: [String]? = nil) {
+    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String, String) -> Void)? = nil, shouldShowAlertOnConsentChange: Bool = true, dataAgreementIDs: [String]? = nil, viewMode: ViewMode = .fullScreen) {
         BBConsentPrivacyDashboardiOS.shared.languageCode = withLocale
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = turnOnUserRequest
         BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = turnOnAskme
@@ -20,7 +25,7 @@ public class PrivacyDashboard {
         BBConsentPrivacyDashboardiOS.shared.onConsentChange = onConsentChange
         BBConsentPrivacyDashboardiOS.shared.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
         BBConsentPrivacyDashboardiOS.shared.dataAgreementIDs = dataAgreementIDs ?? nil
-        BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken)
+        BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken, viewMode: viewMode)
     }
     
     public static func showDataSharingUI(apiKey: String, userId: String, accessToken: String? = nil, baseUrlString: String, dataAgreementId: String, organisationName: String, organisationLogoImageUrl: String, termsOfServiceText : String, termsOfServiceUrl: String, cancelButtonText: String) {
@@ -162,22 +167,39 @@ public class PrivacyDashboard {
         }
     }
     
-    public static func showDataAgreementPolicy(dataAgreementDic: [String: Any]) {
-        let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
-        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
-        var storyboard = UIStoryboard()
-        if let resourceBundle = Bundle(url: bundleURL!) {
-            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
-        } else {
-            let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
-            storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+    public static func showDataAgreementPolicy(dataAgreementDic: [String: Any], viewMode: ViewMode = .fullScreen) {
+        if viewMode == .bottomSheet {
+            let frameworkBundle = Bundle(for: BBConsentDataAgreementBottomSheetVC.self)
+            let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+            var storyboard = UIStoryboard()
+            if let resourceBundle = Bundle(url: bundleURL!) {
+                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+            } else {
+                let myBundle = Bundle(for: BBConsentOrganisationBottomSheetViewController.self)
+                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+            }
+            let dataAgreementVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataAgreementBottomSheetVC") as! BBConsentDataAgreementBottomSheetVC
+            dataAgreementVC.dataAgreementDic = [dataAgreementDic]
+            let navVC = UINavigationController.init(rootViewController: dataAgreementVC)
+            navVC.modalPresentationStyle = .overFullScreen
+            UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+        } else if viewMode == .fullScreen {
+            let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
+            let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+            var storyboard = UIStoryboard()
+            if let resourceBundle = Bundle(url: bundleURL!) {
+                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+            } else {
+                let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+            }
+            let dataAgreementVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
+            dataAgreementVC.dataAgreementDic = [dataAgreementDic]
+            dataAgreementVC.showCloseButton = true
+            let navVC = UINavigationController.init(rootViewController: dataAgreementVC)
+            navVC.modalPresentationStyle = .fullScreen
+            UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
         }
-        let dataAgreementVC = storyboard.instantiateViewController(withIdentifier: "BBConsentDataAgreementVC") as! BBConsentDataAgreementVC
-        dataAgreementVC.dataAgreementDic = [dataAgreementDic]
-        dataAgreementVC.showCloseButton = true
-        let navVC = UINavigationController.init(rootViewController: dataAgreementVC)
-        navVC.modalPresentationStyle = .fullScreen
-        UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
     }
     
     // MARK: - 'Individual' related api calls
