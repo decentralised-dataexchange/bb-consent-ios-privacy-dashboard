@@ -28,7 +28,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
         debugPrint("### Log from PrivacyDashboardiOS SDK.")
     }
     
-    func show(organisationId: String, apiKey: String, userId: String, accessToken: String, animate: Bool = true) {
+    func show(organisationId: String, apiKey: String, userId: String, accessToken: String, animate: Bool = true, viewMode: ViewMode) {
         if #available(iOS 13.0, *) {
             let appearance = UIView.appearance()
             appearance.overrideUserInterfaceStyle = .light
@@ -41,38 +41,71 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
             serviceManager.getUserDetails()
             let data = apiKey.data(using: .utf8) ?? Data()
             _ = BBConsentKeyChainUtils.save(key: "BBConsentApiKey", data: data)
-            
-            let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
-            let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle") 
             var storyboard = UIStoryboard()
-            if let resourceBundle = Bundle(url: bundleURL!) {
-                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
-            } else {
-                let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
-                storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+            if viewMode == .bottomSheet {
+                let frameworkBundle = Bundle(for: BBConsentOrganisationBottomSheetViewController.self)
+                let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+                var storyboard = UIStoryboard()
+                if let resourceBundle = Bundle(url: bundleURL!) {
+                    storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+                } else {
+                    let myBundle = Bundle(for: BBConsentOrganisationBottomSheetViewController.self)
+                    storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+                }
+                let orgVC = storyboard.instantiateViewController(withIdentifier: "BBConsentOrganisationBottomSheetViewController") as? BBConsentOrganisationBottomSheetViewController ?? BBConsentOrganisationBottomSheetViewController()
+                orgVC.organisationId = organisationId
+                orgVC.onConsentChange = onConsentChange
+                orgVC.dataAgreementIDs = dataAgreementIDs
+                orgVC.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
+                let navVC = UINavigationController.init(rootViewController: orgVC)
+                navVC.modalPresentationStyle = .overCurrentContext
+                UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+                return
+            } else if viewMode == .fullScreen {
+                let frameworkBundle = Bundle(for: BBConsentOrganisationViewController.self)
+                let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("PrivacyDashboardiOS.bundle")
+                if let resourceBundle = Bundle(url: bundleURL!) {
+                    storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: resourceBundle)
+                } else {
+                    let myBundle = Bundle(for: BBConsentOrganisationViewController.self)
+                    storyboard = UIStoryboard(name: "PrivacyDashboard", bundle: myBundle)
+                }
+                
+                let orgVC = storyboard.instantiateViewController(withIdentifier: "BBConsentOrganisationViewController") as? BBConsentOrganisationViewController ?? BBConsentOrganisationViewController()
+                orgVC.organisationId = organisationId
+                orgVC.onConsentChange = onConsentChange
+                orgVC.dataAgreementIDs = dataAgreementIDs
+                orgVC.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
+                let navVC = UINavigationController.init(rootViewController: orgVC)
+                navVC.modalPresentationStyle = .fullScreen
+                UIApplication.topViewController()?.present(navVC, animated: animate, completion: nil)
+                return
             }
             
-            let orgVC = storyboard.instantiateViewController(withIdentifier: "BBConsentOrganisationViewController") as? BBConsentOrganisationViewController ?? BBConsentOrganisationViewController()
-            orgVC.organisationId = organisationId
-            orgVC.onConsentChange = onConsentChange
-            orgVC.dataAgreementIDs = dataAgreementIDs
-            orgVC.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
-            let navVC = UINavigationController.init(rootViewController: orgVC)
-            navVC.modalPresentationStyle = .fullScreen
-            UIApplication.topViewController()?.present(navVC, animated: animate, completion: nil)
-            return
         }
         
         if userId != "" {
-            let orgVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "BBConsentOrganisationViewController") as! BBConsentOrganisationViewController
-            orgVC.organisationId = organisationId
-            self.userId = userId
-            let navVC = UINavigationController.init(rootViewController: orgVC)
-            navVC.modalPresentationStyle = .fullScreen
-            if !hideBackButton{
-                showBackButton()
+            if viewMode == .bottomSheet {
+                let orgVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "BBConsentOrganisationBottomSheetViewController") as! BBConsentOrganisationBottomSheetViewController
+                orgVC.organisationId = organisationId
+                self.userId = userId
+                let navVC = UINavigationController.init(rootViewController: orgVC)
+                navVC.modalPresentationStyle = .overCurrentContext
+                if !hideBackButton{
+                    showBackButton()
+                }
+                UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+            } else if viewMode == .fullScreen {
+                let orgVC = Constant.getStoryboard(vc: self.classForCoder).instantiateViewController(withIdentifier: "BBConsentOrganisationViewController") as! BBConsentOrganisationViewController
+                orgVC.organisationId = organisationId
+                self.userId = userId
+                let navVC = UINavigationController.init(rootViewController: orgVC)
+                navVC.modalPresentationStyle = .fullScreen
+                if !hideBackButton{
+                    showBackButton()
+                }
+                UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
             }
-            UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
         }
         
         if accessToken != "" {
