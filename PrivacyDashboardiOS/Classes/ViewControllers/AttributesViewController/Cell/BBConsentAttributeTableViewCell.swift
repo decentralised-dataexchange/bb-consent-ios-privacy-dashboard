@@ -13,6 +13,8 @@ class BBConsentAttributeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dataLbl: UILabel!
     @IBOutlet weak var consentTypeLbl: UILabel!
+    @IBOutlet weak var divider: UILabel!
+    
     var consentInfo : DataAttribute?
     var consent: Bool?
     

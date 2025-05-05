@@ -26,6 +26,8 @@ class BBConsentAttributesBottomSheetViewController: BBConsentBaseViewController 
     
     @IBOutlet weak var parentViewheight: NSLayoutConstraint!
     
+    @IBOutlet weak var readPolicyButton: UIButton!
+    
     var overViewCollpased = true
     var dataAgreementsModel : DataAgreementsModel?
     var organization : OrganisationModel?
@@ -45,8 +47,24 @@ class BBConsentAttributesBottomSheetViewController: BBConsentBaseViewController 
         tableView.delegate = self
         addRefershNotification()
         callConsentListApi()
+        setPolicyButton()
     }
     
+    func setPolicyButton() {
+        if let url = dataAgreementsModel?.dataAgreements[0].policy.url {
+            if url.isValidString{
+                readPolicyButton.isHidden = false
+            }else{
+                readPolicyButton.isHidden = true
+            }
+        }else{
+            readPolicyButton.isHidden = true
+        }
+        readPolicyButton.showRoundCorner(roundCorner: 3.0)
+        readPolicyButton.layer.borderColor = UIColor(red:0.62, green:0.62, blue:0.62, alpha:1).cgColor
+        readPolicyButton.layer.borderWidth = 0.5
+        readPolicyButton.setTitle("bb_consent_data_attribute_read_policy".localized, for: .normal)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -73,6 +91,19 @@ class BBConsentAttributesBottomSheetViewController: BBConsentBaseViewController 
         let serviceManager = OrganisationWebServiceManager()
         serviceManager.managerDelegate = self
         serviceManager.consentList(dataAgreementId: purposeInfo?.id ?? "")
+    }
+    
+    @IBAction func readPolicyButtonTapped(_ sender: Any) {
+        if let url = dataAgreementsModel?.dataAgreements[0].policy.url {
+            if url.isValidString{
+                let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: "BBConsentWebViewBottomSheetVC") as! BBConsentWebViewBottomSheetVC
+                webviewVC.urlString = url
+                webviewVC.modalPresentationStyle = .overFullScreen
+                present(webviewVC, animated: true)
+            }else{
+                self.showErrorAlert(message: Constant.Alert.invalidURL)
+            }
+        }
     }
     
     func addRefershNotification() {
@@ -132,6 +163,8 @@ extension BBConsentAttributesBottomSheetViewController: UITableViewDataSource, U
         consentCell.consentInfo = dataAttributes?[indexPath.row]
         consentCell.consent = consentVal
         consentCell.showData()
+        let isLastCell = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
+        consentCell.divider.isHidden = isLastCell
         if isFromQR {
             consentCell.consentTypeLbl.text =  Constant.Alert.allow.localized
             //  consentCell.rightArrow.isHidden = true
@@ -140,8 +173,9 @@ extension BBConsentAttributesBottomSheetViewController: UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 65
     }
+    
 }
 
 extension BBConsentAttributesBottomSheetViewController: WebServiceTaskManagerProtocol {
@@ -175,7 +209,7 @@ extension BBConsentAttributesBottomSheetViewController: WebServiceTaskManagerPro
     }
     
     private func updateTableViewHeight() {
-            let rowHeight = 70.0
+            let rowHeight = 65.0
             let numberOfRows = tableView.numberOfRows(inSection: 0)
             let totalHeight = CGFloat(numberOfRows) * rowHeight
             
