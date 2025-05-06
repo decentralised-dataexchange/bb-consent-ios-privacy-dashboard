@@ -16,7 +16,7 @@ public class PrivacyDashboard {
     public static var receiveDataBackFromPrivacyDashboard : (([String: Any]) -> Void)?
     
     // MARK: - Invoking 'PrivacyDashboard' iOS SDK
-    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String, String) -> Void)? = nil, shouldShowAlertOnConsentChange: Bool = true, dataAgreementIDs: [String]? = nil, viewMode: ViewMode = .fullScreen) {
+    public static func showPrivacyDashboard(withApiKey: String, withUserId: String, withOrgId: String, withBaseUrl: String, withLocale: String = "en", accessToken: String = "", turnOnAskme: Bool, turnOnUserRequest: Bool, turnOnAttributeDetail: Bool, onConsentChange: ((Bool, String, String) -> Void)? = nil, shouldShowAlertOnConsentChange: Bool = true, dataAgreementIDs: [String]? = nil, viewMode: ViewMode = .fullScreen, withTitle: String? = "Privacy Dashboard") {
         BBConsentPrivacyDashboardiOS.shared.languageCode = withLocale
         BBConsentPrivacyDashboardiOS.shared.turnOnUserRequests = turnOnUserRequest
         BBConsentPrivacyDashboardiOS.shared.turnOnAskMeSection = turnOnAskme
@@ -25,7 +25,7 @@ public class PrivacyDashboard {
         BBConsentPrivacyDashboardiOS.shared.onConsentChange = onConsentChange
         BBConsentPrivacyDashboardiOS.shared.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
         BBConsentPrivacyDashboardiOS.shared.dataAgreementIDs = dataAgreementIDs ?? nil
-        BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken, viewMode: viewMode)
+        BBConsentPrivacyDashboardiOS.shared.show(organisationId: withOrgId, apiKey: withApiKey, userId: withUserId, accessToken: accessToken, viewMode: viewMode, title: withTitle)
     }
     
     public static func showDataSharingUI(apiKey: String, userId: String, accessToken: String? = nil, baseUrlString: String, dataAgreementId: String, organisationName: String, organisationLogoImageUrl: String, termsOfServiceText : String, termsOfServiceUrl: String, cancelButtonText: String) {

@@ -91,6 +91,7 @@ class BBConsentDataAgreementBottomSheetVC: BBConsentBaseViewController, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DataAgreementCellV2", for: indexPath) as! DataAgreementCellV2
+        cell.contentBack.backgroundColor = UIColor(red: 0.9725, green: 0.9725, blue: 0.9725, alpha: 1.0)
         let item = dataAgreementDic[indexPath.section]
         let totalRowsInSection = item.count
         let keys = item.map({ $0.key })

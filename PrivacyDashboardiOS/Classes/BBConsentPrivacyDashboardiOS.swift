@@ -28,7 +28,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
         debugPrint("### Log from PrivacyDashboardiOS SDK.")
     }
     
-    func show(organisationId: String, apiKey: String, userId: String, accessToken: String, animate: Bool = true, viewMode: ViewMode) {
+    func show(organisationId: String, apiKey: String, userId: String, accessToken: String, animate: Bool = true, viewMode: ViewMode, title: String?) {
         if #available(iOS 13.0, *) {
             let appearance = UIView.appearance()
             appearance.overrideUserInterfaceStyle = .light
@@ -56,6 +56,7 @@ class BBConsentPrivacyDashboardiOS: UIViewController {
                 orgVC.organisationId = organisationId
                 orgVC.onConsentChange = onConsentChange
                 orgVC.dataAgreementIDs = dataAgreementIDs
+                orgVC.titleValue = title
                 orgVC.shouldShowAlertOnConsentChange = shouldShowAlertOnConsentChange
                 let navVC = UINavigationController.init(rootViewController: orgVC)
                 navVC.modalPresentationStyle = .overCurrentContext

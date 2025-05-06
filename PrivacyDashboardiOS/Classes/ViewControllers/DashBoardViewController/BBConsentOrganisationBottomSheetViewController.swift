@@ -99,6 +99,7 @@ class BBConsentOrganisationBottomSheetViewController: BBConsentBaseViewControlle
     var dataAgreementsObj: DataAgreementsModel?
     var consentRecordsObj : RecordsModel?
     var organizationObj : OrganisationModel?
+    var titleValue: String?
     
     public var onConsentChange: ((Bool, String, String) -> Void)?
     var shouldShowAlertOnConsentChange: Bool?
@@ -131,6 +132,7 @@ class BBConsentOrganisationBottomSheetViewController: BBConsentBaseViewControlle
             isNeedToRefresh = false
             callDataAgreementsApi { _ in }
         }
+        titleLabel.text = titleValue
     }
     
     func callOrganisationApi() {
@@ -161,9 +163,10 @@ class BBConsentOrganisationBottomSheetViewController: BBConsentBaseViewControlle
             
             if let privacyPolicy =  self.organizationObj?.organisation.policyURL {
                 if self.verifyUrl(urlString: privacyPolicy) {
-                    let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: Constant.ViewControllerID.webViewVC) as! BBConsentWebViewViewController
+                    let webviewVC = self.storyboard?.instantiateViewController(withIdentifier: "BBConsentWebViewBottomSheetVC") as! BBConsentWebViewBottomSheetVC
                     webviewVC.urlString = privacyPolicy
-                    self.navigationController?.pushViewController(webviewVC, animated: true)
+                    webviewVC.modalPresentationStyle = .overFullScreen
+                    self.present(webviewVC, animated: true)
                 } else {
                     self.showWarningAlert(message: Constant.Alert.KPromptMsgNotConfigured)
                 }

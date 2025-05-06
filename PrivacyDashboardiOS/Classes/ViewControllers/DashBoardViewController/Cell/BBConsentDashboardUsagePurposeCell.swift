@@ -43,16 +43,6 @@ class BBConsentDashboardUsagePurposeCell: UITableViewCell {
         
         if consentedCount ?? 0 > 0 {
             var valueString = "bb_consent_data_attribute_allow".localized
-            valueString.append(": ")
-            let consentedStr = String(consentedCount ?? 0)
-            valueString.append(consentedStr)
-            if let total = totalCount {
-                if total > 0 {
-                    let totalStr = String(total)
-                    valueString.append(" of ")
-                    valueString.append(totalStr)
-                }
-            }
             self.dataLbl.text = valueString
         } else {
             self.dataLbl.text = "bb_consent_dashboard_disallow".localized
